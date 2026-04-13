@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anson Lo | Developer & Researcher</title>
+    <meta name="description" content="Anson Lo - Full-Stack Developer, AI/ML Researcher, and Computer Science Student from Macao. Portfolio showcasing projects in AI, Web Development, and Mathematical Modeling.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Cursor glow effect -->
+    <div id="cursor-glow"></div>
+
+    <!-- Three.js canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-bracket">{</span>
+                <span class="logo-text">A.Lo</span>
+                <span class="logo-bracket">}</span>
+            </a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link" data-section="about">About</a>
+                <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+                <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+                <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+                <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#skills" class="mobile-link">Skills</a>
+        <a href="#projects" class="mobile-link">Projects</a>
+        <a href="#experience" class="mobile-link">Experience</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span>Available for collaboration</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="hero-greeting">Hi, I'm</span>
+                <span class="hero-name">Anson Lo</span>
+            </h1>
+            <div class="hero-typed-wrapper">
+                <span class="typed-prefix">&gt;&nbsp;</span>
+                <span id="typed-text"></span>
+                <span class="typed-cursor">|</span>
+            </div>
+            <p class="hero-description">
+                High school student from <span class="highlight">Macao</span> passionate about
+                <span class="highlight">AI/ML</span>, <span class="highlight">Full-Stack Development</span>,
+                and <span class="highlight">Mathematical Modeling</span>.
+                Building the future, one commit at a time.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="11">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="8">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Technologies</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="3">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Years Coding</span>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">
+                    <span>View Projects</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="https://github.com/ansonlotiniat" target="_blank" rel="noopener" class="btn btn-ghost">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">&lt;about&gt;</span>
+                <h2 class="section-title">About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="terminal-title">anson@macao ~ %</span>
+                        </div>
+                        <div class="terminal-body">
+                            <p class="terminal-line"><span class="prompt">$</span> cat about.md</p>
+                            <p class="terminal-output">
+                                I'm a passionate developer and researcher based in <strong>Macao</strong>,
+                                currently studying at <strong>Pui Ching Middle School</strong>. My journey in
+                                computer science spans across multiple domains — from building AI-powered
+                                applications and full-stack web platforms to competing in international
+                                mathematical modeling challenges.
+                            </p>
+                            <p class="terminal-output">
+                                I believe in learning by building. Every project is an opportunity to explore
+                                new technologies, push boundaries, and create something meaningful. Whether it's
+                                training neural networks with <strong>PyTorch</strong>, deploying microservices with
+                                <strong>Docker & Kubernetes</strong>, or crafting interactive frontends with
+                                <strong>React & Three.js</strong> — I thrive on the challenge.
+                            </p>
+                            <p class="terminal-output">
+                                When I'm not coding, you'll find me exploring mathematical modeling problems,
+                                participating in debate competitions, or experimenting with the latest AI models.
+                            </p>
+                            <p class="terminal-line"><span class="prompt">$</span> <span class="cursor-blink">_</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-cards">
+                    <div class="info-card" data-tilt>
+                        <div class="info-card-icon"><i class="fas fa-brain"></i></div>
+                        <h3>AI / ML</h3>
+                        <p>Deep learning, NLP, computer vision with PyTorch & TensorFlow</p>
+                    </div>
+                    <div class="info-card" data-tilt>
+                        <div class="info-card-icon"><i class="fas fa-code"></i></div>
+                        <h3>Full-Stack</h3>
+                        <p>React, Next.js, Node.js, FastAPI, PostgreSQL, MongoDB</p>
+                    </div>
+                    <div class="info-card" data-tilt>
+                        <div class="info-card-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Math Modeling</h3>
+                        <p>IMMC competitor, optimization, simulation, data analysis</p>
+                    </div>
+                    <div class="info-card" data-tilt>
+                        <div class="info-card-icon"><i class="fas fa-robot"></i></div>
+                        <h3>Automation</h3>
+                        <p>Bots, scrapers, CI/CD pipelines, cloud deployment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">&lt;skills&gt;</span>
+                <h2 class="section-title">Tech Stack</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- Skills filter -->
+            <div class="skills-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="languages">Languages</button>
+                <button class="filter-btn" data-filter="frontend">Frontend</button>
+                <button class="filter-btn" data-filter="backend">Backend</button>
+                <button class="filter-btn" data-filter="ai-ml">AI / ML</button>
+                <button class="filter-btn" data-filter="devops">DevOps</button>
+                <button class="filter-btn" data-filter="tools">Tools</button>
+            </div>
+
+            <!-- Skills grid -->
+            <div class="skills-grid">
+                <!-- Languages -->
+                <div class="skill-card" data-category="languages">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                    <span>Python</span>
+                    <div class="skill-level" data-level="92"></div>
+                </div>
+                <div class="skill-card" data-category="languages">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                    <span>JavaScript</span>
+                    <div class="skill-level" data-level="90"></div>
+                </div>
+                <div class="skill-card" data-category="languages">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
+                    <span>TypeScript</span>
+                    <div class="skill-level" data-level="82"></div>
+                </div>
+                <div class="skill-card" data-category="languages">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
+                    <span>C++</span>
+                    <div class="skill-level" data-level="75"></div>
+                </div>
+                <div class="skill-card" data-category="languages">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+                    <span>Java</span>
+                    <div class="skill-level" data-level="70"></div>
+                </div>
+                <div class="skill-card" data-category="languages">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg" alt="Rust">
+                    <span>Rust</span>
+                    <div class="skill-level" data-level="55"></div>
+                </div>
+                <div class="skill-card" data-category="languages">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg" alt="Go">
+                    <span>Go</span>
+                    <div class="skill-level" data-level="60"></div>
+                </div>
+                <div class="skill-card" data-category="languages">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                    <span>HTML5</span>
+                    <div class="skill-level" data-level="95"></div>
+                </div>
+                <div class="skill-card" data-category="languages">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                    <span>CSS3</span>
+                    <div class="skill-level" data-level="90"></div>
+                </div>
+                <div class="skill-card" data-category="languages">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" alt="R">
+                    <span>R</span>
+                    <div class="skill-level" data-level="65"></div>
+                </div>
+
+                <!-- Frontend -->
+                <div class="skill-card" data-category="frontend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                    <span>React</span>
+                    <div class="skill-level" data-level="88"></div>
+                </div>
+                <div class="skill-card" data-category="frontend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js">
+                    <span>Next.js</span>
+                    <div class="skill-level" data-level="85"></div>
+                </div>
+                <div class="skill-card" data-category="frontend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js">
+                    <span>Vue.js</span>
+                    <div class="skill-level" data-level="72"></div>
+                </div>
+                <div class="skill-card" data-category="frontend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind">
+                    <span>Tailwind CSS</span>
+                    <div class="skill-level" data-level="90"></div>
+                </div>
+                <div class="skill-card" data-category="frontend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" alt="Three.js">
+                    <span>Three.js</span>
+                    <div class="skill-level" data-level="70"></div>
+                </div>
+                <div class="skill-card" data-category="frontend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="Sass">
+                    <span>Sass/SCSS</span>
+                    <div class="skill-level" data-level="82"></div>
+                </div>
+                <div class="skill-card" data-category="frontend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg" alt="Svelte">
+                    <span>Svelte</span>
+                    <div class="skill-level" data-level="60"></div>
+                </div>
+
+                <!-- Backend -->
+                <div class="skill-card" data-category="backend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+                    <span>Node.js</span>
+                    <div class="skill-level" data-level="88"></div>
+                </div>
+                <div class="skill-card" data-category="backend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express">
+                    <span>Express.js</span>
+                    <div class="skill-level" data-level="85"></div>
+                </div>
+                <div class="skill-card" data-category="backend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI">
+                    <span>FastAPI</span>
+                    <div class="skill-level" data-level="80"></div>
+                </div>
+                <div class="skill-card" data-category="backend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask">
+                    <span>Flask</span>
+                    <div class="skill-level" data-level="78"></div>
+                </div>
+                <div class="skill-card" data-category="backend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django">
+                    <span>Django</span>
+                    <div class="skill-level" data-level="70"></div>
+                </div>
+                <div class="skill-card" data-category="backend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+                    <span>PostgreSQL</span>
+                    <div class="skill-level" data-level="78"></div>
+                </div>
+                <div class="skill-card" data-category="backend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+                    <span>MongoDB</span>
+                    <div class="skill-level" data-level="80"></div>
+                </div>
+                <div class="skill-card" data-category="backend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis">
+                    <span>Redis</span>
+                    <div class="skill-level" data-level="65"></div>
+                </div>
+                <div class="skill-card" data-category="backend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" alt="GraphQL">
+                    <span>GraphQL</span>
+                    <div class="skill-level" data-level="68"></div>
+                </div>
+                <div class="skill-card" data-category="backend">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase">
+                    <span>Firebase</span>
+                    <div class="skill-level" data-level="75"></div>
+                </div>
+
+                <!-- AI / ML -->
+                <div class="skill-card" data-category="ai-ml">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch">
+                    <span>PyTorch</span>
+                    <div class="skill-level" data-level="82"></div>
+                </div>
+                <div class="skill-card" data-category="ai-ml">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
+                    <span>TensorFlow</span>
+                    <div class="skill-level" data-level="75"></div>
+                </div>
+                <div class="skill-card" data-category="ai-ml">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV">
+                    <span>OpenCV</span>
+                    <div class="skill-level" data-level="72"></div>
+                </div>
+                <div class="skill-card" data-category="ai-ml">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy">
+                    <span>NumPy</span>
+                    <div class="skill-level" data-level="88"></div>
+                </div>
+                <div class="skill-card" data-category="ai-ml">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas">
+                    <span>Pandas</span>
+                    <div class="skill-level" data-level="85"></div>
+                </div>
+                <div class="skill-card" data-category="ai-ml">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" alt="Matplotlib">
+                    <span>Matplotlib</span>
+                    <div class="skill-level" data-level="80"></div>
+                </div>
+                <div class="skill-card" data-category="ai-ml">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" alt="Scikit-learn">
+                    <span>Scikit-learn</span>
+                    <div class="skill-level" data-level="78"></div>
+                </div>
+                <div class="skill-card" data-category="ai-ml">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Jupyter">
+                    <span>Jupyter</span>
+                    <div class="skill-level" data-level="90"></div>
+                </div>
+
+                <!-- DevOps -->
+                <div class="skill-card" data-category="devops">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+                    <span>Docker</span>
+                    <div class="skill-level" data-level="78"></div>
+                </div>
+                <div class="skill-card" data-category="devops">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes">
+                    <span>Kubernetes</span>
+                    <div class="skill-level" data-level="60"></div>
+                </div>
+                <div class="skill-card" data-category="devops">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS">
+                    <span>AWS</span>
+                    <div class="skill-level" data-level="65"></div>
+                </div>
+                <div class="skill-card" data-category="devops">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="GCP">
+                    <span>Google Cloud</span>
+                    <div class="skill-level" data-level="68"></div>
+                </div>
+                <div class="skill-card" data-category="devops">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx">
+                    <span>Nginx</span>
+                    <div class="skill-level" data-level="70"></div>
+                </div>
+                <div class="skill-card" data-category="devops">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Actions">
+                    <span>GitHub Actions</span>
+                    <div class="skill-level" data-level="80"></div>
+                </div>
+                <div class="skill-card" data-category="devops">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+                    <span>Linux</span>
+                    <div class="skill-level" data-level="82"></div>
+                </div>
+                <div class="skill-card" data-category="devops">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt="Terraform">
+                    <span>Terraform</span>
+                    <div class="skill-level" data-level="55"></div>
+                </div>
+
+                <!-- Tools -->
+                <div class="skill-card" data-category="tools">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                    <span>Git</span>
+                    <div class="skill-level" data-level="90"></div>
+                </div>
+                <div class="skill-card" data-category="tools">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+                    <span>VS Code</span>
+                    <div class="skill-level" data-level="92"></div>
+                </div>
+                <div class="skill-card" data-category="tools">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+                    <span>Figma</span>
+                    <div class="skill-level" data-level="70"></div>
+                </div>
+                <div class="skill-card" data-category="tools">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" alt="Webpack">
+                    <span>Webpack</span>
+                    <div class="skill-level" data-level="72"></div>
+                </div>
+                <div class="skill-card" data-category="tools">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" alt="Vim">
+                    <span>Vim</span>
+                    <div class="skill-level" data-level="68"></div>
+                </div>
+                <div class="skill-card" data-category="tools">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/latex/latex-original.svg" alt="LaTeX">
+                    <span>LaTeX</span>
+                    <div class="skill-level" data-level="75"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">&lt;projects&gt;</span>
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card featured">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="https://github.com/ansonlotiniat/gemini" target="_blank" rel="noopener" class="project-link-btn">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">AI</span>
+                            <span class="tag">API</span>
+                            <span class="tag">Serverless</span>
+                        </div>
+                        <h3>Gemini API Proxy</h3>
+                        <p>OpenAI-compatible endpoint powered by Google's Gemini API. Serverless architecture with free deployment to various cloud providers. Enables seamless integration with existing OpenAI-based tools.</p>
+                        <div class="project-tech">
+                            <span>JavaScript</span>
+                            <span>Node.js</span>
+                            <span>REST API</span>
+                            <span>Serverless</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card featured">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="https://github.com/ansonlotiniat/fakeminiprogram" target="_blank" rel="noopener" class="project-link-btn">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">EdTech</span>
+                            <span class="tag">Full-Stack</span>
+                            <span class="tag">WeChat</span>
+                        </div>
+                        <h3>Smart Quiz System</h3>
+                        <p>Interactive learning platform with competitive quiz modes, AI-driven learning trees, radar chart analytics, and student rankings. Designed for WeChat Mini Program deployment.</p>
+                        <div class="project-tech">
+                            <span>JavaScript</span>
+                            <span>HTML/CSS</span>
+                            <span>Canvas API</span>
+                            <span>Data Viz</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="https://github.com/ansonlotiniat/2d3datom" target="_blank" rel="noopener" class="project-link-btn">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">3D</span>
+                            <span class="tag">Physics</span>
+                            <span class="tag">Visualization</span>
+                        </div>
+                        <h3>2D/3D Atom Visualizer</h3>
+                        <p>Interactive atomic structure visualization tool rendering 2D and 3D representations of atomic models for educational purposes.</p>
+                        <div class="project-tech">
+                            <span>HTML5</span>
+                            <span>WebGL</span>
+                            <span>Three.js</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="https://github.com/ansonlotiniat/ig-story-bot" target="_blank" rel="noopener" class="project-link-btn">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Automation</span>
+                            <span class="tag">Bot</span>
+                            <span class="tag">Python</span>
+                        </div>
+                        <h3>Instagram Story Bot</h3>
+                        <p>Automated Instagram story interaction bot built with Python. Leverages browser automation and API integration for social media management.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Selenium</span>
+                            <span>API</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 5 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="https://github.com/ansonlotiniat/IMMC2026-calculator" target="_blank" rel="noopener" class="project-link-btn">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Math</span>
+                            <span class="tag">IMMC</span>
+                            <span class="tag">Modeling</span>
+                        </div>
+                        <h3>IMMC 2026 Calculator</h3>
+                        <p>Computational tools built for the International Mathematical Modeling Challenge. Implements mathematical models for real-world problem solving.</p>
+                        <div class="project-tech">
+                            <span>HTML5</span>
+                            <span>JavaScript</span>
+                            <span>Math.js</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 6 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">
+                            <i class="fas fa-rainbow"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="https://github.com/ansonlotiniat/Wavelengthtocolor" target="_blank" rel="noopener" class="project-link-btn">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Physics</span>
+                            <span class="tag">Science</span>
+                            <span class="tag">Tool</span>
+                        </div>
+                        <h3>Wavelength to Color</h3>
+                        <p>Scientific tool that converts electromagnetic wavelength values to their corresponding visible color representations in real-time.</p>
+                        <div class="project-tech">
+                            <span>HTML5</span>
+                            <span>JavaScript</span>
+                            <span>Physics</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="projects-cta">
+                <a href="https://github.com/ansonlotiniat?tab=repositories" target="_blank" rel="noopener" class="btn btn-outline">
+                    <span>View All Projects on GitHub</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience / Education Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">&lt;journey&gt;</span>
+                <h2 class="section-title">My Journey</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-year="2026">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2026</span>
+                        <h3>IMMC International Mathematical Modeling Challenge</h3>
+                        <p>Participated in IMMC 2026, building computational tools and mathematical models for real-world optimization problems. Developed custom calculators for data-driven analysis.</p>
+                        <div class="timeline-tags">
+                            <span>Mathematical Modeling</span>
+                            <span>Python</span>
+                            <span>Data Analysis</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="2025">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025</span>
+                        <h3>AI & Full-Stack Development</h3>
+                        <p>Built AI-powered applications including the Gemini API Proxy for OpenAI compatibility. Explored deep learning with PyTorch and TensorFlow. Developed automation bots and web applications.</p>
+                        <div class="timeline-tags">
+                            <span>AI/ML</span>
+                            <span>PyTorch</span>
+                            <span>Node.js</span>
+                            <span>API Design</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="2024">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024</span>
+                        <h3>EdTech & Interactive Applications</h3>
+                        <p>Created the Smart Quiz System — an interactive learning platform with competitive modes and AI-driven analytics. Built multiple interactive web tools including atomic visualizers and physics converters.</p>
+                        <div class="timeline-tags">
+                            <span>JavaScript</span>
+                            <span>Canvas API</span>
+                            <span>WeChat</span>
+                            <span>Data Viz</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="2023">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023</span>
+                        <h3>Started Coding Journey</h3>
+                        <p>Began learning programming and web development. Created first GitHub account and started building projects. Discovered the power of combining technology with real-world problem solving.</p>
+                        <div class="timeline-tags">
+                            <span>HTML/CSS</span>
+                            <span>JavaScript</span>
+                            <span>Python</span>
+                            <span>Git</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="education-card">
+                <div class="edu-icon"><i class="fas fa-school"></i></div>
+                <div class="edu-content">
+                    <h3>Pui Ching Middle School</h3>
+                    <p class="edu-location"><i class="fas fa-map-marker-alt"></i> Macao, China</p>
+                    <p class="edu-desc">Focused on Computer Science, Mathematics, and Physics. Active participant in math modeling competitions and programming challenges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">&lt;contact&gt;</span>
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-content">
+                <p class="contact-desc">
+                    I'm always open to new opportunities, collaborations, and interesting conversations.
+                    Whether you have a project idea, want to discuss AI/ML, or just say hi — feel free to reach out!
+                </p>
+                <div class="contact-links">
+                    <a href="https://github.com/ansonlotiniat" target="_blank" rel="noopener" class="contact-card">
+                        <i class="fab fa-github"></i>
+                        <span class="contact-label">GitHub</span>
+                        <span class="contact-value">@ansonlotiniat</span>
+                    </a>
+                    <a href="mailto:ansonlotiniat@gmail.com" class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">ansonlotiniat@gmail.com</span>
+                    </a>
+                    <a href="#" class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="contact-label">Location</span>
+                        <span class="contact-value">Macao, China</span>
+                    </a>
+                </div>
+                <a href="mailto:ansonlotiniat@gmail.com" class="btn btn-primary btn-lg">
+                    <span>Say Hello</span>
+                    <i class="fas fa-paper-plane"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-bracket">{</span>
+                    <span class="logo-text">A.Lo</span>
+                    <span class="logo-bracket">}</span>
+                </div>
+                <p class="footer-text">Designed & Built by Anson Lo</p>
+                <div class="footer-links">
+                    <a href="https://github.com/ansonlotiniat" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                </div>
+                <p class="footer-copy">&copy; 2026 Anson Lo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
