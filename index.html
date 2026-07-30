@@ -1,470 +1,839 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant" data-language="zh">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#e9e6dc">
-    <meta name="color-scheme" content="light">
-    <title>Anson Lo — Macao Working Atlas</title>
-    <meta name="description" content="Anson Lo，來自澳門的學生開發者、編輯與演講者。以一個可探索的澳門工作地圖，呈現系統、表達與文字。">
+    <meta name="theme-color" content="#302c60">
+    <meta name="color-scheme" content="dark">
+    <title>AnsonOS — Anson Lo</title>
+    <meta name="description" content="Anson Lo 的互動工作桌面：打開 Xcode、Visual Studio Code 與 Overleaf，探索他如何建立系統、協調 iGEM 工程與編輯文字。">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ansonlotiniat.github.io/">
-    <meta property="og:title" content="Anson Lo — Macao Working Atlas">
-    <meta property="og:description" content="A spatial portfolio of systems, voice, and words from Macao.">
+    <meta property="og:title" content="AnsonOS — Anson Lo">
+    <meta property="og:description" content="Open the tools. Explore the way Anson builds, coordinates, and edits.">
     <meta property="og:image" content="https://ansonlotiniat.github.io/og-v2.png">
-    <meta property="og:image:alt" content="Anson Lo — Systems, Voice and Words">
+    <meta property="og:image:alt" content="Anson Lo — systems, voice, and words">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Anson Lo — Macao Working Atlas">
-    <meta name="twitter:description" content="A spatial portfolio of systems, voice, and words from Macao.">
+    <meta name="twitter:title" content="AnsonOS — Anson Lo">
+    <meta name="twitter:description" content="Open the tools. Explore the way Anson builds, coordinates, and edits.">
     <meta name="twitter:image" content="https://ansonlotiniat.github.io/og-v2.png">
 
     <link rel="canonical" href="https://ansonlotiniat.github.io/">
     <link rel="preload" href="JetBrainsMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="modulepreload" href="vendor/three.module.min.js">
-    <link rel="modulepreload" href="vendor/three.core.min.js">
+    <link rel="preload" href="assets/app-icons/visual-studio-code.png" as="image" type="image/png">
     <link rel="stylesheet" href="style.css">
     <script>document.documentElement.classList.add("js");</script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+    <script src="vendor/gsap.min.js" defer></script>
     <script src="main.js" defer></script>
-    <script type="module" src="map.js"></script>
 </head>
 <body>
-    <a class="skip-link" href="#field-navigation">
-        <span data-copy-lang="zh">跳到座標導航</span>
-        <span data-copy-lang="en">Skip to field navigation</span>
+    <a class="skip-link" href="#desktop">
+        <span data-copy-lang="zh">跳到桌面</span>
+        <span data-copy-lang="en">Skip to desktop</span>
     </a>
 
-    <div class="field-app" data-field-app data-scene="overview">
-        <header class="field-header">
-            <a class="wordmark" href="#overview" data-scene-link="overview" aria-label="Anson Lo, atlas overview">
-                <b>ANSON LO</b>
-                <span>MACAO / 22.2° N</span>
-            </a>
+    <div class="os-shell" data-os>
+        <div class="wallpaper" aria-hidden="true">
+            <div class="wallpaper-ribbon ribbon-one"></div>
+            <div class="wallpaper-ribbon ribbon-two"></div>
+            <div class="wallpaper-ribbon ribbon-three"></div>
+            <div class="wallpaper-grain"></div>
+            <div class="wallpaper-grid"></div>
+        </div>
 
-            <p class="scene-readout" aria-live="polite">
-                <span data-scene-number>00</span>
-                <i aria-hidden="true"></i>
-                <span data-scene-name>OVERVIEW</span>
-            </p>
+        <header class="menu-bar" aria-label="AnsonOS menu bar">
+            <div class="menu-left">
+                <button class="menu-brand" type="button" data-open-app="about" aria-label="Open About Anson">
+                    <span aria-hidden="true">A</span>
+                </button>
+                <strong class="active-app-name" data-active-app>Finder</strong>
+                <span class="menu-word">
+                    <span data-copy-lang="zh">工作</span>
+                    <span data-copy-lang="en">Work</span>
+                </span>
+                <span class="menu-word">
+                    <span data-copy-lang="zh">視窗</span>
+                    <span data-copy-lang="en">Window</span>
+                </span>
+            </div>
 
-            <div class="header-tools">
+            <div class="menu-right">
+                <button class="menu-explore" type="button" data-open-explore>
+                    <span class="search-glyph" aria-hidden="true"></span>
+                    <span>Explore</span>
+                    <kbd>⌘K</kbd>
+                </button>
+
                 <div class="language-switch" role="group" aria-label="Language">
                     <button type="button" data-set-language="zh" aria-pressed="true">中</button>
                     <button type="button" data-set-language="en" aria-pressed="false">EN</button>
                 </div>
-                <button class="info-toggle" type="button" data-info-toggle aria-expanded="false" aria-controls="info-drawer">
-                    <span>INFO</span>
-                    <i aria-hidden="true"></i>
-                </button>
+
+                <span class="menu-status" aria-hidden="true">
+                    <i class="wifi-icon"></i>
+                    <i class="battery-icon"></i>
+                </span>
+                <time class="menu-clock" data-clock datetime="2026-07-31T00:00:00+08:00">00:00</time>
             </div>
         </header>
 
-        <main class="field-main" id="main-content" data-swipe-surface>
-            <div class="map-stage" data-map-stage tabindex="0" role="img" aria-label="可拖曳、縮放及用鍵盤旋轉的澳門三層立體地圖">
-                <canvas data-map-canvas aria-hidden="true"></canvas>
-                <div class="map-poster" data-map-poster aria-hidden="true">
-                    <img src="macao-outline.svg" alt="" width="1000" height="1000">
-                    <p>MACAO / STATIC FIELD</p>
-                </div>
-                <div class="map-reticle" aria-hidden="true">
-                    <span>N</span>
-                    <i></i>
-                    <b>22.2°</b>
-                </div>
-                <p class="map-status" data-map-status>
-                    <span data-copy-lang="zh">正在建立地形…</span>
-                    <span data-copy-lang="en">Building terrain…</span>
+        <main class="desktop" id="desktop" data-desktop tabindex="-1">
+            <section class="desktop-intro" aria-labelledby="desktop-title">
+                <p class="desktop-kicker">
+                    <span>ANSONOS / MACAO</span>
+                    <i aria-hidden="true"></i>
+                    <span data-copy-lang="zh">工作桌面</span>
+                    <span data-copy-lang="en">WORKING DESKTOP</span>
                 </p>
+                <h1 id="desktop-title">
+                    <span>ANSON</span>
+                    <span>LO<sup>.OS</sup></span>
+                </h1>
+                <p class="desktop-lede">
+                    <span data-copy-lang="zh">這不是一份向下讀完的履歷。<br>打開工具，看看我怎樣工作。</span>
+                    <span data-copy-lang="en">This is not a résumé to scroll through.<br>Open the tools. See how I work.</span>
+                </p>
+                <button class="desktop-explore-button" type="button" data-open-explore>
+                    <span class="search-glyph" aria-hidden="true"></span>
+                    <span data-copy-lang="zh">探索 Anson</span>
+                    <span data-copy-lang="en">Explore Anson</span>
+                    <kbd>⌘K</kbd>
+                </button>
+            </section>
+
+            <aside class="now-widget" aria-label="Current workspace">
+                <header>
+                    <span class="live-dot" aria-hidden="true"></span>
+                    <b>CURRENT WORKSPACE</b>
+                    <small>2026</small>
+                </header>
+                <div class="now-widget-body">
+                    <p>PUICHING MACAU</p>
+                    <h2>iGEM</h2>
+                    <div class="workspace-streams" role="group" aria-label="Software, modelling, and wiki">
+                        <span>SOFTWARE</span>
+                        <i aria-hidden="true"></i>
+                        <span>MODELLING</span>
+                        <i aria-hidden="true"></i>
+                        <span>WIKI</span>
+                    </div>
+                    <button type="button" data-open-app="vscode">
+                        <span data-copy-lang="zh">打開工作區</span>
+                        <span data-copy-lang="en">Open workspace</span>
+                        <span aria-hidden="true">↗</span>
+                    </button>
+                </div>
+            </aside>
+
+            <div class="desktop-icons" role="group" aria-label="Desktop shortcuts">
+                <button class="desktop-icon" type="button" data-open-explore>
+                    <span class="desktop-icon-art explore-art" aria-hidden="true">
+                        <i class="search-glyph"></i>
+                    </span>
+                    <span>
+                        <span data-copy-lang="zh">探索 Anson</span>
+                        <span data-copy-lang="en">Explore Anson</span>
+                    </span>
+                </button>
+                <button class="desktop-icon" type="button" data-open-app="about">
+                    <span class="desktop-icon-art folder-art" aria-hidden="true">
+                        <i>A/L</i>
+                    </span>
+                    <span>
+                        <span data-copy-lang="zh">關於我</span>
+                        <span data-copy-lang="en">About Anson</span>
+                    </span>
+                </button>
             </div>
 
-            <div class="field-axis axis-horizontal" aria-hidden="true"></div>
-            <div class="field-axis axis-vertical" aria-hidden="true"></div>
-            <div class="field-orbit" aria-hidden="true"></div>
-
-            <div class="field-nodes" aria-label="Working coordinates">
-                <button class="field-node node-systems" type="button" data-scene-link="systems" aria-controls="scene-systems">
-                    <span>01</span>
-                    <b><span data-copy-lang="zh">系統</span><span data-copy-lang="en">Systems</span></b>
-                    <small>BUILD / FLOW</small>
-                    <i aria-hidden="true"></i>
-                </button>
-                <button class="field-node node-voice" type="button" data-scene-link="voice" aria-controls="scene-voice">
-                    <span>02</span>
-                    <b><span data-copy-lang="zh">表達</span><span data-copy-lang="en">Voice</span></b>
-                    <small>AUDIENCE / ORDER</small>
-                    <i aria-hidden="true"></i>
-                </button>
-                <button class="field-node node-words" type="button" data-scene-link="words" aria-controls="scene-words">
-                    <span>03</span>
-                    <b><span data-copy-lang="zh">文字</span><span data-copy-lang="en">Words</span></b>
-                    <small>EDIT / KEEP</small>
-                    <i aria-hidden="true"></i>
-                </button>
-            </div>
-
-            <section class="scene scene-overview is-active" id="scene-overview" data-scene-panel="overview" aria-labelledby="overview-title" aria-hidden="false">
-                <div class="identity-block">
-                    <p class="micro-label">FIELD 00 / STUDENT DEVELOPER · EDITOR · SPEAKER</p>
-                    <h1 id="overview-title"><span>ANSON</span><span>LO</span></h1>
-                </div>
-
-                <div class="overview-statement">
-                    <p class="micro-label">MACAO / THREE WORKING COORDINATES</p>
-                    <h2>
-                        <span data-copy-lang="zh">我把複雜的事，<br>放進一個大家看得懂的秩序。</span>
-                        <span data-copy-lang="en">I place complex work<br>into an order people can read.</span>
-                    </h2>
-                </div>
-
-                <aside class="current-signal">
-                    <p><span aria-hidden="true"></span> CURRENT SIGNAL / 2026</p>
-                    <strong>PUICHING MACAU / iGEM</strong>
-                    <small>
-                        <span data-copy-lang="zh">軟件 · 建模 · Wiki 核心工程</span>
-                        <span data-copy-lang="en">Software · Modelling · Wiki engineering</span>
-                    </small>
-                </aside>
-
-                <p class="field-instruction">
-                    <span data-copy-lang="zh">拖曳地形 · 滾輪縮放 · 選擇座標 · 按 0–3 導航</span>
-                    <span data-copy-lang="en">Drag terrain · Wheel to zoom · Choose a coordinate · Press 0–3</span>
-                </p>
-            </section>
-
-            <section class="scene scene-systems" id="scene-systems" data-scene-panel="systems" aria-labelledby="systems-title">
-                <div class="systems-shell scene-surface">
-                    <header class="scene-heading">
-                        <button class="return-button" type="button" data-scene-link="overview">
-                            <span aria-hidden="true">←</span>
-                            <span data-copy-lang="zh">全圖</span>
-                            <span data-copy-lang="en">Full map</span>
-                        </button>
-                        <div>
-                            <p class="micro-label">FIELD 01 / SYSTEMS</p>
-                            <h2 id="systems-title">
-                                <span data-copy-lang="zh">系統不是畫面。<br>是每個人都知道下一步。</span>
-                                <span data-copy-lang="en">A system is not a screen.<br>It is a shared next step.</span>
-                            </h2>
-                        </div>
-                        <p>
-                            <span data-copy-lang="zh">選一個工作現場，操作它真正要解決的問題。</span>
-                            <span data-copy-lang="en">Choose a working context and operate the problem it had to solve.</span>
-                        </p>
-                    </header>
-
-                    <div class="systems-console">
-                        <div class="system-tabs" role="tablist" aria-label="System cases">
-                            <button id="system-tab-sports" type="button" role="tab" aria-selected="true" aria-controls="system-sports" tabindex="0" data-system-tab="0">
-                                <span>01</span><b><span data-copy-lang="zh">校運會</span><span data-copy-lang="en">Sports Day</span></b><small>TIME</small>
-                            </button>
-                            <button id="system-tab-debate" type="button" role="tab" aria-selected="false" aria-controls="system-debate" tabindex="-1" data-system-tab="1">
-                                <span>02</span><b><span data-copy-lang="zh">辯論</span><span data-copy-lang="en">Debate</span></b><small>ROLES</small>
-                            </button>
-                            <button id="system-tab-igem" type="button" role="tab" aria-selected="false" aria-controls="system-igem" tabindex="-1" data-system-tab="2">
-                                <span>03</span><b>iGEM 2026</b><small>ALIGN</small>
-                            </button>
-                        </div>
-
-                        <article class="system-panel is-active" id="system-sports" role="tabpanel" aria-labelledby="system-tab-sports" data-system-panel="0">
-                            <div class="case-copy">
-                                <p class="micro-label">SCHOOL OPERATIONS / TWO YEARS</p>
-                                <h3>
-                                    <span data-copy-lang="zh">同一個入口，<br>在不同時間顯示不同重點。</span>
-                                    <span data-copy-lang="en">One entry point,<br>with priorities that change over time.</span>
-                                </h3>
-                                <p>
-                                    <span data-copy-lang="zh">連續兩年負責主要介面設計及開發，把報名、資訊發佈和現場查閱整理到同一個入口。</span>
-                                    <span data-copy-lang="en">For two years, I led interface design and development, joining registration, updates, and on-site reference in one entry point.</span>
-                                </p>
-                                <dl><div><dt>ROLE</dt><dd><span data-copy-lang="zh">主要介面設計與開發</span><span data-copy-lang="en">Lead interface design and development</span></dd></div></dl>
-                            </div>
-
-                            <div class="instrument sports-instrument" data-sports-stage="0">
-                                <div class="instrument-bar"><span>INFORMATION CLOCK</span><output data-sports-output aria-live="polite">活動前</output></div>
-                                <div class="sports-field">
-                                    <div class="sports-card phase-register"><span>01</span><b>REGISTRATION</b><small>BEFORE</small></div>
-                                    <div class="sports-card phase-update"><span>02</span><b>UPDATES</b><small>LIVE</small></div>
-                                    <div class="sports-card phase-reference"><span>03</span><b>REFERENCE</b><small>ON SITE</small></div>
-                                    <p>ONE ENTRY POINT <span aria-hidden="true">→</span></p>
-                                </div>
-                                <label class="instrument-control">
-                                    <span><span data-copy-lang="zh">移動活動時間</span><span data-copy-lang="en">Move through the event</span></span>
-                                    <input type="range" min="0" max="2" step="1" value="0" data-sports-range>
-                                    <i aria-hidden="true"><b>BEFORE</b><b>LIVE</b><b>ON SITE</b></i>
-                                </label>
-                            </div>
-                        </article>
-
-                        <article class="system-panel" id="system-debate" role="tabpanel" aria-labelledby="system-tab-debate" data-system-panel="1" hidden>
-                            <div class="case-copy">
-                                <p class="micro-label">TEAM + TOURNAMENT OPERATIONS</p>
-                                <h3>
-                                    <span data-copy-lang="zh">同一份資訊，<br>對不同角色有不同意義。</span>
-                                    <span data-copy-lang="en">The same information<br>means different things to each role.</span>
-                                </h3>
-                                <p>
-                                    <span data-copy-lang="zh">為辯論隊製作管理小程序，也為校內比賽開發綜合管理系統；工作流分開，資訊保持一致。</span>
-                                    <span data-copy-lang="en">I built a team mini program and an integrated tournament system: separate workflows with consistent information.</span>
-                                </p>
-                                <dl><div><dt>ROLE</dt><dd><span data-copy-lang="zh">產品流程、介面與開發</span><span data-copy-lang="en">Product flow, interface, and development</span></dd></div></dl>
-                            </div>
-
-                            <div class="instrument debate-instrument" data-debate-view="team">
-                                <div class="instrument-bar">
-                                    <span>ROLE VIEW</span>
-                                    <div class="view-switch" role="group" aria-label="Debate workflow view">
-                                        <button type="button" aria-pressed="true" data-debate-mode="team">TEAM</button>
-                                        <button type="button" aria-pressed="false" data-debate-mode="tournament">TOURNAMENT</button>
-                                    </div>
-                                </div>
-                                <div class="debate-field">
-                                    <div class="debate-role role-team"><p>TEAM</p><b>People</b><b>Practice</b><b>Tasks</b></div>
-                                    <div class="shared-core"><small>SHARED</small><strong>INFORMATION</strong><i></i></div>
-                                    <div class="debate-role role-tournament"><p>TOURNAMENT</p><b>Roles</b><b>Rounds</b><b>States</b></div>
-                                </div>
-                                <p class="instrument-note" aria-live="polite">
-                                    <span data-debate-copy="team"><span data-copy-lang="zh">隊伍視角：長期的人員、練習與任務。</span><span data-copy-lang="en">Team view: ongoing people, practice, and tasks.</span></span>
-                                    <span data-debate-copy="tournament" hidden><span data-copy-lang="zh">比賽視角：限時的角色、輪次與狀態。</span><span data-copy-lang="en">Tournament view: time-bound roles, rounds, and states.</span></span>
-                                </p>
-                            </div>
-                        </article>
-
-                        <article class="system-panel" id="system-igem" role="tabpanel" aria-labelledby="system-tab-igem" data-system-panel="2" hidden>
-                            <div class="case-copy">
-                                <p class="micro-label">PUICHING MACAU / iGEM 2026</p>
-                                <h3>
-                                    <span data-copy-lang="zh">三個工作區，<br>不應在交付前才第一次碰面。</span>
-                                    <span data-copy-lang="en">Three workstreams<br>should meet before final delivery.</span>
-                                </h3>
-                                <p>
-                                    <span data-copy-lang="zh">作為軟件、建模與 Wiki 核心工程師之一，我也處理三個工作流之間的協作與銜接。</span>
-                                    <span data-copy-lang="en">As a core engineer across software, modelling, and the wiki, I also work on how the three workflows connect.</span>
-                                </p>
-                                <a class="case-link" href="https://2026.igem.wiki/puiching-macau/" target="_blank" rel="noopener">
-                                    <span data-copy-lang="zh">團隊 Wiki</span><span data-copy-lang="en">Team wiki</span><span aria-hidden="true">↗</span>
-                                </a>
-                            </div>
-
-                            <div class="instrument igem-instrument" data-igem-instrument>
-                                <div class="instrument-bar"><span>WORKFLOW ALIGNMENT</span><output data-igem-output aria-live="polite">0% ALIGNED</output></div>
-                                <div class="igem-field">
-                                    <div class="igem-stream stream-a"><span>01</span><b>SOFTWARE</b></div>
-                                    <div class="igem-stream stream-b"><span>02</span><b>MODELLING</b></div>
-                                    <div class="igem-stream stream-c"><span>03</span><b>WIKI</b></div>
-                                    <div class="igem-delivery"><small>ONE DELIVERY</small><b>PUICHING MACAU</b></div>
-                                </div>
-                                <label class="instrument-control">
-                                    <span><span data-copy-lang="zh">把工作流拉到一起</span><span data-copy-lang="en">Bring the workstreams together</span></span>
-                                    <input type="range" min="0" max="100" step="1" value="0" data-igem-range>
-                                    <i class="two-labels" aria-hidden="true"><b>SEPARATE</b><b>COHERENT</b></i>
-                                </label>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <section class="scene scene-voice" id="scene-voice" data-scene-panel="voice" aria-labelledby="voice-title">
-                <div class="voice-shell scene-surface" data-voice-console data-voice-step="0">
-                    <header class="voice-copy">
-                        <button class="return-button light" type="button" data-scene-link="overview">
-                            <span aria-hidden="true">←</span>
-                            <span data-copy-lang="zh">全圖</span>
-                            <span data-copy-lang="en">Full map</span>
-                        </button>
-                        <p class="micro-label">FIELD 02 / VOICE</p>
-                        <h2 id="voice-title">
-                            <span data-copy-lang="zh">表達不是放大音量。<br>是重新安排注意力。</span>
-                            <span data-copy-lang="en">Voice is not more volume.<br>It is ordered attention.</span>
-                        </h2>
-
-                        <div class="voice-copy-stack" aria-live="polite">
-                            <article data-voice-copy="0">
-                                <span>01 / AUDIENCE</span>
-                                <h3><span data-copy-lang="zh">先判斷誰在聽。</span><span data-copy-lang="en">First, know who is listening.</span></h3>
-                                <p><span data-copy-lang="zh">聽眾需要甚麼，決定了資訊從哪裡開始。</span><span data-copy-lang="en">What the audience needs determines where the information begins.</span></p>
-                            </article>
-                            <article data-voice-copy="1" hidden>
-                                <span>02 / ORDER</span>
-                                <h3><span data-copy-lang="zh">把重點放在正確順序。</span><span data-copy-lang="en">Put the emphasis in the right order.</span></h3>
-                                <p><span data-copy-lang="zh">演講訓練和比賽準備，讓我更在意一件事應該何時被聽見。</span><span data-copy-lang="en">Speech training and competition preparation made me attentive to when an idea should be heard.</span></p>
-                            </article>
-                            <article data-voice-copy="2" hidden>
-                                <span>03 / TONE</span>
-                                <h3><span data-copy-lang="zh">清楚，但不要抹走人的語氣。</span><span data-copy-lang="en">Be clear without erasing the person.</span></h3>
-                                <p><span data-copy-lang="zh">社團協作、演講與編輯，都需要在準確和原有聲音之間取得平衡。</span><span data-copy-lang="en">Society work, speaking, and editing all balance precision with the original voice.</span></p>
-                            </article>
-                        </div>
-
-                        <p class="voice-role">
-                            <span>PRESENT / SPEECH SOCIETY</span>
-                            <b><span data-copy-lang="zh">培正中學 · 演講學社社長</span><span data-copy-lang="en">Pui Ching Middle School · President, Speech Society</span></b>
-                        </p>
-                    </header>
-
-                    <div class="voice-instrument">
-                        <div class="voice-orbit" role="group" aria-label="Voice sequence">
-                            <button type="button" data-voice-step="0" aria-pressed="true"><span>01</span><b>AUDIENCE</b></button>
-                            <button type="button" data-voice-step="1" aria-pressed="false"><span>02</span><b>ORDER</b></button>
-                            <button type="button" data-voice-step="2" aria-pressed="false"><span>03</span><b>TONE</b></button>
-                            <div class="voice-rotor" aria-hidden="true"><i></i><b data-voice-output>AUDIENCE</b></div>
-                        </div>
-                        <div class="voice-wave" aria-hidden="true">
-                            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                        </div>
-                        <p><span data-copy-lang="zh">選擇訊號的下一步</span><span data-copy-lang="en">Choose the signal’s next step</span></p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="scene scene-words" id="scene-words" data-scene-panel="words" aria-labelledby="words-title">
-                <div class="words-shell scene-surface">
-                    <header class="words-heading">
-                        <button class="return-button light" type="button" data-scene-link="overview">
-                            <span aria-hidden="true">←</span>
-                            <span data-copy-lang="zh">全圖</span>
-                            <span data-copy-lang="en">Full map</span>
-                        </button>
-                        <div>
-                            <p class="micro-label">FIELD 03 / WORDS</p>
-                            <h2 id="words-title">
-                                <span data-copy-lang="zh">有些文字要整理。<br>有些聲音要留下。</span>
-                                <span data-copy-lang="en">Some words need structure.<br>Some voices need to remain.</span>
-                            </h2>
-                        </div>
-                        <div class="artifact-tabs" role="tablist" aria-label="Published work">
-                            <button id="artifact-tab-book" type="button" role="tab" aria-selected="true" aria-controls="artifact-book" tabindex="0" data-artifact-tab="0">01 / BOOK</button>
-                            <button id="artifact-tab-poem" type="button" role="tab" aria-selected="false" aria-controls="artifact-poem" tabindex="-1" data-artifact-tab="1">02 / POEM</button>
-                        </div>
-                    </header>
-
-                    <div class="artifact-stage">
-                        <article class="artifact-panel is-active" id="artifact-book" role="tabpanel" aria-labelledby="artifact-tab-book" data-artifact-panel="0">
-                            <div class="archive-viewer" data-archive-viewer>
-                                <img src="macao-diary-colophon.png" alt="《澳門日記—回歸故事集》題名頁及列有羅天逸的編輯名單" width="705" height="483">
-                                <div class="archive-lens" data-archive-lens aria-hidden="true"></div>
-                                <p>MOVE / INSPECT</p>
-                            </div>
-                            <div class="artifact-copy">
-                                <p class="micro-label">BOOK / EDITOR / 2025</p>
-                                <h3>《澳門日記—回歸故事集》</h3>
-                                <p>
-                                    <span data-copy-lang="zh">我以「羅天逸」列於編輯名單。編輯時要兼顧文字準確，也要保留每位說話者本來的聲音。</span>
-                                    <span data-copy-lang="en">I am credited as “羅天逸” in the editorial team. The work required accuracy while retaining each speaker’s own voice.</span>
-                                </p>
-                                <dl><div><dt>QUESTION</dt><dd><span data-copy-lang="zh">整理之後，這段話還像原來的人嗎？</span><span data-copy-lang="en">After editing, does it still sound like the original person?</span></dd></div></dl>
-                            </div>
-                        </article>
-
-                        <article class="artifact-panel" id="artifact-poem" role="tabpanel" aria-labelledby="artifact-tab-poem" data-artifact-panel="1" hidden>
-                            <div class="poem-field">
-                                <button type="button" data-poem-toggle aria-expanded="false">
-                                    <span>RING<br>TO READ</span><i aria-hidden="true"></i>
-                                </button>
-                                <div class="poem-lines" lang="en" aria-live="polite">
-                                    <p>We talk about exams,</p>
-                                    <p>about the future like it’s a city</p>
-                                    <p>neither of us has visited,</p>
-                                    <p>but somehow we keep pointing</p>
-                                    <p>in the same direction.</p>
-                                </div>
-                            </div>
-                            <div class="artifact-copy">
-                                <p class="micro-label">POEM / CONTRIBUTOR / 2026</p>
-                                <h3>Between Bells and Heartbeats</h3>
-                                <p>
-                                    <span data-copy-lang="zh">為學校英文詩集撰寫的作品，記錄十六歲的課堂、功課、訊息與感受。</span>
-                                    <span data-copy-lang="en">Written for the school English poetry collection, reflecting on classes, homework, messages, and feelings at sixteen.</span>
-                                </p>
-                                <dl><div><dt>SUBJECT</dt><dd><span data-copy-lang="zh">十六歲，以及還未到達的未來。</span><span data-copy-lang="en">Being sixteen, and a future not yet reached.</span></dd></div></dl>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <div class="scene-pulse" aria-hidden="true"><i></i><i></i><i></i></div>
+            <p class="desktop-footnote">
+                <span>STUDENT DEVELOPER · EDITOR · SPEAKER</span>
+                <span>22.2°N / 113.5°E</span>
+            </p>
         </main>
 
-        <nav class="route-dock" id="field-navigation" aria-label="Field coordinates">
-            <button type="button" data-scene-link="overview" aria-pressed="true">
-                <span>00</span><b><span data-copy-lang="zh">全圖</span><span data-copy-lang="en">Overview</span></b>
+        <div class="window-layer" data-window-layer aria-live="off">
+            <section class="app-window finder-window" data-window="about" data-app-label="Finder" aria-labelledby="about-window-title" hidden>
+                <div class="window-surface">
+                    <header class="window-titlebar" data-drag-handle>
+                        <div class="traffic-lights" role="group" aria-label="Window controls">
+                            <button class="traffic-close" type="button" data-window-action="close" aria-label="Close window"></button>
+                            <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
+                            <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
+                        </div>
+                        <h2 id="about-window-title">
+                            <span data-copy-lang="zh">關於 Anson</span>
+                            <span data-copy-lang="en">About Anson</span>
+                        </h2>
+                        <span class="titlebar-spacer" aria-hidden="true"></span>
+                    </header>
+
+                    <div class="finder-toolbar" aria-hidden="true">
+                        <span>‹</span><span>›</span>
+                        <b>ANSON / HOME</b>
+                        <i></i>
+                    </div>
+
+                    <div class="finder-layout">
+                        <aside class="finder-sidebar">
+                            <p>FAVORITES</p>
+                            <a href="mailto:ansonlotiniat@gmail.com"><span>✉</span><span>Email</span></a>
+                            <a href="https://github.com/ansonlotiniat" target="_blank" rel="noreferrer"><span>⌘</span><span>GitHub</span></a>
+                            <p>LOCATIONS</p>
+                            <button type="button" data-open-app="xcode"><span>◇</span><span>Engineering</span></button>
+                            <button type="button" data-open-app="vscode"><span>⌁</span><span>iGEM 2026</span></button>
+                            <button type="button" data-open-app="overleaf"><span>¶</span><span>Writing</span></button>
+                        </aside>
+
+                        <div class="finder-content">
+                            <section class="finder-profile">
+                                <div class="profile-monogram" aria-hidden="true">
+                                    <span>A</span><span>L</span>
+                                </div>
+                                <div>
+                                    <p class="finder-eyebrow">ANSON LO / 羅天逸</p>
+                                    <h3>
+                                        <span data-copy-lang="zh">學生開發者、編輯與演講者，來自澳門。</span>
+                                        <span data-copy-lang="en">Student developer, editor, and speaker from Macao.</span>
+                                    </h3>
+                                    <p>
+                                        <span data-copy-lang="zh">我關心的不只是把東西做出來，而是把複雜的流程整理成其他人可以理解、使用和延續的系統。</span>
+                                        <span data-copy-lang="en">I care not only about making things, but about turning complex work into systems other people can understand, use, and continue.</span>
+                                    </p>
+                                </div>
+                            </section>
+
+                            <section class="finder-section" aria-labelledby="working-method-title">
+                                <header>
+                                    <p>QUICK LOOK / 01</p>
+                                    <h3 id="working-method-title">
+                                        <span data-copy-lang="zh">我的工作方式</span>
+                                        <span data-copy-lang="en">How I work</span>
+                                    </h3>
+                                </header>
+                                <div class="method-strip">
+                                    <article>
+                                        <span>01</span>
+                                        <h4>BUILD THE FLOW</h4>
+                                        <p><span data-copy-lang="zh">先看人怎樣移動，再決定畫面。</span><span data-copy-lang="en">Read how people move before drawing screens.</span></p>
+                                    </article>
+                                    <article>
+                                        <span>02</span>
+                                        <h4>ALIGN THE SYSTEM</h4>
+                                        <p><span data-copy-lang="zh">讓不同角色看到同一個真實狀態。</span><span data-copy-lang="en">Give different roles one shared state.</span></p>
+                                    </article>
+                                    <article>
+                                        <span>03</span>
+                                        <h4>EDIT THE SIGNAL</h4>
+                                        <p><span data-copy-lang="zh">刪掉噪音，留下真正要被理解的事。</span><span data-copy-lang="en">Remove noise; keep what must be understood.</span></p>
+                                    </article>
+                                </div>
+                            </section>
+
+                            <section class="finder-section finder-current" aria-labelledby="current-roles-title">
+                                <header>
+                                    <p>QUICK LOOK / 02</p>
+                                    <h3 id="current-roles-title">
+                                        <span data-copy-lang="zh">目前正在做</span>
+                                        <span data-copy-lang="en">Currently working on</span>
+                                    </h3>
+                                </header>
+                                <dl>
+                                    <div><dt>iGEM 2026</dt><dd><span data-copy-lang="zh">軟件、建模與 Wiki 核心工程</span><span data-copy-lang="en">Core engineering across software, modelling, and wiki</span></dd></div>
+                                    <div><dt>SPEECH SOCIETY</dt><dd><span data-copy-lang="zh">培正中學演講學會會長</span><span data-copy-lang="en">President, Speech Society at Pui Ching Middle School</span></dd></div>
+                                    <div><dt>MACAO</dt><dd><span data-copy-lang="zh">我的出發點，也是我理解公共系統的尺度</span><span data-copy-lang="en">My point of departure and the scale at which I read public systems</span></dd></div>
+                                </dl>
+                            </section>
+
+                            <div class="finder-contact">
+                                <p>
+                                    <span data-copy-lang="zh">想一起做一件有秩序、也有人味的事？</span>
+                                    <span data-copy-lang="en">Want to build something ordered and human?</span>
+                                </p>
+                                <a href="mailto:ansonlotiniat@gmail.com">ansonlotiniat@gmail.com <span aria-hidden="true">↗</span></a>
+                                <a href="https://github.com/ansonlotiniat" target="_blank" rel="noreferrer">github.com/ansonlotiniat <span aria-hidden="true">↗</span></a>
+                            </div>
+
+                            <p class="interface-note">
+                                <span data-copy-lang="zh">這個介面以我實際使用的工具作為作品入口；商標及圖示屬各自權利人，並不表示任何認可關係。</span>
+                                <span data-copy-lang="en">This interface uses tools I actually work in as entry points. Product marks belong to their respective owners and imply no endorsement.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="app-window xcode-window" data-window="xcode" data-app-label="Xcode" aria-labelledby="xcode-window-title" hidden>
+                <div class="window-surface">
+                    <header class="window-titlebar dark-titlebar" data-drag-handle>
+                        <div class="traffic-lights" role="group" aria-label="Window controls">
+                            <button class="traffic-close" type="button" data-window-action="close" aria-label="Close window"></button>
+                            <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
+                            <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
+                        </div>
+                        <h2 id="xcode-window-title">SchoolSystems — Xcode</h2>
+                        <span class="build-state"><i aria-hidden="true"></i> Build Succeeded</span>
+                    </header>
+
+                    <div class="xcode-toolbar">
+                        <span class="toolbar-run" aria-hidden="true">▶</span>
+                        <span class="toolbar-stop" aria-hidden="true">■</span>
+                        <b>SchoolSystems</b>
+                        <span>My Mac</span>
+                        <i></i>
+                        <small>main</small>
+                    </div>
+
+                    <div class="xcode-layout">
+                        <aside class="xcode-navigator">
+                            <header><span aria-hidden="true">▣</span><b>PROJECT</b><span aria-hidden="true">＋</span></header>
+                            <div class="navigator-tree" role="tablist" aria-label="Engineering projects">
+                                <p><span aria-hidden="true">⌄</span> SchoolSystems</p>
+                                <button id="xcode-tab-sports" type="button" role="tab" aria-selected="true" aria-controls="xcode-panel-sports" data-xcode-file="sports">
+                                    <span class="swift-file" aria-hidden="true">S</span>
+                                    <span>SportsDaySystem.swift</span>
+                                </button>
+                                <button id="xcode-tab-debate" type="button" role="tab" aria-selected="false" aria-controls="xcode-panel-debate" data-xcode-file="debate">
+                                    <span class="swift-file" aria-hidden="true">S</span>
+                                    <span>DebateOperations.swift</span>
+                                </button>
+                                <p><span aria-hidden="true">›</span> Resources</p>
+                                <p><span aria-hidden="true">›</span> Interfaces</p>
+                            </div>
+                            <footer>2 source files</footer>
+                        </aside>
+
+                        <div class="xcode-editor">
+                            <div class="code-document is-active" id="xcode-panel-sports" role="tabpanel" aria-labelledby="xcode-tab-sports" data-xcode-panel="sports">
+                                <header><h3>SportsDaySystem.swift</h3><small><span data-copy-lang="zh">產品邏輯草圖</span><span data-copy-lang="en">Product logic sketch</span></small></header>
+                                <ol class="code-lines" aria-label="Conceptual Swift code for the sports day system">
+                                    <li><code><i>struct</i> <b>SportsDaySystem</b> {</code></li>
+                                    <li><code>  <i>let</i> yearsInUse = <em>2</em></code></li>
+                                    <li><code>  <i>let</i> entryPoint = <s>"one"</s></code></li>
+                                    <li><code></code></li>
+                                    <li><code>  <i>func</i> <b>surface</b>(for moment: Moment) {</code></li>
+                                    <li><code>    <i>switch</i> moment {</code></li>
+                                    <li><code>    <i>case</i> .before:</code></li>
+                                    <li><code>      show(.registration)</code></li>
+                                    <li><code>    <i>case</i> .live:</code></li>
+                                    <li><code>      show(.updates)</code></li>
+                                    <li><code>    <i>case</i> .onSite:</code></li>
+                                    <li><code>      show(.reference)</code></li>
+                                    <li><code>    }</code></li>
+                                    <li><code>  }</code></li>
+                                    <li><code>}</code></li>
+                                </ol>
+                                <aside class="code-note">
+                                    <span>DESIGN QUESTION</span>
+                                    <p><span data-copy-lang="zh">同一個入口，在不同時間應該讓甚麼最先被看見？</span><span data-copy-lang="en">At each moment, what should one entry point make visible first?</span></p>
+                                </aside>
+                            </div>
+
+                            <div class="code-document" id="xcode-panel-debate" role="tabpanel" aria-labelledby="xcode-tab-debate" data-xcode-panel="debate" hidden>
+                                <header><h3>DebateOperations.swift</h3><small><span data-copy-lang="zh">產品邏輯草圖</span><span data-copy-lang="en">Product logic sketch</span></small></header>
+                                <ol class="code-lines" aria-label="Conceptual Swift code for debate operations">
+                                    <li><code><i>struct</i> <b>DebateOperations</b> {</code></li>
+                                    <li><code>  <i>let</i> sourceOfTruth = SharedState()</code></li>
+                                    <li><code></code></li>
+                                    <li><code>  <i>func</i> <b>view</b>(for role: Role) {</code></li>
+                                    <li><code>    <i>switch</i> role {</code></li>
+                                    <li><code>    <i>case</i> .team:</code></li>
+                                    <li><code>      show(.trainingAndPrep)</code></li>
+                                    <li><code>    <i>case</i> .tournament:</code></li>
+                                    <li><code>      show(.drawAndOperations)</code></li>
+                                    <li><code>    }</code></li>
+                                    <li><code></code></li>
+                                    <li><code>    sync(shared: sourceOfTruth)</code></li>
+                                    <li><code>  }</code></li>
+                                    <li><code>}</code></li>
+                                </ol>
+                                <aside class="code-note">
+                                    <span>DESIGN QUESTION</span>
+                                    <p><span data-copy-lang="zh">不同角色需要不同工作流，但如何保持同一份資訊？</span><span data-copy-lang="en">Different roles need different workflows—how do they keep one shared truth?</span></p>
+                                </aside>
+                            </div>
+                        </div>
+
+                        <aside class="xcode-inspector">
+                            <article class="inspector-project is-active" data-xcode-inspector="sports">
+                                <header>
+                                    <span>LIVE PREVIEW</span>
+                                    <h3>Sports Day</h3>
+                                </header>
+                                <div class="phone-preview" data-sports-preview="before">
+                                    <div class="phone-status"><span>09:41</span><span>●●●</span></div>
+                                    <div class="phone-screen">
+                                        <p>PUICHING / SPORTS DAY</p>
+                                        <div class="sports-preview-copy" data-sports-copy="before">
+                                            <small>BEFORE</small>
+                                            <strong><span data-copy-lang="zh">先完成報名</span><span data-copy-lang="en">Register first</span></strong>
+                                            <span><span data-copy-lang="zh">項目、資格與截止時間</span><span data-copy-lang="en">Events, eligibility, and deadline</span></span>
+                                        </div>
+                                        <div class="sports-preview-copy" data-sports-copy="live" hidden>
+                                            <small>LIVE</small>
+                                            <strong><span data-copy-lang="zh">現在發生甚麼</span><span data-copy-lang="en">What is happening now</span></strong>
+                                            <span><span data-copy-lang="zh">即時更新與集合資訊</span><span data-copy-lang="en">Live updates and assembly details</span></span>
+                                        </div>
+                                        <div class="sports-preview-copy" data-sports-copy="onsite" hidden>
+                                            <small>ON SITE</small>
+                                            <strong><span data-copy-lang="zh">一眼找到答案</span><span data-copy-lang="en">Find the answer at a glance</span></strong>
+                                            <span><span data-copy-lang="zh">場地、時間與現場查閱</span><span data-copy-lang="en">Venue, time, and on-site reference</span></span>
+                                        </div>
+                                        <div class="preview-signal" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                                    </div>
+                                </div>
+                                <div class="segmented-control" role="group" aria-label="Sports day phase">
+                                    <button type="button" aria-pressed="true" data-sports-phase="before">BEFORE</button>
+                                    <button type="button" aria-pressed="false" data-sports-phase="live">LIVE</button>
+                                    <button type="button" aria-pressed="false" data-sports-phase="onsite">ON SITE</button>
+                                </div>
+                                <dl>
+                                    <div><dt>ROLE</dt><dd><span data-copy-lang="zh">主要介面設計與開發</span><span data-copy-lang="en">Lead interface design &amp; development</span></dd></div>
+                                    <div><dt>SCOPE</dt><dd><span data-copy-lang="zh">連續兩年</span><span data-copy-lang="en">Two consecutive years</span></dd></div>
+                                </dl>
+                            </article>
+
+                            <article class="inspector-project" data-xcode-inspector="debate" hidden>
+                                <header>
+                                    <span>LIVE PREVIEW</span>
+                                    <h3>Debate Operations</h3>
+                                </header>
+                                <div class="debate-preview" data-debate-preview="team">
+                                    <div class="role-orbit">
+                                        <span data-debate-node="team">TEAM</span>
+                                        <i aria-hidden="true"></i>
+                                        <b>SHARED<br>STATE</b>
+                                        <i aria-hidden="true"></i>
+                                        <span data-debate-node="tournament">TOURNAMENT</span>
+                                    </div>
+                                    <p data-debate-copy="team"><span data-copy-lang="zh">隊伍視角：訓練、準備、資訊查閱。</span><span data-copy-lang="en">Team view: training, preparation, reference.</span></p>
+                                    <p data-debate-copy="tournament" hidden><span data-copy-lang="zh">賽事視角：抽籤、流程、綜合管理。</span><span data-copy-lang="en">Tournament view: draw, flow, integrated operations.</span></p>
+                                </div>
+                                <div class="segmented-control" role="group" aria-label="Debate system role">
+                                    <button type="button" aria-pressed="true" data-debate-role="team">TEAM</button>
+                                    <button type="button" aria-pressed="false" data-debate-role="tournament">TOURNAMENT</button>
+                                </div>
+                                <dl>
+                                    <div><dt>TEAM OUTPUT</dt><dd><span data-copy-lang="zh">隊伍管理小程序</span><span data-copy-lang="en">Team management mini program</span></dd></div>
+                                    <div><dt>EVENT OUTPUT</dt><dd><span data-copy-lang="zh">校內比賽綜合管理系統</span><span data-copy-lang="en">Internal tournament system</span></dd></div>
+                                </dl>
+                            </article>
+                        </aside>
+                    </div>
+
+                    <footer class="ide-statusbar">
+                        <span>SchoolSystems</span><span>main</span><span>Swift 6</span><span>Ln 1, Col 1</span>
+                    </footer>
+                </div>
+            </section>
+
+            <section class="app-window vscode-window" data-window="vscode" data-app-label="Visual Studio Code" aria-labelledby="vscode-window-title" hidden>
+                <div class="window-surface">
+                    <header class="window-titlebar vscode-titlebar" data-drag-handle>
+                        <div class="traffic-lights" role="group" aria-label="Window controls">
+                            <button class="traffic-close" type="button" data-window-action="close" aria-label="Close window"></button>
+                            <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
+                            <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
+                        </div>
+                        <h2 id="vscode-window-title">puiching-macau-2026 — Visual Studio Code</h2>
+                        <span class="titlebar-spacer" aria-hidden="true"></span>
+                    </header>
+
+                    <div class="vscode-menubar" aria-hidden="true">
+                        <span>File</span><span>Edit</span><span>Selection</span><span>View</span><span>Go</span><span>Run</span><span>Terminal</span>
+                    </div>
+
+                    <div class="vscode-layout">
+                        <aside class="vscode-activitybar" aria-hidden="true">
+                            <span class="is-active">▱</span><span>⌕</span><span>⑂</span><span>▷</span><span>◫</span>
+                            <i></i>
+                            <span>◎</span><span>⚙</span>
+                        </aside>
+
+                        <aside class="vscode-sidebar">
+                            <header><span>EXPLORER</span><span>•••</span></header>
+                            <p><b>⌄ PUICHING-MACAU-2026</b></p>
+                            <div class="vscode-tree" role="tablist" aria-label="iGEM workstreams">
+                                <button id="vscode-tab-software" type="button" role="tab" aria-selected="true" aria-controls="vscode-panel-software" data-vscode-stream="software">
+                                    <span aria-hidden="true">⌄</span><i class="file-ts">TS</i><span>software</span>
+                                </button>
+                                <button id="vscode-tab-modelling" type="button" role="tab" aria-selected="false" aria-controls="vscode-panel-modelling" data-vscode-stream="modelling">
+                                    <span aria-hidden="true">⌄</span><i class="file-md">M↓</i><span>modelling</span>
+                                </button>
+                                <button id="vscode-tab-wiki" type="button" role="tab" aria-selected="false" aria-controls="vscode-panel-wiki" data-vscode-stream="wiki">
+                                    <span aria-hidden="true">⌄</span><i class="file-yml">Y</i><span>wiki</span>
+                                </button>
+                            </div>
+                            <p><span>›</span> OUTLINE</p>
+                            <p><span>›</span> TIMELINE</p>
+                        </aside>
+
+                        <div class="vscode-workbench">
+                            <div class="vscode-tabs" role="presentation">
+                                <span class="is-active" data-vscode-tab="software"><i class="file-ts">TS</i> orchestrate.ts <b>×</b></span>
+                                <span data-vscode-tab="modelling"><i class="file-md">M↓</i> model-contract.md <b>×</b></span>
+                                <span data-vscode-tab="wiki"><i class="file-yml">Y</i> delivery.yml <b>×</b></span>
+                            </div>
+
+                            <div class="vscode-editor">
+                                <div class="vscode-document is-active" id="vscode-panel-software" role="tabpanel" aria-labelledby="vscode-tab-software" data-vscode-panel="software">
+                                    <h3 class="sr-only">Software delivery</h3>
+                                    <ol class="code-lines">
+                                        <li><code><i>type</i> Workstream = <s>"software"</s> | <s>"modelling"</s> | <s>"wiki"</s>;</code></li>
+                                        <li><code></code></li>
+                                        <li><code><i>const</i> team = <b>createDeliverySystem</b>({</code></li>
+                                        <li><code>  project: <s>"PuiChing Macau 2026"</s>,</code></li>
+                                        <li><code>  owner: <s>"core engineering"</s>,</code></li>
+                                        <li><code>  streams: [software, modelling, wiki],</code></li>
+                                        <li><code>});</code></li>
+                                        <li><code></code></li>
+                                        <li><code><i>function</i> <b>ship</b>(change: Change) {</code></li>
+                                        <li><code>  <b>connect</b>(change.data, change.interface);</code></li>
+                                        <li><code>  <b>explain</b>(change.reason);</code></li>
+                                        <li><code>  <b>publish</b>(change);</code></li>
+                                        <li><code>}</code></li>
+                                    </ol>
+                                    <div class="editor-callout">
+                                        <span>SOFTWARE / CORE ENGINEERING</span>
+                                        <p><span data-copy-lang="zh">把資料、介面與團隊工作流接成一個可以交付的系統。</span><span data-copy-lang="en">Connect data, interfaces, and team workflow into one deliverable system.</span></p>
+                                    </div>
+                                </div>
+
+                                <div class="vscode-document" id="vscode-panel-modelling" role="tabpanel" aria-labelledby="vscode-tab-modelling" data-vscode-panel="modelling" hidden>
+                                    <h3 class="sr-only">Modelling contract</h3>
+                                    <ol class="markdown-lines">
+                                        <li><code><b># Model contract</b></code></li>
+                                        <li><code></code></li>
+                                        <li><code><i>Inputs must be:</i></code></li>
+                                        <li><code>- named</code></li>
+                                        <li><code>- traceable</code></li>
+                                        <li><code>- readable by the wiki</code></li>
+                                        <li><code></code></li>
+                                        <li><code><i>Outputs must:</i></code></li>
+                                        <li><code>- answer a team question</code></li>
+                                        <li><code>- expose assumptions</code></li>
+                                        <li><code>- survive handoff</code></li>
+                                    </ol>
+                                    <div class="editor-callout">
+                                        <span>MODELLING / CORE ENGINEERING</span>
+                                        <p><span data-copy-lang="zh">模型不是孤立的圖；它要知道資料從哪裡來，也要能被團隊解釋。</span><span data-copy-lang="en">A model is not an isolated plot; its inputs need provenance and its outputs need explanation.</span></p>
+                                    </div>
+                                </div>
+
+                                <div class="vscode-document" id="vscode-panel-wiki" role="tabpanel" aria-labelledby="vscode-tab-wiki" data-vscode-panel="wiki" hidden>
+                                    <h3 class="sr-only">Wiki delivery</h3>
+                                    <ol class="code-lines">
+                                        <li><code><b>delivery:</b></code></li>
+                                        <li><code>  <i>source:</i> team-work</code></li>
+                                        <li><code>  <i>destination:</i> public-understanding</code></li>
+                                        <li><code></code></li>
+                                        <li><code><b>pipeline:</b></code></li>
+                                        <li><code>  - verify-content</code></li>
+                                        <li><code>  - shape-narrative</code></li>
+                                        <li><code>  - build-interface</code></li>
+                                        <li><code>  - test-handoff</code></li>
+                                        <li><code></code></li>
+                                        <li><code><b>status:</b> aligned</code></li>
+                                    </ol>
+                                    <div class="editor-callout">
+                                        <span>WIKI / CORE ENGINEERING</span>
+                                        <p><span data-copy-lang="zh">Wiki 是團隊工作的最後介面：要準確，也要讓外面的人看懂。</span><span data-copy-lang="en">The wiki is the final interface to the team’s work: accurate inside, legible outside.</span></p>
+                                    </div>
+                                </div>
+                                <div class="editor-minimap" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                            </div>
+
+                            <section class="vscode-terminal" aria-label="Integrated terminal">
+                                <header><span class="is-active">TERMINAL</span><span>OUTPUT</span><span>PROBLEMS <i>0</i></span><b>⌃</b></header>
+                                <div class="terminal-output is-active" data-terminal-panel="software">
+                                    <p><span class="prompt">anson@igem</span> npm run align --stream software</p>
+                                    <p>✓ interface contract connected</p>
+                                    <p>✓ delivery path visible</p>
+                                </div>
+                                <div class="terminal-output" data-terminal-panel="modelling" hidden>
+                                    <p><span class="prompt">anson@igem</span> python verify_model.py</p>
+                                    <p>✓ assumptions exposed</p>
+                                    <p>✓ output ready for explanation</p>
+                                </div>
+                                <div class="terminal-output" data-terminal-panel="wiki" hidden>
+                                    <p><span class="prompt">anson@igem</span> npm run build:wiki</p>
+                                    <p>✓ verified team work → public interface</p>
+                                    <p>✓ 2026 workspace aligned</p>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div class="delivery-rail">
+                        <span>DELIVERY SYSTEM</span>
+                        <button type="button" class="is-active" data-vscode-stream="software"><i></i>SOFTWARE</button>
+                        <b aria-hidden="true"></b>
+                        <button type="button" data-vscode-stream="modelling"><i></i>MODELLING</button>
+                        <b aria-hidden="true"></b>
+                        <button type="button" data-vscode-stream="wiki"><i></i>WIKI</button>
+                        <a href="https://2026.igem.wiki/puiching-macau/" target="_blank" rel="noreferrer">
+                            <span data-copy-lang="zh">打開團隊 Wiki</span>
+                            <span data-copy-lang="en">Open team wiki</span>
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+
+                    <footer class="vscode-statusbar">
+                        <span>⑂ main*</span><span>⟳</span><span>0 errors</span><i></i><span>UTF-8</span><span>TypeScript</span><span>Prettier</span>
+                    </footer>
+                </div>
+            </section>
+
+            <section class="app-window overleaf-window" data-window="overleaf" data-app-label="Overleaf" aria-labelledby="overleaf-window-title" hidden>
+                <div class="window-surface">
+                    <header class="window-titlebar overleaf-titlebar" data-drag-handle>
+                        <div class="traffic-lights" role="group" aria-label="Window controls">
+                            <button class="traffic-close" type="button" data-window-action="close" aria-label="Close window"></button>
+                            <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
+                            <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
+                        </div>
+                        <h2 id="overleaf-window-title">words-and-edits — Overleaf</h2>
+                        <span class="titlebar-spacer" aria-hidden="true"></span>
+                    </header>
+
+                    <div class="overleaf-toolbar">
+                        <span class="overleaf-wordmark"><img src="assets/app-icons/overleaf.svg" alt="" width="24" height="24">overleaf</span>
+                        <button type="button" class="compile-button" data-compile-button>
+                            <span aria-hidden="true">▶</span>
+                            <span data-copy-lang="zh">重新編譯</span>
+                            <span data-copy-lang="en">Recompile</span>
+                        </button>
+                        <span class="compile-status" data-compile-status aria-live="polite">
+                            <span data-copy-lang="zh">PDF 已更新</span>
+                            <span data-copy-lang="en">PDF up to date</span>
+                        </span>
+                        <i></i>
+                        <span class="overleaf-share">SHARE</span>
+                    </div>
+
+                    <div class="overleaf-layout">
+                        <aside class="overleaf-files">
+                            <header><span>FILES</span><span>＋</span></header>
+                            <div role="tablist" aria-label="Writing projects">
+                                <button id="overleaf-tab-diary" type="button" role="tab" aria-selected="true" aria-controls="overleaf-panel-diary" data-overleaf-doc="diary"><span aria-hidden="true">T</span>macao-diary.tex</button>
+                                <button id="overleaf-tab-poem" type="button" role="tab" aria-selected="false" aria-controls="overleaf-panel-poem" data-overleaf-doc="poem"><span aria-hidden="true">T</span>between-bells.tex</button>
+                                <p><span aria-hidden="true">›</span> images</p>
+                                <p><span aria-hidden="true">›</span> references.bib</p>
+                            </div>
+                            <footer>words-and-edits</footer>
+                        </aside>
+
+                        <div class="latex-source">
+                            <header>
+                                <span data-source-tab="diary">macao-diary.tex</span>
+                                <span data-source-tab="poem">between-bells.tex</span>
+                                <b>×</b>
+                            </header>
+                            <div class="latex-document is-active" id="overleaf-panel-diary" role="tabpanel" aria-labelledby="overleaf-tab-diary" data-overleaf-source="diary">
+                                <h3 class="sr-only">Macao Diary editorial source</h3>
+                                <ol class="latex-lines">
+                                    <li><code><b>\documentclass</b>{book}</code></li>
+                                    <li><code><b>\usepackage</b>{ctex}</code></li>
+                                    <li><code></code></li>
+                                    <li><code><b>\title</b>{澳門日記—回歸故事集}</code></li>
+                                    <li><code><b>\author</b>{多位作者}</code></li>
+                                    <li><code><b>\date</b>{2025}</code></li>
+                                    <li><code></code></li>
+                                    <li><code><b>\begin</b>{document}</code></li>
+                                    <li><code>  <b>\maketitle</b></code></li>
+                                    <li><code></code></li>
+                                    <li><code>  <i>% editorial credit</i></code></li>
+                                    <li><code>  <b>\editor</b>{羅天逸}</code></li>
+                                    <li><code><b>\end</b>{document}</code></li>
+                                </ol>
+                                <aside>
+                                    <b><span data-copy-lang="zh">編輯不是「修漂亮」</span><span data-copy-lang="en">Editing is not decoration</span></b>
+                                    <p><span data-copy-lang="zh">它是決定一段記憶用甚麼順序、語氣和證據，才能被下一個人讀懂。</span><span data-copy-lang="en">It decides the order, tone, and evidence through which a memory reaches its next reader.</span></p>
+                                </aside>
+                            </div>
+
+                            <div class="latex-document" id="overleaf-panel-poem" role="tabpanel" aria-labelledby="overleaf-tab-poem" data-overleaf-source="poem" hidden>
+                                <h3 class="sr-only">Between Bells and Heartbeats source</h3>
+                                <ol class="latex-lines">
+                                    <li><code><b>\documentclass</b>{article}</code></li>
+                                    <li><code><b>\title</b>{Between Bells and Heartbeats}</code></li>
+                                    <li><code><b>\author</b>{Anson Lo}</code></li>
+                                    <li><code><b>\date</b>{2026}</code></li>
+                                    <li><code></code></li>
+                                    <li><code><b>\begin</b>{verse}</code></li>
+                                    <li><code>We talk about exams, \\</code></li>
+                                    <li><code>about the future like it’s a city \\</code></li>
+                                    <li><code>neither of us has visited, \\</code></li>
+                                    <li><code>but somehow we keep pointing \\</code></li>
+                                    <li><code>in the same direction.</code></li>
+                                    <li><code><b>\end</b>{verse}</code></li>
+                                </ol>
+                                <aside>
+                                    <b><span data-copy-lang="zh">從聲音開始</span><span data-copy-lang="en">Start with the voice</span></b>
+                                    <p><span data-copy-lang="zh">先保留說話的節奏，再讓版面替停頓留下空間。</span><span data-copy-lang="en">Keep the speaking rhythm first, then let the page make room for its pauses.</span></p>
+                                </aside>
+                            </div>
+                        </div>
+
+                        <div class="pdf-preview">
+                            <header><span>PDF PREVIEW</span><b>100%</b></header>
+                            <article class="proof-page book-proof is-active" data-overleaf-preview="diary" data-book-proof>
+                                <div class="proof-page-inner">
+                                    <p class="proof-label">EDITORIAL CREDIT / 2025</p>
+                                    <h3>《澳門日記》</h3>
+                                    <p class="proof-subtitle">回歸故事集</p>
+                                    <figure>
+                                        <img src="macao-diary-colophon.png" alt="《澳門日記—回歸故事集》編輯名單，當中列出羅天逸" width="705" height="483">
+                                        <span class="proof-lens" data-proof-lens aria-hidden="true"></span>
+                                        <figcaption>
+                                            <span data-copy-lang="zh">把游標移到編輯名單上查看原始署名</span>
+                                            <span data-copy-lang="en">Move over the editor list to inspect the original credit</span>
+                                        </figcaption>
+                                    </figure>
+                                    <dl>
+                                        <div><dt>ROLE</dt><dd><span data-copy-lang="zh">編輯</span><span data-copy-lang="en">Editor</span></dd></div>
+                                        <div><dt>CREDIT</dt><dd>羅天逸</dd></div>
+                                        <div><dt>YEAR</dt><dd>2025</dd></div>
+                                    </dl>
+                                </div>
+                            </article>
+
+                            <article class="proof-page poem-proof" data-overleaf-preview="poem" hidden>
+                                <div class="proof-page-inner">
+                                    <p class="proof-label">POEM / SCHOOL ENGLISH POETRY COLLECTION / 2026</p>
+                                    <h3>Between Bells<br>and Heartbeats</h3>
+                                    <p class="poem-byline">ANSON LO</p>
+                                    <blockquote>
+                                        <span>We talk about exams,</span>
+                                        <span>about the future like it’s a city</span>
+                                        <span>neither of us has visited,</span>
+                                        <span>but somehow we keep pointing</span>
+                                        <span>in the same direction.</span>
+                                    </blockquote>
+                                    <p class="proof-note">
+                                        <span data-copy-lang="zh">節錄自校內英文詩集作品</span>
+                                        <span data-copy-lang="en">Excerpt from a school English poetry collection</span>
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <footer class="overleaf-statusbar">
+                        <span data-current-tex>macao-diary.tex</span><i></i><span>TeX Live</span><span>UTF-8</span><span data-compile-time>Compiled 0.8s ago</span>
+                    </footer>
+                </div>
+            </section>
+        </div>
+
+        <div class="explore-backdrop" data-explore-backdrop hidden></div>
+        <section class="explore-panel" data-explore role="dialog" aria-modal="true" aria-labelledby="explore-title" hidden>
+            <h2 id="explore-title" class="sr-only">Explore Anson</h2>
+            <div class="explore-search">
+                <span class="search-glyph" aria-hidden="true"></span>
+                <input type="search" data-explore-input autocomplete="off" spellcheck="false" aria-controls="explore-results" placeholder="探索 Anson 的工作…" aria-label="Search Anson's work">
+                <kbd>esc</kbd>
+            </div>
+            <div class="explore-body">
+                <p class="explore-category">
+                    <span data-copy-lang="zh">應用與工作區</span>
+                    <span data-copy-lang="en">APPS &amp; WORKSPACES</span>
+                </p>
+                <div class="explore-results" id="explore-results" role="listbox" data-explore-results>
+                    <button type="button" role="option" data-explore-result data-open-app="about" data-keywords="anson about profile macao 羅天逸 關於 澳門 學生 developer editor speaker">
+                        <span class="app-icon about-icon" aria-hidden="true"><b>A</b><i>L</i></span>
+                        <span class="result-copy">
+                            <b><span data-copy-lang="zh">關於 Anson</span><span data-copy-lang="en">About Anson</span></b>
+                            <small><span data-copy-lang="zh">身份、工作方式與聯絡</span><span data-copy-lang="en">Identity, method, and contact</span></small>
+                        </span>
+                        <span class="result-app">Finder</span>
+                        <kbd>⌥0</kbd>
+                    </button>
+                    <button type="button" role="option" data-explore-result data-open-app="xcode" data-keywords="xcode engineering sports day debate system 工程 校運會 辯論 系統 swift">
+                        <span class="app-icon xcode-icon" aria-hidden="true"><img src="assets/app-icons/xcode.svg" alt="" width="38" height="38"></span>
+                        <span class="result-copy">
+                            <b><span data-copy-lang="zh">工程系統</span><span data-copy-lang="en">Engineering Systems</span></b>
+                            <small><span data-copy-lang="zh">校運會與辯論工作流</span><span data-copy-lang="en">Sports day and debate workflows</span></small>
+                        </span>
+                        <span class="result-app">Xcode</span>
+                        <kbd>⌥1</kbd>
+                    </button>
+                    <button type="button" role="option" data-explore-result data-open-app="vscode" data-keywords="visual studio code vscode igem 2026 software modelling wiki 軟件 建模">
+                        <span class="app-icon vscode-icon" aria-hidden="true"><img src="assets/app-icons/visual-studio-code.png" alt="" width="42" height="42"></span>
+                        <span class="result-copy">
+                            <b>iGEM 2026</b>
+                            <small><span data-copy-lang="zh">軟件、建模與 Wiki 交付鏈</span><span data-copy-lang="en">Software, modelling, and wiki delivery</span></small>
+                        </span>
+                        <span class="result-app">Visual Studio Code</span>
+                        <kbd>⌥2</kbd>
+                    </button>
+                    <button type="button" role="option" data-explore-result data-open-app="overleaf" data-keywords="overleaf writing editing poetry book macao diary 文字 寫作 編輯 詩 澳門日記">
+                        <span class="app-icon overleaf-icon" aria-hidden="true"><img src="assets/app-icons/overleaf.svg" alt="" width="40" height="40"></span>
+                        <span class="result-copy">
+                            <b><span data-copy-lang="zh">寫作與編輯</span><span data-copy-lang="en">Writing &amp; Editing</span></b>
+                            <small><span data-copy-lang="zh">《澳門日記》與英文詩</span><span data-copy-lang="en">Macao Diary and English poetry</span></small>
+                        </span>
+                        <span class="result-app">Overleaf</span>
+                        <kbd>⌥3</kbd>
+                    </button>
+                </div>
+                <p class="explore-empty" data-explore-empty hidden>
+                    <span data-copy-lang="zh">沒有符合的工作區。試試「系統」、「iGEM」或「文字」。</span>
+                    <span data-copy-lang="en">No matching workspace. Try “systems”, “iGEM”, or “writing”.</span>
+                </p>
+            </div>
+            <footer class="explore-footer">
+                <span><kbd>↑</kbd><kbd>↓</kbd> <span data-copy-lang="zh">選擇</span><span data-copy-lang="en">select</span></span>
+                <span><kbd>↵</kbd> <span data-copy-lang="zh">打開</span><span data-copy-lang="en">open</span></span>
+                <span><kbd>⌘K</kbd> <span data-copy-lang="zh">可靠開啟；macOS 可能先攔截 ⌘Space</span><span data-copy-lang="en">reliable; macOS may intercept ⌘Space first</span></span>
+            </footer>
+        </section>
+
+        <nav class="dock" aria-label="Applications">
+            <button class="dock-item" type="button" data-open-explore data-dock-app="explore">
+                <span class="dock-tooltip"><span data-copy-lang="zh">探索</span><span data-copy-lang="en">Explore</span></span>
+                <span class="dock-icon explore-dock-icon" aria-hidden="true"><i class="search-glyph"></i><b>A</b></span>
+                <i class="dock-indicator" aria-hidden="true"></i>
             </button>
-            <button type="button" data-scene-link="systems" aria-pressed="false">
-                <span>01</span><b><span data-copy-lang="zh">系統</span><span data-copy-lang="en">Systems</span></b>
+            <button class="dock-item" type="button" data-open-app="about" data-dock-app="about">
+                <span class="dock-tooltip"><span data-copy-lang="zh">關於 Anson</span><span data-copy-lang="en">About Anson</span></span>
+                <span class="dock-icon about-icon" aria-hidden="true"><b>A</b><i>L</i></span>
+                <i class="dock-indicator" aria-hidden="true"></i>
             </button>
-            <button type="button" data-scene-link="voice" aria-pressed="false">
-                <span>02</span><b><span data-copy-lang="zh">表達</span><span data-copy-lang="en">Voice</span></b>
+            <span class="dock-separator" aria-hidden="true"></span>
+            <button class="dock-item" type="button" data-open-app="xcode" data-dock-app="xcode">
+                <span class="dock-tooltip">Xcode / Engineering</span>
+                <span class="dock-icon xcode-icon" aria-hidden="true"><img src="assets/app-icons/xcode.svg" alt="" width="44" height="44"></span>
+                <i class="dock-indicator" aria-hidden="true"></i>
             </button>
-            <button type="button" data-scene-link="words" aria-pressed="false">
-                <span>03</span><b><span data-copy-lang="zh">文字</span><span data-copy-lang="en">Words</span></b>
+            <button class="dock-item" type="button" data-open-app="vscode" data-dock-app="vscode">
+                <span class="dock-tooltip">Visual Studio Code / iGEM</span>
+                <span class="dock-icon vscode-icon" aria-hidden="true"><img src="assets/app-icons/visual-studio-code.png" alt="" width="48" height="48"></span>
+                <i class="dock-indicator" aria-hidden="true"></i>
             </button>
+            <button class="dock-item" type="button" data-open-app="overleaf" data-dock-app="overleaf">
+                <span class="dock-tooltip">Overleaf / Writing</span>
+                <span class="dock-icon overleaf-icon" aria-hidden="true"><img src="assets/app-icons/overleaf.svg" alt="" width="44" height="44"></span>
+                <i class="dock-indicator" aria-hidden="true"></i>
+            </button>
+            <span class="dock-separator" aria-hidden="true"></span>
+            <a class="dock-item dock-link" href="mailto:ansonlotiniat@gmail.com">
+                <span class="dock-tooltip">Email Anson</span>
+                <span class="dock-icon mail-icon" aria-hidden="true"><i></i></span>
+            </a>
         </nav>
 
-        <p class="keyboard-map" aria-hidden="true">ESC — FULL MAP&nbsp;&nbsp;&nbsp; 0 1 2 3 — TRAVEL&nbsp;&nbsp;&nbsp; R — RESET TERRAIN</p>
+        <div class="os-announcer sr-only" aria-live="polite" data-announcer></div>
 
-        <div class="info-backdrop" data-info-backdrop hidden></div>
-        <aside class="info-drawer" id="info-drawer" data-info-drawer role="dialog" aria-modal="true" aria-labelledby="info-title" hidden>
-            <header>
-                <p class="micro-label">FIELD NOTES / ANSON LO</p>
-                <button type="button" data-info-close>
-                    <span data-copy-lang="zh">關閉</span><span data-copy-lang="en">Close</span><span aria-hidden="true">×</span>
-                </button>
-            </header>
-            <div class="info-body">
-                <section>
-                    <p class="info-index">A / IDENTITY</p>
-                    <h2 id="info-title">
-                        <span data-copy-lang="zh">來自澳門的學生開發者、編輯與演講者。</span>
-                        <span data-copy-lang="en">A student developer, editor, and speaker from Macao.</span>
-                    </h2>
-                </section>
-                <section>
-                    <p class="info-index">B / METHOD</p>
-                    <ol>
-                        <li><span>01</span><b><span data-copy-lang="zh">觀察情境</span><span data-copy-lang="en">Observe context</span></b><small>WHO / WHERE</small></li>
-                        <li><span>02</span><b><span data-copy-lang="zh">整理流程</span><span data-copy-lang="en">Shape the flow</span></b><small>ORDER / STATE</small></li>
-                        <li><span>03</span><b><span data-copy-lang="zh">清楚交付</span><span data-copy-lang="en">Deliver clearly</span></b><small>WHAT NEXT?</small></li>
-                    </ol>
-                </section>
-                <section>
-                    <p class="info-index">C / CURRENT</p>
-                    <dl>
-                        <div><dt>SCHOOL</dt><dd><span data-copy-lang="zh">培正中學 · 演講學社社長</span><span data-copy-lang="en">Pui Ching Middle School · President, Speech Society</span></dd></div>
-                        <div><dt>iGEM 2026</dt><dd><span data-copy-lang="zh">軟件 · 建模 · Wiki 工程</span><span data-copy-lang="en">Software · Modelling · Wiki engineering</span></dd></div>
-                        <div><dt>INTERESTS</dt><dd><span data-copy-lang="zh">校園工具 · 網絡系統 · 公共表達 · 澳門文化</span><span data-copy-lang="en">School tools · Network systems · Public communication · Macao culture</span></dd></div>
-                    </dl>
-                </section>
-                <section class="info-contact">
-                    <p class="info-index">D / CONTACT</p>
-                    <a href="mailto:ansonlotiniat@gmail.com">ansonlotiniat@gmail.com <span aria-hidden="true">↗</span></a>
-                    <a href="https://github.com/ansonlotiniat" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
-                </section>
+        <noscript>
+            <div class="noscript-card">
+                <h2>Anson Lo</h2>
+                <p>Student developer, editor, and speaker from Macao.</p>
+                <a href="mailto:ansonlotiniat@gmail.com">ansonlotiniat@gmail.com</a>
+                <a href="https://github.com/ansonlotiniat">GitHub</a>
             </div>
-            <footer>
-                <p>© <span data-year>2026</span> ANSON LO</p>
-                <p>
-                    MAP: <a href="https://www.naturalearthdata.com/about/" target="_blank" rel="noopener">NATURAL EARTH</a>
-                    / <a href="https://services.ga.gov.au/gis/rest/services/World_Bathymetry_Base_Map/MapServer/0" target="_blank" rel="noopener">GEOSCIENCE AUSTRALIA</a>
-                    / <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>
-                </p>
-            </footer>
-        </aside>
+        </noscript>
     </div>
-
-    <noscript>
-        <style>
-            body { overflow: auto !important; }
-            .field-app { height: auto !important; min-height: auto !important; overflow: visible !important; }
-            .field-header, .route-dock, .keyboard-map, .field-nodes, .map-stage, .field-axis, .field-orbit { display: none !important; }
-            .field-main { position: relative !important; inset: auto !important; display: block !important; overflow: visible !important; }
-            .scene { position: relative !important; inset: auto !important; min-height: auto !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
-            .scene-surface { position: relative !important; inset: auto !important; width: auto !important; min-height: 40rem; }
-            .scene-overview { min-height: 45rem !important; }
-            [data-system-panel][hidden], [data-artifact-panel][hidden] { display: grid !important; }
-            [data-voice-copy][hidden], [data-debate-copy][hidden] { display: block !important; }
-        </style>
-    </noscript>
 </body>
 </html>
