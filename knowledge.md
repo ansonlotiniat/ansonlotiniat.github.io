@@ -1,6 +1,6 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-31 01:22 CST
+Last updated: 2026-07-31 01:26 CST
 
 ## Reframed goal
 
@@ -80,7 +80,7 @@ The site must not assume that a portfolio is something to scroll from top to bot
 - W3C HTML validation has zero errors (the checker emits only informational notes for the Apple private-use glyph and mixed bilingual text). Both stylesheets parse, 2,301 actionable declarations pass CSS grammar checking, both JavaScript files pass syntax checks, and the App consistency validator passes four manifest entries, four windows, four unique shortcuts, and all icon paths.
 - No-GSAP DOM smoke tests pass manifest rendering, generated Dock/Explore, manifest shortcuts, language switching, window minimization, and Dock restoration. A real locally vendored GSAP 3.13 smoke test passes boot, animated opening, and animated closing without DOM errors.
 - Local HTTP delivery returns 200 for the HTML, CSS, JavaScript, locally vendored GSAP, three app marks, and editorial-credit image. The iGEM team wiki, GitHub profile, and existing live homepage links return 200.
-- The first AnsonOS rebuild remains live from commit `33abb55` via [GitHub Pages run 30563948010](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30563948010). The faithful macOS-shell redesign is locally complete and validated; deployment is the next build step.
+- The faithful macOS-shell redesign was published from commit `5204d66` by [GitHub Pages run 30565833869](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30565833869) on 2026-07-31. The live HTML, both stylesheets, App manifest, application JavaScript, landscape wallpaper, and all six local icons were verified byte-for-byte against the commit.
 
 ## Open questions
 
