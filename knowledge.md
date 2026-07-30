@@ -1,6 +1,6 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-31 00:27 CST
+Last updated: 2026-07-31 00:29 CST
 
 ## Reframed goal
 
@@ -59,8 +59,8 @@ The site must not assume that a portfolio is a document to scroll from top to bo
 - `macao-boundary.geojson`, the `macao-outline.svg` no-WebGL fallback, `vendor/three.module.min.js`, `vendor/three.core.min.js`, and `vendor/three-LICENSE.txt` are now local project assets.
 - Direct coordinate travel, URL/history state, 0–3 and arrow-key navigation, horizontal touch travel, the information drawer and focus loop, three project instruments, Voice signal selector, publication magnifier, poem reveal, persistent language state, and animation/static fallbacks are implemented.
 - `og-v2.png` was generated as one cohesive social card, checked for exact text, and resized to 1200 × 630.
-- JavaScript syntax, HTML5 parsing, bilingual-pair counts, selector coverage, ID and ARIA relationships, control labelling, GeoJSON/SVG parsing, Three.js geometry generation, CSS parsing/property checks, direct-coordinate links, reduced-motion/modal isolation, no-GSAP DOM interactions, real GSAP 3.13 transitions, rapid-travel queuing, local HTTP delivery, and external links pass for the fixed-atlas rebuild. Final deployment verification remains.
-- The previous Macao Field Atlas build remains published at [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) while this non-scrolling spatial rebuild is validated locally.
+- JavaScript syntax, HTML5 parsing, bilingual-pair counts, selector coverage, ID and ARIA relationships, control labelling, GeoJSON/SVG parsing, Three.js geometry generation, CSS parsing/property checks, direct-coordinate links, reduced-motion/modal isolation, no-GSAP DOM interactions, real GSAP 3.13 transitions, rapid-travel queuing, local HTTP delivery, and external links pass for the fixed-atlas rebuild.
+- The non-scrolling Macao Working Atlas was published from commit `2546dbf` to [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) on 2026-07-31. The live HTML, stylesheet, both JavaScript entry points, GeoJSON, SVG fallback, and both Three.js modules were verified byte-for-byte against the committed local files.
 
 ## Open questions
 
