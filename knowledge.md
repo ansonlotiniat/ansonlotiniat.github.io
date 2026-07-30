@@ -4,51 +4,51 @@ Last updated: 2026-07-30
 
 ## Reframed goal
 
-Present Anson as a whole person rather than a collection of repositories: a student builder, speaker, team lead, and cross-disciplinary learner from Macao. The homepage should show how technology, communication, leadership, humanities, science, and mathematics connect in his life.
+Create a quiet, personal bilingual homepage for Anson Lo. It should introduce him through his current roles, working style, and a few real systems—not through repositories, slogans, rankings, or an achievement wall.
 
 ## Content boundaries
 
-- Do not feature or discuss miscellaneous GitHub repositories.
-- Do not present research topics, speculative projects, pending team roles, or results that Anson has not chosen to publish.
-- Do not claim maintainer or developer-team status for ORCA, Athena, or other external projects while that status is pending.
-- Use the long achievement list to understand Anson's interests, but publish only a focused, representative selection.
-- Keep public-interest and technical claims grounded in activities Anson explicitly supplied.
+- No award, certificate, competition-result, or ranking section on the homepage.
+- No miscellaneous GitHub repositories.
+- No research topics, speculative projects, pending roles, or unpublished results.
+- Avoid manifesto language, grand claims, and motivational copy in Chinese.
+- Use direct, conversational Traditional Chinese and equally restrained English.
+- Keep only four concrete projects: school sports day, debate operations, iGEM 2026, and the National Games mini program.
 
 ## Design decisions
 
-- Bilingual Traditional Chinese and English interface with a persistent language switch. Chinese is the default.
-- Self-host the open-source JetBrains Mono variable font for Latin text; use native Traditional Chinese system fonts for CJK coverage.
-- Visual language: personal editorial dossier rather than a developer dashboard. Warm paper, deep navy, vivid orange, acid lime, strict rules, numbered records, and monospaced indexing.
-- No particle effects, glassmorphism, gradients, terminal windows, skill bars, GitHub cards, trophy icons, or decorative certification walls.
-- Interaction stays quiet: language switching, keyboard-safe mobile navigation, reading progress, active-section state, and reduced-motion support.
-- Homepage copy centres on how Anson works: building for real teams, explaining complex ideas, leading groups, and crossing disciplinary boundaries.
+- Bilingual Traditional Chinese and English interface; Chinese is the default and the preference is stored locally.
+- JetBrains Mono is self-hosted for the Latin identity and English interface. Traditional Chinese uses the native system sans-serif stack for comfortable reading.
+- Visual direction: restrained editorial portfolio with generous whitespace, warm off-white, near-black, muted brick red, pale sage-grey, fine rules, and careful column alignment.
+- Remove bright orange/lime blocks, thick frames, poster-like shouting, numbered award cards, trophy motifs, heavy dashboard structures, gradients, glass effects, and decorative animation.
+- The only motion is a quiet reveal and mobile-menu transition, both disabled by reduced-motion preferences.
 
 ## Public content hierarchy
 
-1. Personal positioning: builder, speaker, and team lead from Macao.
-2. Current role: PuiChing Macau iGEM 2026 core engineering across software, modelling, and wiki.
-3. Personal profile: build for nearby communities, communicate clearly, and cross boundaries deliberately.
-4. Real systems: school sports day, debate operations, iGEM workflows, and National Games mini program.
-5. Selected record: speaking/leadership, networks/IT, humanities, and science/mathematics.
-6. Interest map: team tools, network infrastructure, computing for science, Macao culture, and public communication.
+1. Anson Lo — student developer from Macao.
+2. Short personal introduction and current PuiChing Macau iGEM 2026 role.
+3. About: how software, communication, and broad subject interests influence his way of working.
+4. Selected work: four real school/team systems.
+5. Now: Speech Society leadership, iGEM engineering, and ongoing interests.
+6. Direct email contact and GitHub link.
 
 ## Key claims and confidence
 
-- All awards, student-society roles, school software projects, and current interests were supplied directly by Anson on 2026-07-30; high confidence as first-party claims.
-- PuiChing Macau iGEM 2026 core role across software, modelling, and wiki was supplied directly by Anson; high confidence.
-- Team link: [PuiChing Macau iGEM 2026](https://2026.igem.wiki/puiching-macau/).
+- School roles, software projects, current interests, and iGEM responsibilities were supplied directly by Anson on 2026-07-30; high confidence as first-party claims.
+- PuiChing Macau iGEM 2026 link: [2026.igem.wiki/puiching-macau](https://2026.igem.wiki/puiching-macau/).
 - JetBrains Mono source and licence: [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono), SIL Open Font License 1.1.
 
 ## Build status
 
-- Bilingual static-site rebuild completed in `index.html`, `style.css`, and `main.js`.
-- JetBrains Mono variable font and OFL licence added locally.
-- New Open Graph card generated for the personal identity system.
-- HTML, CSS, JavaScript, bilingual-pair counts, and whitespace checks passed.
-- Local and live asset/link checks passed.
-- Published successfully from `main` to [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) on 2026-07-30.
+- Homepage rebuilt in `index.html`, `style.css`, and `main.js`.
+- Award-wall and repository content removed completely.
+- Traditional Chinese and English content pairs are complete.
+- JetBrains Mono variable font remains self-hosted with its OFL licence.
+- New subdued Open Graph card generated to match the refined design.
+- HTML, CSS, JavaScript, bilingual-pair, prohibited-term, and whitespace checks passed.
+- Pending: local asset/link verification and GitHub Pages publication.
 
 ## Open questions
 
-- A later version may add a portrait if Anson selects one intentionally.
-- Certificate images should remain out of the homepage unless a dedicated archive page is requested.
+- Add a portrait only after Anson chooses a specific image.
+- Keep awards and certificates outside this homepage unless a separate archive is requested.

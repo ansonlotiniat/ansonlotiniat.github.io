@@ -88,7 +88,7 @@ const sectionObserver = new IntersectionObserver(
 sections.forEach((section) => sectionObserver.observe(section));
 
 const revealTargets = document.querySelectorAll(
-    ".profile-pillars article, .build-item, .record-group, .interest-list li",
+    ".about-copy p, .project, .now-list > div",
 );
 
 revealTargets.forEach((element) => element.setAttribute("data-reveal", ""));
