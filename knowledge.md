@@ -46,7 +46,8 @@ Create a quiet, personal bilingual homepage for Anson Lo. It should introduce hi
 - JetBrains Mono variable font remains self-hosted with its OFL licence.
 - New subdued Open Graph card generated to match the refined design.
 - HTML, CSS, JavaScript, bilingual-pair, prohibited-term, and whitespace checks passed.
-- Pending: local asset/link verification and GitHub Pages publication.
+- Local and live asset/link checks passed.
+- Published successfully from `main` to [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) on 2026-07-30.
 
 ## Open questions
 
