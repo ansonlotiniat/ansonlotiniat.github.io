@@ -1,6 +1,6 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-30 22:49 CST
+Last updated: 2026-07-30 22:51 CST
 
 ## Reframed goal
 
@@ -56,7 +56,7 @@ The site introduces a person working across software systems, public communicati
 - Hero depth, the pinned three-stage method story, the horizontal case reel, native mobile scroll-snap, magnetic/tilt pointer details, publication dialogs, persistent language state, and reduced-motion/static fallbacks are implemented.
 - `og-v2.png` was generated as one cohesive social card, checked for exact text, and resized to 1200 × 630.
 - JavaScript syntax, HTML5 parsing, bilingual-pair counts, ID and ARIA relationships, local assets, external links, social-image dimensions, prohibited-copy checks, CSS brace structure, and whitespace checks pass.
-- The interaction-led rebuild is ready for commit and GitHub Pages deployment; live verification is still pending.
+- The interaction-led rebuild was published from commit `7a9e2b3` to [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) on 2026-07-30. The live HTML, stylesheet, JavaScript, social card, and publication image were verified byte-for-byte against the committed local files.
 
 ## Open questions
 
