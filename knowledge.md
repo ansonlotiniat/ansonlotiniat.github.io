@@ -48,7 +48,7 @@ Build a bilingual personal homepage that demonstrates Anson Lo’s product and U
 - `macao-diary-colophon.png` added as a verified publication artifact.
 - `og-editorial.png` generated and resized to the social-card standard.
 - HTML, CSS, JavaScript, bilingual-pair, duplicate-ID, local-asset, prohibited-content, and whitespace checks pass.
-- Deployment pending for this revision.
+- Published successfully from commit `c34b5e6` to [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) on 2026-07-30. The live HTML and both new image assets were verified after deployment.
 
 ## Open questions
 
