@@ -1,11 +1,13 @@
 const root = document.documentElement;
 const menuButton = document.querySelector("[data-menu-button]");
 const navigation = document.querySelector("[data-navigation]");
-const progress = document.querySelector("[data-progress]");
 const languageButtons = [...document.querySelectorAll("[data-set-language]")];
 const navLinks = [...document.querySelectorAll(".site-navigation a")];
-const sections = [...document.querySelectorAll("main section[id]")];
+const sections = [...document.querySelectorAll("main section[id], footer[id]")];
 const description = document.querySelector('meta[name="description"]');
+const caseTabs = [...document.querySelectorAll("[data-case-tab]")];
+const casePanels = [...document.querySelectorAll("[data-case-panel]")];
+const dialogs = [...document.querySelectorAll("[data-dialog]")];
 
 const pageCopy = {
     zh: {
@@ -33,17 +35,6 @@ menuButton?.addEventListener("click", () => {
 
 navLinks.forEach((link) => link.addEventListener("click", closeMenu));
 
-document.addEventListener("keydown", (event) => {
-    if (event.key !== "Escape") return;
-    const wasOpen = menuButton?.getAttribute("aria-expanded") === "true";
-    closeMenu();
-    if (wasOpen) menuButton?.focus();
-});
-
-window.addEventListener("resize", () => {
-    if (window.innerWidth > 1024) closeMenu();
-});
-
 function setLanguage(language, persist = true) {
     const next = language === "en" ? "en" : "zh";
     root.dataset.language = next;
@@ -59,7 +50,7 @@ function setLanguage(language, persist = true) {
     try {
         localStorage.setItem("anson-language", next);
     } catch {
-        // The language switch remains functional when storage is unavailable.
+        // The switch still works when storage is unavailable.
     }
 }
 
@@ -75,16 +66,72 @@ languageButtons.forEach((button) => {
     button.addEventListener("click", () => setLanguage(button.dataset.setLanguage));
 });
 
-function updateProgress() {
-    if (!progress) return;
-    const available = document.documentElement.scrollHeight - window.innerHeight;
-    const ratio = available > 0 ? Math.min(window.scrollY / available, 1) : 0;
-    progress.style.transform = `scaleX(${ratio})`;
+function selectCase(key, moveFocus = false) {
+    caseTabs.forEach((tab) => {
+        const isActive = tab.dataset.caseTab === key;
+        tab.setAttribute("aria-selected", String(isActive));
+        tab.tabIndex = isActive ? 0 : -1;
+        if (isActive && moveFocus) tab.focus();
+    });
+
+    casePanels.forEach((panel) => {
+        panel.hidden = panel.dataset.casePanel !== key;
+    });
 }
 
-updateProgress();
-window.addEventListener("scroll", updateProgress, { passive: true });
-window.addEventListener("resize", updateProgress);
+caseTabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => selectCase(tab.dataset.caseTab));
+
+    tab.addEventListener("keydown", (event) => {
+        const keys = ["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft", "Home", "End"];
+        if (!keys.includes(event.key)) return;
+        event.preventDefault();
+
+        let nextIndex = index;
+        if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+            nextIndex = (index + 1) % caseTabs.length;
+        }
+        if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+            nextIndex = (index - 1 + caseTabs.length) % caseTabs.length;
+        }
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = caseTabs.length - 1;
+
+        selectCase(caseTabs[nextIndex].dataset.caseTab, true);
+    });
+});
+
+document.querySelectorAll("[data-open-dialog]").forEach((button) => {
+    button.addEventListener("click", () => {
+        const dialog = document.getElementById(button.dataset.openDialog);
+        if (!(dialog instanceof HTMLDialogElement)) return;
+        dialog.showModal();
+        document.body.classList.add("dialog-open");
+    });
+});
+
+dialogs.forEach((dialog) => {
+    dialog.querySelector("[data-close-dialog]")?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener("close", () => {
+        if (!dialogs.some((item) => item.open)) {
+            document.body.classList.remove("dialog-open");
+        }
+    });
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    const wasMenuOpen = menuButton?.getAttribute("aria-expanded") === "true";
+    closeMenu();
+    if (wasMenuOpen) menuButton?.focus();
+});
+
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 992) closeMenu();
+});
 
 if ("IntersectionObserver" in window) {
     const sectionObserver = new IntersectionObserver(
@@ -105,7 +152,7 @@ if ("IntersectionObserver" in window) {
 }
 
 const revealTargets = document.querySelectorAll(
-    ".profile-copy p, .method-list li, .case, .publication, .current-index > div",
+    ".about-copy, .method-list li, .case-explorer, .publication-card, .now-list > div",
 );
 
 revealTargets.forEach((element) => element.setAttribute("data-reveal", ""));
