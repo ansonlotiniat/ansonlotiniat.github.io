@@ -1,10 +1,10 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-31 01:00 CST
+Last updated: 2026-07-31 01:22 CST
 
 ## Reframed goal
 
-Build a bilingual personal homepage that behaves like Anson Lo’s working computer rather than a document or portfolio feed. The current metaphor is “AnsonOS”: an original macOS-inspired desktop where a visitor searches for Anson, opens the tools he works through, and learns how he thinks from the interface of each tool.
+Build a bilingual personal homepage that behaves like Anson Lo’s working Mac rather than a document or portfolio feed. The current metaphor is “AnsonOS”: a deliberately faithful macOS desktop shell where a visitor searches for Anson, opens the tools he works through, and learns how he thinks from the interface of each tool.
 
 The site must not assume that a portfolio is something to scroll from top to bottom. Its primary navigation is application- and state-based: Explore reveals workspaces, the Dock launches them, and several movable windows can remain open together. Xcode represents engineering systems, Visual Studio Code represents iGEM software/modelling/wiki delivery, Overleaf represents writing and editing, and Finder represents identity, method, and contact.
 
@@ -19,10 +19,12 @@ The site must not assume that a portfolio is something to scroll from top to bot
 
 ## Current design decisions
 
-- The homepage is a fixed “AnsonOS” desktop rather than a vertically scrolling page. An original aurora-like wallpaper, pointer-responsive layered geometry, menu bar, desktop shortcuts, live workspace widget, and magnifying Dock establish the first viewport.
-- The desktop identity is deliberately integrated into the wallpaper instead of placed in a résumé card: `ANSON LO.OS`, Macao coordinates, and “student developer · editor · speaker” are visible before any application opens.
+- The homepage is a fixed “AnsonOS” desktop rather than a vertically scrolling page. Its shell now follows real macOS geometry: a 28 px translucent menu bar, native status cluster, right-aligned desktop icons, bottom-centred translucent Dock, restrained window chrome, and Spotlight-like Explore panel.
+- The former aurora illustration, giant `ANSON LO.OS` hero, live workspace widget, and wallpaper parallax were removed. The desktop now uses an ordinary Lake Louise landscape photograph so the interface reads as a computer immediately; Anson’s identity belongs inside Finder rather than being printed over the wallpaper.
+- Finder, Home, Mail, Xcode, and Visual Studio Code use locally converted macOS application resources. Overleaf remains a documented Simple Icons mark inside a macOS-style application tile.
+- Fine-pointer devices use an intentionally oversized, hard-edged pixel cursor with fluorescent-yellow fill, white outline, hover glow, and pressed state. Touch/coarse-pointer devices keep their native pointer behaviour.
 - Explore is a Spotlight-like command interface:
-  - open it from the menu bar, desktop shortcut, Dock, `/`, `⌘K`, or `⌘Space` when the browser receives that event;
+  - open it from the menu bar, desktop shortcut, `/`, `⌘K`, or `⌘Space` when the browser receives that event;
   - filter by English or Traditional Chinese keywords;
   - use arrow keys and Enter to select;
   - use `⌥0`–`⌥3` as direct application shortcuts.
@@ -39,12 +41,13 @@ The site must not assume that a portfolio is something to scroll from top to bot
   - Recompile provides a small live compilation interaction.
 - The desktop and window transitions use locally vendored GSAP 3.13 core timelines with transform/opacity animation. The licence reference remains in the minified file header. Every operation also works synchronously without GSAP and under `prefers-reduced-motion`.
 - Desktop windows use internal scrolling only where their content exceeds the viewport. At 700 px and below, they become full-workspace surfaces and each IDE rearranges its panes vertically; the top-level page still does not become a scrolling narrative.
-- The Xcode and Overleaf marks come from the CC0 Simple Icons project. The Visual Studio Code mark comes from Microsoft’s official brand asset. The marks are shown unmodified inside interfaces that explicitly represent those products.
+- App launch metadata is centralized in `apps.config.js`. Dock entries, Explore results, bilingual labels, keywords, product labels, icons, group separators, and `⌥number` shortcuts are generated from it. `APP_MAINTENANCE.md` defines the extension contract and `scripts/validate-apps.mjs` enforces one manifest entry per window, unique IDs/shortcuts, bilingual copy, valid icons, and script order.
+- `macos.css` owns the desktop shell and native geometry while `style.css` owns application interiors. This boundary lets future Apps be added without rewriting the shell.
 - The Open Graph image is still `og-v2.png`, the previous systems/voice/words identity card. It contains accurate identity copy but does not yet depict the AnsonOS interface.
 
 ## Public content hierarchy
 
-1. Desktop: identity, Macao, current PuiChing Macau iGEM 2026 workspace, and Explore.
+1. Desktop: immediately recognizable macOS shell, landscape wallpaper, Finder/Home shortcut, Explore shortcut, and Dock.
 2. Explore/Dock: direct application search and launch.
 3. Finder: profile, method, current work, and contact.
 4. Xcode: sports-day and debate engineering systems.
@@ -63,20 +66,21 @@ The site must not assume that a portfolio is something to scroll from top to bot
 - `《澳門日記—回歸故事集》`: the local credit image lists `羅天逸` among the editors, and the local release document confirms the title and a January 2025 launch; high confidence.
 - `Between Bells and Heartbeats`: the local poem and presentation script give the title, author name `Anson Lo`, class number, text, and school-poetry context; high confidence.
 - JetBrains Mono source and licence: [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono), SIL Open Font License 1.1.
-- Xcode and Overleaf icon source: [Simple Icons](https://simpleicons.org/), CC0 1.0 with product trademarks retained by their owners.
-- Visual Studio Code icon and usage reference: [Visual Studio Code brand guidelines](https://code.visualstudio.com/brand).
+- Finder, Home, Mail, Xcode, and Visual Studio Code icons were converted from the installed macOS `.icns` resources; exact paths and hashes are recorded in `assets/app-icons/SOURCES.md`. Product marks remain the property of their owners.
+- Overleaf icon source: [Simple Icons](https://simpleicons.org/), CC0 1.0 with product trademarks retained by their owners.
+- Wallpaper: [Lake Louise photograph by Sofia](https://unsplash.com/photos/a-view-of-a-mountain-lake-surrounded-by-pine-trees-WPSbXAoiOc0), used under the Unsplash License; exact CDN parameters and hash are recorded in `assets/wallpapers/SOURCES.md`.
 
 ## Build status
 
-- `index.html`, `style.css`, and `main.js` have been rebuilt around AnsonOS. The previous Three.js map runtime is no longer referenced or downloaded by the page.
-- Real Xcode, Visual Studio Code, and Overleaf marks are stored locally under `assets/app-icons/`; exact source URLs, usage references, and SHA-256 hashes are recorded in `assets/app-icons/SOURCES.md`.
-- Desktop pointer depth, boot choreography, live clock, persistent language choice, Explore filtering and keyboard navigation, four URL-addressable application windows, z-order, drag, minimize/restore, maximize, close, Dock state, and desktop/app focus are implemented.
+- `index.html`, `style.css`, `macos.css`, `apps.config.js`, and `main.js` implement AnsonOS. The previous Three.js map runtime is still not referenced or downloaded by the page.
+- The photographic wallpaper and six application/desktop marks are stored locally under `assets/`; source, usage, dimensions, and SHA-256 records are current.
+- Native-proportion menu/status chrome, live localized clock, right-aligned desktop shortcuts, generated magnifying Dock, fluorescent pixel cursor, boot choreography, persistent language choice, Explore filtering and keyboard navigation, four URL-addressable application windows, z-order, drag, minimize/restore, maximize, close, Dock state, and desktop/app focus are implemented.
 - Xcode project switching, sports-day phase switching, debate role switching, Visual Studio Code workstream alignment, Overleaf source/preview switching, compilation status, and editorial-credit magnification are implemented.
 - Accessibility includes a skip link, named controls, modal focus containment, tab/tabpanel relationships, live status messages, hidden/inert application states, keyboard alternatives, and reduced-motion operation.
-- W3C HTML validation passes with zero errors and warnings. CSS parses successfully, 2,073 declarations pass the actionable grammar check, JavaScript syntax passes, all IDs/ARIA references/local assets resolve, and no legacy map runtime is referenced.
-- No-GSAP, real-GSAP 3.13, and reduced-motion DOM tests pass for Explore, shortcuts, window management, all three application workspaces, language switching, compilation, and panel transitions.
+- W3C HTML validation has zero errors (the checker emits only informational notes for the Apple private-use glyph and mixed bilingual text). Both stylesheets parse, 2,301 actionable declarations pass CSS grammar checking, both JavaScript files pass syntax checks, and the App consistency validator passes four manifest entries, four windows, four unique shortcuts, and all icon paths.
+- No-GSAP DOM smoke tests pass manifest rendering, generated Dock/Explore, manifest shortcuts, language switching, window minimization, and Dock restoration. A real locally vendored GSAP 3.13 smoke test passes boot, animated opening, and animated closing without DOM errors.
 - Local HTTP delivery returns 200 for the HTML, CSS, JavaScript, locally vendored GSAP, three app marks, and editorial-credit image. The iGEM team wiki, GitHub profile, and existing live homepage links return 200.
-- The AnsonOS rebuild was published from commit `33abb55` by [GitHub Pages run 30563948010](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30563948010) on 2026-07-31. The live HTML, stylesheet, application JavaScript, local GSAP runtime, all three application marks, and editorial-credit image were verified byte-for-byte against the committed local files.
+- The first AnsonOS rebuild remains live from commit `33abb55` via [GitHub Pages run 30563948010](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30563948010). The faithful macOS-shell redesign is locally complete and validated; deployment is the next build step.
 
 ## Open questions
 

@@ -1,3 +1,121 @@
+const appManifest = Array.isArray(window.ANSON_APP_MANIFEST)
+    ? window.ANSON_APP_MANIFEST
+    : [];
+const appManifestById = new Map(appManifest.map((app) => [app.id, app]));
+
+function localizedSpan(copy) {
+    const fragment = document.createDocumentFragment();
+    ["zh", "en"].forEach((locale) => {
+        const span = document.createElement("span");
+        span.dataset.copyLang = locale;
+        span.textContent = copy?.[locale] || copy?.en || copy?.zh || "";
+        fragment.append(span);
+    });
+    return fragment;
+}
+
+function appIcon(app, className) {
+    const icon = document.createElement("span");
+    icon.className = `${className} ${app.icon.className}`;
+    icon.setAttribute("aria-hidden", "true");
+
+    const image = document.createElement("img");
+    image.src = app.icon.src;
+    image.alt = "";
+    image.width = 64;
+    image.height = 64;
+    icon.append(image);
+    return icon;
+}
+
+function renderLaunchers() {
+    const exploreContainer = document.querySelector("[data-explore-results]");
+    const dockContainer = document.querySelector("[data-dock]");
+
+    appManifest.forEach((app, index) => {
+        if (exploreContainer) {
+            const result = document.createElement("button");
+            result.type = "button";
+            result.setAttribute("role", "option");
+            result.setAttribute("aria-selected", String(index === 0));
+            result.classList.toggle("is-selected", index === 0);
+            result.dataset.exploreResult = "";
+            result.dataset.openApp = app.id;
+            result.dataset.keywords = app.keywords;
+            result.append(appIcon(app, "app-icon"));
+
+            const copy = document.createElement("span");
+            copy.className = "result-copy";
+            const title = document.createElement("b");
+            title.append(localizedSpan(app.title));
+            const subtitle = document.createElement("small");
+            subtitle.append(localizedSpan(app.subtitle));
+            copy.append(title, subtitle);
+
+            const label = document.createElement("span");
+            label.className = "result-app";
+            label.textContent = app.appLabel;
+
+            const shortcut = document.createElement("kbd");
+            shortcut.textContent = `⌥${app.shortcut}`;
+            result.append(copy, label, shortcut);
+            exploreContainer.append(result);
+        }
+
+        if (dockContainer) {
+            const previousApp = appManifest[index - 1];
+            if (previousApp && previousApp.group !== app.group) {
+                const separator = document.createElement("span");
+                separator.className = "dock-separator";
+                separator.setAttribute("aria-hidden", "true");
+                dockContainer.append(separator);
+            }
+
+            const launcher = document.createElement("button");
+            launcher.type = "button";
+            launcher.className = "dock-item";
+            launcher.dataset.openApp = app.id;
+            launcher.dataset.dockApp = app.id;
+
+            const tooltip = document.createElement("span");
+            tooltip.className = "dock-tooltip";
+            tooltip.append(localizedSpan(app.dockLabel));
+
+            const indicator = document.createElement("span");
+            indicator.className = "dock-indicator";
+            indicator.setAttribute("aria-hidden", "true");
+            launcher.append(tooltip, appIcon(app, "dock-icon"), indicator);
+            dockContainer.append(launcher);
+        }
+    });
+
+    if (dockContainer) {
+        const separator = document.createElement("span");
+        separator.className = "dock-separator";
+        separator.setAttribute("aria-hidden", "true");
+
+        const mail = document.createElement("a");
+        mail.className = "dock-item dock-link";
+        mail.href = "mailto:ansonlotiniat@gmail.com";
+        const tooltip = document.createElement("span");
+        tooltip.className = "dock-tooltip";
+        tooltip.append(localizedSpan({ zh: "郵件 — 聯絡 Anson", en: "Mail — Contact Anson" }));
+        const icon = document.createElement("span");
+        icon.className = "dock-icon mail-icon";
+        icon.setAttribute("aria-hidden", "true");
+        const image = document.createElement("img");
+        image.src = "assets/app-icons/mail.png";
+        image.alt = "";
+        image.width = 64;
+        image.height = 64;
+        icon.append(image);
+        mail.append(tooltip, icon);
+        dockContainer.append(separator, mail);
+    }
+}
+
+renderLaunchers();
+
 const root = document.documentElement;
 const body = document.body;
 const os = document.querySelector("[data-os]");
@@ -12,6 +130,7 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mobileWindowMode = window.matchMedia("(max-width: 700px)");
 
 const languageButtons = [...document.querySelectorAll("[data-set-language]")];
+const languageToggle = document.querySelector("[data-language-toggle]");
 const clock = document.querySelector("[data-clock]");
 const appWindows = new Map(
     [...document.querySelectorAll("[data-window]")].map((element) => [element.dataset.window, element]),
@@ -59,6 +178,7 @@ const pageCopy = {
         description: "Anson Lo 的互動工作桌面：打開 Xcode、Visual Studio Code 與 Overleaf，探索他如何建立系統、協調 iGEM 工程與編輯文字。",
         searchPlaceholder: "探索 Anson 的工作…",
         searchLabel: "搜尋 Anson 的工作",
+        switchLanguage: "切換至英文",
         open: "已打開",
         close: "已關閉",
         minimize: "已縮到 Dock",
@@ -75,6 +195,7 @@ const pageCopy = {
         description: "An interactive working desktop for Anson Lo. Open Xcode, Visual Studio Code, and Overleaf to explore how he builds, coordinates, and edits.",
         searchPlaceholder: "Explore Anson’s work…",
         searchLabel: "Search Anson's work",
+        switchLanguage: "Switch to Chinese",
         open: "opened",
         close: "closed",
         minimize: "minimized to the Dock",
@@ -134,6 +255,7 @@ function setLanguage(nextLanguage, persist = true) {
     languageButtons.forEach((button) => {
         button.setAttribute("aria-pressed", String(button.dataset.setLanguage === next));
     });
+    languageToggle?.setAttribute("aria-label", pageCopy[next].switchLanguage);
 
     document.querySelectorAll("[data-window-action]").forEach((button) => {
         const action = button.dataset.windowAction;
@@ -162,17 +284,28 @@ setLanguage(savedLanguage === "en" ? "en" : "zh", false);
 languageButtons.forEach((button) => {
     button.addEventListener("click", () => setLanguage(button.dataset.setLanguage));
 });
+languageToggle?.addEventListener("click", () => {
+    setLanguage(language() === "zh" ? "en" : "zh");
+});
 
 function updateClock() {
     if (!clock) return;
     const now = new Date();
-    const locale = language() === "zh" ? "zh-Hant-MO" : "en-GB";
-    const formatted = new Intl.DateTimeFormat(locale, {
-        weekday: window.innerWidth > 520 ? "short" : undefined,
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-    }).format(now);
+    const compact = window.innerWidth <= 560;
+    const options = compact
+        ? { hour: "numeric", minute: "2-digit", hour12: true }
+        : {
+            weekday: "short",
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+        };
+    const locale = language() === "zh" ? "zh-Hant-MO" : "en-US";
+    const formatted = new Intl.DateTimeFormat(locale, options)
+        .format(now)
+        .replaceAll(",", "");
     clock.textContent = formatted;
     clock.dateTime = now.toISOString();
 }
@@ -181,7 +314,9 @@ updateClock();
 window.setInterval(updateClock, 30000);
 
 function appLabel(appId) {
-    return appWindows.get(appId)?.dataset.appLabel || appId;
+    return appManifestById.get(appId)?.appLabel
+        || appWindows.get(appId)?.dataset.appLabel
+        || appId;
 }
 
 function visibleWindows() {
@@ -511,7 +646,6 @@ function openExplore() {
     explorePanel.hidden = false;
     exploreBackdrop.hidden = false;
     explorePanel.setAttribute("aria-hidden", "false");
-    dockButtons.get("explore")?.classList.add("is-open");
     setExploreIsolation(true);
     if (exploreInput) exploreInput.value = "";
     filterExplore();
@@ -554,7 +688,6 @@ function completeExploreClose(restoreFocus) {
     explorePanel.hidden = true;
     exploreBackdrop.hidden = true;
     explorePanel.setAttribute("aria-hidden", "true");
-    dockButtons.get("explore")?.classList.remove("is-open");
     setExploreIsolation(false);
     if (window.gsap) {
         window.gsap.set(explorePanel, { clearProps: "transform,opacity,visibility" });
@@ -645,10 +778,10 @@ document.addEventListener("keydown", (event) => {
         return;
     }
 
-    if (event.altKey && !event.metaKey && !event.ctrlKey && ["0", "1", "2", "3"].includes(event.key)) {
+    const shortcutApp = appManifest.find((app) => app.shortcut === event.key);
+    if (event.altKey && !event.metaKey && !event.ctrlKey && shortcutApp) {
         event.preventDefault();
-        const appId = { "0": "about", "1": "xcode", "2": "vscode", "3": "overleaf" }[event.key];
-        openApp(appId);
+        openApp(shortcutApp.id);
         return;
     }
 
@@ -865,27 +998,36 @@ window.addEventListener("pointermove", moveDrag);
 window.addEventListener("pointerup", endDrag);
 window.addEventListener("pointercancel", endDrag);
 
-function updateWallpaper(event) {
-    if (reducedMotion.matches) return;
-    const normalizedX = event.clientX / Math.max(window.innerWidth, 1) - 0.5;
-    const normalizedY = event.clientY / Math.max(window.innerHeight, 1) - 0.5;
-    root.style.setProperty("--wallpaper-x", `${normalizedX * 14}px`);
-    root.style.setProperty("--wallpaper-y", `${normalizedY * 10}px`);
-    root.style.setProperty("--wallpaper-x-reverse", `${normalizedX * -8}px`);
-    root.style.setProperty("--wallpaper-y-reverse", `${normalizedY * -6}px`);
-    root.style.setProperty("--wallpaper-x-wide", `${normalizedX * 24}px`);
-    root.style.setProperty("--wallpaper-y-wide", `${normalizedY * 17}px`);
-}
+const pixelCursor = document.querySelector("[data-pixel-cursor]");
+const finePointer = window.matchMedia("(pointer: fine)");
 
-desktop?.addEventListener("pointermove", updateWallpaper, { passive: true });
-desktop?.addEventListener("pointerleave", () => {
-    root.style.setProperty("--wallpaper-x", "0px");
-    root.style.setProperty("--wallpaper-y", "0px");
-    root.style.setProperty("--wallpaper-x-reverse", "0px");
-    root.style.setProperty("--wallpaper-y-reverse", "0px");
-    root.style.setProperty("--wallpaper-x-wide", "0px");
-    root.style.setProperty("--wallpaper-y-wide", "0px");
-});
+if (pixelCursor && finePointer.matches) {
+    root.classList.add("has-pixel-cursor");
+
+    document.addEventListener("pointermove", (event) => {
+        if (event.pointerType === "touch") return;
+        pixelCursor.style.left = `${event.clientX}px`;
+        pixelCursor.style.top = `${event.clientY}px`;
+        pixelCursor.classList.add("is-visible");
+        const interactiveTarget = event.target instanceof Element
+            ? event.target.closest("button, a, input, [role='tab'], [role='option']")
+            : null;
+        pixelCursor.classList.toggle(
+            "is-hovering",
+            Boolean(interactiveTarget),
+        );
+    }, { passive: true });
+
+    document.addEventListener("pointerdown", () => {
+        pixelCursor.classList.add("is-pressed");
+    }, { passive: true });
+    document.addEventListener("pointerup", () => {
+        pixelCursor.classList.remove("is-pressed");
+    }, { passive: true });
+    document.documentElement.addEventListener("mouseleave", () => {
+        pixelCursor.classList.remove("is-visible");
+    });
+}
 
 function closeAllWindowsImmediately() {
     appWindows.forEach((appWindow, appId) => {
@@ -922,15 +1064,11 @@ function boot() {
     if (hasGsap()) {
         const timeline = window.gsap.timeline({ defaults: { ease: "power3.out" } });
         timeline
-            .from(".menu-bar", { y: -20, autoAlpha: 0, duration: 0.38 })
-            .from(".desktop-kicker", { y: 9, autoAlpha: 0, duration: 0.34 }, "-=0.1")
-            .from(".desktop-intro h1 > span", { y: 38, autoAlpha: 0, duration: 0.65, stagger: 0.09 }, "-=0.12")
-            .from(".desktop-lede", { y: 13, autoAlpha: 0, duration: 0.38 }, "-=0.32")
-            .from(".desktop-explore-button", { y: 11, autoAlpha: 0, duration: 0.35 }, "-=0.22")
-            .from(".now-widget", { x: 18, autoAlpha: 0, duration: 0.48 }, "-=0.48")
-            .from(".desktop-icon", { x: 12, autoAlpha: 0, duration: 0.3, stagger: 0.06 }, "-=0.28")
-            .from(".dock", { y: 35, autoAlpha: 0, duration: 0.48 }, "-=0.2")
-            .from(".dock-item", { y: 18, autoAlpha: 0, duration: 0.3, stagger: 0.035 }, "-=0.3");
+            .from(".wallpaper", { scale: 1.018, autoAlpha: 0, duration: 0.7 })
+            .from(".menu-bar", { y: -18, autoAlpha: 0, duration: 0.32 }, "-=0.42")
+            .from(".desktop-icon", { x: 10, autoAlpha: 0, duration: 0.28, stagger: 0.055 }, "-=0.12")
+            .from(".dock", { y: 34, autoAlpha: 0, duration: 0.42 }, "-=0.17")
+            .from(".dock-item", { y: 14, autoAlpha: 0, duration: 0.24, stagger: 0.025 }, "-=0.26");
     }
 
     setXcodeProject("sports");
@@ -943,7 +1081,7 @@ function boot() {
     if (initialApp) {
         window.setTimeout(
             () => openApp(initialApp, { historyMode: "none", restoreFocus: false }),
-            hasGsap() ? 620 : 0,
+            hasGsap() ? 420 : 0,
         );
     } else {
         history.replaceState({ app: null }, "", `${window.location.pathname}${window.location.search}`);

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#302c60">
+    <meta name="theme-color" content="#24333b">
     <meta name="color-scheme" content="dark">
     <title>AnsonOS — Anson Lo</title>
     <meta name="description" content="Anson Lo 的互動工作桌面：打開 Xcode、Visual Studio Code 與 Overleaf，探索他如何建立系統、協調 iGEM 工程與編輯文字。">
@@ -21,10 +21,13 @@
 
     <link rel="canonical" href="https://ansonlotiniat.github.io/">
     <link rel="preload" href="JetBrainsMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/wallpapers/lake-louise.jpg" as="image" type="image/jpeg">
     <link rel="preload" href="assets/app-icons/visual-studio-code.png" as="image" type="image/png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="macos.css">
     <script>document.documentElement.classList.add("js");</script>
     <script src="vendor/gsap.min.js" defer></script>
+    <script src="apps.config.js" defer></script>
     <script src="main.js" defer></script>
 </head>
 <body>
@@ -35,98 +38,73 @@
 
     <div class="os-shell" data-os>
         <div class="wallpaper" aria-hidden="true">
-            <div class="wallpaper-ribbon ribbon-one"></div>
-            <div class="wallpaper-ribbon ribbon-two"></div>
-            <div class="wallpaper-ribbon ribbon-three"></div>
-            <div class="wallpaper-grain"></div>
-            <div class="wallpaper-grid"></div>
+            <div class="wallpaper-shade"></div>
         </div>
 
         <header class="menu-bar" aria-label="AnsonOS menu bar">
             <div class="menu-left">
                 <button class="menu-brand" type="button" data-open-app="about" aria-label="Open About Anson">
-                    <span aria-hidden="true">A</span>
+                    <span aria-hidden="true"></span>
                 </button>
                 <strong class="active-app-name" data-active-app>Finder</strong>
                 <span class="menu-word">
-                    <span data-copy-lang="zh">工作</span>
-                    <span data-copy-lang="en">Work</span>
+                    <span data-copy-lang="zh">檔案</span>
+                    <span data-copy-lang="en">File</span>
+                </span>
+                <span class="menu-word">
+                    <span data-copy-lang="zh">編輯</span>
+                    <span data-copy-lang="en">Edit</span>
+                </span>
+                <span class="menu-word">
+                    <span data-copy-lang="zh">顯示方式</span>
+                    <span data-copy-lang="en">View</span>
+                </span>
+                <span class="menu-word">
+                    <span data-copy-lang="zh">前往</span>
+                    <span data-copy-lang="en">Go</span>
                 </span>
                 <span class="menu-word">
                     <span data-copy-lang="zh">視窗</span>
                     <span data-copy-lang="en">Window</span>
                 </span>
+                <span class="menu-word">
+                    <span data-copy-lang="zh">輔助說明</span>
+                    <span data-copy-lang="en">Help</span>
+                </span>
             </div>
 
             <div class="menu-right">
-                <button class="menu-explore" type="button" data-open-explore>
-                    <span class="search-glyph" aria-hidden="true"></span>
-                    <span>Explore</span>
-                    <kbd>⌘K</kbd>
+                <button class="menu-status-button input-source" type="button" data-language-toggle aria-label="Switch language">
+                    <span data-copy-lang="zh">中</span>
+                    <span data-copy-lang="en">ABC</span>
                 </button>
-
-                <div class="language-switch" role="group" aria-label="Language">
-                    <button type="button" data-set-language="zh" aria-pressed="true">中</button>
-                    <button type="button" data-set-language="en" aria-pressed="false">EN</button>
-                </div>
-
-                <span class="menu-status" aria-hidden="true">
-                    <i class="wifi-icon"></i>
-                    <i class="battery-icon"></i>
+                <button class="menu-status-button menu-explore" type="button" data-open-explore aria-label="Open Explore">
+                    <span class="search-glyph" aria-hidden="true"></span>
+                </button>
+                <span class="control-center-icon" aria-hidden="true">
+                    <i></i><i></i>
                 </span>
-                <time class="menu-clock" data-clock datetime="2026-07-31T00:00:00+08:00">00:00</time>
+                <i class="wifi-icon" aria-hidden="true"></i>
+                <span class="battery-status" aria-hidden="true">
+                    <i class="battery-icon"></i><b>92%</b>
+                </span>
+                <time class="menu-clock" data-clock datetime="2026-07-31T01:00:00+08:00">Fri Jul 31&nbsp;&nbsp;1:00 AM</time>
             </div>
         </header>
 
         <main class="desktop" id="desktop" data-desktop tabindex="-1">
-            <section class="desktop-intro" aria-labelledby="desktop-title">
-                <p class="desktop-kicker">
-                    <span>ANSONOS / MACAO</span>
-                    <i aria-hidden="true"></i>
-                    <span data-copy-lang="zh">工作桌面</span>
-                    <span data-copy-lang="en">WORKING DESKTOP</span>
-                </p>
-                <h1 id="desktop-title">
-                    <span>ANSON</span>
-                    <span>LO<sup>.OS</sup></span>
-                </h1>
-                <p class="desktop-lede">
-                    <span data-copy-lang="zh">這不是一份向下讀完的履歷。<br>打開工具，看看我怎樣工作。</span>
-                    <span data-copy-lang="en">This is not a résumé to scroll through.<br>Open the tools. See how I work.</span>
-                </p>
-                <button class="desktop-explore-button" type="button" data-open-explore>
-                    <span class="search-glyph" aria-hidden="true"></span>
-                    <span data-copy-lang="zh">探索 Anson</span>
-                    <span data-copy-lang="en">Explore Anson</span>
-                    <kbd>⌘K</kbd>
-                </button>
-            </section>
-
-            <aside class="now-widget" aria-label="Current workspace">
-                <header>
-                    <span class="live-dot" aria-hidden="true"></span>
-                    <b>CURRENT WORKSPACE</b>
-                    <small>2026</small>
-                </header>
-                <div class="now-widget-body">
-                    <p>PUICHING MACAU</p>
-                    <h2>iGEM</h2>
-                    <div class="workspace-streams" role="group" aria-label="Software, modelling, and wiki">
-                        <span>SOFTWARE</span>
-                        <i aria-hidden="true"></i>
-                        <span>MODELLING</span>
-                        <i aria-hidden="true"></i>
-                        <span>WIKI</span>
-                    </div>
-                    <button type="button" data-open-app="vscode">
-                        <span data-copy-lang="zh">打開工作區</span>
-                        <span data-copy-lang="en">Open workspace</span>
-                        <span aria-hidden="true">↗</span>
-                    </button>
-                </div>
-            </aside>
+            <h1 id="desktop-title" class="sr-only">Anson Lo — student developer, editor, and speaker from Macao</h1>
 
             <div class="desktop-icons" role="group" aria-label="Desktop shortcuts">
+                <button class="desktop-icon" type="button" data-open-app="about">
+                    <span class="desktop-icon-art desktop-folder-icon" aria-hidden="true">
+                        <img src="assets/app-icons/home-folder.png" alt="" width="64" height="64">
+                    </span>
+                    <span>
+                        <span data-copy-lang="zh">Anson Lo</span>
+                        <span data-copy-lang="en">Anson Lo</span>
+                    </span>
+                </button>
                 <button class="desktop-icon" type="button" data-open-explore>
                     <span class="desktop-icon-art explore-art" aria-hidden="true">
                         <i class="search-glyph"></i>
@@ -136,21 +114,7 @@
                         <span data-copy-lang="en">Explore Anson</span>
                     </span>
                 </button>
-                <button class="desktop-icon" type="button" data-open-app="about">
-                    <span class="desktop-icon-art folder-art" aria-hidden="true">
-                        <i>A/L</i>
-                    </span>
-                    <span>
-                        <span data-copy-lang="zh">關於我</span>
-                        <span data-copy-lang="en">About Anson</span>
-                    </span>
-                </button>
             </div>
-
-            <p class="desktop-footnote">
-                <span>STUDENT DEVELOPER · EDITOR · SPEAKER</span>
-                <span>22.2°N / 113.5°E</span>
-            </p>
         </main>
 
         <div class="window-layer" data-window-layer aria-live="off">
@@ -740,44 +704,7 @@
                     <span data-copy-lang="zh">應用與工作區</span>
                     <span data-copy-lang="en">APPS &amp; WORKSPACES</span>
                 </p>
-                <div class="explore-results" id="explore-results" role="listbox" data-explore-results>
-                    <button type="button" role="option" data-explore-result data-open-app="about" data-keywords="anson about profile macao 羅天逸 關於 澳門 學生 developer editor speaker">
-                        <span class="app-icon about-icon" aria-hidden="true"><b>A</b><i>L</i></span>
-                        <span class="result-copy">
-                            <b><span data-copy-lang="zh">關於 Anson</span><span data-copy-lang="en">About Anson</span></b>
-                            <small><span data-copy-lang="zh">身份、工作方式與聯絡</span><span data-copy-lang="en">Identity, method, and contact</span></small>
-                        </span>
-                        <span class="result-app">Finder</span>
-                        <kbd>⌥0</kbd>
-                    </button>
-                    <button type="button" role="option" data-explore-result data-open-app="xcode" data-keywords="xcode engineering sports day debate system 工程 校運會 辯論 系統 swift">
-                        <span class="app-icon xcode-icon" aria-hidden="true"><img src="assets/app-icons/xcode.svg" alt="" width="38" height="38"></span>
-                        <span class="result-copy">
-                            <b><span data-copy-lang="zh">工程系統</span><span data-copy-lang="en">Engineering Systems</span></b>
-                            <small><span data-copy-lang="zh">校運會與辯論工作流</span><span data-copy-lang="en">Sports day and debate workflows</span></small>
-                        </span>
-                        <span class="result-app">Xcode</span>
-                        <kbd>⌥1</kbd>
-                    </button>
-                    <button type="button" role="option" data-explore-result data-open-app="vscode" data-keywords="visual studio code vscode igem 2026 software modelling wiki 軟件 建模">
-                        <span class="app-icon vscode-icon" aria-hidden="true"><img src="assets/app-icons/visual-studio-code.png" alt="" width="42" height="42"></span>
-                        <span class="result-copy">
-                            <b>iGEM 2026</b>
-                            <small><span data-copy-lang="zh">軟件、建模與 Wiki 交付鏈</span><span data-copy-lang="en">Software, modelling, and wiki delivery</span></small>
-                        </span>
-                        <span class="result-app">Visual Studio Code</span>
-                        <kbd>⌥2</kbd>
-                    </button>
-                    <button type="button" role="option" data-explore-result data-open-app="overleaf" data-keywords="overleaf writing editing poetry book macao diary 文字 寫作 編輯 詩 澳門日記">
-                        <span class="app-icon overleaf-icon" aria-hidden="true"><img src="assets/app-icons/overleaf.svg" alt="" width="40" height="40"></span>
-                        <span class="result-copy">
-                            <b><span data-copy-lang="zh">寫作與編輯</span><span data-copy-lang="en">Writing &amp; Editing</span></b>
-                            <small><span data-copy-lang="zh">《澳門日記》與英文詩</span><span data-copy-lang="en">Macao Diary and English poetry</span></small>
-                        </span>
-                        <span class="result-app">Overleaf</span>
-                        <kbd>⌥3</kbd>
-                    </button>
-                </div>
+                <div class="explore-results" id="explore-results" role="listbox" data-explore-results></div>
                 <p class="explore-empty" data-explore-empty hidden>
                     <span data-copy-lang="zh">沒有符合的工作區。試試「系統」、「iGEM」或「文字」。</span>
                     <span data-copy-lang="en">No matching workspace. Try “systems”, “iGEM”, or “writing”.</span>
@@ -790,39 +717,9 @@
             </footer>
         </section>
 
-        <nav class="dock" aria-label="Applications">
-            <button class="dock-item" type="button" data-open-explore data-dock-app="explore">
-                <span class="dock-tooltip"><span data-copy-lang="zh">探索</span><span data-copy-lang="en">Explore</span></span>
-                <span class="dock-icon explore-dock-icon" aria-hidden="true"><i class="search-glyph"></i><b>A</b></span>
-                <i class="dock-indicator" aria-hidden="true"></i>
-            </button>
-            <button class="dock-item" type="button" data-open-app="about" data-dock-app="about">
-                <span class="dock-tooltip"><span data-copy-lang="zh">關於 Anson</span><span data-copy-lang="en">About Anson</span></span>
-                <span class="dock-icon about-icon" aria-hidden="true"><b>A</b><i>L</i></span>
-                <i class="dock-indicator" aria-hidden="true"></i>
-            </button>
-            <span class="dock-separator" aria-hidden="true"></span>
-            <button class="dock-item" type="button" data-open-app="xcode" data-dock-app="xcode">
-                <span class="dock-tooltip">Xcode / Engineering</span>
-                <span class="dock-icon xcode-icon" aria-hidden="true"><img src="assets/app-icons/xcode.svg" alt="" width="44" height="44"></span>
-                <i class="dock-indicator" aria-hidden="true"></i>
-            </button>
-            <button class="dock-item" type="button" data-open-app="vscode" data-dock-app="vscode">
-                <span class="dock-tooltip">Visual Studio Code / iGEM</span>
-                <span class="dock-icon vscode-icon" aria-hidden="true"><img src="assets/app-icons/visual-studio-code.png" alt="" width="48" height="48"></span>
-                <i class="dock-indicator" aria-hidden="true"></i>
-            </button>
-            <button class="dock-item" type="button" data-open-app="overleaf" data-dock-app="overleaf">
-                <span class="dock-tooltip">Overleaf / Writing</span>
-                <span class="dock-icon overleaf-icon" aria-hidden="true"><img src="assets/app-icons/overleaf.svg" alt="" width="44" height="44"></span>
-                <i class="dock-indicator" aria-hidden="true"></i>
-            </button>
-            <span class="dock-separator" aria-hidden="true"></span>
-            <a class="dock-item dock-link" href="mailto:ansonlotiniat@gmail.com">
-                <span class="dock-tooltip">Email Anson</span>
-                <span class="dock-icon mail-icon" aria-hidden="true"><i></i></span>
-            </a>
-        </nav>
+        <nav class="dock" data-dock aria-label="Applications"></nav>
+
+        <div class="pixel-cursor" data-pixel-cursor aria-hidden="true"><i></i></div>
 
         <div class="os-announcer sr-only" aria-live="polite" data-announcer></div>
 
