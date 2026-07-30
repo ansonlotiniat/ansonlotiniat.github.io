@@ -1,6 +1,6 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-31 01:46 CST
+Last updated: 2026-07-31 01:49 CST
 
 ## Reframed goal
 
@@ -83,7 +83,7 @@ The site must not assume that a portfolio is something to scroll from top to bot
 - Both stylesheets parse and 2,394 actionable declarations pass CSS grammar checking. All JavaScript files pass syntax checks, and the App consistency validator passes four manifest entries, four windows, four unique shortcuts, four Explore filters, and all icon paths.
 - No-GSAP DOM smoke tests pass generated Dock, Tahoe Explore filters and pressed states, pointer-responsive glass highlights, and App launching. A real locally vendored GSAP 3.13 smoke test passes the Tahoe Explore flow plus animated App opening and closing without DOM errors.
 - W3C HTML validation has zero errors and one informational warning. Thirteen local document/style/manifest asset paths resolve, and local HTTP delivery returns 200 with correct content types for the shell, scripts, GSAP, MIT wallpaper, and all current App/desktop icons.
-- The previous pre-Tahoe shell remains live from commit `5204d66` via [GitHub Pages run 30565833869](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30565833869). The Tahoe 26 correction is locally implemented and awaiting its validation/deployment pass.
+- The Tahoe 26 correction was published from commit `1a0f75c` by [GitHub Pages run 30567582685](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30567582685) on 2026-07-31. The live HTML, Tahoe stylesheet, interaction JavaScript, App manifest, MIT wallpaper, and current folder icon were verified byte-for-byte against the commit.
 
 ## Open questions
 
