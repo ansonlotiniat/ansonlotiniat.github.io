@@ -45,7 +45,8 @@ Present Anson as a whole person rather than a collection of repositories: a stud
 - JetBrains Mono variable font and OFL licence added locally.
 - New Open Graph card generated for the personal identity system.
 - HTML, CSS, JavaScript, bilingual-pair counts, and whitespace checks passed.
-- Pending: local asset/link verification and GitHub Pages publication.
+- Local and live asset/link checks passed.
+- Published successfully from `main` to [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) on 2026-07-30.
 
 ## Open questions
 
