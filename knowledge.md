@@ -1,6 +1,6 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-31 00:58 CST
+Last updated: 2026-07-31 01:00 CST
 
 ## Reframed goal
 
@@ -76,7 +76,7 @@ The site must not assume that a portfolio is something to scroll from top to bot
 - W3C HTML validation passes with zero errors and warnings. CSS parses successfully, 2,073 declarations pass the actionable grammar check, JavaScript syntax passes, all IDs/ARIA references/local assets resolve, and no legacy map runtime is referenced.
 - No-GSAP, real-GSAP 3.13, and reduced-motion DOM tests pass for Explore, shortcuts, window management, all three application workspaces, language switching, compilation, and panel transitions.
 - Local HTTP delivery returns 200 for the HTML, CSS, JavaScript, locally vendored GSAP, three app marks, and editorial-credit image. The iGEM team wiki, GitHub profile, and existing live homepage links return 200.
-- Deployment of this AnsonOS rebuild is pending.
+- The AnsonOS rebuild was published from commit `33abb55` by [GitHub Pages run 30563948010](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30563948010) on 2026-07-31. The live HTML, stylesheet, application JavaScript, local GSAP runtime, all three application marks, and editorial-credit image were verified byte-for-byte against the committed local files.
 
 ## Open questions
 
