@@ -5,6 +5,18 @@ const progress = document.querySelector("[data-progress]");
 const languageButtons = [...document.querySelectorAll("[data-set-language]")];
 const navLinks = [...document.querySelectorAll(".site-navigation a")];
 const sections = [...document.querySelectorAll("main section[id]")];
+const description = document.querySelector('meta[name="description"]');
+
+const pageCopy = {
+    zh: {
+        title: "Anson Lo — 設計、系統與文字",
+        description: "Anson Lo，來自澳門的學生開發者、編輯與演講者。",
+    },
+    en: {
+        title: "Anson Lo — Design, Systems & Words",
+        description: "Anson Lo is a student developer, editor, and speaker from Macao.",
+    },
+};
 
 function closeMenu() {
     menuButton?.setAttribute("aria-expanded", "false");
@@ -13,10 +25,10 @@ function closeMenu() {
 }
 
 menuButton?.addEventListener("click", () => {
-    const open = menuButton.getAttribute("aria-expanded") === "true";
-    menuButton.setAttribute("aria-expanded", String(!open));
-    navigation?.classList.toggle("is-open", !open);
-    document.body.classList.toggle("menu-open", !open);
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+    menuButton.setAttribute("aria-expanded", String(!isOpen));
+    navigation?.classList.toggle("is-open", !isOpen);
+    document.body.classList.toggle("menu-open", !isOpen);
 });
 
 navLinks.forEach((link) => link.addEventListener("click", closeMenu));
@@ -29,13 +41,16 @@ document.addEventListener("keydown", (event) => {
 });
 
 window.addEventListener("resize", () => {
-    if (window.innerWidth > 864) closeMenu();
+    if (window.innerWidth > 1024) closeMenu();
 });
 
 function setLanguage(language, persist = true) {
     const next = language === "en" ? "en" : "zh";
     root.dataset.language = next;
     root.lang = next === "zh" ? "zh-Hant" : "en";
+    document.title = pageCopy[next].title;
+    description?.setAttribute("content", pageCopy[next].description);
+
     languageButtons.forEach((button) => {
         button.setAttribute("aria-pressed", String(button.dataset.setLanguage === next));
     });
@@ -44,7 +59,7 @@ function setLanguage(language, persist = true) {
     try {
         localStorage.setItem("anson-language", next);
     } catch {
-        // The page still works when browser storage is unavailable.
+        // The language switch remains functional when storage is unavailable.
     }
 }
 
@@ -71,29 +86,34 @@ updateProgress();
 window.addEventListener("scroll", updateProgress, { passive: true });
 window.addEventListener("resize", updateProgress);
 
-const sectionObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            navLinks.forEach((link) => {
-                const active = link.getAttribute("href") === `#${entry.target.id}`;
-                if (active) link.setAttribute("aria-current", "true");
-                else link.removeAttribute("aria-current");
+if ("IntersectionObserver" in window) {
+    const sectionObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach((link) => {
+                    const active = link.getAttribute("href") === `#${entry.target.id}`;
+                    if (active) link.setAttribute("aria-current", "true");
+                    else link.removeAttribute("aria-current");
+                });
             });
-        });
-    },
-    { rootMargin: "-38% 0px -56% 0px", threshold: 0 },
-);
+        },
+        { rootMargin: "-38% 0px -56% 0px", threshold: 0 },
+    );
 
-sections.forEach((section) => sectionObserver.observe(section));
+    sections.forEach((section) => sectionObserver.observe(section));
+}
 
 const revealTargets = document.querySelectorAll(
-    ".about-copy p, .project, .now-list > div",
+    ".profile-copy p, .method-list li, .case, .publication, .current-index > div",
 );
 
 revealTargets.forEach((element) => element.setAttribute("data-reveal", ""));
 
-if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+if (
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    || !("IntersectionObserver" in window)
+) {
     revealTargets.forEach((element) => element.classList.add("is-visible"));
 } else {
     const revealObserver = new IntersectionObserver(
@@ -104,7 +124,7 @@ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
                 observer.unobserve(entry.target);
             });
         },
-        { threshold: 0.1 },
+        { threshold: 0.08 },
     );
 
     revealTargets.forEach((element) => revealObserver.observe(element));
