@@ -1,6 +1,6 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-31 05:29 CST
+Last updated: 2026-07-31 06:20 CST
 
 ## Reframed goal
 
@@ -83,7 +83,7 @@ The site must not assume that a portfolio is something to scroll from top to bot
 - Both stylesheets parse with 2,524 declarations; 2,389 directly checkable declarations pass CSS grammar matching. All JavaScript files pass syntax checks, and the App consistency validator passes four manifest entries, four windows, four unique shortcuts, four Explore filters, three fixed shell icons, and all icon paths.
 - No-GSAP DOM smoke tests pass the exact `Finder → Apps → Xcode → Visual Studio Code → Overleaf → Mail` Dock order, removal of the obsolete desktop Explore shortcut, and Apps-driven Explore opening/closing. A real locally vendored GSAP 3.13 smoke test passes the Apps → Explore flow plus animated Finder opening and closing without DOM errors.
 - W3C HTML validation has zero errors and one informational warning. Fifteen unique local document/style/manifest asset paths resolve, and local HTTP delivery returns 200 with correct content types for the shell, scripts, GSAP, MIT wallpaper, and the new macOS 26 Apps icon.
-- The Tahoe 26 correction was published from commit `1a0f75c` by [GitHub Pages run 30567582685](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30567582685) on 2026-07-31. The live HTML, Tahoe stylesheet, interaction JavaScript, App manifest, MIT wallpaper, and current folder icon were verified byte-for-byte against the commit.
+- The native macOS 26 Dock correction was published from commit `69ce9f0` by [GitHub Pages run 30585692209](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30585692209) on 2026-07-31. The live HTML, Dock stylesheet, interaction JavaScript, and exact Apps icon were verified byte-for-byte against the commit.
 
 ## Open questions
 
