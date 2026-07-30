@@ -35,7 +35,7 @@ Present Anson as a technically serious student engineer with human and civic con
 - Full static-site redesign implemented in `index.html`, `style.css`, and `main.js`.
 - Open Graph social card generated to match the finished editorial system.
 - HTML, CSS, JavaScript, local asset, and outbound link checks passed.
-- Publication target: the repository's existing GitHub Pages site on the `main` branch.
+- Published successfully from `main` to [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) on 2026-07-30.
 
 ## Open questions
 
