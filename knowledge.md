@@ -1,12 +1,12 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-30 22:51 CST
+Last updated: 2026-07-30 23:45 CST
 
 ## Reframed goal
 
-Build a bilingual personal homepage that demonstrates Anson Lo’s product and UI/UX judgement through the page itself. The intended character is restrained, inward-looking, and highly interactive. Japanese design philosophy should appear through useful negative space, proportion, rhythm, and attention to behaviour—not through decorative grids, vertical type, stamps, coordinates, or ornamental lines.
+Build a bilingual personal homepage that demonstrates Anson Lo’s product and UI/UX judgement through the page itself. It must feel authored and place-specific rather than like a polished portfolio template. The central metaphor is a “Macao Field Atlas”: a real Macao outline becomes a three-dimensional object whose layers represent systems, public voice, and words.
 
-The site introduces a person working across software systems, public communication, editing, and writing. It is not an award wall or repository index.
+The site introduces a person working across software systems, public communication, editing, and writing. It is not an award wall, repository index, or collection of interchangeable project cards.
 
 ## Content boundaries
 
@@ -18,18 +18,19 @@ The site introduces a person working across software systems, public communicati
 
 ## Current design decisions
 
-- Remove all decorative grid lines, vertical labels, coordinates, stamp motifs, registration marks, and heavy section rules.
-- Visual language: warm off-white paper, charcoal text, deep indigo, muted moss, generous spacing, and a small number of soft surfaces.
+- Visual language: warm field-note paper, black, cobalt, signal orange, acid green, and sea green; oversized editorial type; hard rules, exposed controls, and deliberately square instruments. Avoid glass cards, gradient glows, pills, and generic “AI portfolio” surfaces.
 - JetBrains Mono remains self-hosted for the Latin identity and interface copy. Traditional Chinese uses the native system sans-serif stack for comfortable reading.
 - Interactivity is concentrated where it adds information:
-  - the hero treats the current iGEM role as a layered system: pointer movement adds restrained depth without changing the reading order;
-  - the working-method section becomes a pinned three-stage story on larger screens, with direct step controls; smaller screens and reduced-motion mode show the same material as a readable stack;
-  - the three cases form a vertically driven horizontal reel on larger screens, with numbered keyboard controls and current-state feedback; touch layouts use native horizontal scroll-snap;
-  - publication notes remain native modal dialogs with escape, backdrop, close-button, and focus behaviour;
-  - persistent bilingual mode, a hide-and-return header, active-section feedback, a useful “next section” control, deliberate hover/focus states, and reduced-motion support.
-- GSAP 3.13 and ScrollTrigger provide the progressive motion layer. The full page remains readable and navigable if the CDN scripts fail; animation work uses transforms/opacity, responsive match-media contexts, and explicit cleanup.
-- There is no scroll-progress line. Content hierarchy comes from scale and space rather than borders.
-- The publication section uses the real `《澳門日記—回歸故事集》` editorial credit image. The poetry artifact is typeset from Anson’s verified title and opening lines rather than represented by a fabricated cover.
+  - the hero uses the real Macao boundary as a draggable, keyboard-operable Three.js relief; three controls separate, rotate, and recolour the same geography into systems, voice, and words;
+  - the sports-day case is an information clock: moving through before/live/on-site states changes which information layer becomes primary;
+  - debate operations switch between team and tournament role views while keeping shared information visibly central;
+  - the iGEM instrument lets the visitor physically align software, modelling, and wiki workstreams into one delivery;
+  - the book credit image has a pointer magnifier, and the poem is revealed by ringing a typographic bell;
+  - persistent bilingual mode, a hide-and-return header, active-section feedback, full keyboard controls, touch-safe gestures, and reduced-motion support remain available.
+- Three.js 0.185.1 is vendored locally under its MIT licence so the signature interaction is not dependent on a third-party runtime CDN. GSAP 3.13 and ScrollTrigger remain progressive enhancement only; core controls work if they fail.
+- WebGL failure shows an intentional static “three working layers” poster. The page remains readable without JavaScript.
+- The map boundary is a Natural Earth admin-0 map-subunit retrieved through Geoscience Australia. The page footer links the source and CC BY 4.0 attribution; Natural Earth states that its own data is public domain.
+- The publication section uses the real `《澳門日記—回歸故事集》` editorial credit image. The poetry artifact is typeset from Anson’s verified title and supplied excerpt rather than represented by a fabricated cover.
 - The Open Graph image is `og-v2.png`, a 1200 × 630 title card matching the rebuilt hero palette, layered workflow motif, and exact English identity copy.
 
 ## Public content hierarchy
@@ -52,11 +53,13 @@ The site introduces a person working across software systems, public communicati
 
 ## Build status
 
-- `index.html`, `style.css`, and `main.js` have been rebuilt around an interaction-led editorial direction while preserving the verified bilingual content.
-- Hero depth, the pinned three-stage method story, the horizontal case reel, native mobile scroll-snap, magnetic/tilt pointer details, publication dialogs, persistent language state, and reduced-motion/static fallbacks are implemented.
+- `index.html`, `style.css`, and `main.js` have been rebuilt as the Macao Field Atlas while preserving the verified bilingual content.
+- `map.js` builds the Macao MultiPolygon into three bevelled extruded meshes with drag, arrow-key, reset, mode-transition, viewport-pausing, resize, cleanup, and reduced-motion behaviour.
+- `macao-boundary.geojson`, `vendor/three.module.min.js`, `vendor/three.core.min.js`, and `vendor/three-LICENSE.txt` are now local project assets.
+- The three project instruments, publication magnifier, poem reveal, persistent language state, responsive menu, active navigation, and animation/static fallbacks are implemented.
 - `og-v2.png` was generated as one cohesive social card, checked for exact text, and resized to 1200 × 630.
-- JavaScript syntax, HTML5 parsing, bilingual-pair counts, ID and ARIA relationships, local assets, external links, social-image dimensions, prohibited-copy checks, CSS brace structure, and whitespace checks pass.
-- The interaction-led rebuild was published from commit `7a9e2b3` to [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) on 2026-07-30. The live HTML, stylesheet, JavaScript, social card, and publication image were verified byte-for-byte against the committed local files.
+- JavaScript syntax, HTML5 parsing, Macao geometry generation, ID and ARIA relationships, GeoJSON shape/type, asset presence, local HTTP delivery, CSS block structure, and whitespace checks pass. Final link and live-deployment verification are pending.
+- The previous interaction-led build is live at [ansonlotiniat.github.io](https://ansonlotiniat.github.io/). The Macao Field Atlas rebuild is implemented locally and awaiting its final publication commit.
 
 ## Open questions
 
