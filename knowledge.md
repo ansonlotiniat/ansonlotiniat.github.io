@@ -1,6 +1,6 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-30
+Last updated: 2026-07-30 22:49 CST
 
 ## Reframed goal
 
@@ -22,12 +22,15 @@ The site introduces a person working across software systems, public communicati
 - Visual language: warm off-white paper, charcoal text, deep indigo, muted moss, generous spacing, and a small number of soft surfaces.
 - JetBrains Mono remains self-hosted for the Latin identity and interface copy. Traditional Chinese uses the native system sans-serif stack for comfortable reading.
 - Interactivity is concentrated where it adds information:
-  - a fully keyboard-operable three-case explorer using accessible tab semantics;
-  - publication notes presented in native modal dialogs with escape, backdrop, close-button, and focus behaviour;
-  - persistent bilingual mode, mobile navigation, active-section feedback, deliberate hover/focus states, and reduced-motion support.
+  - the hero treats the current iGEM role as a layered system: pointer movement adds restrained depth without changing the reading order;
+  - the working-method section becomes a pinned three-stage story on larger screens, with direct step controls; smaller screens and reduced-motion mode show the same material as a readable stack;
+  - the three cases form a vertically driven horizontal reel on larger screens, with numbered keyboard controls and current-state feedback; touch layouts use native horizontal scroll-snap;
+  - publication notes remain native modal dialogs with escape, backdrop, close-button, and focus behaviour;
+  - persistent bilingual mode, a hide-and-return header, active-section feedback, a useful “next section” control, deliberate hover/focus states, and reduced-motion support.
+- GSAP 3.13 and ScrollTrigger provide the progressive motion layer. The full page remains readable and navigable if the CDN scripts fail; animation work uses transforms/opacity, responsive match-media contexts, and explicit cleanup.
 - There is no scroll-progress line. Content hierarchy comes from scale and space rather than borders.
 - The publication section uses the real `《澳門日記—回歸故事集》` editorial credit image. The poetry artifact is typeset from Anson’s verified title and opening lines rather than represented by a fabricated cover.
-- The Open Graph image is `og-calm.png`, a 1200 × 630 line-free title card matching the quiet site direction.
+- The Open Graph image is `og-v2.png`, a 1200 × 630 title card matching the rebuilt hero palette, layered workflow motif, and exact English identity copy.
 
 ## Public content hierarchy
 
@@ -49,11 +52,11 @@ The site introduces a person working across software systems, public communicati
 
 ## Build status
 
-- `index.html`, `style.css`, and `main.js` rebuilt around the restrained, interaction-led direction.
-- The three-case explorer and two publication dialogs are implemented with keyboard and reduced-motion behaviour.
-- `og-calm.png` generated and resized to the social-card standard.
-- HTML, CSS, JavaScript, bilingual-pair, ID relationship, local-asset, prohibited-content, and whitespace checks pass.
-- Published successfully from commit `6234f4c` to [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) on 2026-07-30. The live HTML, calm social card, and publication image were verified after deployment.
+- `index.html`, `style.css`, and `main.js` have been rebuilt around an interaction-led editorial direction while preserving the verified bilingual content.
+- Hero depth, the pinned three-stage method story, the horizontal case reel, native mobile scroll-snap, magnetic/tilt pointer details, publication dialogs, persistent language state, and reduced-motion/static fallbacks are implemented.
+- `og-v2.png` was generated as one cohesive social card, checked for exact text, and resized to 1200 × 630.
+- JavaScript syntax, HTML5 parsing, bilingual-pair counts, ID and ARIA relationships, local assets, external links, social-image dimensions, prohibited-copy checks, CSS brace structure, and whitespace checks pass.
+- The interaction-led rebuild is ready for commit and GitHub Pages deployment; live verification is still pending.
 
 ## Open questions
 

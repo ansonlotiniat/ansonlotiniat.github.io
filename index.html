@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f4f2ec">
+    <meta name="theme-color" content="#f2efe7">
     <meta name="color-scheme" content="light">
     <title>Anson Lo — 設計、系統與文字</title>
     <meta name="description" content="Anson Lo，來自澳門的學生開發者、編輯與演講者。">
@@ -12,16 +12,19 @@
     <meta property="og:url" content="https://ansonlotiniat.github.io/">
     <meta property="og:title" content="Anson Lo — Design, Systems &amp; Words">
     <meta property="og:description" content="Student developer, editor, and speaker from Macao.">
-    <meta property="og:image" content="https://ansonlotiniat.github.io/og-calm.png">
+    <meta property="og:image" content="https://ansonlotiniat.github.io/og-v2.png">
     <meta property="og:image:alt" content="Anson Lo — Design, Systems and Words">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Anson Lo — Design, Systems &amp; Words">
     <meta name="twitter:description" content="Student developer, editor, and speaker from Macao.">
-    <meta name="twitter:image" content="https://ansonlotiniat.github.io/og-calm.png">
+    <meta name="twitter:image" content="https://ansonlotiniat.github.io/og-v2.png">
 
     <link rel="canonical" href="https://ansonlotiniat.github.io/">
     <link rel="preload" href="JetBrainsMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="style.css">
+    <script>document.documentElement.classList.add("js");</script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
     <script src="main.js" defer></script>
 </head>
 <body>
@@ -30,24 +33,29 @@
         <span data-copy-lang="en">Skip to content</span>
     </a>
 
-    <header class="site-header">
+    <div class="page-noise" aria-hidden="true"></div>
+
+    <header class="site-header" data-site-header>
         <a class="wordmark" href="#top" aria-label="Anson Lo, home">
-            <span class="wordmark-name">Anson Lo</span>
-            <span class="wordmark-place">Macao</span>
+            <span class="wordmark-monogram" aria-hidden="true">A/L</span>
+            <span>
+                <b>Anson Lo</b>
+                <small>Macao</small>
+            </span>
         </a>
 
         <nav class="site-navigation" id="site-navigation" aria-label="Primary navigation" data-navigation>
             <a href="#about">
-                <span data-copy-lang="zh">關於</span>
-                <span data-copy-lang="en">About</span>
+                <span data-copy-lang="zh">方法</span>
+                <span data-copy-lang="en">Method</span>
             </a>
             <a href="#work">
                 <span data-copy-lang="zh">實踐</span>
                 <span data-copy-lang="en">Practice</span>
             </a>
             <a href="#publications">
-                <span data-copy-lang="zh">出版</span>
-                <span data-copy-lang="en">Editions</span>
+                <span data-copy-lang="zh">文字</span>
+                <span data-copy-lang="en">Writing</span>
             </a>
             <a href="#contact">
                 <span data-copy-lang="zh">聯絡</span>
@@ -70,426 +78,481 @@
     </header>
 
     <main id="main-content">
-        <section class="hero" id="top" aria-labelledby="hero-title">
+        <section class="hero" id="top" aria-labelledby="hero-title" data-section-name-zh="首頁" data-section-name-en="Home">
             <div class="hero-copy">
-                <p class="overline">
-                    <span data-copy-lang="zh">學生開發者 · 編輯 · 演講者</span>
-                    <span data-copy-lang="en">Student developer · Editor · Speaker</span>
+                <p class="eyebrow" data-hero-kicker>
+                    <span data-copy-lang="zh">學生開發者 · 編輯 · 演講者 / 澳門</span>
+                    <span data-copy-lang="en">Student developer · Editor · Speaker / Macao</span>
                 </p>
 
-                <h1 id="hero-title">
-                    <span data-copy-lang="zh">把複雜的流程，<br>做成容易理解的工具。</span>
-                    <span data-copy-lang="en">Turning complex workflows<br>into tools people understand.</span>
+                <h1 class="hero-title" id="hero-title">
+                    <span data-copy-lang="zh">
+                        <span class="title-line"><span data-hero-line>把複雜的流程，</span></span>
+                        <span class="title-line"><span data-hero-line>做成<span class="title-accent">容易理解</span>的工具。</span></span>
+                    </span>
+                    <span data-copy-lang="en">
+                        <span class="title-line"><span data-hero-line>Turning complex workflows</span></span>
+                        <span class="title-line"><span data-hero-line>into tools <span class="title-accent">people understand.</span></span></span>
+                    </span>
                 </h1>
 
-                <p class="hero-intro">
-                    <span data-copy-lang="zh">我在澳門讀書，做校園系統，也參與編輯和公共表達。對我來說，好的設計不需要解釋自己；它應該讓下一步變得清楚。</span>
-                    <span data-copy-lang="en">I study in Macao, build systems for school communities, and work across editing and public communication. Good design should not need to announce itself; it should make the next step clear.</span>
-                </p>
+                <div class="hero-support" data-hero-support>
+                    <p>
+                        <span data-copy-lang="zh">我在澳門讀書，為校園和團隊建立實際使用的系統，也參與編輯和公共表達。我關心的，是資訊怎樣抵達需要它的人。</span>
+                        <span data-copy-lang="en">I study in Macao and build systems used by school communities and teams, while also working across editing and public communication. I care about how information reaches the people who need it.</span>
+                    </p>
+                    <a class="text-link magnetic" href="#work">
+                        <span data-copy-lang="zh">查看三個實踐</span>
+                        <span data-copy-lang="en">Explore three cases</span>
+                        <span aria-hidden="true">↘</span>
+                    </a>
+                </div>
             </div>
 
-            <aside class="current-card" aria-labelledby="current-title">
-                <div>
-                    <p class="status">
-                        <i aria-hidden="true"></i>
-                        <span data-copy-lang="zh">目前參與</span>
-                        <span data-copy-lang="en">Currently</span>
-                    </p>
-                    <h2 id="current-title">PuiChing Macau<br>iGEM 2026</h2>
-                    <p>
-                        <span data-copy-lang="zh">軟件、建模與 Wiki 核心工程師之一</span>
-                        <span data-copy-lang="en">Core engineer across software, modelling, and the wiki</span>
-                    </p>
+            <aside class="hero-system" aria-labelledby="current-title" data-hero-system>
+                <div class="system-field" data-system-field>
+                    <div class="system-card system-card-main" data-system-layer="main">
+                        <p>NOW / 2026</p>
+                        <h2 id="current-title">PuiChing Macau<br><strong>iGEM 2026</strong></h2>
+                        <span>
+                            <span data-copy-lang="zh">軟件、建模與 Wiki 核心工程師之一</span>
+                            <span data-copy-lang="en">Core engineer across software, modelling, and the wiki</span>
+                        </span>
+                    </div>
+
+                    <div class="system-chip chip-software" data-system-layer="chip">
+                        <span>01</span>
+                        <b>SOFTWARE</b>
+                    </div>
+                    <div class="system-chip chip-modelling" data-system-layer="chip">
+                        <span>02</span>
+                        <b>MODELLING</b>
+                    </div>
+                    <div class="system-chip chip-wiki" data-system-layer="chip">
+                        <span>03</span>
+                        <b>WIKI</b>
+                    </div>
                 </div>
-                <a href="https://2026.igem.wiki/puiching-macau/" target="_blank" rel="noopener">
-                    <span data-copy-lang="zh">團隊 Wiki</span>
-                    <span data-copy-lang="en">Team wiki</span>
-                    <b aria-hidden="true">↗</b>
+
+                <a class="system-link magnetic" href="https://2026.igem.wiki/puiching-macau/" target="_blank" rel="noopener">
+                    <span class="live-dot" aria-hidden="true"></span>
+                    <span data-copy-lang="zh">目前參與 · 查看團隊 Wiki</span>
+                    <span data-copy-lang="en">In progress · View team wiki</span>
+                    <span aria-hidden="true">↗</span>
                 </a>
             </aside>
 
-            <div class="hero-foot">
+            <div class="hero-footer" data-hero-footer>
                 <p>ANSON LO / MACAO / 2026</p>
                 <a href="#about">
-                    <span data-copy-lang="zh">繼續閱讀</span>
-                    <span data-copy-lang="en">Continue</span>
-                    <span aria-hidden="true">↓</span>
+                    <span data-copy-lang="zh">沿着流程繼續</span>
+                    <span data-copy-lang="en">Follow the flow</span>
+                    <span class="scroll-cue" aria-hidden="true"><i></i></span>
                 </a>
             </div>
         </section>
 
-        <section class="section about-section" id="about" aria-labelledby="about-title">
-            <header class="section-heading">
-                <p class="overline">01 / <span data-copy-lang="zh">關於</span><span data-copy-lang="en">About</span></p>
+        <section class="method-section" id="about" aria-labelledby="about-title" data-section-name-zh="方法" data-section-name-en="Method">
+            <header class="section-intro">
+                <p class="eyebrow">01 / <span data-copy-lang="zh">工作方法</span><span data-copy-lang="en">Working method</span></p>
                 <h2 id="about-title">
-                    <span data-copy-lang="zh">我從使用者真正要做的事開始。</span>
-                    <span data-copy-lang="en">I start with what people actually need to do.</span>
+                    <span data-copy-lang="zh">介面之前，先找出資訊在哪裡斷開。</span>
+                    <span data-copy-lang="en">Before the interface, find where information breaks down.</span>
                 </h2>
-            </header>
-
-            <div class="about-body">
-                <div class="about-copy">
-                    <p data-copy-lang="zh">畫介面之前，我會先看誰在使用、資訊在哪裡斷開，以及完成一次操作要走多少步。流程、權限、資料和現場情境處理好之後，介面才有意義。</p>
-                    <p data-copy-lang="en">Before drawing an interface, I look at who will use it, where information breaks down, and how many steps it takes to complete a task. The interface only becomes meaningful after workflow, permissions, data, and context are understood.</p>
-
-                    <p data-copy-lang="zh">演講學社的工作也影響我做產品：先判斷對方需要知道甚麼，再決定順序和語氣。現在我是學社社長，仍然在學習怎樣讓不同的人一起把事情做好。</p>
-                    <p data-copy-lang="en">My work in the Speech Society also shapes how I build products: first decide what the audience needs, then choose the order and tone. As its current president, I am still learning how to help different people work well together.</p>
-                </div>
-
-                <ol class="method-list">
-                    <li>
-                        <span>01</span>
-                        <div>
-                            <h3>
-                                <span data-copy-lang="zh">觀察情境</span>
-                                <span data-copy-lang="en">Observe context</span>
-                            </h3>
-                            <p>
-                                <span data-copy-lang="zh">從真實使用方式開始。</span>
-                                <span data-copy-lang="en">Start from real behaviour.</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <span>02</span>
-                        <div>
-                            <h3>
-                                <span data-copy-lang="zh">整理流程</span>
-                                <span data-copy-lang="en">Shape the flow</span>
-                            </h3>
-                            <p>
-                                <span data-copy-lang="zh">減少資訊和操作阻力。</span>
-                                <span data-copy-lang="en">Reduce friction in information and action.</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <span>03</span>
-                        <div>
-                            <h3>
-                                <span data-copy-lang="zh">清楚交付</span>
-                                <span data-copy-lang="en">Deliver clearly</span>
-                            </h3>
-                            <p>
-                                <span data-copy-lang="zh">讓使用者知道下一步。</span>
-                                <span data-copy-lang="en">Make the next step obvious.</span>
-                            </p>
-                        </div>
-                    </li>
-                </ol>
-            </div>
-        </section>
-
-        <section class="section work-section" id="work" aria-labelledby="work-title">
-            <header class="section-heading work-heading">
-                <p class="overline">02 / <span data-copy-lang="zh">選定實踐</span><span data-copy-lang="en">Selected practice</span></p>
-                <h2 id="work-title">
-                    <span data-copy-lang="zh">三個正在被使用的系統。</span>
-                    <span data-copy-lang="en">Three systems built for real use.</span>
-                </h2>
-                <p class="section-note">
-                    <span data-copy-lang="zh">選擇一項，查看我在其中處理的問題。</span>
-                    <span data-copy-lang="en">Choose a case to see the problem I worked on.</span>
+                <p>
+                    <span data-copy-lang="zh">我先理解使用者、角色與現場情境，再整理一次操作真正需要經過的步驟。</span>
+                    <span data-copy-lang="en">I first understand the people, roles, and real setting—then shape the steps an action actually needs.</span>
                 </p>
             </header>
 
-            <div class="case-explorer">
-                <div class="case-tabs" role="tablist" aria-label="Selected practice">
-                    <button id="case-tab-sports" type="button" role="tab" aria-selected="true" aria-controls="case-panel-sports" tabindex="0" data-case-tab="sports">
-                        <span class="case-index">01</span>
-                        <span class="case-tab-copy">
-                            <strong>
-                                <span data-copy-lang="zh">校運會小程序</span>
-                                <span data-copy-lang="en">Sports Day Mini Program</span>
-                            </strong>
-                            <small>2024—2026 / SCHOOL</small>
-                        </span>
-                        <span class="case-arrow" aria-hidden="true">↗</span>
-                    </button>
+            <div class="method-scroll" data-method-scroll>
+                <div class="method-pin" data-method-pin>
+                    <div class="method-stage">
+                        <div class="method-stage-top">
+                            <p>
+                                <span data-copy-lang="zh">一個工作流，由三次判斷開始。</span>
+                                <span data-copy-lang="en">A workflow begins with three decisions.</span>
+                            </p>
+                            <p aria-live="polite">
+                                <span data-copy-lang="zh">步驟 <b data-method-count>01</b> / 03</span>
+                                <span data-copy-lang="en">Step <b data-method-count>01</b> / 03</span>
+                            </p>
+                        </div>
 
-                    <button id="case-tab-debate" type="button" role="tab" aria-selected="false" aria-controls="case-panel-debate" tabindex="-1" data-case-tab="debate">
-                        <span class="case-index">02</span>
-                        <span class="case-tab-copy">
-                            <strong>
-                                <span data-copy-lang="zh">辯論管理工具</span>
-                                <span data-copy-lang="en">Debate Operations Tools</span>
-                            </strong>
-                            <small>TEAM + TOURNAMENT</small>
-                        </span>
-                        <span class="case-arrow" aria-hidden="true">↗</span>
-                    </button>
+                        <div class="method-frame-wrap">
+                            <article class="method-frame is-active" data-method-frame="0">
+                                <p class="method-number">01</p>
+                                <div class="method-frame-copy">
+                                    <p class="eyebrow">
+                                        <span data-copy-lang="zh">觀察情境</span>
+                                        <span data-copy-lang="en">Observe context</span>
+                                    </p>
+                                    <h3>
+                                        <span data-copy-lang="zh">先看誰在使用，和事情發生在哪裡。</span>
+                                        <span data-copy-lang="en">Start with who is using it—and where the work happens.</span>
+                                    </h3>
+                                    <p>
+                                        <span data-copy-lang="zh">同一項資訊，在課室、賽場和團隊工作區裡，會有完全不同的優先次序。</span>
+                                        <span data-copy-lang="en">The same information has different priorities in a classroom, at an event, or inside a team workspace.</span>
+                                    </p>
+                                </div>
+                                <div class="method-composition composition-context" aria-hidden="true">
+                                    <span class="composition-word word-person">PERSON</span>
+                                    <span class="composition-word word-place">PLACE</span>
+                                    <span class="composition-word word-task">TASK</span>
+                                    <i class="composition-focus"></i>
+                                </div>
+                            </article>
 
-                    <button id="case-tab-igem" type="button" role="tab" aria-selected="false" aria-controls="case-panel-igem" tabindex="-1" data-case-tab="igem">
-                        <span class="case-index">03</span>
-                        <span class="case-tab-copy">
-                            <strong>iGEM 2026</strong>
-                            <small>SOFTWARE + MODELLING + WIKI</small>
-                        </span>
-                        <span class="case-arrow" aria-hidden="true">↗</span>
-                    </button>
-                </div>
+                            <article class="method-frame" data-method-frame="1">
+                                <p class="method-number">02</p>
+                                <div class="method-frame-copy">
+                                    <p class="eyebrow">
+                                        <span data-copy-lang="zh">整理流程</span>
+                                        <span data-copy-lang="en">Shape the flow</span>
+                                    </p>
+                                    <h3>
+                                        <span data-copy-lang="zh">把角色、任務和狀態放到正確順序。</span>
+                                        <span data-copy-lang="en">Put roles, tasks, and states in the right order.</span>
+                                    </h3>
+                                    <p>
+                                        <span data-copy-lang="zh">不是把所有功能塞進一個畫面，而是讓每個人只在需要時看見需要的內容。</span>
+                                        <span data-copy-lang="en">Not every function belongs on one screen. Each person should see what they need, when they need it.</span>
+                                    </p>
+                                </div>
+                                <div class="method-composition composition-flow" aria-hidden="true">
+                                    <span class="flow-piece flow-role">ROLE</span>
+                                    <span class="flow-piece flow-action">ACTION</span>
+                                    <span class="flow-piece flow-state">STATE</span>
+                                    <span class="flow-piece flow-next">NEXT</span>
+                                </div>
+                            </article>
 
-                <div class="case-stage" aria-live="polite">
-                    <article id="case-panel-sports" class="case-panel" role="tabpanel" aria-labelledby="case-tab-sports" data-case-panel="sports">
-                        <p class="case-label">SCHOOL OPERATIONS / TWO YEARS</p>
-                        <h3>
-                            <span data-copy-lang="zh">讓校運會資訊在需要時找得到。</span>
-                            <span data-copy-lang="en">Making sports-day information easy to find when it matters.</span>
-                        </h3>
-                        <p class="case-lede">
-                            <span data-copy-lang="zh">我連續兩年負責主要設計及開發，把報名、資訊發佈和現場查閱整理到同一個清楚入口。</span>
-                            <span data-copy-lang="en">For two years, I led design and development, bringing registration, updates, and on-site reference into one clear entry point.</span>
-                        </p>
-                        <dl class="case-details">
-                            <div>
-                                <dt>
-                                    <span data-copy-lang="zh">使用情境</span>
-                                    <span data-copy-lang="en">Context</span>
-                                </dt>
-                                <dd>
-                                    <span data-copy-lang="zh">校內大型活動，資訊隨時間持續更新。</span>
-                                    <span data-copy-lang="en">A large school event with information changing over time.</span>
-                                </dd>
-                            </div>
-                            <div>
-                                <dt>
-                                    <span data-copy-lang="zh">我的角色</span>
-                                    <span data-copy-lang="en">My role</span>
-                                </dt>
-                                <dd>
-                                    <span data-copy-lang="zh">主要介面設計與開發。</span>
-                                    <span data-copy-lang="en">Lead interface design and development.</span>
-                                </dd>
-                            </div>
-                            <div>
-                                <dt>
-                                    <span data-copy-lang="zh">設計重點</span>
-                                    <span data-copy-lang="en">Design focus</span>
-                                </dt>
-                                <dd>
-                                    <span data-copy-lang="zh">縮短查找路徑，讓現場使用不依賴說明。</span>
-                                    <span data-copy-lang="en">Shorten the path to information and minimise on-site explanation.</span>
-                                </dd>
-                            </div>
-                        </dl>
-                    </article>
+                            <article class="method-frame" data-method-frame="2">
+                                <p class="method-number">03</p>
+                                <div class="method-frame-copy">
+                                    <p class="eyebrow">
+                                        <span data-copy-lang="zh">清楚交付</span>
+                                        <span data-copy-lang="en">Deliver clearly</span>
+                                    </p>
+                                    <h3>
+                                        <span data-copy-lang="zh">最後，讓下一步不需要猜。</span>
+                                        <span data-copy-lang="en">Finally, make the next step impossible to miss.</span>
+                                    </h3>
+                                    <p>
+                                        <span data-copy-lang="zh">清楚的狀態、克制的介面與合適的語氣，讓系統在真實環境裡自己說明。</span>
+                                        <span data-copy-lang="en">Clear states, a restrained interface, and the right tone let the system explain itself in real use.</span>
+                                    </p>
+                                </div>
+                                <div class="method-composition composition-delivery" aria-hidden="true">
+                                    <span class="delivery-question">WHAT NOW?</span>
+                                    <span class="delivery-answer">NEXT STEP&nbsp; ↗</span>
+                                </div>
+                            </article>
+                        </div>
 
-                    <article id="case-panel-debate" class="case-panel" role="tabpanel" aria-labelledby="case-tab-debate" data-case-panel="debate" hidden>
-                        <p class="case-label">TEAM + TOURNAMENT OPERATIONS</p>
-                        <h3>
-                            <span data-copy-lang="zh">把隊務和賽務分開處理，再接回一起。</span>
-                            <span data-copy-lang="en">Separating team and tournament workflows, then reconnecting them.</span>
-                        </h3>
-                        <p class="case-lede">
-                            <span data-copy-lang="zh">我為學校辯論隊製作管理小程序，也為校內辯論比賽開發綜合管理系統。兩者服務不同的人，但需要共享清楚一致的資訊。</span>
-                            <span data-copy-lang="en">I built a management mini program for the school debate team and an integrated system for the internal tournament. They serve different people but depend on clear, consistent information.</span>
-                        </p>
-                        <dl class="case-details">
-                            <div>
-                                <dt>
-                                    <span data-copy-lang="zh">使用情境</span>
-                                    <span data-copy-lang="en">Context</span>
-                                </dt>
-                                <dd>
-                                    <span data-copy-lang="zh">日常隊務與一次性比賽並行。</span>
-                                    <span data-copy-lang="en">Ongoing team operations alongside a time-bound tournament.</span>
-                                </dd>
-                            </div>
-                            <div>
-                                <dt>
-                                    <span data-copy-lang="zh">我的角色</span>
-                                    <span data-copy-lang="en">My role</span>
-                                </dt>
-                                <dd>
-                                    <span data-copy-lang="zh">產品流程、介面與開發。</span>
-                                    <span data-copy-lang="en">Product flow, interface, and development.</span>
-                                </dd>
-                            </div>
-                            <div>
-                                <dt>
-                                    <span data-copy-lang="zh">設計重點</span>
-                                    <span data-copy-lang="en">Design focus</span>
-                                </dt>
-                                <dd>
-                                    <span data-copy-lang="zh">按角色整理任務、狀態與資訊。</span>
-                                    <span data-copy-lang="en">Organise tasks, states, and information around each role.</span>
-                                </dd>
-                            </div>
-                        </dl>
-                    </article>
-
-                    <article id="case-panel-igem" class="case-panel" role="tabpanel" aria-labelledby="case-tab-igem" data-case-panel="igem" hidden>
-                        <p class="case-label">PUICHING MACAU / iGEM 2026</p>
-                        <h3>
-                            <span data-copy-lang="zh">讓三個工程工作區可以一起交付。</span>
-                            <span data-copy-lang="en">Helping three engineering workstreams deliver together.</span>
-                        </h3>
-                        <p class="case-lede">
-                            <span data-copy-lang="zh">作為軟件、建模與 Wiki 核心工程師之一，我處理的不只是頁面，也包括不同工作流之間的協作與銜接。</span>
-                            <span data-copy-lang="en">As a core engineer across software, modelling, and the wiki, I work not only on pages but also on how separate workflows connect and collaborate.</span>
-                        </p>
-                        <dl class="case-details">
-                            <div>
-                                <dt>
-                                    <span data-copy-lang="zh">使用情境</span>
-                                    <span data-copy-lang="en">Context</span>
-                                </dt>
-                                <dd>
-                                    <span data-copy-lang="zh">跨學科團隊持續協作。</span>
-                                    <span data-copy-lang="en">Continuous work across a multidisciplinary team.</span>
-                                </dd>
-                            </div>
-                            <div>
-                                <dt>
-                                    <span data-copy-lang="zh">我的角色</span>
-                                    <span data-copy-lang="en">My role</span>
-                                </dt>
-                                <dd>
-                                    <span data-copy-lang="zh">核心工程與工作流銜接。</span>
-                                    <span data-copy-lang="en">Core engineering and workflow integration.</span>
-                                </dd>
-                            </div>
-                            <div>
-                                <dt>
-                                    <span data-copy-lang="zh">設計重點</span>
-                                    <span data-copy-lang="en">Design focus</span>
-                                </dt>
-                                <dd>
-                                    <span data-copy-lang="zh">讓技術內容、工具和 Wiki 保持一致。</span>
-                                    <span data-copy-lang="en">Keep technical content, tools, and the wiki coherent.</span>
-                                </dd>
-                            </div>
-                        </dl>
-                        <a class="inline-link" href="https://2026.igem.wiki/puiching-macau/" target="_blank" rel="noopener">
-                            <span data-copy-lang="zh">查看團隊 Wiki</span>
-                            <span data-copy-lang="en">View team wiki</span>
-                            <span aria-hidden="true">↗</span>
-                        </a>
-                    </article>
+                        <div class="method-nav" aria-label="Working method steps">
+                            <button type="button" aria-current="step" data-method-jump="0">
+                                <span>01</span>
+                                <span data-copy-lang="zh">觀察</span>
+                                <span data-copy-lang="en">Observe</span>
+                            </button>
+                            <button type="button" data-method-jump="1">
+                                <span>02</span>
+                                <span data-copy-lang="zh">整理</span>
+                                <span data-copy-lang="en">Shape</span>
+                            </button>
+                            <button type="button" data-method-jump="2">
+                                <span>03</span>
+                                <span data-copy-lang="zh">交付</span>
+                                <span data-copy-lang="en">Deliver</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="section publications-section" id="publications" aria-labelledby="publications-title">
-            <header class="section-heading publications-heading">
-                <p class="overline">03 / <span data-copy-lang="zh">出版與文字</span><span data-copy-lang="en">Editions &amp; writing</span></p>
-                <h2 id="publications-title">
-                    <span data-copy-lang="zh">除了做軟件，我也參與編輯和寫作。</span>
-                    <span data-copy-lang="en">Alongside software, I edit and write.</span>
-                </h2>
+        <section class="projects-section" id="work" aria-labelledby="work-title" data-section-name-zh="實踐" data-section-name-en="Practice">
+            <header class="projects-heading">
+                <p class="eyebrow">02 / <span data-copy-lang="zh">選定實踐</span><span data-copy-lang="en">Selected practice</span></p>
+                <div>
+                    <h2 id="work-title">
+                        <span data-copy-lang="zh">三個系統，<br>三種真實現場。</span>
+                        <span data-copy-lang="en">Three systems.<br>Three real settings.</span>
+                    </h2>
+                    <p>
+                        <span data-copy-lang="zh">向下捲動，案例會沿着工作流向前推進。</span>
+                        <span data-copy-lang="en">Scroll down. The cases move forward with the workflow.</span>
+                    </p>
+                </div>
             </header>
 
-            <div class="publication-grid">
-                <article class="publication-card book-card">
-                    <div class="publication-media">
-                        <img src="macao-diary-colophon.png" width="705" height="483" alt="《澳門日記—回歸故事集》題名與編輯名單，當中包括羅天逸">
+            <div class="project-scroll" data-project-scroll>
+                <div class="project-pin" data-project-pin>
+                    <div class="project-bar">
+                        <p>
+                            <span data-copy-lang="zh">實際使用 / 2024—2026</span>
+                            <span data-copy-lang="en">Built for use / 2024—2026</span>
+                        </p>
+                        <div class="project-nav" aria-label="Selected projects">
+                            <button type="button" aria-current="step" aria-controls="project-sports" aria-label="校運會小程序" data-label-zh="校運會小程序" data-label-en="Sports Day Mini Program" data-project-jump="0">01</button>
+                            <button type="button" aria-controls="project-debate" aria-label="辯論管理工具" data-label-zh="辯論管理工具" data-label-en="Debate Operations Tools" data-project-jump="1">02</button>
+                            <button type="button" aria-controls="project-igem" aria-label="iGEM 2026 工程" data-label-zh="iGEM 2026 工程" data-label-en="iGEM 2026 Engineering" data-project-jump="2">03</button>
+                        </div>
+                        <p class="project-position"><b data-project-count>01</b> / 03</p>
                     </div>
-                    <div class="publication-content">
+
+                    <div class="project-viewport" data-project-viewport>
+                        <div class="project-track" data-project-track>
+                            <article class="project-panel project-sports" id="project-sports" data-project-panel="0">
+                                <div class="project-copy">
+                                    <p class="project-kicker">01 / SCHOOL OPERATIONS / TWO YEARS</p>
+                                    <h3>
+                                        <span data-copy-lang="zh">讓校運會資訊，在需要時找得到。</span>
+                                        <span data-copy-lang="en">Making sports-day information easy to find when it matters.</span>
+                                    </h3>
+                                    <p class="project-lede">
+                                        <span data-copy-lang="zh">我連續兩年負責主要設計及開發，把報名、資訊發佈和現場查閱整理到同一個清楚入口。</span>
+                                        <span data-copy-lang="en">For two years, I led design and development, bringing registration, updates, and on-site reference into one clear entry point.</span>
+                                    </p>
+                                    <dl class="project-facts">
+                                        <div>
+                                            <dt><span data-copy-lang="zh">情境</span><span data-copy-lang="en">Context</span></dt>
+                                            <dd><span data-copy-lang="zh">校內大型活動，資訊持續更新。</span><span data-copy-lang="en">A large school event with changing information.</span></dd>
+                                        </div>
+                                        <div>
+                                            <dt><span data-copy-lang="zh">角色</span><span data-copy-lang="en">Role</span></dt>
+                                            <dd><span data-copy-lang="zh">主要介面設計與開發。</span><span data-copy-lang="en">Lead interface design and development.</span></dd>
+                                        </div>
+                                    </dl>
+                                </div>
+
+                                <div class="project-visual sports-visual" aria-hidden="true">
+                                    <div class="visual-status"><i></i> EVENT DAY / LIVE</div>
+                                    <div class="sports-card sports-card-registration">
+                                        <span>01</span><b>REGISTRATION</b><small>BEFORE</small>
+                                    </div>
+                                    <div class="sports-card sports-card-updates">
+                                        <span>02</span><b>UPDATES</b><small>DURING</small>
+                                    </div>
+                                    <div class="sports-card sports-card-reference">
+                                        <span>03</span><b>REFERENCE</b><small>ON SITE</small>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="project-panel project-debate" id="project-debate" data-project-panel="1">
+                                <div class="project-copy">
+                                    <p class="project-kicker">02 / TEAM + TOURNAMENT OPERATIONS</p>
+                                    <h3>
+                                        <span data-copy-lang="zh">把隊務和賽務分開處理，再接回一起。</span>
+                                        <span data-copy-lang="en">Separating team and tournament workflows, then reconnecting them.</span>
+                                    </h3>
+                                    <p class="project-lede">
+                                        <span data-copy-lang="zh">我為學校辯論隊製作管理小程序，也為校內辯論比賽開發綜合管理系統。兩者服務不同的人，但依賴清楚一致的資訊。</span>
+                                        <span data-copy-lang="en">I built a management mini program for the school debate team and an integrated system for the internal tournament. They serve different people but depend on clear, consistent information.</span>
+                                    </p>
+                                    <dl class="project-facts">
+                                        <div>
+                                            <dt><span data-copy-lang="zh">情境</span><span data-copy-lang="en">Context</span></dt>
+                                            <dd><span data-copy-lang="zh">日常隊務與一次性比賽並行。</span><span data-copy-lang="en">Ongoing team work and a time-bound tournament.</span></dd>
+                                        </div>
+                                        <div>
+                                            <dt><span data-copy-lang="zh">角色</span><span data-copy-lang="en">Role</span></dt>
+                                            <dd><span data-copy-lang="zh">產品流程、介面與開發。</span><span data-copy-lang="en">Product flow, interface, and development.</span></dd>
+                                        </div>
+                                    </dl>
+                                </div>
+
+                                <div class="project-visual debate-visual" aria-hidden="true">
+                                    <div class="debate-side debate-team">
+                                        <span>TEAM</span>
+                                        <b>People</b>
+                                        <b>Tasks</b>
+                                        <b>Practice</b>
+                                    </div>
+                                    <div class="debate-bridge"><span>SHARED</span><b>INFORMATION</b></div>
+                                    <div class="debate-side debate-tournament">
+                                        <span>TOURNAMENT</span>
+                                        <b>Roles</b>
+                                        <b>States</b>
+                                        <b>Rounds</b>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="project-panel project-igem" id="project-igem" data-project-panel="2">
+                                <div class="project-copy">
+                                    <p class="project-kicker">03 / PUICHING MACAU / iGEM 2026</p>
+                                    <h3>
+                                        <span data-copy-lang="zh">讓三個工程工作區，可以一起交付。</span>
+                                        <span data-copy-lang="en">Helping three engineering workstreams deliver together.</span>
+                                    </h3>
+                                    <p class="project-lede">
+                                        <span data-copy-lang="zh">作為軟件、建模與 Wiki 核心工程師之一，我處理的不只是頁面，也包括不同工作流之間的協作與銜接。</span>
+                                        <span data-copy-lang="en">As a core engineer across software, modelling, and the wiki, I work not only on pages but also on how separate workflows connect and collaborate.</span>
+                                    </p>
+                                    <dl class="project-facts">
+                                        <div>
+                                            <dt><span data-copy-lang="zh">情境</span><span data-copy-lang="en">Context</span></dt>
+                                            <dd><span data-copy-lang="zh">跨學科團隊持續協作。</span><span data-copy-lang="en">Continuous multidisciplinary collaboration.</span></dd>
+                                        </div>
+                                        <div>
+                                            <dt><span data-copy-lang="zh">角色</span><span data-copy-lang="en">Role</span></dt>
+                                            <dd><span data-copy-lang="zh">核心工程與工作流銜接。</span><span data-copy-lang="en">Core engineering and workflow integration.</span></dd>
+                                        </div>
+                                    </dl>
+                                    <a class="project-link magnetic" href="https://2026.igem.wiki/puiching-macau/" target="_blank" rel="noopener">
+                                        <span data-copy-lang="zh">查看團隊 Wiki</span>
+                                        <span data-copy-lang="en">View team wiki</span>
+                                        <span aria-hidden="true">↗</span>
+                                    </a>
+                                </div>
+
+                                <div class="project-visual igem-visual" aria-hidden="true">
+                                    <div class="igem-stream stream-software"><span>01</span><b>SOFTWARE</b></div>
+                                    <div class="igem-stream stream-modelling"><span>02</span><b>MODELLING</b></div>
+                                    <div class="igem-stream stream-wiki"><span>03</span><b>WIKI</b></div>
+                                    <div class="igem-delivery"><span>ONE DELIVERY</span><b>PUICHING MACAU</b></div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <p class="project-scroll-hint">
+                        <span data-copy-lang="zh">捲動以推進</span>
+                        <span data-copy-lang="en">Scroll to progress</span>
+                        <i aria-hidden="true"></i>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="publications-section" id="publications" aria-labelledby="publications-title" data-section-name-zh="文字" data-section-name-en="Writing">
+            <header class="section-intro publications-intro">
+                <p class="eyebrow">03 / <span data-copy-lang="zh">出版與文字</span><span data-copy-lang="en">Editions &amp; writing</span></p>
+                <h2 id="publications-title">
+                    <span data-copy-lang="zh">軟件整理流程；<br>編輯整理聲音。</span>
+                    <span data-copy-lang="en">Software shapes workflows.<br>Editing shapes voices.</span>
+                </h2>
+                <p>
+                    <span data-copy-lang="zh">兩種工作都要求準確，也都需要知道甚麼應該保留。</span>
+                    <span data-copy-lang="en">Both kinds of work demand accuracy—and judgement about what should remain.</span>
+                </p>
+            </header>
+
+            <div class="publication-layout">
+                <article class="publication-card book-card" data-tilt-card data-reveal>
+                    <div class="publication-media book-media">
+                        <img src="macao-diary-colophon.png" alt="《澳門日記—回歸故事集》題名頁及列有羅天逸的編輯名單" width="735" height="489" loading="lazy" decoding="async">
+                        <span class="artifact-label">01 / EDITORIAL CREDIT</span>
+                    </div>
+                    <div class="publication-copy">
                         <p class="publication-meta">BOOK / EDITOR / 2025</p>
                         <h3>《澳門日記—回歸故事集》</h3>
                         <p>
-                            <span data-copy-lang="zh">參與書稿編輯，名字列於編輯名單。</span>
-                            <span data-copy-lang="en">I worked on the book and am credited in its editorial team.</span>
+                            <span data-copy-lang="zh">參與書稿編輯，名字以「羅天逸」列於編輯名單。</span>
+                            <span data-copy-lang="en">I worked on the book and am credited as “羅天逸” in its editorial team.</span>
                         </p>
-                        <button type="button" data-open-dialog="book-dialog">
-                            <span data-copy-lang="zh">查看出版資料</span>
-                            <span data-copy-lang="en">View publication note</span>
+                        <button class="publication-action magnetic" type="button" data-open-dialog="book-dialog">
+                            <span data-copy-lang="zh">打開出版註記</span>
+                            <span data-copy-lang="en">Open publication note</span>
                             <span aria-hidden="true">↗</span>
                         </button>
                     </div>
                 </article>
 
-                <article class="publication-card poem-card">
-                    <div class="publication-media poem-preview" lang="en">
-                        <p class="poem-byline">ANSON LO / S4B 40</p>
+                <article class="publication-card poem-card" data-tilt-card data-reveal>
+                    <div class="publication-media poem-media" lang="en">
+                        <p class="poem-author">ANSON LO / 2026</p>
                         <blockquote>
                             <strong>Between Bells<br>and Heartbeats</strong>
-                            <p>We sit two seats apart,<br>close enough to share answers,<br>far enough to pretend…</p>
+                            <p>We talk about exams,<br>about the future like it’s a city<br>neither of us has visited.</p>
                         </blockquote>
+                        <span class="artifact-label">02 / SCHOOL POETRY</span>
                     </div>
-                    <div class="publication-content">
+                    <div class="publication-copy">
                         <p class="publication-meta">POEM / CONTRIBUTOR / 2026</p>
                         <h3>Between Bells and Heartbeats</h3>
                         <p>
                             <span data-copy-lang="zh">為學校英文詩集撰寫的作品，記錄十六歲的校園生活。</span>
                             <span data-copy-lang="en">Written for the school English poetry collection, reflecting on school life at sixteen.</span>
                         </p>
-                        <button type="button" data-open-dialog="poem-dialog">
-                            <span data-copy-lang="zh">閱讀作品說明</span>
-                            <span data-copy-lang="en">Read the note</span>
+                        <button class="publication-action magnetic" type="button" data-open-dialog="poem-dialog">
+                            <span data-copy-lang="zh">打開作品註記</span>
+                            <span data-copy-lang="en">Open writing note</span>
                             <span aria-hidden="true">↗</span>
                         </button>
                     </div>
                 </article>
             </div>
-        </section>
 
-        <section class="section now-section" aria-labelledby="now-title">
-            <header class="section-heading">
-                <p class="overline">04 / <span data-copy-lang="zh">現在</span><span data-copy-lang="en">Now</span></p>
-                <h2 id="now-title">
-                    <span data-copy-lang="zh">目前在做的事。</span>
-                    <span data-copy-lang="en">What I am working on now.</span>
-                </h2>
-            </header>
-
-            <dl class="now-list">
-                <div>
-                    <dt>SCHOOL</dt>
-                    <dd>
-                        <span data-copy-lang="zh">培正中學 · 演講學社社長</span>
-                        <span data-copy-lang="en">Pui Ching Middle School · President, Speech Society</span>
-                    </dd>
-                </div>
-                <div>
-                    <dt>iGEM 2026</dt>
-                    <dd>
-                        <span data-copy-lang="zh">軟件 · 建模 · Wiki 工程</span>
-                        <span data-copy-lang="en">Software · Modelling · Wiki engineering</span>
-                    </dd>
-                </div>
-                <div>
-                    <dt>INTERESTS</dt>
-                    <dd>
-                        <span data-copy-lang="zh">校園工具 · 網絡系統 · 公共表達 · 澳門文化</span>
-                        <span data-copy-lang="en">School tools · Network systems · Public communication · Macao culture</span>
-                    </dd>
-                </div>
-            </dl>
+            <div class="now-strip" data-reveal>
+                <p class="eyebrow">04 / <span data-copy-lang="zh">現在</span><span data-copy-lang="en">Now</span></p>
+                <dl>
+                    <div>
+                        <dt>SCHOOL</dt>
+                        <dd><span data-copy-lang="zh">培正中學 · 演講學社社長</span><span data-copy-lang="en">Pui Ching Middle School · President, Speech Society</span></dd>
+                    </div>
+                    <div>
+                        <dt>iGEM 2026</dt>
+                        <dd><span data-copy-lang="zh">軟件 · 建模 · Wiki 工程</span><span data-copy-lang="en">Software · Modelling · Wiki engineering</span></dd>
+                    </div>
+                    <div>
+                        <dt>INTERESTS</dt>
+                        <dd><span data-copy-lang="zh">校園工具 · 網絡系統 · 公共表達 · 澳門文化</span><span data-copy-lang="en">School tools · Network systems · Public communication · Macao culture</span></dd>
+                    </div>
+                </dl>
+            </div>
         </section>
     </main>
 
-    <footer class="site-footer" id="contact">
-        <p class="overline">05 / <span data-copy-lang="zh">聯絡</span><span data-copy-lang="en">Contact</span></p>
+    <footer class="site-footer" id="contact" data-section-name-zh="聯絡" data-section-name-en="Contact">
+        <div class="footer-orbit" aria-hidden="true">
+            <span>WRITE</span>
+            <span>BUILD</span>
+            <span>SPEAK</span>
+        </div>
+        <p class="eyebrow">05 / <span data-copy-lang="zh">聯絡</span><span data-copy-lang="en">Contact</span></p>
         <div class="footer-main">
             <h2>
+                <span data-copy-lang="zh">有一件事需要<br>整理清楚？</span>
+                <span data-copy-lang="en">Something that needs<br>to become clear?</span>
+            </h2>
+            <p>
                 <span data-copy-lang="zh">有合作想法，可以直接寫信給我。</span>
                 <span data-copy-lang="en">Have something in mind? Write to me.</span>
-            </h2>
-            <a class="email-link" href="mailto:ansonlotiniat@gmail.com">
+            </p>
+            <a class="email-link magnetic" href="mailto:ansonlotiniat@gmail.com">
                 <span>ansonlotiniat@gmail.com</span>
                 <span aria-hidden="true">↗</span>
             </a>
         </div>
+
         <div class="footer-bottom">
             <p>© <span data-year>2026</span> ANSON LO / MACAO</p>
-            <nav aria-label="Social links">
+            <nav aria-label="External and page links">
                 <a href="https://github.com/ansonlotiniat" target="_blank" rel="noopener">GitHub ↗</a>
-                <a href="#top">
-                    <span data-copy-lang="zh">回到頂部 ↑</span>
-                    <span data-copy-lang="en">Back to top ↑</span>
-                </a>
+                <a href="#top"><span data-copy-lang="zh">回到頂部 ↑</span><span data-copy-lang="en">Back to top ↑</span></a>
             </nav>
         </div>
     </footer>
 
+    <div class="next-step" data-next-step>
+        <span class="next-step-index" data-next-index>01</span>
+        <a href="#about" data-next-link>
+            <small><span data-copy-lang="zh">下一段</span><span data-copy-lang="en">Next</span></small>
+            <b data-next-label>方法</b>
+            <span aria-hidden="true">↓</span>
+        </a>
+    </div>
+
     <dialog class="publication-dialog" id="book-dialog" aria-labelledby="book-dialog-title" data-dialog>
         <div class="dialog-shell">
-            <button class="dialog-close" type="button" aria-label="Close" data-close-dialog>
-                <span aria-hidden="true">×</span>
-            </button>
+            <button class="dialog-close" type="button" aria-label="Close" data-close-dialog>×</button>
             <div class="dialog-media">
-                <img src="macao-diary-colophon.png" width="705" height="483" alt="《澳門日記—回歸故事集》題名與編輯名單">
+                <img src="macao-diary-colophon.png" alt="《澳門日記—回歸故事集》題名頁及編輯名單" width="735" height="489" loading="lazy" decoding="async">
             </div>
             <div class="dialog-copy">
                 <p class="publication-meta">BOOK / EDITOR / 2025</p>
@@ -501,12 +564,10 @@
     </dialog>
 
     <dialog class="publication-dialog" id="poem-dialog" aria-labelledby="poem-dialog-title" data-dialog>
-        <div class="dialog-shell poem-dialog-shell">
-            <button class="dialog-close" type="button" aria-label="Close" data-close-dialog>
-                <span aria-hidden="true">×</span>
-            </button>
+        <div class="dialog-shell">
+            <button class="dialog-close" type="button" aria-label="Close" data-close-dialog>×</button>
             <div class="dialog-poem" lang="en">
-                <p>ANSON LO / 2026</p>
+                <p>BETWEEN BELLS AND HEARTBEATS / ANSON LO</p>
                 <blockquote>
                     We talk about exams,<br>
                     about the future like it’s a city<br>
@@ -523,5 +584,15 @@
             </div>
         </div>
     </dialog>
+
+    <noscript>
+        <style>
+            .method-frame { position: relative !important; opacity: 1 !important; visibility: visible !important; }
+            .method-frame + .method-frame { margin-top: 1rem; }
+            .project-viewport { overflow-x: auto !important; }
+            .project-panel { min-width: min(90vw, 72rem) !important; }
+            .next-step { display: none !important; }
+        </style>
+    </noscript>
 </body>
 </html>
