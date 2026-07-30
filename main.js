@@ -1,6 +1,8 @@
+const root = document.documentElement;
 const menuButton = document.querySelector("[data-menu-button]");
 const navigation = document.querySelector("[data-navigation]");
 const progress = document.querySelector("[data-progress]");
+const languageButtons = [...document.querySelectorAll("[data-set-language]")];
 const navLinks = [...document.querySelectorAll(".site-navigation a")];
 const sections = [...document.querySelectorAll("main section[id]")];
 
@@ -20,15 +22,42 @@ menuButton?.addEventListener("click", () => {
 navLinks.forEach((link) => link.addEventListener("click", closeMenu));
 
 document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        const wasOpen = menuButton?.getAttribute("aria-expanded") === "true";
-        closeMenu();
-        if (wasOpen) menuButton?.focus();
-    }
+    if (event.key !== "Escape") return;
+    const wasOpen = menuButton?.getAttribute("aria-expanded") === "true";
+    closeMenu();
+    if (wasOpen) menuButton?.focus();
 });
 
 window.addEventListener("resize", () => {
-    if (window.innerWidth > 832) closeMenu();
+    if (window.innerWidth > 864) closeMenu();
+});
+
+function setLanguage(language, persist = true) {
+    const next = language === "en" ? "en" : "zh";
+    root.dataset.language = next;
+    root.lang = next === "zh" ? "zh-Hant" : "en";
+    languageButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.setLanguage === next));
+    });
+
+    if (!persist) return;
+    try {
+        localStorage.setItem("anson-language", next);
+    } catch {
+        // The page still works when browser storage is unavailable.
+    }
+}
+
+let savedLanguage = null;
+try {
+    savedLanguage = localStorage.getItem("anson-language");
+} catch {
+    savedLanguage = null;
+}
+
+setLanguage(savedLanguage === "en" ? "en" : "zh", false);
+languageButtons.forEach((button) => {
+    button.addEventListener("click", () => setLanguage(button.dataset.setLanguage));
 });
 
 function updateProgress() {
@@ -59,7 +88,7 @@ const sectionObserver = new IntersectionObserver(
 sections.forEach((section) => sectionObserver.observe(section));
 
 const revealTargets = document.querySelectorAll(
-    ".discipline-grid article, .work-row, .method-grid article, .about-copy p",
+    ".profile-pillars article, .build-item, .record-group, .interest-list li",
 );
 
 revealTargets.forEach((element) => element.setAttribute("data-reveal", ""));
@@ -75,7 +104,7 @@ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
                 observer.unobserve(entry.target);
             });
         },
-        { threshold: 0.12 },
+        { threshold: 0.1 },
     );
 
     revealTargets.forEach((element) => revealObserver.observe(element));

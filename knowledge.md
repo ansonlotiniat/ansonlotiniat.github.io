@@ -4,40 +4,50 @@ Last updated: 2026-07-30
 
 ## Reframed goal
 
-Present Anson as a technically serious student engineer with human and civic concerns. The site should read like an editorial portfolio, not an AI-generated startup landing page.
+Present Anson as a whole person rather than a collection of repositories: a student builder, speaker, team lead, and cross-disciplinary learner from Macao. The homepage should show how technology, communication, leadership, humanities, science, and mathematics connect in his life.
+
+## Content boundaries
+
+- Do not feature or discuss miscellaneous GitHub repositories.
+- Do not present research topics, speculative projects, pending team roles, or results that Anson has not chosen to publish.
+- Do not claim maintainer or developer-team status for ORCA, Athena, or other external projects while that status is pending.
+- Use the long achievement list to understand Anson's interests, but publish only a focused, representative selection.
+- Keep public-interest and technical claims grounded in activities Anson explicitly supplied.
 
 ## Design decisions
 
-- Visual language: flat civic/editorial modernism; paper white, ink black, signal red, and one cobalt action color.
-- Remove the previous AI-portfolio clichés: particle field, glassmorphism, purple gradients, terminal window, typing carousel, skill percentages, stat counters, icon wall, cursor glow, and tilt effects.
-- Use a strict modular grid, large left-aligned typography, visible rules, numbered sections, and evidence-led project descriptions.
-- Typography stack begins with `Amsterdam Sans`, followed by `Avenir Next`, Arial, and Helvetica. Amsterdam Sans is proprietary and restricted to City of Amsterdam staff and suppliers, so the repository does not redistribute the font file. This follows the municipality's official Arial fallback while allowing a legally installed local copy to render.
-- Interaction is intentionally quiet: mobile menu, reading progress, active-section state, and small reveal transitions that respect reduced-motion preferences.
-- Public-interest projects are described as prototypes, never as deployed medical/civic services.
+- Bilingual Traditional Chinese and English interface with a persistent language switch. Chinese is the default.
+- Self-host the open-source JetBrains Mono variable font for Latin text; use native Traditional Chinese system fonts for CJK coverage.
+- Visual language: personal editorial dossier rather than a developer dashboard. Warm paper, deep navy, vivid orange, acid lime, strict rules, numbered records, and monospaced indexing.
+- No particle effects, glassmorphism, gradients, terminal windows, skill bars, GitHub cards, trophy icons, or decorative certification walls.
+- Interaction stays quiet: language switching, keyboard-safe mobile navigation, reading progress, active-section state, and reduced-motion support.
+- Homepage copy centres on how Anson works: building for real teams, explaining complex ideas, leading groups, and crossing disciplinary boundaries.
 
-## Content hierarchy
+## Public content hierarchy
 
-1. Positioning: engineering where code has consequences.
-2. Current work: PuiChing Macau iGEM 2026, core engineering across software, modelling, and wiki.
-3. Technical depth: Agent Trust, conflict-aware muon g−2 HVP analysis, Accessibility Lint, Food Rescue Network, Shelter Route.
-4. Working method: provenance, designed failure paths, and human constraints.
-5. Short biography and direct contact.
+1. Personal positioning: builder, speaker, and team lead from Macao.
+2. Current role: PuiChing Macau iGEM 2026 core engineering across software, modelling, and wiki.
+3. Personal profile: build for nearby communities, communicate clearly, and cross boundaries deliberately.
+4. Real systems: school sports day, debate operations, iGEM workflows, and National Games mini program.
+5. Selected record: speaking/leadership, networks/IT, humanities, and science/mathematics.
+6. Interest map: team tools, network infrastructure, computing for science, Macao culture, and public communication.
 
-## Key claims and sources
+## Key claims and confidence
 
-- PuiChing Macau iGEM 2026 role across software, modelling, and wiki: supplied directly by Anson; high confidence.
-- Team project framing around a probiotic butyrate platform and gut–brain axis research: [2026 team wiki](https://2026.igem.wiki/puiching-macau/); high confidence.
-- Project mechanisms and status: each linked GitHub repository README; high confidence for repository implementation, not a claim of external deployment.
-- Amsterdam typography name, permitted usage, and Arial fallback: [Gemeente Amsterdam typography guidance](https://www.amsterdam.nl/stijlweb/uitgangspunten/typografie/); high confidence.
+- All awards, student-society roles, school software projects, and current interests were supplied directly by Anson on 2026-07-30; high confidence as first-party claims.
+- PuiChing Macau iGEM 2026 core role across software, modelling, and wiki was supplied directly by Anson; high confidence.
+- Team link: [PuiChing Macau iGEM 2026](https://2026.igem.wiki/puiching-macau/).
+- JetBrains Mono source and licence: [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono), SIL Open Font License 1.1.
 
 ## Build status
 
-- Full static-site redesign implemented in `index.html`, `style.css`, and `main.js`.
-- Open Graph social card generated to match the finished editorial system.
-- HTML, CSS, JavaScript, local asset, and outbound link checks passed.
-- Published successfully from `main` to [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) on 2026-07-30.
+- Bilingual static-site rebuild completed in `index.html`, `style.css`, and `main.js`.
+- JetBrains Mono variable font and OFL licence added locally.
+- New Open Graph card generated for the personal identity system.
+- HTML, CSS, JavaScript, bilingual-pair counts, and whitespace checks passed.
+- Pending: local asset/link verification and GitHub Pages publication.
 
 ## Open questions
 
-- Confirm whether Anson wants a personal portrait or bilingual Chinese copy in a later version.
-- Replace prototype descriptions when iGEM software and modelling pages contain final technical detail.
+- A later version may add a portrait if Anson selects one intentionally.
+- Certificate images should remain out of the homepage unless a dedicated archive page is requested.
