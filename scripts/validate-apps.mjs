@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const configPath = path.join(root, "apps.config.js");
 const htmlPath = path.join(root, "index.html");
+const mainPath = path.join(root, "main.js");
 const errors = [];
 
 const source = fs.readFileSync(configPath, "utf8");
@@ -16,6 +17,12 @@ vm.runInNewContext(source, sandbox, { filename: configPath });
 
 const apps = sandbox.window.ANSON_APP_MANIFEST;
 const html = fs.readFileSync(htmlPath, "utf8");
+const main = fs.readFileSync(mainPath, "utf8");
+const fixedShellAssets = [
+    "assets/app-icons/apps.png",
+    "assets/app-icons/home-folder.png",
+    "assets/app-icons/mail.png",
+];
 
 if (!Array.isArray(apps) || apps.length === 0) {
     errors.push("apps.config.js must expose a non-empty window.ANSON_APP_MANIFEST array.");
@@ -88,6 +95,20 @@ if (!html.includes("data-explore-results")) {
     errors.push("index.html is missing the data-explore-results mount.");
 }
 
+if (!html.includes('id="explore"')) {
+    errors.push('index.html is missing id="explore" for the Dock Apps launcher.');
+}
+
+if (!main.includes("dataset.dockExplore")) {
+    errors.push("main.js is missing the fixed macOS Apps launcher.");
+}
+
+for (const asset of fixedShellAssets) {
+    if (!fs.existsSync(path.join(root, asset))) {
+        errors.push(`fixed shell asset does not exist at "${asset}".`);
+    }
+}
+
 if (!exploreFilterValues.includes("")) {
     errors.push("Tahoe Explore filters must include an empty All Apps filter.");
 }
@@ -118,6 +139,6 @@ if (errors.length) {
     console.log(
         `App manifest OK: ${apps.length} apps, ${windowIds.size} windows, `
         + `${shortcuts.size} unique shortcuts, ${uniqueExploreFilters.size} Explore filters, `
-        + "and all icons resolved.",
+        + `${fixedShellAssets.length} fixed shell icons, and all paths resolved.`,
     );
 }

@@ -71,13 +71,17 @@ node scripts/validate-apps.mjs
 ```
 
 檢查器會阻止以下常見錯誤：重複 ID、重複快捷鍵、清單與視窗 ID 不一致、缺少中英
-文字段、圖示路徑失效，以及 script 載入順序錯誤。
+文字段、圖示路徑失效、固定 Apps／Folder／Mail 殼層圖示遺失、Apps 入口遺失，以及
+script 載入順序錯誤。
 
 ## 分組與排序
 
 - `group: "system"` 放 Finder 類系統入口。
 - `group: "work"` 放作品 App。
-- Dock 完全依照陣列順序顯示；當 `group` 改變時會自動插入分隔線。
+- 作品 App 仍依照陣列順序顯示。macOS 26 的固定 `Apps`／Explore 入口會自動放在
+  Finder 後面，因此不需要加入 manifest，也不會占用 `⌥數字` 快捷鍵。
+- 所有目前項目都屬於釘選 App，所以 Dock 不在 Finder、作品 App 與 Mail 之間插入
+  假分隔線；將來只有加入「最近使用」或「文件／垃圾桶」區域時才應新增原生分隔線。
 - Mail 是固定在 Dock 最右側的聯絡動作，不屬於作品 App 清單。
 - Tahoe Explore 的分類按鈕直接搜尋 manifest 的 `keywords`。若新 App 要出現在
   Engineering、iGEM 或 Writing 分類，加入對應英文關鍵字即可；新增分類只需在

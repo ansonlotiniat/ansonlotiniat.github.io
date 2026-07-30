@@ -28,6 +28,36 @@ function appIcon(app, className) {
     return icon;
 }
 
+function appsLauncher() {
+    const launcher = document.createElement("button");
+    launcher.type = "button";
+    launcher.className = "dock-item dock-apps-item";
+    launcher.dataset.openExplore = "";
+    launcher.dataset.dockExplore = "";
+    launcher.setAttribute("aria-haspopup", "dialog");
+    launcher.setAttribute("aria-controls", "explore");
+
+    const tooltip = document.createElement("span");
+    tooltip.className = "dock-tooltip";
+    tooltip.append(localizedSpan({
+        zh: "App — 探索 Anson",
+        en: "Apps — Explore Anson",
+    }));
+
+    const icon = document.createElement("span");
+    icon.className = "dock-icon apps-icon";
+    icon.setAttribute("aria-hidden", "true");
+    const image = document.createElement("img");
+    image.src = "assets/app-icons/apps.png";
+    image.alt = "";
+    image.width = 64;
+    image.height = 64;
+    icon.append(image);
+
+    launcher.append(tooltip, icon);
+    return launcher;
+}
+
 function renderLaunchers() {
     const exploreContainer = document.querySelector("[data-explore-results]");
     const dockContainer = document.querySelector("[data-dock]");
@@ -63,14 +93,6 @@ function renderLaunchers() {
         }
 
         if (dockContainer) {
-            const previousApp = appManifest[index - 1];
-            if (previousApp && previousApp.group !== app.group) {
-                const separator = document.createElement("span");
-                separator.className = "dock-separator";
-                separator.setAttribute("aria-hidden", "true");
-                dockContainer.append(separator);
-            }
-
             const launcher = document.createElement("button");
             launcher.type = "button";
             launcher.className = "dock-item";
@@ -86,14 +108,14 @@ function renderLaunchers() {
             indicator.setAttribute("aria-hidden", "true");
             launcher.append(tooltip, appIcon(app, "dock-icon"), indicator);
             dockContainer.append(launcher);
+
+            if (app.id === "about") {
+                dockContainer.append(appsLauncher());
+            }
         }
     });
 
     if (dockContainer) {
-        const separator = document.createElement("span");
-        separator.className = "dock-separator";
-        separator.setAttribute("aria-hidden", "true");
-
         const mail = document.createElement("a");
         mail.className = "dock-item dock-link";
         mail.href = "mailto:ansonlotiniat@gmail.com";
@@ -110,7 +132,7 @@ function renderLaunchers() {
         image.height = 64;
         icon.append(image);
         mail.append(tooltip, icon);
-        dockContainer.append(separator, mail);
+        dockContainer.append(mail);
     }
 }
 
