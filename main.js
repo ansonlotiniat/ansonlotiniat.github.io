@@ -145,6 +145,7 @@ const exploreBackdrop = document.querySelector("[data-explore-backdrop]");
 const exploreInput = document.querySelector("[data-explore-input]");
 const exploreResults = [...document.querySelectorAll("[data-explore-result]")];
 const exploreEmpty = document.querySelector("[data-explore-empty]");
+const exploreFilters = [...document.querySelectorAll("[data-explore-filter]")];
 
 const xcodeButtons = [...document.querySelectorAll("[data-xcode-file]")];
 const xcodePanels = [...document.querySelectorAll("[data-xcode-panel]")];
@@ -620,6 +621,11 @@ function setExploreSelection(index) {
 
 function filterExplore() {
     const query = (exploreInput?.value || "").trim().toLocaleLowerCase();
+    exploreFilters.forEach((button) => {
+        const filter = (button.dataset.exploreFilter || "").trim().toLocaleLowerCase();
+        button.classList.toggle("is-active", filter === query);
+        button.setAttribute("aria-pressed", String(filter === query));
+    });
     exploreResults.forEach((result) => {
         const haystack = `${result.dataset.keywords || ""} ${result.textContent}`.toLocaleLowerCase();
         result.hidden = query ? !haystack.includes(query) : false;
@@ -723,6 +729,14 @@ document.querySelectorAll("[data-open-explore]").forEach((button) => {
 
 exploreBackdrop?.addEventListener("click", () => closeExplore());
 exploreInput?.addEventListener("input", filterExplore);
+exploreFilters.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (!exploreInput) return;
+        exploreInput.value = button.dataset.exploreFilter || "";
+        filterExplore();
+        exploreInput.focus({ preventScroll: true });
+    });
+});
 
 exploreResults.forEach((result) => {
     result.addEventListener("pointermove", () => {
@@ -746,7 +760,7 @@ explorePanel?.addEventListener("keydown", (event) => {
         event.preventDefault();
         visible[selectedExploreIndex]?.click();
     } else if (event.key === "Tab") {
-        const focusable = [exploreInput, ...visible].filter(Boolean);
+        const focusable = [exploreInput, ...exploreFilters, ...visible].filter(Boolean);
         const first = focusable[0];
         const last = focusable.at(-1);
         if (event.shiftKey && document.activeElement === first) {
@@ -1026,6 +1040,22 @@ if (pixelCursor && finePointer.matches) {
     }, { passive: true });
     document.documentElement.addEventListener("mouseleave", () => {
         pixelCursor.classList.remove("is-visible");
+    });
+}
+
+if (finePointer.matches && !reducedMotion.matches) {
+    [dock, explorePanel].filter(Boolean).forEach((surface) => {
+        surface.addEventListener("pointermove", (event) => {
+            const rect = surface.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / Math.max(rect.width, 1)) * 100;
+            const y = ((event.clientY - rect.top) / Math.max(rect.height, 1)) * 100;
+            surface.style.setProperty("--glass-x", `${x}%`);
+            surface.style.setProperty("--glass-y", `${y}%`);
+        }, { passive: true });
+        surface.addEventListener("pointerleave", () => {
+            surface.style.setProperty("--glass-x", "50%");
+            surface.style.setProperty("--glass-y", "0%");
+        });
     });
 }
 

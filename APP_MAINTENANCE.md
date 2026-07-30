@@ -79,6 +79,9 @@ node scripts/validate-apps.mjs
 - `group: "work"` 放作品 App。
 - Dock 完全依照陣列順序顯示；當 `group` 改變時會自動插入分隔線。
 - Mail 是固定在 Dock 最右側的聯絡動作，不屬於作品 App 清單。
+- Tahoe Explore 的分類按鈕直接搜尋 manifest 的 `keywords`。若新 App 要出現在
+  Engineering、iGEM 或 Writing 分類，加入對應英文關鍵字即可；新增分類只需在
+  `index.html` 加一個 `data-explore-filter="關鍵字"` 按鈕，不必修改 JavaScript。
 
 ## 改名或刪除
 

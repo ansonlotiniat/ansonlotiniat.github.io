@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#24333b">
+    <meta name="theme-color" content="#234d46">
     <meta name="color-scheme" content="dark">
     <title>AnsonOS — Anson Lo</title>
     <meta name="description" content="Anson Lo 的互動工作桌面：打開 Xcode、Visual Studio Code 與 Overleaf，探索他如何建立系統、協調 iGEM 工程與編輯文字。">
@@ -21,7 +21,7 @@
 
     <link rel="canonical" href="https://ansonlotiniat.github.io/">
     <link rel="preload" href="JetBrainsMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/wallpapers/lake-louise.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="assets/wallpapers/mit-killian-court.jpg" as="image" type="image/jpeg">
     <link rel="preload" href="assets/app-icons/visual-studio-code.png" as="image" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="macos.css">
@@ -697,7 +697,28 @@
             <div class="explore-search">
                 <span class="search-glyph" aria-hidden="true"></span>
                 <input type="search" data-explore-input autocomplete="off" spellcheck="false" aria-controls="explore-results" placeholder="探索 Anson 的工作…" aria-label="Search Anson's work">
-                <kbd>esc</kbd>
+                <span class="explore-run-hint" aria-hidden="true">
+                    <span data-copy-lang="zh">打開</span>
+                    <span data-copy-lang="en">Open</span>
+                    <kbd>↵</kbd>
+                </span>
+            </div>
+            <div class="explore-modes" role="group" aria-label="Explore filters">
+                <button class="is-active" type="button" data-explore-filter="" aria-pressed="true">
+                    <span data-copy-lang="zh">所有 App</span>
+                    <span data-copy-lang="en">All Apps</span>
+                </button>
+                <button type="button" data-explore-filter="engineering" aria-pressed="false">
+                    <span data-copy-lang="zh">工程</span>
+                    <span data-copy-lang="en">Engineering</span>
+                </button>
+                <button type="button" data-explore-filter="iGEM" aria-pressed="false">
+                    <span>iGEM</span>
+                </button>
+                <button type="button" data-explore-filter="writing" aria-pressed="false">
+                    <span data-copy-lang="zh">寫作</span>
+                    <span data-copy-lang="en">Writing</span>
+                </button>
             </div>
             <div class="explore-body">
                 <p class="explore-category">
@@ -710,11 +731,6 @@
                     <span data-copy-lang="en">No matching workspace. Try “systems”, “iGEM”, or “writing”.</span>
                 </p>
             </div>
-            <footer class="explore-footer">
-                <span><kbd>↑</kbd><kbd>↓</kbd> <span data-copy-lang="zh">選擇</span><span data-copy-lang="en">select</span></span>
-                <span><kbd>↵</kbd> <span data-copy-lang="zh">打開</span><span data-copy-lang="en">open</span></span>
-                <span><kbd>⌘K</kbd> <span data-copy-lang="zh">可靠開啟；macOS 可能先攔截 ⌘Space</span><span data-copy-lang="en">reliable; macOS may intercept ⌘Space first</span></span>
-            </footer>
         </section>
 
         <nav class="dock" data-dock aria-label="Applications"></nav>

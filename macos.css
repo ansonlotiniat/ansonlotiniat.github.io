@@ -1,6 +1,6 @@
 /*
- * macOS shell
- * -----------
+ * macOS Tahoe 26 shell
+ * --------------------
  * The application interiors live in style.css. This file owns only the
  * desktop shell, native window geometry, Spotlight, Dock, and custom cursor.
  * Keeping the shell separate makes future app additions independent of the
@@ -9,16 +9,15 @@
 
 :root {
     --menu-height: 28px;
-    --dock-height: 72px;
-    --mac-blue: #0a84ff;
-    --mac-border: rgba(0, 0, 0, 0.24);
+    --dock-height: 84px;
+    --mac-border: rgba(255, 255, 255, 0.34);
     --mac-shadow:
-        0 24px 70px rgba(0, 0, 0, 0.34),
-        0 7px 24px rgba(0, 0, 0, 0.2);
+        0 30px 80px rgba(0, 0, 0, 0.3),
+        0 8px 25px rgba(0, 0, 0, 0.18);
 }
 
 html {
-    background: #24333b;
+    background: #234d46;
 }
 
 body {
@@ -29,9 +28,9 @@ body {
 
 .wallpaper {
     inset: -1px;
-    background-color: #526d72;
-    background-image: url("assets/wallpapers/lake-louise.jpg");
-    background-position: center 50%;
+    background-color: #265b51;
+    background-image: url("assets/wallpapers/mit-killian-court.jpg");
+    background-position: center 46%;
     background-repeat: no-repeat;
     background-size: cover;
     perspective: none;
@@ -45,8 +44,8 @@ body {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(180deg, rgba(8, 19, 23, 0.2) 0, transparent 18%, transparent 72%, rgba(4, 12, 16, 0.15) 100%),
-        linear-gradient(90deg, rgba(7, 17, 20, 0.08), transparent 22%, transparent 76%, rgba(7, 17, 20, 0.06));
+        linear-gradient(180deg, rgba(8, 24, 22, 0.18) 0, transparent 13%, transparent 68%, rgba(7, 29, 24, 0.14) 100%),
+        radial-gradient(circle at 50% 22%, transparent 0 28%, rgba(6, 25, 23, 0.035) 76%);
     pointer-events: none;
 }
 
@@ -64,15 +63,17 @@ body {
     height: var(--menu-height);
     padding: 0 11px 0 10px;
     border: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     color: rgba(255, 255, 255, 0.96);
-    background: rgba(20, 30, 32, 0.45);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07);
-    backdrop-filter: blur(28px) saturate(1.35);
-    -webkit-backdrop-filter: blur(28px) saturate(1.35);
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     font-size: 13px;
     font-weight: 450;
     line-height: 1;
+    text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.76),
+        0 0 9px rgba(0, 0, 0, 0.35);
 }
 
 .menu-left,
@@ -101,7 +102,12 @@ body {
 .menu-brand:focus-visible,
 .menu-status-button:hover,
 .menu-status-button:focus-visible {
-    background: rgba(255, 255, 255, 0.16);
+    background: rgba(231, 244, 242, 0.24);
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.42),
+        0 2px 8px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(18px) saturate(1.6);
+    -webkit-backdrop-filter: blur(18px) saturate(1.6);
 }
 
 .menu-brand span {
@@ -136,7 +142,7 @@ body {
     height: 22px;
     padding: 0 4px;
     place-items: center;
-    border-radius: 5px;
+    border-radius: 8px;
     color: inherit;
     background: transparent;
 }
@@ -304,16 +310,18 @@ body {
 
 .explore-art {
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.48);
-    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    border-radius: 17px;
     color: #fff;
     background:
-        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.32), transparent 33%),
-        linear-gradient(145deg, rgba(83, 94, 101, 0.94), rgba(22, 30, 34, 0.95));
+        radial-gradient(circle at 28% 14%, rgba(255, 255, 255, 0.58), transparent 38%),
+        linear-gradient(145deg, rgba(209, 231, 229, 0.56), rgba(31, 55, 54, 0.58));
     box-shadow:
-        inset 0 1px rgba(255, 255, 255, 0.36),
-        0 1px 1px rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(14px);
+        inset 0 1px rgba(255, 255, 255, 0.72),
+        inset 0 -1px rgba(255, 255, 255, 0.2),
+        0 5px 12px rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(22px) saturate(1.6);
+    -webkit-backdrop-filter: blur(22px) saturate(1.6);
 }
 
 .explore-art .search-glyph {
@@ -333,28 +341,70 @@ body {
 /* Dock */
 
 .dock {
-    bottom: 4px;
-    height: 68px;
-    padding: 5px 7px 4px;
-    border: 1px solid rgba(255, 255, 255, 0.32);
-    border-radius: 18px;
-    background: rgba(225, 231, 230, 0.34);
+    --glass-x: 50%;
+    --glass-y: 0%;
+    bottom: 12px;
+    height: 62px;
+    padding: 4px 7px 5px;
+    border: 0.75px solid rgba(255, 255, 255, 0.58);
+    border-radius: 21px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.27), rgba(255, 255, 255, 0.08) 48%, rgba(173, 220, 213, 0.14)),
+        rgba(224, 239, 236, 0.13);
     box-shadow:
-        inset 0 1px rgba(255, 255, 255, 0.46),
-        0 12px 30px rgba(0, 0, 0, 0.28);
-    backdrop-filter: blur(30px) saturate(1.35);
-    -webkit-backdrop-filter: blur(30px) saturate(1.35);
+        inset 0 1px rgba(255, 255, 255, 0.72),
+        inset 0 -1px rgba(255, 255, 255, 0.18),
+        0 11px 28px rgba(0, 0, 0, 0.22),
+        0 2px 7px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(28px) saturate(1.72) brightness(1.08);
+    -webkit-backdrop-filter: blur(28px) saturate(1.72) brightness(1.08);
+}
+
+.dock::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    border-radius: inherit;
+    content: "";
+    background:
+        radial-gradient(
+            circle at var(--glass-x) var(--glass-y),
+            rgba(255, 255, 255, 0.62),
+            rgba(255, 255, 255, 0.17) 20%,
+            transparent 46%
+        );
+    mix-blend-mode: screen;
+    opacity: 0.68;
+    pointer-events: none;
+    transition: opacity 160ms ease;
+}
+
+.dock::after {
+    position: absolute;
+    z-index: 0;
+    top: 1px;
+    right: 18px;
+    left: 18px;
+    height: 1px;
+    border-radius: 50%;
+    content: "";
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.82), transparent);
+    pointer-events: none;
+}
+
+.dock > * {
+    z-index: 1;
 }
 
 .dock-item {
-    width: 61px;
-    height: 59px;
-    padding: 0 3px 3px;
+    width: 54px;
+    height: 53px;
+    padding: 0 2px 3px;
 }
 
 .dock-item:hover,
 .dock-item:focus-visible {
-    transform: translateY(-10px) scale(1.2);
+    transform: translateY(-9px) scale(1.18);
 }
 
 .dock-item:has(+ .dock-item:hover),
@@ -365,15 +415,17 @@ body {
 }
 
 .dock-tooltip {
-    bottom: calc(100% + 11px);
-    padding: 5px 9px 6px;
-    border: 1px solid rgba(255, 255, 255, 0.34);
-    border-radius: 6px;
+    bottom: calc(100% + 12px);
+    padding: 6px 10px;
+    border: 0.75px solid rgba(255, 255, 255, 0.52);
+    border-radius: 10px;
     color: rgba(255, 255, 255, 0.96);
-    background: rgba(40, 43, 44, 0.82);
+    background: rgba(43, 54, 53, 0.65);
     box-shadow:
-        inset 0 1px rgba(255, 255, 255, 0.14),
-        0 5px 18px rgba(0, 0, 0, 0.24);
+        inset 0 1px rgba(255, 255, 255, 0.26),
+        0 7px 22px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
     font-size: 11px;
     font-weight: 500;
 }
@@ -387,8 +439,8 @@ body {
 }
 
 .dock-icon {
-    width: 55px;
-    height: 55px;
+    width: 49px;
+    height: 49px;
 }
 
 .dock-icon img,
@@ -398,16 +450,30 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
+}
+
+.dock-icon:not(.overleaf-icon)::after {
+    position: absolute;
+    z-index: 2;
+    inset: 2px;
+    border: 0.6px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    content: "";
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.3),
+        inset 0 -1px rgba(0, 0, 0, 0.06);
+    pointer-events: none;
 }
 
 .dock-icon.overleaf-icon,
 .app-icon.overleaf-icon {
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 13px;
+    border-radius: 12px;
     background:
-        radial-gradient(circle at 28% 18%, #fff, transparent 42%),
-        linear-gradient(150deg, #f1f4ef, #c6ddc0);
+        radial-gradient(circle at 28% 12%, rgba(255, 255, 255, 0.96), transparent 43%),
+        linear-gradient(150deg, rgba(245, 250, 243, 0.92), rgba(179, 214, 172, 0.86));
     box-shadow:
         inset 0 1px rgba(255, 255, 255, 0.74),
         0 5px 10px rgba(0, 0, 0, 0.18);
@@ -425,23 +491,25 @@ body {
 }
 
 .dock-indicator {
-    bottom: -1px;
+    bottom: -3px;
     width: 4px;
     height: 4px;
-    background: rgba(20, 20, 20, 0.78);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.48);
 }
 
 .dock-separator {
-    height: 49px;
-    margin: 0 5px 4px;
-    background: rgba(31, 37, 38, 0.36);
+    height: 43px;
+    margin: 0 5px 5px;
+    background: rgba(255, 255, 255, 0.34);
+    box-shadow: 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* Windows */
 
 .window-layer {
     top: var(--menu-height);
-    bottom: calc(var(--dock-height) + 6px);
+    bottom: var(--dock-height);
 }
 
 .finder-window {
@@ -474,7 +542,7 @@ body {
 
 .window-surface {
     border: 1px solid var(--mac-border);
-    border-radius: 11px;
+    border-radius: 16px;
     box-shadow: var(--mac-shadow);
     transform-origin: 50% 94%;
 }
@@ -487,12 +555,16 @@ body {
 
 .window-titlebar {
     grid-template-columns: 92px 1fr 92px;
-    flex-basis: 38px;
-    height: 38px;
+    flex-basis: 42px;
+    height: 42px;
     padding: 0 13px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+    border-bottom: 0.75px solid rgba(0, 0, 0, 0.13);
     color: #37373a;
-    background: linear-gradient(180deg, #f2f2f2, #e5e5e5);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(235, 238, 237, 0.34)),
+        rgba(230, 234, 233, 0.66);
+    backdrop-filter: blur(28px) saturate(1.45);
+    -webkit-backdrop-filter: blur(28px) saturate(1.45);
     font-size: 12px;
 }
 
@@ -502,9 +574,11 @@ body {
 }
 
 .dark-titlebar {
-    border-bottom-color: rgba(0, 0, 0, 0.55);
+    border-bottom-color: rgba(0, 0, 0, 0.42);
     color: rgba(255, 255, 255, 0.82);
-    background: linear-gradient(180deg, #3b3b3d, #303033);
+    background:
+        linear-gradient(180deg, rgba(91, 91, 95, 0.68), rgba(41, 42, 45, 0.7)),
+        rgba(43, 44, 47, 0.76);
 }
 
 .traffic-lights {
@@ -512,8 +586,8 @@ body {
 }
 
 .traffic-lights button {
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
     border-width: 0.5px;
 }
 
@@ -522,47 +596,159 @@ body {
     background: #c8c8c8;
 }
 
+.finder-window .window-surface {
+    background: rgba(244, 247, 246, 0.92);
+}
+
+.finder-toolbar {
+    flex-basis: 42px;
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+    background: rgba(235, 241, 239, 0.62);
+    backdrop-filter: blur(24px) saturate(1.42);
+    -webkit-backdrop-filter: blur(24px) saturate(1.42);
+}
+
+.finder-toolbar i {
+    border-color: rgba(0, 0, 0, 0.12);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.finder-sidebar {
+    border-right-color: rgba(0, 0, 0, 0.1);
+    background:
+        linear-gradient(160deg, rgba(235, 246, 243, 0.72), rgba(205, 224, 219, 0.48)),
+        rgba(221, 230, 228, 0.56);
+    backdrop-filter: blur(32px) saturate(1.52);
+    -webkit-backdrop-filter: blur(32px) saturate(1.52);
+}
+
+.finder-sidebar button,
+.finder-sidebar a {
+    border-radius: 9px;
+}
+
 /* Spotlight / Explore */
 
 .explore-backdrop {
     inset: var(--menu-height) 0 0;
-    background: rgba(11, 20, 22, 0.08);
-    backdrop-filter: blur(1.5px);
-    -webkit-backdrop-filter: blur(1.5px);
+    background: rgba(8, 25, 23, 0.04);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 
 .explore-panel {
-    top: clamp(74px, 13.5vh, 136px);
-    width: min(680px, calc(100vw - 36px));
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 14px;
+    --glass-x: 50%;
+    --glass-y: 0%;
+    top: clamp(118px, 21vh, 192px);
+    width: min(620px, calc(100vw - 36px));
+    border: 0.75px solid rgba(255, 255, 255, 0.62);
+    border-radius: 24px;
     color: #202024;
-    background: rgba(239, 239, 239, 0.82);
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.36), rgba(211, 232, 229, 0.2) 54%, rgba(184, 221, 215, 0.18)),
+        rgba(225, 239, 237, 0.43);
     box-shadow:
-        inset 0 1px rgba(255, 255, 255, 0.72),
-        0 28px 80px rgba(0, 0, 0, 0.38);
-    backdrop-filter: blur(42px) saturate(1.5);
-    -webkit-backdrop-filter: blur(42px) saturate(1.5);
+        inset 0 1px rgba(255, 255, 255, 0.8),
+        inset 0 -1px rgba(255, 255, 255, 0.2),
+        0 32px 90px rgba(0, 0, 0, 0.34),
+        0 8px 26px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(48px) saturate(1.7) brightness(1.08);
+    -webkit-backdrop-filter: blur(48px) saturate(1.7) brightness(1.08);
+}
+
+.explore-panel::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    border-radius: inherit;
+    content: "";
+    background:
+        radial-gradient(
+            circle at var(--glass-x) var(--glass-y),
+            rgba(255, 255, 255, 0.56),
+            rgba(255, 255, 255, 0.12) 24%,
+            transparent 48%
+        );
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+.explore-panel > * {
+    position: relative;
+    z-index: 1;
 }
 
 .explore-search {
-    gap: 16px;
-    height: 60px;
-    padding: 0 17px 0 21px;
-    border-bottom-color: rgba(0, 0, 0, 0.13);
+    gap: 15px;
+    height: 62px;
+    padding: 0 17px 0 20px;
+    border-bottom: 0;
 }
 
 .explore-search input {
-    font-size: 21px;
+    font-size: 22px;
     font-weight: 400;
 }
 
+.explore-search .search-glyph {
+    color: rgba(40, 48, 48, 0.76);
+}
+
+.explore-run-hint {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(49, 58, 58, 0.48);
+    font-size: 11px;
+}
+
+.explore-run-hint kbd {
+    border-color: rgba(255, 255, 255, 0.48);
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.explore-modes {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 7px;
+    padding: 0 14px 10px;
+    border-bottom: 0.75px solid rgba(38, 54, 52, 0.1);
+}
+
+.explore-modes button {
+    height: 25px;
+    padding: 0 9px;
+    overflow: hidden;
+    border: 0.75px solid rgba(255, 255, 255, 0.36);
+    border-radius: 9px;
+    color: rgba(43, 50, 50, 0.58);
+    background: rgba(255, 255, 255, 0.23);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.36);
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.explore-modes button:hover,
+.explore-modes button:focus-visible,
+.explore-modes button.is-active {
+    color: rgba(31, 38, 38, 0.88);
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.72),
+        0 2px 8px rgba(37, 64, 59, 0.1);
+}
+
 .explore-body {
-    padding: 10px 8px 8px;
+    padding: 9px 8px 10px;
 }
 
 .explore-category {
-    margin: 0 12px 6px;
+    margin: 0 12px 5px;
+    color: rgba(50, 59, 58, 0.52);
     font-family: var(--system-font);
     font-size: 10px;
     font-weight: 600;
@@ -571,21 +757,29 @@ body {
 }
 
 .explore-results button {
-    grid-template-columns: 46px minmax(0, 1fr) auto 38px;
-    min-height: 57px;
+    grid-template-columns: 44px minmax(0, 1fr) auto 38px;
+    min-height: 54px;
     gap: 10px;
     padding: 5px 10px;
-    border-radius: 7px;
+    border: 0.75px solid transparent;
+    border-radius: 13px;
 }
 
 .explore-results button.is-selected,
 .explore-results button:hover {
-    background: var(--mac-blue);
+    color: #222828;
+    border-color: rgba(255, 255, 255, 0.2);
+    background:
+        linear-gradient(90deg, rgba(83, 114, 109, 0.18), rgba(255, 255, 255, 0.08)),
+        rgba(79, 105, 101, 0.11);
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.3),
+        0 2px 8px rgba(23, 55, 50, 0.08);
 }
 
 .explore-results .app-icon {
-    width: 43px;
-    height: 43px;
+    width: 41px;
+    height: 41px;
 }
 
 .result-copy b {
@@ -602,9 +796,14 @@ body {
     font-size: 10px;
 }
 
-.explore-footer {
-    min-height: 34px;
-    font-size: 9px;
+.explore-results button.is-selected .result-copy small,
+.explore-results button:hover .result-copy small {
+    color: rgba(49, 58, 57, 0.62);
+}
+
+.explore-results button.is-selected .result-app,
+.explore-results button:hover .result-app {
+    color: rgba(49, 58, 57, 0.54);
 }
 
 /* Fluorescent pixel cursor */
@@ -711,19 +910,19 @@ html.has-pixel-cursor body.is-dragging * {
     }
 
     .dock-item {
-        width: 57px;
+        width: 52px;
     }
 
     .dock-icon {
-        width: 52px;
-        height: 52px;
+        width: 48px;
+        height: 48px;
     }
 }
 
 @media (max-width: 760px) {
     :root {
         --menu-height: 30px;
-        --dock-height: 65px;
+        --dock-height: 72px;
     }
 
     .menu-bar {
@@ -762,30 +961,30 @@ html.has-pixel-cursor body.is-dragging * {
     }
 
     .dock {
-        bottom: 4px;
+        bottom: 8px;
         max-width: calc(100vw - 10px);
-        height: 61px;
-        padding: 4px 5px 3px;
-        border-radius: 16px;
+        height: 56px;
+        padding: 4px 5px;
+        border-radius: 19px;
     }
 
     .dock-item {
-        width: 49px;
-        height: 54px;
+        width: 46px;
+        height: 48px;
     }
 
     .dock-icon {
-        width: 46px;
-        height: 46px;
+        width: 43px;
+        height: 43px;
     }
 
     .dock-separator {
-        height: 42px;
+        height: 39px;
         margin-inline: 2px;
     }
 
     .window-layer {
-        bottom: calc(var(--dock-height) + 4px);
+        bottom: var(--dock-height);
     }
 
     .window-titlebar {
@@ -793,11 +992,7 @@ html.has-pixel-cursor body.is-dragging * {
     }
 
     .explore-panel {
-        top: 58px;
-    }
-
-    .explore-footer span:last-child {
-        display: none;
+        top: 64px;
     }
 }
 
@@ -819,12 +1014,12 @@ html.has-pixel-cursor body.is-dragging * {
     }
 
     .dock-item {
-        width: 45px;
+        width: 43px;
     }
 
     .dock-icon {
-        width: 42px;
-        height: 42px;
+        width: 40px;
+        height: 40px;
     }
 
     .dock-separator {
@@ -833,6 +1028,14 @@ html.has-pixel-cursor body.is-dragging * {
 
     .explore-results button {
         grid-template-columns: 44px minmax(0, 1fr) 34px;
+    }
+
+    .explore-run-hint {
+        display: none;
+    }
+
+    .explore-modes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .result-app {

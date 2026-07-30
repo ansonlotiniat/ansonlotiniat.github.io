@@ -64,6 +64,9 @@ for (const [index, app] of (apps || []).entries()) {
 const windowIds = new Set(
     [...html.matchAll(/\bdata-window="([^"]+)"/g)].map((match) => match[1]),
 );
+const exploreFilterValues = [
+    ...html.matchAll(/\bdata-explore-filter="([^"]*)"/g),
+].map((match) => match[1].trim().toLocaleLowerCase());
 
 for (const id of ids) {
     if (!windowIds.has(id)) {
@@ -85,6 +88,22 @@ if (!html.includes("data-explore-results")) {
     errors.push("index.html is missing the data-explore-results mount.");
 }
 
+if (!exploreFilterValues.includes("")) {
+    errors.push("Tahoe Explore filters must include an empty All Apps filter.");
+}
+
+const uniqueExploreFilters = new Set();
+for (const filter of exploreFilterValues) {
+    if (uniqueExploreFilters.has(filter)) {
+        errors.push(`duplicate Explore filter "${filter || "All Apps"}".`);
+        continue;
+    }
+    uniqueExploreFilters.add(filter);
+    if (filter && !(apps || []).some((app) => app.keywords.toLocaleLowerCase().includes(filter))) {
+        errors.push(`Explore filter "${filter}" matches no manifest keywords.`);
+    }
+}
+
 const configIndex = html.indexOf('src="apps.config.js"');
 const mainIndex = html.indexOf('src="main.js"');
 if (configIndex < 0 || mainIndex < 0 || configIndex > mainIndex) {
@@ -98,6 +117,7 @@ if (errors.length) {
 } else {
     console.log(
         `App manifest OK: ${apps.length} apps, ${windowIds.size} windows, `
-        + `${shortcuts.size} unique shortcuts, and all icons resolved.`,
+        + `${shortcuts.size} unique shortcuts, ${uniqueExploreFilters.size} Explore filters, `
+        + "and all icons resolved.",
     );
 }
