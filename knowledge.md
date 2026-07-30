@@ -1,6 +1,6 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-30 23:45 CST
+Last updated: 2026-07-30 23:52 CST
 
 ## Reframed goal
 
@@ -55,11 +55,11 @@ The site introduces a person working across software systems, public communicati
 
 - `index.html`, `style.css`, and `main.js` have been rebuilt as the Macao Field Atlas while preserving the verified bilingual content.
 - `map.js` builds the Macao MultiPolygon into three bevelled extruded meshes with drag, arrow-key, reset, mode-transition, viewport-pausing, resize, cleanup, and reduced-motion behaviour.
-- `macao-boundary.geojson`, `vendor/three.module.min.js`, `vendor/three.core.min.js`, and `vendor/three-LICENSE.txt` are now local project assets.
+- `macao-boundary.geojson`, the `macao-outline.svg` no-WebGL fallback, `vendor/three.module.min.js`, `vendor/three.core.min.js`, and `vendor/three-LICENSE.txt` are now local project assets.
 - The three project instruments, publication magnifier, poem reveal, persistent language state, responsive menu, active navigation, and animation/static fallbacks are implemented.
 - `og-v2.png` was generated as one cohesive social card, checked for exact text, and resized to 1200 × 630.
-- JavaScript syntax, HTML5 parsing, Macao geometry generation, ID and ARIA relationships, GeoJSON shape/type, asset presence, local HTTP delivery, CSS block structure, and whitespace checks pass. Final link and live-deployment verification are pending.
-- The previous interaction-led build is live at [ansonlotiniat.github.io](https://ansonlotiniat.github.io/). The Macao Field Atlas rebuild is implemented locally and awaiting its final publication commit.
+- JavaScript syntax, HTML5 parsing, bilingual-pair counts, Macao geometry generation, ID and ARIA relationships, control labelling, GeoJSON shape/type, SVG parsing, image dimensions, asset presence, local HTTP delivery, external-link responses, CSS block structure, and whitespace checks pass.
+- The Macao Field Atlas was published from commit `4e21953` to [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) on 2026-07-30. The live HTML, stylesheet, both JavaScript entry points, GeoJSON, SVG fallback, and both Three.js modules were verified byte-for-byte against the committed local files.
 
 ## Open questions
 
