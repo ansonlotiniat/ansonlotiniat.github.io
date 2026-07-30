@@ -53,7 +53,7 @@ The site introduces a person working across software systems, public communicati
 - The three-case explorer and two publication dialogs are implemented with keyboard and reduced-motion behaviour.
 - `og-calm.png` generated and resized to the social-card standard.
 - HTML, CSS, JavaScript, bilingual-pair, ID relationship, local-asset, prohibited-content, and whitespace checks pass.
-- Deployment pending for this revision.
+- Published successfully from commit `6234f4c` to [ansonlotiniat.github.io](https://ansonlotiniat.github.io/) on 2026-07-30. The live HTML, calm social card, and publication image were verified after deployment.
 
 ## Open questions
 
