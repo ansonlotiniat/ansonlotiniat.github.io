@@ -95,11 +95,19 @@ if (!html.includes("data-explore-results")) {
     errors.push("index.html is missing the data-explore-results mount.");
 }
 
-if (!html.includes('id="explore"')) {
-    errors.push('index.html is missing id="explore" for the Dock Apps launcher.');
+if (!html.includes("data-launchpad-results")) {
+    errors.push("index.html is missing the data-launchpad-results mount.");
 }
 
-if (!main.includes("dataset.dockExplore")) {
+if (!html.includes('id="explore"')) {
+    errors.push('index.html is missing id="explore" for Spotlight search.');
+}
+
+if (!html.includes('id="launchpad"')) {
+    errors.push('index.html is missing id="launchpad" for the Dock Apps launcher.');
+}
+
+if (!main.includes("dataset.openLaunchpad") || !main.includes("dataset.dockExplore")) {
     errors.push("main.js is missing the fixed macOS Apps launcher.");
 }
 
@@ -139,6 +147,7 @@ if (errors.length) {
     console.log(
         `App manifest OK: ${apps.length} apps, ${windowIds.size} windows, `
         + `${shortcuts.size} unique shortcuts, ${uniqueExploreFilters.size} Explore filters, `
-        + `${fixedShellAssets.length} fixed shell icons, and all paths resolved.`,
+        + `Dock + Launchpad + Spotlight mounts, ${fixedShellAssets.length} fixed shell icons, `
+        + "and all paths resolved.",
     );
 }

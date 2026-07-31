@@ -43,34 +43,140 @@
 
         <header class="menu-bar" aria-label="AnsonOS menu bar">
             <div class="menu-left">
-                <button class="menu-brand" type="button" data-open-app="about" aria-label="Open About Anson">
-                    <span aria-hidden="true"></span>
-                </button>
+                <div class="menu-item">
+                    <button class="menu-brand" type="button" data-menu-trigger="apple" aria-expanded="false" aria-controls="apple-menu" aria-label="Apple menu">
+                        <span aria-hidden="true"></span>
+                    </button>
+                    <div class="menu-popover apple-menu" id="apple-menu" data-menu-panel="apple" role="menu" hidden>
+                        <button type="button" role="menuitem" data-open-app="about">
+                            <span data-copy-lang="zh">關於這台 AnsonOS</span>
+                            <span data-copy-lang="en">About This AnsonOS</span>
+                        </button>
+                        <button type="button" role="menuitem" data-menu-command="show-view-options">
+                            <span data-copy-lang="zh">系統設定…</span>
+                            <span data-copy-lang="en">System Settings…</span>
+                        </button>
+                        <span class="menu-separator" aria-hidden="true"></span>
+                        <button type="button" role="menuitem" data-menu-command="open-spotlight">
+                            <span data-copy-lang="zh">Spotlight…</span>
+                            <span data-copy-lang="en">Spotlight…</span>
+                            <kbd>⌘Space</kbd>
+                        </button>
+                        <span class="menu-separator" aria-hidden="true"></span>
+                        <a role="menuitem" href="mailto:ansonlotiniat@gmail.com">
+                            <span data-copy-lang="zh">聯絡 Anson Lo…</span>
+                            <span data-copy-lang="en">Contact Anson Lo…</span>
+                        </a>
+                    </div>
+                </div>
                 <strong class="active-app-name" data-active-app>Finder</strong>
-                <span class="menu-word">
-                    <span data-copy-lang="zh">檔案</span>
-                    <span data-copy-lang="en">File</span>
-                </span>
-                <span class="menu-word">
-                    <span data-copy-lang="zh">編輯</span>
-                    <span data-copy-lang="en">Edit</span>
-                </span>
-                <span class="menu-word">
-                    <span data-copy-lang="zh">顯示方式</span>
-                    <span data-copy-lang="en">View</span>
-                </span>
-                <span class="menu-word">
-                    <span data-copy-lang="zh">前往</span>
-                    <span data-copy-lang="en">Go</span>
-                </span>
-                <span class="menu-word">
-                    <span data-copy-lang="zh">視窗</span>
-                    <span data-copy-lang="en">Window</span>
-                </span>
-                <span class="menu-word">
-                    <span data-copy-lang="zh">輔助說明</span>
-                    <span data-copy-lang="en">Help</span>
-                </span>
+                <div class="menu-item">
+                    <button class="menu-word" type="button" data-menu-trigger="file" aria-expanded="false" aria-controls="file-menu">
+                        <span data-copy-lang="zh">檔案</span>
+                        <span data-copy-lang="en">File</span>
+                    </button>
+                    <div class="menu-popover" id="file-menu" data-menu-panel="file" role="menu" hidden>
+                        <button type="button" role="menuitem" data-menu-command="new-finder">
+                            <span data-copy-lang="zh">新增 Finder 視窗</span>
+                            <span data-copy-lang="en">New Finder Window</span>
+                            <kbd>⌘N</kbd>
+                        </button>
+                        <button type="button" role="menuitem" data-menu-command="open-launchpad">
+                            <span data-copy-lang="zh">打開 App…</span>
+                            <span data-copy-lang="en">Open App…</span>
+                            <kbd>⌘O</kbd>
+                        </button>
+                        <span class="menu-separator" aria-hidden="true"></span>
+                        <button type="button" role="menuitem" data-menu-command="close-active">
+                            <span data-copy-lang="zh">關閉視窗</span>
+                            <span data-copy-lang="en">Close Window</span>
+                            <kbd>⌘W</kbd>
+                        </button>
+                    </div>
+                </div>
+                <div class="menu-item menu-item-collapsible">
+                    <button class="menu-word" type="button" data-menu-trigger="edit" aria-expanded="false" aria-controls="edit-menu">
+                        <span data-copy-lang="zh">編輯</span>
+                        <span data-copy-lang="en">Edit</span>
+                    </button>
+                    <div class="menu-popover" id="edit-menu" data-menu-panel="edit" role="menu" hidden>
+                        <button type="button" role="menuitem" data-menu-command="open-spotlight">
+                            <span data-copy-lang="zh">尋找 Anson 的工作…</span>
+                            <span data-copy-lang="en">Find Anson’s Work…</span>
+                            <kbd>⌘F</kbd>
+                        </button>
+                        <button type="button" role="menuitem" data-menu-command="language">
+                            <span data-copy-lang="zh">切換至 English</span>
+                            <span data-copy-lang="en">Switch to 中文</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="menu-item menu-item-collapsible">
+                    <button class="menu-word" type="button" data-menu-trigger="view" aria-expanded="false" aria-controls="view-menu">
+                        <span data-copy-lang="zh">顯示方式</span>
+                        <span data-copy-lang="en">View</span>
+                    </button>
+                    <div class="menu-popover" id="view-menu" data-menu-panel="view" role="menu" hidden>
+                        <button type="button" role="menuitem" data-menu-command="show-view-options">
+                            <span data-copy-lang="zh">顯示顯示方式選項</span>
+                            <span data-copy-lang="en">Show View Options</span>
+                            <kbd>⌘J</kbd>
+                        </button>
+                        <button type="button" role="menuitem" data-menu-command="clean-up">
+                            <span data-copy-lang="zh">整理桌面</span>
+                            <span data-copy-lang="en">Clean Up Desktop</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="menu-item menu-item-collapsible">
+                    <button class="menu-word" type="button" data-menu-trigger="go" aria-expanded="false" aria-controls="go-menu">
+                        <span data-copy-lang="zh">前往</span>
+                        <span data-copy-lang="en">Go</span>
+                    </button>
+                    <div class="menu-popover" id="go-menu" data-menu-panel="go" role="menu" hidden>
+                        <button type="button" role="menuitem" data-open-app="about">Finder</button>
+                        <button type="button" role="menuitem" data-open-app="xcode">Xcode</button>
+                        <button type="button" role="menuitem" data-open-app="vscode">Visual Studio Code</button>
+                        <button type="button" role="menuitem" data-open-app="overleaf">Overleaf</button>
+                    </div>
+                </div>
+                <div class="menu-item menu-item-collapsible">
+                    <button class="menu-word" type="button" data-menu-trigger="window" aria-expanded="false" aria-controls="window-menu">
+                        <span data-copy-lang="zh">視窗</span>
+                        <span data-copy-lang="en">Window</span>
+                    </button>
+                    <div class="menu-popover" id="window-menu" data-menu-panel="window" role="menu" hidden>
+                        <button type="button" role="menuitem" data-menu-command="minimize-active">
+                            <span data-copy-lang="zh">縮小</span>
+                            <span data-copy-lang="en">Minimize</span>
+                            <kbd>⌘M</kbd>
+                        </button>
+                        <button type="button" role="menuitem" data-menu-command="maximize-active">
+                            <span data-copy-lang="zh">縮放</span>
+                            <span data-copy-lang="en">Zoom</span>
+                        </button>
+                        <button type="button" role="menuitem" data-menu-command="bring-all">
+                            <span data-copy-lang="zh">將全部移到最前方</span>
+                            <span data-copy-lang="en">Bring All to Front</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="menu-item menu-item-collapsible menu-item-help">
+                    <button class="menu-word" type="button" data-menu-trigger="help" aria-expanded="false" aria-controls="help-menu">
+                        <span data-copy-lang="zh">輔助說明</span>
+                        <span data-copy-lang="en">Help</span>
+                    </button>
+                    <div class="menu-popover" id="help-menu" data-menu-panel="help" role="menu" hidden>
+                        <button type="button" role="menuitem" data-menu-command="open-spotlight">
+                            <span data-copy-lang="zh">搜尋 AnsonOS 輔助說明</span>
+                            <span data-copy-lang="en">Search AnsonOS Help</span>
+                        </button>
+                        <button type="button" role="menuitem" data-open-app="about">
+                            <span data-copy-lang="zh">關於 Anson Lo</span>
+                            <span data-copy-lang="en">About Anson Lo</span>
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div class="menu-right">
@@ -81,14 +187,48 @@
                 <button class="menu-status-button menu-explore" type="button" data-open-explore aria-label="Open Explore">
                     <span class="search-glyph" aria-hidden="true"></span>
                 </button>
-                <span class="control-center-icon" aria-hidden="true">
-                    <i></i><i></i>
-                </span>
                 <i class="wifi-icon" aria-hidden="true"></i>
-                <span class="battery-status" aria-hidden="true">
-                    <i class="battery-icon"></i><b>92%</b>
-                </span>
-                <time class="menu-clock" data-clock datetime="2026-07-31T01:00:00+08:00">Fri Jul 31&nbsp;&nbsp;1:00 AM</time>
+                <div class="status-menu">
+                    <button class="menu-status-button control-center-button" type="button" data-status-trigger="control-center" aria-expanded="false" aria-controls="control-center-panel" aria-label="Control Center">
+                        <span class="control-center-icon" aria-hidden="true"><i></i><i></i></span>
+                    </button>
+                    <div class="status-panel control-center-panel" id="control-center-panel" data-status-panel="control-center" hidden>
+                        <div class="control-grid">
+                            <button type="button" class="control-card is-on" data-menu-command="open-spotlight">
+                                <b>Wi-Fi</b><span>AnsonOS</span>
+                            </button>
+                            <button type="button" class="control-card" data-language-toggle>
+                                <b data-copy-lang="zh">語言</b><b data-copy-lang="en">Language</b>
+                                <span data-copy-lang="zh">中文</span><span data-copy-lang="en">English</span>
+                            </button>
+                        </div>
+                        <label class="control-slider">
+                            <span data-copy-lang="zh">顯示器</span><span data-copy-lang="en">Display</span>
+                            <input type="range" min="72" max="112" value="100" data-display-brightness>
+                        </label>
+                    </div>
+                </div>
+                <div class="status-menu">
+                    <button class="battery-status" type="button" data-status-trigger="battery" aria-expanded="false" aria-controls="battery-panel">
+                        <b>92%</b><i class="battery-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="status-panel battery-panel" id="battery-panel" data-status-panel="battery" hidden>
+                        <div class="battery-panel-heading"><b>Battery</b><span>92%</span></div>
+                        <p>Power Source: AnsonOS</p>
+                        <hr>
+                        <button type="button" data-open-app="about">Battery Preferences…</button>
+                    </div>
+                </div>
+                <div class="status-menu">
+                    <button class="clock-button" type="button" data-status-trigger="calendar" aria-expanded="false" aria-controls="calendar-panel">
+                        <time class="menu-clock" data-clock datetime="2026-07-31T01:00:00+08:00">Fri Jul 31&nbsp;&nbsp;1:00 AM</time>
+                    </button>
+                    <div class="status-panel calendar-panel" id="calendar-panel" data-status-panel="calendar" hidden>
+                        <span data-calendar-weekday>Friday</span>
+                        <strong data-calendar-day>31</strong>
+                        <p data-calendar-month>July 2026</p>
+                    </div>
+                </div>
             </div>
         </header>
 
@@ -107,6 +247,48 @@
                 </button>
             </div>
         </main>
+
+        <div class="desktop-context-menu" data-context-menu role="menu" hidden>
+            <button type="button" role="menuitem" data-context-command="new-finder">
+                <span data-copy-lang="zh">新增 Finder 視窗</span>
+                <span data-copy-lang="en">New Finder Window</span>
+            </button>
+            <button type="button" role="menuitem" data-context-command="get-info">
+                <span data-copy-lang="zh">取得資訊</span>
+                <span data-copy-lang="en">Get Info</span>
+            </button>
+            <span aria-hidden="true"></span>
+            <button type="button" role="menuitem" data-context-command="open-launchpad">
+                <span data-copy-lang="zh">探索 App</span>
+                <span data-copy-lang="en">Explore Apps</span>
+            </button>
+            <button type="button" role="menuitem" data-context-command="clean-up">
+                <span data-copy-lang="zh">整理</span>
+                <span data-copy-lang="en">Clean Up</span>
+            </button>
+            <button type="button" role="menuitem" data-context-command="show-view-options">
+                <span data-copy-lang="zh">顯示顯示方式選項</span>
+                <span data-copy-lang="en">Show View Options</span>
+            </button>
+        </div>
+
+        <section class="desktop-view-options" data-view-options aria-labelledby="view-options-title" hidden>
+            <header>
+                <h2 id="view-options-title">
+                    <span data-copy-lang="zh">桌面顯示方式</span>
+                    <span data-copy-lang="en">Desktop View Options</span>
+                </h2>
+                <button type="button" data-close-view-options aria-label="Close">×</button>
+            </header>
+            <label>
+                <span data-copy-lang="zh">圖示大小</span><span data-copy-lang="en">Icon size</span>
+                <input type="range" min="52" max="84" value="64" data-desktop-icon-size>
+            </label>
+            <label>
+                <span data-copy-lang="zh">格線間距</span><span data-copy-lang="en">Grid spacing</span>
+                <input type="range" min="8" max="32" value="14" data-desktop-grid-spacing>
+            </label>
+        </section>
 
         <div class="window-layer" data-window-layer aria-live="off">
             <section class="app-window finder-window" data-window="about" data-app-label="Finder" aria-labelledby="about-window-title" hidden>
@@ -681,6 +863,19 @@
                 </div>
             </section>
         </div>
+
+        <section class="launchpad" id="launchpad" data-launchpad role="dialog" aria-labelledby="launchpad-title" hidden>
+            <h2 class="sr-only" id="launchpad-title">Apps</h2>
+            <label class="launchpad-search">
+                <span class="search-glyph" aria-hidden="true"></span>
+                <input type="search" data-launchpad-input autocomplete="off" spellcheck="false" placeholder="搜尋" aria-label="Search Apps">
+            </label>
+            <div class="launchpad-grid" data-launchpad-results></div>
+            <p class="launchpad-empty" data-launchpad-empty hidden>
+                <span data-copy-lang="zh">沒有符合的 App</span>
+                <span data-copy-lang="en">No matching Apps</span>
+            </p>
+        </section>
 
         <div class="explore-backdrop" data-explore-backdrop hidden></div>
         <section class="explore-panel" id="explore" data-explore role="dialog" aria-modal="true" aria-labelledby="explore-title" hidden>

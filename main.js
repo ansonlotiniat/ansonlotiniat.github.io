@@ -32,10 +32,10 @@ function appsLauncher() {
     const launcher = document.createElement("button");
     launcher.type = "button";
     launcher.className = "dock-item dock-apps-item";
-    launcher.dataset.openExplore = "";
+    launcher.dataset.openLaunchpad = "";
     launcher.dataset.dockExplore = "";
     launcher.setAttribute("aria-haspopup", "dialog");
-    launcher.setAttribute("aria-controls", "explore");
+    launcher.setAttribute("aria-controls", "launchpad");
 
     const tooltip = document.createElement("span");
     tooltip.className = "dock-tooltip";
@@ -60,6 +60,7 @@ function appsLauncher() {
 
 function renderLaunchers() {
     const exploreContainer = document.querySelector("[data-explore-results]");
+    const launchpadContainer = document.querySelector("[data-launchpad-results]");
     const dockContainer = document.querySelector("[data-dock]");
 
     appManifest.forEach((app, index) => {
@@ -90,6 +91,20 @@ function renderLaunchers() {
             shortcut.textContent = `⌥${app.shortcut}`;
             result.append(copy, label, shortcut);
             exploreContainer.append(result);
+        }
+
+        if (launchpadContainer) {
+            const launcher = document.createElement("button");
+            launcher.type = "button";
+            launcher.className = "launchpad-app";
+            launcher.dataset.openApp = app.id;
+            launcher.dataset.launchpadKeywords = `${app.keywords} ${app.appLabel}`;
+            launcher.append(appIcon(app, "launchpad-icon"));
+
+            const title = document.createElement("strong");
+            title.textContent = app.appLabel;
+            launcher.append(title);
+            launchpadContainer.append(launcher);
         }
 
         if (dockContainer) {
@@ -152,7 +167,7 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mobileWindowMode = window.matchMedia("(max-width: 700px)");
 
 const languageButtons = [...document.querySelectorAll("[data-set-language]")];
-const languageToggle = document.querySelector("[data-language-toggle]");
+const languageToggles = [...document.querySelectorAll("[data-language-toggle]")];
 const clock = document.querySelector("[data-clock]");
 const appWindows = new Map(
     [...document.querySelectorAll("[data-window]")].map((element) => [element.dataset.window, element]),
@@ -161,6 +176,12 @@ const appIds = [...appWindows.keys()];
 const dockButtons = new Map(
     [...document.querySelectorAll("[data-dock-app]")].map((element) => [element.dataset.dockApp, element]),
 );
+const dockExploreButton = document.querySelector("[data-dock-explore]");
+
+const launchpad = document.querySelector("[data-launchpad]");
+const launchpadInput = document.querySelector("[data-launchpad-input]");
+const launchpadResults = [...document.querySelectorAll(".launchpad-app")];
+const launchpadEmpty = document.querySelector("[data-launchpad-empty]");
 
 const explorePanel = document.querySelector("[data-explore]");
 const exploreBackdrop = document.querySelector("[data-explore-backdrop]");
@@ -168,6 +189,19 @@ const exploreInput = document.querySelector("[data-explore-input]");
 const exploreResults = [...document.querySelectorAll("[data-explore-result]")];
 const exploreEmpty = document.querySelector("[data-explore-empty]");
 const exploreFilters = [...document.querySelectorAll("[data-explore-filter]")];
+
+const menuTriggers = [...document.querySelectorAll("[data-menu-trigger]")];
+const menuPanels = [...document.querySelectorAll("[data-menu-panel]")];
+const statusTriggers = [...document.querySelectorAll("[data-status-trigger]")];
+const statusPanels = [...document.querySelectorAll("[data-status-panel]")];
+const contextMenu = document.querySelector("[data-context-menu]");
+const viewOptions = document.querySelector("[data-view-options]");
+const desktopIconSize = document.querySelector("[data-desktop-icon-size]");
+const desktopGridSpacing = document.querySelector("[data-desktop-grid-spacing]");
+const displayBrightness = document.querySelector("[data-display-brightness]");
+const calendarWeekday = document.querySelector("[data-calendar-weekday]");
+const calendarDay = document.querySelector("[data-calendar-day]");
+const calendarMonth = document.querySelector("[data-calendar-month]");
 
 const xcodeButtons = [...document.querySelectorAll("[data-xcode-file]")];
 const xcodePanels = [...document.querySelectorAll("[data-xcode-panel]")];
@@ -201,6 +235,8 @@ const pageCopy = {
         description: "Anson Lo 的互動工作桌面：打開 Xcode、Visual Studio Code 與 Overleaf，探索他如何建立系統、協調 iGEM 工程與編輯文字。",
         searchPlaceholder: "探索 Anson 的工作…",
         searchLabel: "搜尋 Anson 的工作",
+        launchpadPlaceholder: "搜尋",
+        launchpadLabel: "搜尋 App",
         switchLanguage: "切換至英文",
         open: "已打開",
         close: "已關閉",
@@ -218,6 +254,8 @@ const pageCopy = {
         description: "An interactive working desktop for Anson Lo. Open Xcode, Visual Studio Code, and Overleaf to explore how he builds, coordinates, and edits.",
         searchPlaceholder: "Explore Anson’s work…",
         searchLabel: "Search Anson's work",
+        launchpadPlaceholder: "Search",
+        launchpadLabel: "Search Apps",
         switchLanguage: "Switch to Chinese",
         open: "opened",
         close: "closed",
@@ -234,8 +272,10 @@ const pageCopy = {
 
 let zIndex = 120;
 let exploreOpen = false;
+let launchpadOpen = false;
 let selectedExploreIndex = 0;
 let previousExploreFocus = null;
+let previousLaunchpadFocus = null;
 let compileState = "done";
 let compileTimer = null;
 let dragState = null;
@@ -274,11 +314,17 @@ function setLanguage(nextLanguage, persist = true) {
         exploreInput.placeholder = pageCopy[next].searchPlaceholder;
         exploreInput.setAttribute("aria-label", pageCopy[next].searchLabel);
     }
+    if (launchpadInput) {
+        launchpadInput.placeholder = pageCopy[next].launchpadPlaceholder;
+        launchpadInput.setAttribute("aria-label", pageCopy[next].launchpadLabel);
+    }
 
     languageButtons.forEach((button) => {
         button.setAttribute("aria-pressed", String(button.dataset.setLanguage === next));
     });
-    languageToggle?.setAttribute("aria-label", pageCopy[next].switchLanguage);
+    languageToggles.forEach((button) => {
+        button.setAttribute("aria-label", pageCopy[next].switchLanguage);
+    });
 
     document.querySelectorAll("[data-window-action]").forEach((button) => {
         const action = button.dataset.windowAction;
@@ -307,8 +353,10 @@ setLanguage(savedLanguage === "en" ? "en" : "zh", false);
 languageButtons.forEach((button) => {
     button.addEventListener("click", () => setLanguage(button.dataset.setLanguage));
 });
-languageToggle?.addEventListener("click", () => {
-    setLanguage(language() === "zh" ? "en" : "zh");
+languageToggles.forEach((button) => {
+    button.addEventListener("click", () => {
+        setLanguage(language() === "zh" ? "en" : "zh");
+    });
 });
 
 function updateClock() {
@@ -331,6 +379,17 @@ function updateClock() {
         .replaceAll(",", "");
     clock.textContent = formatted;
     clock.dateTime = now.toISOString();
+
+    if (calendarWeekday) {
+        calendarWeekday.textContent = new Intl.DateTimeFormat(locale, { weekday: "long" }).format(now);
+    }
+    if (calendarDay) calendarDay.textContent = String(now.getDate());
+    if (calendarMonth) {
+        calendarMonth.textContent = new Intl.DateTimeFormat(locale, {
+            month: "long",
+            year: "numeric",
+        }).format(now);
+    }
 }
 
 updateClock();
@@ -423,6 +482,7 @@ function openApp(appId, options = {}) {
     } = options;
 
     if (exploreOpen) closeExplore(false);
+    if (launchpadOpen) closeLaunchpad(false);
 
     const wasHidden = appWindow.hidden;
     const wasMinimized = appWindow.dataset.minimized === "true";
@@ -622,6 +682,313 @@ desktop?.addEventListener("pointerdown", (event) => {
     writeAppHistory(null, "replace");
 });
 
+function closeMenuPopovers(except = null) {
+    menuPanels.forEach((panel) => {
+        const keepOpen = panel === except;
+        panel.hidden = !keepOpen;
+        const trigger = menuTriggers.find((item) => item.dataset.menuTrigger === panel.dataset.menuPanel);
+        trigger?.setAttribute("aria-expanded", String(keepOpen));
+        trigger?.classList.toggle("is-active", keepOpen);
+    });
+}
+
+function openMenuPopover(trigger, focusFirst = false) {
+    const panel = menuPanels.find((item) => item.dataset.menuPanel === trigger.dataset.menuTrigger);
+    if (!panel) return;
+    const wasOpen = !panel.hidden;
+    closeStatusPanels();
+    closeMenuPopovers(wasOpen ? null : panel);
+    if (!wasOpen && focusFirst) {
+        window.setTimeout(() => panel.querySelector('[role="menuitem"]')?.focus(), 0);
+    }
+}
+
+menuTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+        event.stopPropagation();
+        openMenuPopover(trigger);
+    });
+    trigger.addEventListener("pointerenter", () => {
+        if (menuPanels.some((panel) => !panel.hidden)) openMenuPopover(trigger);
+    });
+    trigger.addEventListener("keydown", (event) => {
+        if (!["ArrowDown", "Enter", " "].includes(event.key)) return;
+        event.preventDefault();
+        openMenuPopover(trigger, true);
+    });
+});
+
+menuPanels.forEach((panel) => {
+    panel.addEventListener("keydown", (event) => {
+        const items = [...panel.querySelectorAll('[role="menuitem"]')];
+        const index = items.indexOf(document.activeElement);
+        if (event.key === "Escape") {
+            event.preventDefault();
+            const trigger = menuTriggers.find((item) => item.dataset.menuTrigger === panel.dataset.menuPanel);
+            closeMenuPopovers();
+            trigger?.focus();
+            return;
+        }
+        if (!["ArrowDown", "ArrowUp"].includes(event.key) || !items.length) return;
+        event.preventDefault();
+        const delta = event.key === "ArrowDown" ? 1 : -1;
+        items[(Math.max(index, 0) + delta + items.length) % items.length].focus();
+    });
+});
+
+function closeStatusPanels(except = null) {
+    statusPanels.forEach((panel) => {
+        const keepOpen = panel === except;
+        panel.hidden = !keepOpen;
+        const trigger = statusTriggers.find((item) => item.dataset.statusTrigger === panel.dataset.statusPanel);
+        trigger?.setAttribute("aria-expanded", String(keepOpen));
+        trigger?.classList.toggle("is-active", keepOpen);
+    });
+}
+
+statusTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const panel = statusPanels.find((item) => item.dataset.statusPanel === trigger.dataset.statusTrigger);
+        if (!panel) return;
+        const wasOpen = !panel.hidden;
+        closeMenuPopovers();
+        closeStatusPanels(wasOpen ? null : panel);
+    });
+});
+
+function hideContextMenu() {
+    if (contextMenu) contextMenu.hidden = true;
+}
+
+function cleanUpDesktop() {
+    const icons = [...document.querySelectorAll(".desktop-icon")];
+    if (hasGsap()) {
+        window.gsap.fromTo(
+            icons,
+            { x: 14, rotate: 1.2 },
+            { x: 0, rotate: 0, duration: 0.38, stagger: 0.04, ease: "back.out(2)", clearProps: "transform" },
+        );
+    } else {
+        icons.forEach((icon) => {
+            icon.classList.remove("is-cleaning");
+            void icon.offsetWidth;
+            icon.classList.add("is-cleaning");
+        });
+    }
+}
+
+function toggleViewOptions(force) {
+    if (!viewOptions) return;
+    const next = typeof force === "boolean" ? force : viewOptions.hidden;
+    viewOptions.hidden = !next;
+    if (next) viewOptions.querySelector("input")?.focus({ preventScroll: true });
+}
+
+function activeWindowId() {
+    return visibleWindows().at(-1)?.dataset.window || null;
+}
+
+function runShellCommand(command) {
+    const appId = activeWindowId();
+    closeMenuPopovers();
+    closeStatusPanels();
+    hideContextMenu();
+
+    if (command === "new-finder") openApp("about");
+    if (command === "open-launchpad") openLaunchpad();
+    if (command === "open-spotlight") openExplore();
+    if (command === "close-active" && appId) closeApp(appId);
+    if (command === "minimize-active" && appId) minimizeApp(appId);
+    if (command === "maximize-active" && appId) toggleMaximize(appId);
+    if (command === "language") setLanguage(language() === "zh" ? "en" : "zh");
+    if (command === "show-view-options") toggleViewOptions(true);
+    if (command === "clean-up") cleanUpDesktop();
+    if (command === "bring-all") {
+        visibleWindows().forEach((appWindow) => focusWindow(appWindow.dataset.window));
+    }
+}
+
+document.querySelectorAll("[data-menu-command]").forEach((button) => {
+    button.addEventListener("click", () => runShellCommand(button.dataset.menuCommand));
+});
+
+document.querySelectorAll(".menu-popover [data-open-app], .status-panel [data-open-app]").forEach((item) => {
+    item.addEventListener("click", () => {
+        closeMenuPopovers();
+        closeStatusPanels();
+    });
+});
+
+desktop?.addEventListener("contextmenu", (event) => {
+    if (!contextMenu) return;
+    event.preventDefault();
+    closeMenuPopovers();
+    closeStatusPanels();
+    contextMenu.hidden = false;
+    const rect = contextMenu.getBoundingClientRect();
+    const left = Math.max(6, Math.min(event.clientX, window.innerWidth - rect.width - 6));
+    const top = Math.max(varMenuHeight(), Math.min(event.clientY, window.innerHeight - rect.height - 6));
+    contextMenu.style.left = `${left}px`;
+    contextMenu.style.top = `${top}px`;
+    contextMenu.querySelector("button")?.focus({ preventScroll: true });
+});
+
+function varMenuHeight() {
+    return Number.parseFloat(getComputedStyle(root).getPropertyValue("--menu-height")) || 31;
+}
+
+document.querySelectorAll("[data-context-command]").forEach((button) => {
+    button.addEventListener("click", () => {
+        const command = button.dataset.contextCommand;
+        if (command === "new-finder" || command === "get-info") openApp("about");
+        if (command === "open-launchpad") openLaunchpad();
+        if (command === "clean-up") cleanUpDesktop();
+        if (command === "show-view-options") toggleViewOptions(true);
+        hideContextMenu();
+    });
+});
+
+document.querySelector("[data-close-view-options]")?.addEventListener("click", () => toggleViewOptions(false));
+desktopIconSize?.addEventListener("input", () => {
+    root.style.setProperty("--desktop-icon-size", `${desktopIconSize.value}px`);
+});
+desktopGridSpacing?.addEventListener("input", () => {
+    root.style.setProperty("--desktop-grid-spacing", `${desktopGridSpacing.value}px`);
+});
+displayBrightness?.addEventListener("input", () => {
+    root.style.setProperty("--screen-brightness", String(Number(displayBrightness.value) / 100));
+});
+
+document.addEventListener("pointerdown", (event) => {
+    if (!event.target.closest(".menu-item")) closeMenuPopovers();
+    if (!event.target.closest(".status-menu")) closeStatusPanels();
+    if (!event.target.closest("[data-context-menu]")) hideContextMenu();
+    if (viewOptions && !viewOptions.hidden && !event.target.closest("[data-view-options], [data-menu-command='show-view-options'], [data-context-command='show-view-options']")) {
+        toggleViewOptions(false);
+    }
+});
+
+function filterLaunchpad() {
+    const query = (launchpadInput?.value || "").trim().toLocaleLowerCase();
+    let visibleCount = 0;
+    launchpadResults.forEach((app) => {
+        const haystack = `${app.dataset.launchpadKeywords || ""} ${app.textContent}`.toLocaleLowerCase();
+        app.hidden = Boolean(query && !haystack.includes(query));
+        if (!app.hidden) visibleCount += 1;
+    });
+    if (launchpadEmpty) launchpadEmpty.hidden = visibleCount > 0;
+}
+
+function setLaunchpadIsolation(isolated) {
+    [desktop, windowLayer, menuBar].forEach((element) => {
+        if (element) element.inert = isolated;
+    });
+}
+
+function openLaunchpad() {
+    if (!launchpad) return;
+    if (launchpadOpen) {
+        closeLaunchpad();
+        return;
+    }
+    if (exploreOpen) closeExplore(false);
+    closeMenuPopovers();
+    closeStatusPanels();
+    hideContextMenu();
+    launchpadOpen = true;
+    previousLaunchpadFocus = document.activeElement;
+    body.classList.add("is-launchpad-open");
+    launchpad.hidden = false;
+    launchpad.setAttribute("aria-hidden", "false");
+    setLaunchpadIsolation(true);
+    dockExploreButton?.classList.add("is-open");
+    if (launchpadInput) launchpadInput.value = "";
+    filterLaunchpad();
+
+    if (hasGsap()) {
+        window.gsap.killTweensOf([launchpad, ...launchpadResults]);
+        window.gsap.fromTo(
+            launchpad,
+            { autoAlpha: 0 },
+            { autoAlpha: 1, duration: 0.28, ease: "power2.out", clearProps: "opacity,visibility" },
+        );
+        window.gsap.fromTo(
+            launchpadResults,
+            { y: 18, scale: 0.94, autoAlpha: 0 },
+            {
+                y: 0,
+                scale: 1,
+                autoAlpha: 1,
+                duration: 0.32,
+                stagger: 0.045,
+                ease: "back.out(1.45)",
+                clearProps: "transform,opacity,visibility",
+            },
+        );
+    }
+    window.setTimeout(() => launchpadInput?.focus({ preventScroll: true }), hasGsap() ? 180 : 0);
+}
+
+function finishLaunchpadClose(restoreFocus) {
+    if (!launchpad) return;
+    launchpad.hidden = true;
+    launchpad.setAttribute("aria-hidden", "true");
+    body.classList.remove("is-launchpad-open");
+    setLaunchpadIsolation(false);
+    dockExploreButton?.classList.remove("is-open");
+    if (window.gsap) {
+        window.gsap.set([launchpad, ...launchpadResults], { clearProps: "transform,opacity,visibility" });
+    }
+    if (restoreFocus && previousLaunchpadFocus instanceof HTMLElement) {
+        previousLaunchpadFocus.focus({ preventScroll: true });
+    }
+    previousLaunchpadFocus = null;
+}
+
+function closeLaunchpad(restoreFocus = true) {
+    if (!launchpadOpen) return;
+    launchpadOpen = false;
+    if (hasGsap()) {
+        window.gsap.killTweensOf(launchpad);
+        window.gsap.to(launchpad, {
+            autoAlpha: 0,
+            duration: 0.2,
+            ease: "power2.in",
+            onComplete: () => finishLaunchpadClose(restoreFocus),
+        });
+    } else {
+        finishLaunchpadClose(restoreFocus);
+    }
+}
+
+document.querySelectorAll("[data-open-launchpad]").forEach((button) => {
+    button.addEventListener("click", openLaunchpad);
+});
+launchpadInput?.addEventListener("input", filterLaunchpad);
+launchpad?.addEventListener("keydown", (event) => {
+    const visible = launchpadResults.filter((item) => !item.hidden);
+    if (event.key === "Escape") {
+        event.preventDefault();
+        closeLaunchpad();
+        return;
+    }
+    if (event.key === "Enter" && document.activeElement === launchpadInput && visible.length === 1) {
+        event.preventDefault();
+        visible[0].click();
+        return;
+    }
+    if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) return;
+    const index = visible.indexOf(document.activeElement);
+    if (index < 0) return;
+    event.preventDefault();
+    const columns = Math.max(1, Number.parseInt(getComputedStyle(launchpad.querySelector(".launchpad-grid")).gridTemplateColumns.split(" ").length, 10));
+    const delta = event.key === "ArrowLeft" ? -1
+        : event.key === "ArrowRight" ? 1
+            : event.key === "ArrowUp" ? -columns : columns;
+    visible[(index + delta + visible.length) % visible.length].focus();
+});
+
 function filteredExploreResults() {
     return exploreResults.filter((result) => !result.hidden);
 }
@@ -669,6 +1036,10 @@ function openExplore() {
         exploreInput?.focus();
         return;
     }
+    if (launchpadOpen) closeLaunchpad(false);
+    closeMenuPopovers();
+    closeStatusPanels();
+    hideContextMenu();
     exploreOpen = true;
     previousExploreFocus = document.activeElement;
     explorePanel.hidden = false;
@@ -814,6 +1185,30 @@ document.addEventListener("keydown", (event) => {
         return;
     }
 
+    if (!typing && event.metaKey && event.key.toLocaleLowerCase() === "n") {
+        event.preventDefault();
+        openApp("about");
+        return;
+    }
+
+    if (!typing && event.metaKey && event.key.toLocaleLowerCase() === "w") {
+        const appId = activeWindowId();
+        if (appId) {
+            event.preventDefault();
+            closeApp(appId);
+        }
+        return;
+    }
+
+    if (!typing && event.metaKey && event.key.toLocaleLowerCase() === "m") {
+        const appId = activeWindowId();
+        if (appId) {
+            event.preventDefault();
+            minimizeApp(appId);
+        }
+        return;
+    }
+
     const shortcutApp = appManifest.find((app) => app.shortcut === event.key);
     if (event.altKey && !event.metaKey && !event.ctrlKey && shortcutApp) {
         event.preventDefault();
@@ -821,9 +1216,18 @@ document.addEventListener("keydown", (event) => {
         return;
     }
 
-    if (event.key === "Escape" && exploreOpen) {
-        event.preventDefault();
-        closeExplore();
+    if (event.key === "Escape") {
+        if (exploreOpen) {
+            event.preventDefault();
+            closeExplore();
+        } else if (launchpadOpen) {
+            event.preventDefault();
+            closeLaunchpad();
+        } else {
+            closeMenuPopovers();
+            closeStatusPanels();
+            hideContextMenu();
+        }
     }
 }, true);
 
@@ -1117,7 +1521,6 @@ function boot() {
         const timeline = window.gsap.timeline({ defaults: { ease: "power3.out" } });
         timeline
             .from(".wallpaper", { scale: 1.018, autoAlpha: 0, duration: 0.7 })
-            .from(".menu-bar", { y: -18, autoAlpha: 0, duration: 0.32 }, "-=0.42")
             .from(".desktop-icon", { x: 10, autoAlpha: 0, duration: 0.28, stagger: 0.055 }, "-=0.12")
             .from(".dock", { y: 34, autoAlpha: 0, duration: 0.42 }, "-=0.17")
             .from(".dock-item", { y: 14, autoAlpha: 0, duration: 0.24, stagger: 0.025 }, "-=0.26");

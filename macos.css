@@ -1018,3 +1018,1048 @@ html.has-pixel-cursor body.is-dragging * {
         transform: none;
     }
 }
+
+/* macosweb.netlify.app reference-fidelity shell
+ * ------------------------------------------------
+ * The reference supplies the interaction proportions: a 31 px dark menu bar,
+ * a 66 px bottom Dock with 58 → 128 px magnification, a full-screen Launchpad,
+ * compact centred windows, and native desktop menus. MIT imagery and Tahoe 26
+ * application assets remain specific to AnsonOS.
+ */
+
+:root {
+    --menu-height: 31px;
+    --dock-height: 76px;
+    --desktop-icon-size: 64px;
+    --desktop-grid-spacing: 14px;
+    --screen-brightness: 1;
+}
+
+.wallpaper {
+    filter: brightness(var(--screen-brightness));
+    transition: filter 160ms ease;
+}
+
+/* Reference menu bar */
+
+.menu-bar {
+    z-index: 2400;
+    height: var(--menu-height);
+    padding: 1px 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+    color: rgba(255, 255, 255, 0.94);
+    background: rgba(25, 25, 29, 0.55);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(22px) saturate(1.15);
+    -webkit-backdrop-filter: blur(22px) saturate(1.15);
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.menu-left,
+.menu-right {
+    align-items: center;
+    height: 100%;
+}
+
+.menu-left {
+    gap: 0;
+}
+
+.menu-right {
+    gap: 7px;
+    padding-left: 12px;
+}
+
+.menu-item,
+.status-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.menu-brand,
+.menu-word,
+.menu-status-button,
+.battery-status,
+.clock-button {
+    height: 27px;
+    border-radius: 5px;
+    color: inherit;
+    background: transparent;
+    box-shadow: none;
+}
+
+.menu-brand {
+    width: 30px;
+    margin: 0 1px 0 0;
+}
+
+.menu-word {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 9px;
+    border: 0;
+    font: inherit;
+    white-space: nowrap;
+}
+
+.menu-brand:hover,
+.menu-brand:focus-visible,
+.menu-brand.is-active,
+.menu-word:hover,
+.menu-word:focus-visible,
+.menu-word.is-active,
+.menu-status-button:hover,
+.menu-status-button:focus-visible,
+.menu-status-button.is-active,
+.battery-status:hover,
+.battery-status:focus-visible,
+.battery-status.is-active,
+.clock-button:hover,
+.clock-button:focus-visible,
+.clock-button.is-active {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.menu-brand span {
+    top: -1px;
+    font-size: 17px;
+}
+
+.active-app-name {
+    max-width: 230px;
+    height: 27px;
+    padding: 0 9px 0 5px;
+    font-size: 14px;
+    font-weight: 760;
+}
+
+.menu-status-button {
+    min-width: 25px;
+    padding: 0 4px;
+}
+
+.menu-explore {
+    width: 25px;
+    min-width: 25px;
+}
+
+.input-source {
+    min-width: 29px;
+    font-size: 12px;
+}
+
+.control-center-button {
+    width: 28px;
+    padding: 0 5px;
+}
+
+.battery-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 6px;
+    border: 0;
+    font-size: 11px;
+    font-weight: 550;
+}
+
+.clock-button {
+    display: flex;
+    align-items: center;
+    padding: 0 7px;
+    border: 0;
+}
+
+.menu-clock {
+    min-width: 144px;
+    font-size: 12px;
+    font-weight: 550;
+}
+
+.menu-popover,
+.status-panel {
+    position: absolute;
+    top: calc(100% + 2px);
+    z-index: 2600;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.96);
+    background: rgba(28, 28, 32, 0.58);
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.32),
+        0 2px 8px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(28px) saturate(1.25);
+    -webkit-backdrop-filter: blur(28px) saturate(1.25);
+}
+
+.menu-popover {
+    left: 0;
+    display: grid;
+    min-width: 224px;
+    padding: 4px;
+}
+
+.apple-menu {
+    min-width: 254px;
+}
+
+.menu-popover[hidden],
+.status-panel[hidden],
+.desktop-context-menu[hidden],
+.desktop-view-options[hidden],
+.launchpad[hidden] {
+    display: none;
+}
+
+.menu-popover button,
+.menu-popover a {
+    display: flex;
+    align-items: center;
+    min-height: 27px;
+    padding: 4px 8px;
+    border-radius: 5px;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    font-size: 12px;
+    text-align: left;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.menu-popover button:hover,
+.menu-popover button:focus-visible,
+.menu-popover a:hover,
+.menu-popover a:focus-visible {
+    background: #087cf0;
+}
+
+.menu-popover kbd {
+    margin-left: auto;
+    padding-left: 20px;
+    color: rgba(255, 255, 255, 0.66);
+    background: transparent;
+    box-shadow: none;
+    font-family: var(--system-font);
+    font-size: 11px;
+}
+
+.menu-popover button:hover kbd,
+.menu-popover button:focus-visible kbd {
+    color: #fff;
+}
+
+.menu-separator {
+    display: block;
+    height: 1px;
+    margin: 4px 7px;
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.status-panel {
+    right: 0;
+    width: 230px;
+    padding: 8px;
+}
+
+.battery-panel-heading {
+    display: flex;
+    justify-content: space-between;
+    padding: 1px 3px 4px;
+}
+
+.battery-panel p {
+    margin: 0;
+    padding: 0 3px 5px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 11px;
+}
+
+.battery-panel hr {
+    margin: 4px 2px;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.battery-panel > button {
+    width: 100%;
+    padding: 5px 7px;
+    border-radius: 5px;
+    color: #fff;
+    text-align: left;
+}
+
+.battery-panel > button:hover,
+.battery-panel > button:focus-visible {
+    background: #087cf0;
+}
+
+.control-center-panel {
+    width: 260px;
+    padding: 10px;
+}
+
+.control-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.control-card {
+    display: flex;
+    min-height: 65px;
+    padding: 9px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 11px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+.control-card.is-on {
+    background: rgba(0, 122, 255, 0.72);
+}
+
+.control-card b {
+    font-size: 12px;
+}
+
+.control-card span {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 10px;
+}
+
+.control-slider {
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    align-items: center;
+    gap: 7px;
+    margin-top: 9px;
+    padding: 8px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 11px;
+}
+
+.control-slider input {
+    width: 100%;
+}
+
+.calendar-panel {
+    display: grid;
+    width: 184px;
+    place-items: center;
+    padding: 12px 16px 15px;
+}
+
+.calendar-panel span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+}
+
+.calendar-panel strong {
+    font-size: 54px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.calendar-panel p {
+    margin: 3px 0 0;
+    font-size: 12px;
+}
+
+body.is-launchpad-open .menu-bar {
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+/* Desktop context menus */
+
+.desktop-icons {
+    gap: var(--desktop-grid-spacing);
+}
+
+.desktop-icon {
+    width: calc(var(--desktop-icon-size) + 24px);
+}
+
+.desktop-icon-art,
+.desktop-folder-icon img {
+    width: var(--desktop-icon-size);
+    height: var(--desktop-icon-size);
+}
+
+.desktop-icon.is-cleaning {
+    animation: desktop-clean-up 380ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes desktop-clean-up {
+    0% { transform: translateX(12px) rotate(1deg); }
+    70% { transform: translateX(-3px) rotate(-0.3deg); }
+    100% { transform: none; }
+}
+
+.desktop-context-menu {
+    position: fixed;
+    z-index: 2550;
+    display: grid;
+    width: 258px;
+    padding: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 8px;
+    background: rgba(226, 235, 232, 0.2);
+    box-shadow: 0 15px 42px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(24px) saturate(1.35);
+    -webkit-backdrop-filter: blur(24px) saturate(1.35);
+}
+
+.desktop-context-menu > span {
+    height: 1px;
+    margin: 4px 7px;
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.desktop-context-menu button {
+    min-height: 29px;
+    padding: 4px 9px;
+    border-radius: 5px;
+    color: #fff;
+    background: transparent;
+    font-size: 13px;
+    text-align: left;
+}
+
+.desktop-context-menu button:hover,
+.desktop-context-menu button:focus-visible {
+    background: #087cf0;
+}
+
+.desktop-view-options {
+    position: fixed;
+    z-index: 2500;
+    top: 43px;
+    right: 12px;
+    width: 270px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    border-radius: 14px;
+    color: #fff;
+    background: rgba(36, 42, 43, 0.52);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(28px) saturate(1.25);
+    -webkit-backdrop-filter: blur(28px) saturate(1.25);
+}
+
+.desktop-view-options header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.desktop-view-options h2 {
+    margin: 0;
+    font-size: 13px;
+}
+
+.desktop-view-options header button {
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.desktop-view-options label {
+    display: grid;
+    grid-template-columns: 82px 1fr;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 11px;
+}
+
+/* Reference Launchpad */
+
+.launchpad {
+    position: fixed;
+    z-index: 1800;
+    inset: 0;
+    padding: 34px 4vw 100px;
+    color: #fff;
+    background: rgba(20, 28, 38, 0.12);
+    backdrop-filter: blur(25px) saturate(1.12) brightness(0.82);
+    -webkit-backdrop-filter: blur(25px) saturate(1.12) brightness(0.82);
+    overflow: auto;
+}
+
+.launchpad-search {
+    display: flex;
+    width: 228px;
+    height: 32px;
+    margin: 0 auto;
+    padding: 0 8px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(15, 21, 30, 0.13);
+}
+
+.launchpad-search .search-glyph {
+    width: 12px;
+    height: 12px;
+    border-width: 1.5px;
+    color: rgba(255, 255, 255, 0.84);
+}
+
+.launchpad-search input {
+    width: 165px;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    color: #fff;
+    background: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    font-size: 14px;
+    text-align: center;
+}
+
+.launchpad-search:focus-within {
+    border-color: rgba(255, 255, 255, 0.42);
+    background: rgba(15, 21, 30, 0.2);
+}
+
+.launchpad-search input:focus {
+    outline: 0;
+    text-align: left;
+}
+
+.launchpad-search input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.launchpad-search input::placeholder {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.launchpad-grid {
+    display: grid;
+    width: min(1120px, 92vw);
+    margin: 56px auto 0;
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    gap: clamp(54px, 8vh, 88px) clamp(48px, 8vw, 128px);
+}
+
+.launchpad-app {
+    display: flex;
+    min-width: 0;
+    padding: 0;
+    border-radius: 12px;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    color: #fff;
+    background: transparent;
+    text-shadow: 0 2px 7px rgba(0, 0, 0, 0.58);
+    transition: transform 140ms ease, filter 140ms ease;
+}
+
+.launchpad-app:hover,
+.launchpad-app:focus-visible {
+    transform: translateY(-3px) scale(1.055);
+}
+
+.launchpad-app:active {
+    filter: brightness(0.72);
+    transform: scale(0.94);
+}
+
+.launchpad-icon {
+    position: relative;
+    display: grid;
+    width: 88px;
+    height: 88px;
+    place-items: center;
+    filter: drop-shadow(0 9px 13px rgba(0, 0, 0, 0.28));
+}
+
+.launchpad-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.launchpad-icon.xcode-icon,
+.launchpad-icon.vscode-icon {
+    background: transparent;
+}
+
+.launchpad-icon.xcode-icon img,
+.launchpad-icon.vscode-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+.launchpad-icon.overleaf-icon {
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 28% 12%, rgba(255, 255, 255, 0.98), transparent 42%),
+        linear-gradient(150deg, #f5faf3, #b3d6ac);
+}
+
+.launchpad-icon.overleaf-icon img {
+    width: 72%;
+    height: 72%;
+}
+
+.launchpad-app strong {
+    max-width: 150px;
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.launchpad-empty {
+    margin: 80px auto 0;
+    color: rgba(255, 255, 255, 0.78);
+    text-align: center;
+}
+
+/* Reference Dock proportions and magnification */
+
+.dock {
+    bottom: 4px;
+    align-items: flex-end;
+    height: 66px;
+    padding: 4px 3px 3px;
+    overflow: visible;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 14px;
+    background: rgba(28, 31, 34, 0.18);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(20px) saturate(1.1) brightness(0.82);
+    -webkit-backdrop-filter: blur(20px) saturate(1.1) brightness(0.82);
+}
+
+.dock::before,
+.dock::after {
+    display: none;
+}
+
+.dock-item {
+    position: relative;
+    display: block;
+    flex: 0 0 auto;
+    width: 58px;
+    height: 58px;
+    padding: 0;
+    transform: none;
+    transition:
+        width 210ms cubic-bezier(0.2, 0.78, 0.25, 1),
+        filter 140ms ease;
+}
+
+.dock-icon {
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    width: 58px;
+    height: 58px;
+    transform: translateX(-50%);
+    transform-origin: 50% 100%;
+    transition:
+        width 210ms cubic-bezier(0.2, 0.78, 0.25, 1),
+        height 210ms cubic-bezier(0.2, 0.78, 0.25, 1),
+        filter 140ms ease;
+}
+
+.dock-item:hover,
+.dock-item:focus-visible {
+    width: 128px;
+    transform: none;
+}
+
+.dock-item:hover .dock-icon,
+.dock-item:focus-visible .dock-icon {
+    width: 128px;
+    height: 128px;
+}
+
+.dock-item:has(+ .dock-item:hover),
+.dock-item:has(+ .dock-item:focus-visible),
+.dock-item:hover + .dock-item,
+.dock-item:focus-visible + .dock-item {
+    width: 80px;
+    transform: none;
+}
+
+.dock-item:has(+ .dock-item:hover) .dock-icon,
+.dock-item:has(+ .dock-item:focus-visible) .dock-icon,
+.dock-item:hover + .dock-item .dock-icon,
+.dock-item:focus-visible + .dock-item .dock-icon {
+    width: 80px;
+    height: 80px;
+}
+
+.dock-tooltip {
+    bottom: calc(100% + 12px);
+    padding: 6px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    border-radius: 8px;
+    color: #171719;
+    background: rgba(238, 238, 239, 0.72);
+    box-shadow: 0 7px 21px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.dock-item:hover .dock-tooltip,
+.dock-item:focus-visible .dock-tooltip {
+    bottom: 142px;
+    transform: translate(-50%, 0) scale(1);
+}
+
+.dock-indicator {
+    bottom: -2px;
+    width: 4px;
+    height: 4px;
+}
+
+.dock-item:active .dock-icon {
+    filter: brightness(0.62) drop-shadow(0 0 10px rgba(0, 0, 0, 0.7));
+}
+
+/* Compact reference-style windows */
+
+.window-layer {
+    top: var(--menu-height);
+    bottom: var(--dock-height);
+}
+
+.finder-window {
+    --window-width: min(840px, 60vw);
+    --window-height: min(570px, 65vh);
+    top: calc(50% - min(285px, 32.5vh));
+    left: calc(50% - min(420px, 30vw));
+}
+
+.xcode-window {
+    --window-width: min(980px, 70vw);
+    --window-height: min(650px, 74vh);
+    top: calc(50% - min(325px, 37vh));
+    left: calc(50% - min(490px, 35vw));
+}
+
+.vscode-window {
+    --window-width: min(900px, 64vw);
+    --window-height: min(600px, 68vh);
+    top: calc(50% - min(300px, 34vh));
+    left: calc(50% - min(450px, 32vw));
+}
+
+.overleaf-window {
+    --window-width: min(980px, 70vw);
+    --window-height: min(650px, 74vh);
+    top: calc(50% - min(325px, 37vh));
+    left: calc(50% - min(490px, 35vw));
+}
+
+.window-surface {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+}
+
+.app-window.is-focused .window-surface {
+    box-shadow:
+        0 24px 40px rgba(0, 0, 0, 0.52),
+        0 5px 14px rgba(0, 0, 0, 0.24);
+}
+
+.window-titlebar {
+    grid-template-columns: 88px 1fr 88px;
+    flex-basis: 39px;
+    height: 39px;
+    padding: 0 15px;
+    border-bottom: 0;
+    background: rgba(252, 255, 251, 0.95);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.dark-titlebar {
+    color: rgba(255, 255, 255, 0.84);
+    background: rgba(47, 48, 51, 0.94);
+}
+
+.window-titlebar h2 {
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.traffic-lights button {
+    width: 13px;
+    height: 13px;
+}
+
+.explore-backdrop {
+    inset: 0;
+    background: rgba(5, 12, 18, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.explore-panel {
+    top: clamp(110px, 18vh, 170px);
+    width: min(610px, calc(100vw - 36px));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 13px;
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(28, 30, 35, 0.58);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.44);
+    backdrop-filter: blur(34px) saturate(1.2);
+    -webkit-backdrop-filter: blur(34px) saturate(1.2);
+}
+
+.explore-panel::before {
+    display: none;
+}
+
+.explore-search .search-glyph {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.explore-search input {
+    color: #fff;
+}
+
+.explore-search input::placeholder {
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.explore-modes {
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.explore-modes button {
+    color: rgba(255, 255, 255, 0.68);
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.explore-modes button:hover,
+.explore-modes button:focus-visible,
+.explore-modes button.is-active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.explore-category {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.explore-results button {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.explore-results button:hover,
+.explore-results button:focus-visible,
+.explore-results button.is-selected {
+    background: rgba(0, 122, 255, 0.7);
+}
+
+.result-copy small,
+.result-app,
+.explore-run-hint {
+    color: rgba(255, 255, 255, 0.56);
+}
+
+@media (max-width: 1000px) {
+    .menu-item-collapsible:not(.menu-item-help) {
+        display: none;
+    }
+
+    .input-source,
+    .control-center-button {
+        display: none;
+    }
+
+    .menu-right {
+        gap: 5px;
+    }
+
+    .launchpad-grid {
+        gap: 58px 50px;
+    }
+
+    .dock-item {
+        width: 55px;
+    }
+
+    .dock-icon {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+@media (max-width: 760px) {
+    :root {
+        --menu-height: 31px;
+        --dock-height: 72px;
+    }
+
+    .menu-bar {
+        padding-inline: 4px;
+    }
+
+    .active-app-name {
+        max-width: 110px;
+        padding-inline: 5px;
+    }
+
+    .menu-word {
+        padding-inline: 7px;
+    }
+
+    .menu-clock {
+        min-width: auto;
+    }
+
+    .battery-status b,
+    .wifi-icon {
+        display: none;
+    }
+
+    .launchpad {
+        padding: 32px 4vw 94px;
+    }
+
+    .launchpad-grid {
+        width: min(620px, 92vw);
+        margin-top: 42px;
+        grid-template-columns: repeat(2, minmax(110px, 1fr));
+        gap: 42px 52px;
+    }
+
+    .dock {
+        bottom: 4px;
+        height: 64px;
+        padding: 4px 4px 3px;
+        border-radius: 16px;
+    }
+
+    .dock-item,
+    .dock-icon {
+        width: 54px;
+        height: 54px;
+    }
+
+    .dock-item:hover,
+    .dock-item:focus-visible,
+    .dock-item:has(+ .dock-item:hover),
+    .dock-item:has(+ .dock-item:focus-visible),
+    .dock-item:hover + .dock-item,
+    .dock-item:focus-visible + .dock-item {
+        width: 54px;
+    }
+
+    .dock-item:hover .dock-icon,
+    .dock-item:focus-visible .dock-icon,
+    .dock-item:has(+ .dock-item:hover) .dock-icon,
+    .dock-item:has(+ .dock-item:focus-visible) .dock-icon,
+    .dock-item:hover + .dock-item .dock-icon,
+    .dock-item:focus-visible + .dock-item .dock-icon {
+        width: 54px;
+        height: 54px;
+    }
+
+    .finder-window,
+    .xcode-window,
+    .vscode-window,
+    .overleaf-window {
+        top: 4px;
+        left: 5px;
+        width: calc(100% - 10px);
+        height: calc(100% - 8px);
+        max-width: none;
+        max-height: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .menu-item-help {
+        display: none;
+    }
+
+    .menu-explore {
+        display: grid;
+    }
+
+    .battery-status {
+        padding-inline: 2px;
+    }
+
+    .launchpad-icon {
+        width: 72px;
+        height: 72px;
+    }
+
+    .launchpad-app strong {
+        font-size: 13px;
+    }
+
+    .desktop-view-options {
+        right: 6px;
+        width: min(270px, calc(100vw - 12px));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .launchpad-app,
+    .dock-item,
+    .dock-icon,
+    .menu-bar {
+        transition: none;
+    }
+
+    .dock-item:hover,
+    .dock-item:focus-visible,
+    .dock-item:has(+ .dock-item:hover),
+    .dock-item:has(+ .dock-item:focus-visible),
+    .dock-item:hover + .dock-item,
+    .dock-item:focus-visible + .dock-item {
+        width: 58px;
+    }
+
+    .dock-item:hover .dock-icon,
+    .dock-item:focus-visible .dock-icon,
+    .dock-item:has(+ .dock-item:hover) .dock-icon,
+    .dock-item:has(+ .dock-item:focus-visible) .dock-icon,
+    .dock-item:hover + .dock-item .dock-icon,
+    .dock-item:focus-visible + .dock-item .dock-icon {
+        width: 58px;
+        height: 58px;
+    }
+}
