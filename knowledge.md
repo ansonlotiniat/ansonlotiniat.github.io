@@ -1,6 +1,6 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-31 17:00 CST
+Last updated: 2026-07-31 17:05 CST
 
 ## Reframed goal
 
@@ -88,6 +88,7 @@ The site must not assume that a portfolio is something to scroll from top to bot
 - Real-browser QA passes 1533×931 desktop and 768×800 small-screen states, a fully transparent menu bar, exact 58→128 px continuous Dock magnification, packed icon boundaries without overlap, glass-width tracking, balanced Overleaf visual weight, click/focus reset, full-screen Launchpad, compact Visual Studio Code, working application menu, desktop context menu, View Options, Control Center, and `⌘Space`; the page console remains empty.
 - W3C HTML validation has zero errors and two informational warnings (the Apple private-use glyph and bilingual language inference). Eleven unique local HTML/CSS references resolve, and local HTTP delivery returns 200 with correct content types for the shell and MIT wallpaper.
 - The reference-fidelity macOS shell was published from interface commit `7421671` by [GitHub Pages run 30615737996](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30615737996) on 2026-07-31. The live HTML, shell stylesheet, interaction JavaScript, and App manifest were verified byte-for-byte against the validated commit.
+- The transparent-menu and continuous-Dock refinement was published from interface commit `fdab619` by [GitHub Pages run 30618409443](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30618409443) on 2026-07-31. The live HTML, shell stylesheet, interaction JavaScript, and App manifest again match the validated source byte-for-byte; public-browser QA confirms a 31 px transparent bar, 58→128→58 px Overleaf Dock interaction, no retained focus magnification, and no console warnings or errors.
 
 ## Open questions
 
