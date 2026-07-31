@@ -1,6 +1,6 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-31 16:15 CST
+Last updated: 2026-07-31 16:19 CST
 
 ## Reframed goal
 
@@ -52,7 +52,7 @@ The site must not assume that a portfolio is something to scroll from top to bot
 ## Public content hierarchy
 
 1. Desktop: immediately recognizable macOS shell, MIT landscape wallpaper, Finder/Home shortcut, and Dock.
-2. Apps/Explore: the second Dock icon opens direct application search and launch.
+2. Apps/Launchpad and Spotlight: the second Dock icon browses all Apps; `⌘Space` searches and launches directly.
 3. Finder: profile, method, current work, and contact.
 4. Xcode: sports-day and debate engineering systems.
 5. Visual Studio Code: iGEM 2026 software/modelling/wiki delivery.
@@ -87,7 +87,7 @@ The site must not assume that a portfolio is something to scroll from top to bot
 - No-GSAP DOM smoke tests pass the exact `Finder → Apps → Xcode → Visual Studio Code → Overleaf → Mail` Dock order, Launchpad search, Escape close, `⌘Space` Spotlight launch, Visual Studio Code launch, File menu, and Finder launch. A real locally vendored GSAP 3.13 smoke test passes `Launchpad → Xcode → minimize → Dock restore → close`.
 - Real-browser QA passes 1533×931 desktop and 768×800 small-screen states, exact Dock magnification geometry, full-screen Launchpad, compact Visual Studio Code, working application menu, desktop context menu, View Options, Control Center, and `⌘Space`; the page console remains empty.
 - W3C HTML validation has zero errors and two informational warnings (the Apple private-use glyph and bilingual language inference). Eleven unique local HTML/CSS references resolve, and local HTTP delivery returns 200 with correct content types for the shell and MIT wallpaper.
-- The native macOS 26 Dock correction was published from commit `69ce9f0` by [GitHub Pages run 30585692209](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30585692209) on 2026-07-31. The live HTML, Dock stylesheet, interaction JavaScript, and exact Apps icon were verified byte-for-byte against the commit.
+- The reference-fidelity macOS shell was published from interface commit `7421671` by [GitHub Pages run 30615737996](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/30615737996) on 2026-07-31. The live HTML, shell stylesheet, interaction JavaScript, and App manifest were verified byte-for-byte against the validated commit.
 
 ## Open questions
 
