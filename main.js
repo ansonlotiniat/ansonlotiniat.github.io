@@ -1469,6 +1469,124 @@ if (pixelCursor && finePointer.matches) {
     });
 }
 
+function setupDockMagnification() {
+    if (!dock || !finePointer.matches || reducedMotion.matches || !hasGsap()) return;
+
+    const glass = dock.querySelector(".dock-glass");
+    const items = [...dock.querySelectorAll(".dock-item")];
+    const records = items
+        .map((item) => {
+            const icon = item.querySelector(".dock-icon");
+            if (!icon) return null;
+            const state = { zoomValue: 1, offsetValue: 0 };
+            const record = {
+                item,
+                icon,
+                state,
+                center: 0,
+                width: 58,
+                render: null,
+                scaleTo: null,
+                xTo: null,
+            };
+            record.render = () => {
+                window.gsap.set(icon, {
+                    scale: state.zoomValue,
+                    x: state.offsetValue,
+                });
+            };
+            record.scaleTo = window.gsap.quickTo(state, "zoomValue", {
+                duration: 0.28,
+                ease: "power3.out",
+                onUpdate: record.render,
+            });
+            record.xTo = window.gsap.quickTo(state, "offsetValue", {
+                duration: 0.28,
+                ease: "power3.out",
+                onUpdate: record.render,
+            });
+            return record;
+        })
+        .filter(Boolean);
+    const glassState = { stretchValue: 1 };
+    const renderGlass = () => {
+        if (!glass) return;
+        window.gsap.set(glass, { scaleX: glassState.stretchValue });
+    };
+    const glassScaleTo = glass
+        ? window.gsap.quickTo(glassState, "stretchValue", {
+            duration: 0.3,
+            ease: "power3.out",
+            onUpdate: renderGlass,
+        })
+        : null;
+    let dockCenter = 0;
+    let dockWidth = 0;
+    let baseItemsWidth = 0;
+
+    function measureDockItems() {
+        const dockRect = dock.getBoundingClientRect();
+        dockWidth = dockRect.width;
+        dockCenter = dockRect.left + dockRect.width / 2;
+        records.forEach((record) => {
+            const rect = record.item.getBoundingClientRect();
+            record.center = rect.left + rect.width / 2;
+            record.width = rect.width;
+        });
+        baseItemsWidth = records.reduce((total, record) => total + record.width, 0);
+    }
+
+    function resetDockMagnification() {
+        records.forEach((record) => {
+            record.scaleTo(1);
+            record.xTo(0);
+        });
+        glassScaleTo?.(1);
+    }
+
+    function updateDockMagnification(event) {
+        if (event.pointerType === "touch" || window.innerWidth <= 760) {
+            resetDockMagnification();
+            return;
+        }
+
+        if (!records[0]?.center) measureDockItems();
+        const maxScaleGain = (128 / 58) - 1;
+
+        const scales = records.map((record) => {
+            const distance = record.center - event.clientX;
+            const absoluteDistance = Math.abs(distance);
+            const influence = Math.exp(-((absoluteDistance / 52) ** 2));
+            return 1 + maxScaleGain * influence;
+        });
+        const targetWidths = records.map((record, index) => record.width * scales[index]);
+        const totalTargetWidth = targetWidths.reduce((total, width) => total + width, 0);
+        let nextLeft = dockCenter - totalTargetWidth / 2;
+
+        records.forEach((record, index) => {
+            const desiredCenter = nextLeft + targetWidths[index] / 2;
+            record.scaleTo(scales[index]);
+            record.xTo(desiredCenter - record.center);
+            nextLeft += targetWidths[index];
+        });
+
+        const chromeWidth = Math.max(0, dockWidth - baseItemsWidth);
+        glassScaleTo?.((totalTargetWidth + chromeWidth) / Math.max(dockWidth, 1));
+    }
+
+    function handleDockResize() {
+        measureDockItems();
+        if (window.innerWidth <= 760) resetDockMagnification();
+    }
+
+    dock.addEventListener("pointerenter", measureDockItems, { passive: true });
+    dock.addEventListener("pointermove", updateDockMagnification, { passive: true });
+    dock.addEventListener("pointerleave", resetDockMagnification, { passive: true });
+    window.addEventListener("resize", handleDockResize, { passive: true });
+}
+
+setupDockMagnification();
+
 if (finePointer.matches && !reducedMotion.matches) {
     [dock, explorePanel].filter(Boolean).forEach((surface) => {
         surface.addEventListener("pointermove", (event) => {

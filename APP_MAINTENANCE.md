@@ -7,6 +7,10 @@ Dock、Launchpad、Spotlight／Explore 搜尋結果、App 名稱、圖示與 `�
 ## 新增一個 App
 
 1. 把圖示放入 `assets/app-icons/`，盡量使用 512×512 或以上、帶透明背景的 PNG。
+   Dock 的互動盒固定為 58×58 px，放大曲線會統一縮放整個 `.dock-icon`。若原始圖示是
+   滿版方形底板、看起來比 macOS 原生圖示重，不要改 Dock 盒或為單一 App 改放大倍率；
+   應在該 App 的 `.dock-icon.<className>` 內用 inset 偽元素繪製較小底板，再縮小內部
+   `img`。Overleaf 是現成範例。這能保持所有 App 的命中區、連續曲線和玻璃寬度一致。
 2. 在 `apps.config.js` 的 `apps` 陣列加入一筆：
 
 ```js
