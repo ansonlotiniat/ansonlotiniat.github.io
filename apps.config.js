@@ -17,18 +17,18 @@
                 className: "finder-icon",
             },
             title: {
-                zh: "關於 Anson",
-                en: "About Anson",
+                zh: "建設中建設中建設中建設中",
+                en: "建設中建設中建設中建設中",
             },
             subtitle: {
-                zh: "身份、工作方式與聯絡",
-                en: "Identity, method, and contact",
+                zh: "建設中建設中建設中建設中",
+                en: "建設中建設中建設中建設中",
             },
             dockLabel: {
-                zh: "Finder — 關於 Anson",
-                en: "Finder — About Anson",
+                zh: "Finder — 建設中建設中建設中建設中",
+                en: "Finder — 建設中建設中建設中建設中",
             },
-            keywords: "anson about profile macao 羅天逸 關於 澳門 學生 developer editor speaker",
+            keywords: "建設中建設中建設中建設中 about profile",
         },
         {
             id: "xcode",
@@ -40,18 +40,18 @@
                 className: "xcode-icon",
             },
             title: {
-                zh: "工程系統",
-                en: "Engineering Systems",
+                zh: "建設中建設中建設中建設中",
+                en: "建設中建設中建設中建設中",
             },
             subtitle: {
-                zh: "校運會與辯論工作流",
-                en: "Sports day and debate workflows",
+                zh: "建設中建設中建設中建設中",
+                en: "建設中建設中建設中建設中",
             },
             dockLabel: {
-                zh: "Xcode — 工程",
-                en: "Xcode — Engineering",
+                zh: "Xcode — 建設中建設中建設中建設中",
+                en: "Xcode — 建設中建設中建設中建設中",
             },
-            keywords: "xcode engineering sports day debate system 工程 校運會 辯論 系統 swift",
+            keywords: "建設中建設中建設中建設中 engineering",
         },
         {
             id: "vscode",
@@ -63,18 +63,18 @@
                 className: "vscode-icon",
             },
             title: {
-                zh: "iGEM 2026",
-                en: "iGEM 2026",
+                zh: "建設中建設中建設中建設中",
+                en: "建設中建設中建設中建設中",
             },
             subtitle: {
-                zh: "軟件、建模與 Wiki 交付鏈",
-                en: "Software, modelling, and wiki delivery",
+                zh: "建設中建設中建設中建設中",
+                en: "建設中建設中建設中建設中",
             },
             dockLabel: {
-                zh: "Visual Studio Code — iGEM",
-                en: "Visual Studio Code — iGEM",
+                zh: "Visual Studio Code — 建設中建設中建設中建設中",
+                en: "Visual Studio Code — 建設中建設中建設中建設中",
             },
-            keywords: "visual studio code vscode igem 2026 software modelling wiki 軟件 建模",
+            keywords: "建設中建設中建設中建設中 igem",
         },
         {
             id: "overleaf",
@@ -86,18 +86,18 @@
                 className: "overleaf-icon",
             },
             title: {
-                zh: "寫作與編輯",
-                en: "Writing & Editing",
+                zh: "建設中建設中建設中建設中",
+                en: "建設中建設中建設中建設中",
             },
             subtitle: {
-                zh: "《澳門日記》與英文詩",
-                en: "Macao Diary and English poetry",
+                zh: "建設中建設中建設中建設中",
+                en: "建設中建設中建設中建設中",
             },
             dockLabel: {
-                zh: "Overleaf — 寫作",
-                en: "Overleaf — Writing",
+                zh: "Overleaf — 建設中建設中建設中建設中",
+                en: "Overleaf — 建設中建設中建設中建設中",
             },
-            keywords: "overleaf writing editing poetry book macao diary 文字 寫作 編輯 詩 澳門日記",
+            keywords: "建設中建設中建設中建設中 writing",
         },
     ];
 

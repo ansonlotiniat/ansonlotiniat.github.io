@@ -1,10 +1,12 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-07-31 17:05 CST
+Last updated: 2026-08-01 18:20 CST
 
 ## Reframed goal
 
 Build a bilingual personal homepage that behaves like Anson Lo’s working Mac rather than a document or portfolio feed. The current metaphor is “AnsonOS”: a deliberately faithful macOS Tahoe 26 desktop shell where a visitor searches for Anson, opens the tools he works through, and learns how he thinks from the interface of each tool.
+
+Temporary public-state override (2026-08-01): retain the interactive desktop and application chrome, but suppress all substantive personal biography, roles, projects, writing, and work descriptions. Every such public-facing string is currently replaced by `建設中建設中建設中建設中`. Generic operating-system/application controls, field labels, product names, and the non-endorsement notice remain intact. Contact destinations remain functional but are shown only as generic `Email` and `GitHub` labels.
 
 The site must not assume that a portfolio is something to scroll from top to bottom. Its primary navigation is application- and state-based: Explore reveals workspaces, the Dock launches them, and several movable windows can remain open together. Xcode represents engineering systems, Visual Studio Code represents iGEM software/modelling/wiki delivery, Overleaf represents writing and editing, and Finder represents identity, method, and contact.
 
@@ -77,6 +79,8 @@ The site must not assume that a portfolio is something to scroll from top to bot
 - Browser interaction reference: [macOS Web](https://macosweb.netlify.app/) was measured at a 1533×931 viewport on 2026-07-31. Its visible shell used a 30.6875 px menu bar, 66 px Dock, approximately 58 px resting icons, 128 px hovered icon, 80 px adjacent icon, full-screen blurred Launchpad, and a centred 768.5×432 Visual Studio Code window. Confidence is high because values were read from the rendered page rather than inferred from screenshots.
 
 ## Build status
+
+- The public site is currently in a construction/privacy state: Finder identity content, Xcode project content, Visual Studio Code workstream content, Overleaf writing content, launcher metadata, search copy, page metadata, social descriptions, and the no-JavaScript fallback no longer expose substantive personal text. The old social card and editorial-credit image remain stored as unreferenced repository artifacts; the live Open Graph image and Overleaf proof/magnifier now use the neutral MIT wallpaper.
 
 - `index.html`, `style.css`, `macos.css`, `apps.config.js`, and `main.js` implement AnsonOS. The previous Three.js map runtime is still not referenced or downloaded by the page.
 - The MIT photographic wallpaper and seven application/desktop marks are stored locally under `assets/`; source, usage, dimensions, and SHA-256 records are current. The older Lake Louise file remains as an unused, documented asset.

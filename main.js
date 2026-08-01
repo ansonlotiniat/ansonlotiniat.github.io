@@ -40,8 +40,8 @@ function appsLauncher() {
     const tooltip = document.createElement("span");
     tooltip.className = "dock-tooltip";
     tooltip.append(localizedSpan({
-        zh: "App — 探索 Anson",
-        en: "Apps — Explore Anson",
+        zh: "App — 建設中建設中建設中建設中",
+        en: "Apps — 建設中建設中建設中建設中",
     }));
 
     const icon = document.createElement("span");
@@ -136,7 +136,7 @@ function renderLaunchers() {
         mail.href = "mailto:ansonlotiniat@gmail.com";
         const tooltip = document.createElement("span");
         tooltip.className = "dock-tooltip";
-        tooltip.append(localizedSpan({ zh: "郵件 — 聯絡 Anson", en: "Mail — Contact Anson" }));
+        tooltip.append(localizedSpan({ zh: "郵件 — 建設中建設中建設中建設中", en: "Mail — 建設中建設中建設中建設中" }));
         const icon = document.createElement("span");
         icon.className = "dock-icon mail-icon";
         icon.setAttribute("aria-hidden", "true");
@@ -231,10 +231,10 @@ const proofLens = document.querySelector("[data-proof-lens]");
 
 const pageCopy = {
     zh: {
-        title: "AnsonOS — Anson Lo",
-        description: "Anson Lo 的互動工作桌面：打開 Xcode、Visual Studio Code 與 Overleaf，探索他如何建立系統、協調 iGEM 工程與編輯文字。",
-        searchPlaceholder: "探索 Anson 的工作…",
-        searchLabel: "搜尋 Anson 的工作",
+        title: "建設中建設中建設中建設中",
+        description: "建設中建設中建設中建設中",
+        searchPlaceholder: "建設中建設中建設中建設中",
+        searchLabel: "建設中建設中建設中建設中",
         launchpadPlaceholder: "搜尋",
         launchpadLabel: "搜尋 App",
         switchLanguage: "切換至英文",
@@ -250,10 +250,10 @@ const pageCopy = {
         },
     },
     en: {
-        title: "AnsonOS — Anson Lo",
-        description: "An interactive working desktop for Anson Lo. Open Xcode, Visual Studio Code, and Overleaf to explore how he builds, coordinates, and edits.",
-        searchPlaceholder: "Explore Anson’s work…",
-        searchLabel: "Search Anson's work",
+        title: "建設中建設中建設中建設中",
+        description: "建設中建設中建設中建設中",
+        searchPlaceholder: "建設中建設中建設中建設中",
+        searchLabel: "建設中建設中建設中建設中",
         launchpadPlaceholder: "Search",
         launchpadLabel: "Search Apps",
         switchLanguage: "Switch to Chinese",
@@ -1331,7 +1331,7 @@ function setOverleafDocument(documentId) {
     overleafSources.forEach((panel) => setPanelVisibility(panel, panel.dataset.overleafSource === documentId));
     overleafPreviews.forEach((panel) => setPanelVisibility(panel, panel.dataset.overleafPreview === documentId));
     overleafSourceTabs.forEach((tab) => tab.classList.toggle("is-active", tab.dataset.sourceTab === documentId));
-    if (currentTex) currentTex.textContent = documentId === "diary" ? "macao-diary.tex" : "between-bells.tex";
+    if (currentTex) currentTex.textContent = "建設中建設中建設中建設中";
     animatePanel(overleafSources.find((panel) => panel.dataset.overleafSource === documentId), { y: 3 });
     animatePanel(overleafPreviews.find((panel) => panel.dataset.overleafPreview === documentId), { y: 5 });
 }
