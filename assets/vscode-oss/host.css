@@ -1,0 +1,561 @@
+:root {
+    color-scheme: dark;
+    background: #0f1113;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: #0f1113;
+}
+
+@media (pointer: fine) {
+    html.ansonos-cursor-active,
+    html.ansonos-cursor-active * {
+        cursor: none !important;
+    }
+}
+
+.anson-vscode-tabbar {
+    position: fixed;
+    z-index: 1002;
+    top: 0;
+    right: 0;
+    left: 46px;
+    display: flex;
+    height: 33px;
+    border-bottom: 1px solid #292b2d;
+    color: #c6c6c6;
+    background: #181a1b;
+    font: 12px/1 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+.anson-vscode-tabbar.is-dismissed,
+.anson-vscode-capture.is-dismissed,
+.anson-vscode-activity-core.is-dismissed,
+.anson-vscode-activity-extras.is-dismissed,
+.anson-vscode-statusbar.is-dismissed {
+    display: none;
+}
+
+.anson-vscode-welcome-tab {
+    display: flex;
+    align-items: center;
+    width: 115px;
+    height: 33px;
+    padding: 0 9px;
+    border: 0;
+    border-right: 1px solid #292b2d;
+    color: #d7d7d7;
+    background: #111315;
+    font: inherit;
+    text-align: left;
+}
+
+.anson-vscode-mark {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    margin-right: 7px;
+}
+
+.anson-vscode-mark::before,
+.anson-vscode-mark::after {
+    position: absolute;
+    content: "";
+    background: #23a8e8;
+}
+
+.anson-vscode-mark::before {
+    inset: 2px 0 2px 7px;
+    clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 82%);
+}
+
+.anson-vscode-mark::after {
+    top: 4px;
+    left: 1px;
+    width: 9px;
+    height: 7px;
+    clip-path: polygon(0 50%, 40% 0, 100% 50%, 40% 100%);
+}
+
+.anson-vscode-welcome-tab > span:nth-child(2) {
+    overflow: hidden;
+    flex: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.anson-vscode-tab-close,
+.anson-vscode-editor-actions button {
+    display: grid;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    place-items: center;
+    color: #a3a3a3;
+    background: transparent;
+    font: 16px/1 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+.anson-vscode-tab-close:hover,
+.anson-vscode-editor-actions button:hover {
+    color: #fff;
+    background: #2a2c2e;
+}
+
+.anson-vscode-editor-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: auto;
+    padding: 4px 8px 4px 0;
+}
+
+.anson-vscode-editor-actions .anson-run {
+    font-size: 13px;
+}
+
+.anson-vscode-editor-actions .anson-claude-action {
+    color: #d97851;
+    font-size: 17px;
+}
+
+.anson-vscode-capture {
+    position: fixed;
+    z-index: 1000;
+    top: 33px;
+    right: 0;
+    bottom: 22px;
+    left: 46px;
+    overflow: auto;
+    color: #cccccc;
+    background: #0f1113;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang TC", sans-serif;
+}
+
+.anson-vscode-capture-grid {
+    display: grid;
+    grid-template-columns: 390px 410px;
+    column-gap: 105px;
+    width: 905px;
+    margin: 96px 0 78px 93px;
+}
+
+.anson-vscode-capture h1,
+.anson-vscode-capture h2,
+.anson-vscode-capture p {
+    margin: 0;
+}
+
+.anson-vscode-capture h1 {
+    color: #d5d5d5;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.14;
+}
+
+.anson-vscode-subtitle {
+    margin-top: 2px !important;
+    color: #777b80;
+    font-size: 20px;
+    line-height: 1.25;
+}
+
+.anson-vscode-section-title {
+    margin: 12px 0 7px !important;
+    color: #c7c7c7;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.anson-vscode-start-list,
+.anson-vscode-recent-list {
+    display: grid;
+    justify-items: start;
+    gap: 1px;
+}
+
+.anson-vscode-start-list button,
+.anson-vscode-recent-list button,
+.anson-vscode-more,
+.anson-vscode-agent-button {
+    border: 0;
+    color: #43a6d5;
+    background: transparent;
+    font: 14px/1.58 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang TC", sans-serif;
+    text-align: left;
+}
+
+.anson-vscode-start-list button,
+.anson-vscode-recent-list button {
+    display: flex;
+    min-height: 24px;
+    padding: 0 3px 0 0;
+    align-items: center;
+}
+
+.anson-vscode-start-list button {
+    height: 29px;
+    min-height: 29px;
+}
+
+.anson-vscode-start-list button:hover,
+.anson-vscode-recent-list button:hover,
+.anson-vscode-more:hover {
+    text-decoration: underline;
+}
+
+.anson-vscode-start-list .anson-vscode-portfolio-open {
+    margin-bottom: 3px;
+    color: #75beff;
+    font-weight: 600;
+}
+
+.anson-vscode-start-icon {
+    display: inline-grid;
+    width: 22px;
+    margin-right: 5px;
+    place-items: center;
+    color: #43a6d5;
+    font-size: 19px;
+}
+
+.anson-vscode-recents {
+    margin-top: 14px;
+}
+
+.anson-vscode-recent-list button {
+    width: 100%;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.anson-vscode-recent-name {
+    flex: 0 0 99px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.anson-vscode-recent-path {
+    overflow: hidden;
+    color: #b8b8b8;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.anson-vscode-guides {
+    padding-top: 80px;
+}
+
+.anson-vscode-guides .anson-vscode-section-title {
+    margin-top: 0 !important;
+}
+
+.anson-vscode-guide-card {
+    display: flex;
+    align-items: center;
+    width: 410px;
+    height: 34px;
+    margin-bottom: 15px;
+    padding: 0 9px;
+    border: 0;
+    border-radius: 6px;
+    color: #d2d2d2;
+    background: #292a2c;
+    font: 14px/1 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    text-align: left;
+}
+
+.anson-vscode-guide-card:hover {
+    background: #343638;
+}
+
+.anson-vscode-guide-icon {
+    display: grid;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 50%;
+    place-items: center;
+    color: #fff;
+    background: #f0f0f0;
+    font-size: 12px;
+}
+
+.anson-vscode-guide-icon.is-copilot {
+    color: #555;
+    font-weight: 700;
+}
+
+.anson-vscode-guide-icon.is-claude {
+    background: #d87955;
+    font-size: 15px;
+}
+
+.anson-vscode-guide-badge {
+    margin-left: 7px;
+    padding: 2px 4px;
+    border-radius: 3px;
+    color: #e8f8ff;
+    background: #3d98bb;
+    font-size: 11px;
+}
+
+.anson-vscode-more {
+    padding: 0;
+}
+
+.anson-vscode-agent-launch {
+    position: fixed;
+    z-index: 1001;
+    right: 0;
+    bottom: 65px;
+    left: 46px;
+    display: grid;
+    justify-items: center;
+    pointer-events: none;
+}
+
+.anson-vscode-agent-button {
+    height: 38px;
+    padding: 0 15px;
+    border-radius: 20px;
+    color: #d5d5d5;
+    background: #2a2b2d;
+    font-size: 13px;
+    pointer-events: auto;
+}
+
+.anson-vscode-agent-button:hover {
+    background: #343638;
+}
+
+.anson-vscode-agent-button span {
+    margin-right: 6px;
+    color: #3da6d7;
+    font-size: 18px;
+}
+
+.anson-vscode-startup-check {
+    position: fixed;
+    z-index: 1001;
+    right: 0;
+    bottom: 32px;
+    left: 46px;
+    display: flex;
+    justify-content: center;
+    color: #9c9c9c;
+    font-size: 12px;
+    padding-right: 10px;
+}
+
+.anson-vscode-startup-check input {
+    position: relative;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    margin: -2px 7px 0 0;
+    border: 1px solid #63666a;
+    border-radius: 2px;
+    background: #292b2d;
+}
+
+.anson-vscode-startup-check input:checked::after {
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    content: "✓";
+    color: #c8c9ca;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.anson-vscode-activity-extras {
+    position: fixed;
+    z-index: 1003;
+    top: 229px;
+    left: 0;
+    display: grid;
+    width: 46px;
+    background: #181a1b;
+}
+
+.anson-vscode-activity-core {
+    position: fixed;
+    z-index: 1003;
+    top: 0;
+    bottom: 22px;
+    left: 0;
+    display: grid;
+    align-content: start;
+    grid-auto-rows: 46px;
+    width: 46px;
+    background: #181a1b;
+}
+
+.anson-vscode-activity-core button {
+    position: relative;
+    display: grid;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 0;
+    place-items: center;
+    color: #85878a;
+    background: #181a1b;
+    font-size: 24px;
+}
+
+.anson-vscode-activity-core button:hover {
+    color: #d5d5d5;
+}
+
+.anson-vscode-activity-core .codicon {
+    font-size: 24px;
+}
+
+.anson-vscode-activity-core .is-account,
+.anson-vscode-activity-core .is-settings {
+    position: absolute;
+    left: 0;
+}
+
+.anson-vscode-activity-core .is-account { bottom: 46px; }
+.anson-vscode-activity-core .is-settings { bottom: 0; }
+
+.anson-vscode-activity-extras button {
+    display: grid;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 0;
+    place-items: center;
+    color: #87898c;
+    background: #181a1b;
+}
+
+.anson-vscode-activity-extras button:hover {
+    color: #d5d5d5;
+}
+
+.anson-vscode-activity-extras svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.55;
+}
+
+.anson-vscode-activity-extras .anson-claude-glyph {
+    color: #9a9a9a;
+    font-size: 26px;
+    line-height: 1;
+}
+
+.anson-vscode-statusbar {
+    position: fixed;
+    z-index: 1004;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    height: 22px;
+    border-top: 1px solid #2b2d2e;
+    color: #9b9c9d;
+    background: #181a1b;
+    font: 11px/1 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+.anson-vscode-statusbar button {
+    height: 21px;
+    padding: 0 6px;
+    border: 0;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+}
+
+.anson-vscode-statusbar button:hover {
+    color: #fff;
+    background: #2a2c2e;
+}
+
+.anson-vscode-statusbar .anson-status-remote {
+    width: 28px;
+    padding: 0;
+    color: #c5c6c7;
+    font-size: 17px;
+}
+
+.anson-vscode-status-spacer {
+    flex: 1;
+}
+
+.anson-vscode-runtime-toast {
+    position: fixed;
+    z-index: 1100;
+    bottom: 34px;
+    left: 58px;
+    max-width: 360px;
+    padding: 9px 12px;
+    border: 1px solid #484b4e;
+    border-radius: 5px;
+    color: #d7d7d7;
+    background: #252729;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+    font: 12px/1.45 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang TC", sans-serif;
+}
+
+@media (max-width: 850px) {
+    .anson-vscode-capture-grid {
+        grid-template-columns: minmax(300px, 1fr);
+        width: auto;
+        margin: 54px 44px 120px;
+    }
+
+    .anson-vscode-guides {
+        padding-top: 28px;
+    }
+
+    .anson-vscode-guide-card {
+        width: min(410px, 100%);
+    }
+}
+
+@media (max-width: 560px) {
+    .anson-vscode-capture,
+    .anson-vscode-tabbar,
+    .anson-vscode-agent-launch,
+    .anson-vscode-startup-check {
+        left: 42px;
+    }
+
+    .anson-vscode-capture-grid {
+        margin: 36px 24px 120px;
+    }
+
+    .anson-vscode-capture h1 {
+        font-size: 29px;
+    }
+
+    .anson-vscode-subtitle,
+    .anson-vscode-section-title {
+        font-size: 17px;
+    }
+
+    .anson-vscode-recent-path {
+        display: none;
+    }
+}

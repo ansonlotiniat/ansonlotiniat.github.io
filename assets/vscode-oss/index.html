@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+    <script>performance.mark("code/didStartRenderer");</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="color-scheme" content="dark">
+    <meta id="vscode-workbench-web-configuration" data-settings='{"callbackRoute":"./out/vs/code/browser/workbench/callback.html","enableWorkspaceTrust":false,"configurationDefaults":{"workbench.startupEditor":"welcomePage","workbench.colorTheme":"Default Dark Modern","workbench.iconTheme":"vs-seti","window.commandCenter":true,"window.menuBarVisibility":"hidden","window.customTitleBarVisibility":"never","workbench.layoutControl.enabled":true,"workbench.activityBar.location":"default","workbench.activityBar.compact":false,"workbench.statusBar.visible":true,"workbench.sideBar.location":"left","workbench.welcomePage.walkthroughs.openOnInstall":false,"workbench.enableExperiments":false,"telemetry.telemetryLevel":"off","extensions.autoCheckUpdates":false,"extensions.autoUpdate":false,"update.mode":"none","security.workspace.trust.enabled":false,"chat.agentHost.enabled":false,"chat.agentFilesLocations":{".github/agents":false,".claude/agents":false,"~/.copilot/agents":false,"~/.claude/agents":false},"chat.agentSkillsLocations":{".agents/skills":false,".github/skills":false,".claude/skills":false,"~/.agents/skills":false,"~/.copilot/skills":false,"~/.claude/skills":false},"chat.instructionsFilesLocations":{".github/instructions":false,".claude/rules":false,"~/.copilot/instructions":false,"~/.claude/rules":false},"chat.hookFilesLocations":{".github/hooks":false,".claude/settings.local.json":false,".claude/settings.json":false,"~/.copilot/hooks":false,"~/.claude/settings.json":false},"chat.useAgentsMdFile":false,"chat.useClaudeMdFile":false,"chat.useAgentSkills":false,"chat.useHooks":false,"chat.useClaudeHooks":false},"productConfiguration":{"embedderIdentifier":"ansonos-code-oss","enableTelemetry":false}}'>
+    <meta id="vscode-workbench-auth-session" data-settings="">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./node_modules/@vscode/codicons/dist/codicon.css?v=20260804-startup2">
+    <link rel="stylesheet" href="./host.css?v=20260809-workspace3">
+    <link rel="preload" href="./workspace-data.js?v=20260809-workspace3" as="script">
+    <link rel="preload" href="./out/vs/workbench/workbench.web.main.internal.css" as="style">
+    <link rel="stylesheet" href="./out/vs/workbench/workbench.web.main.internal.css" media="print" onload="this.media='all'">
+    <script>
+        // Let HTTP start fetching the 17 MB core while the captured shell is
+        // being built. A modulepreload is intentionally omitted for file://,
+        // where Chrome rejects module requests from opaque local origins.
+        if (window.location.protocol !== "file:") {
+            const corePreload = document.createElement("link");
+            corePreload.rel = "modulepreload";
+            corePreload.href = "./out/vs/workbench/workbench.web.main.internal.js";
+            document.head.append(corePreload);
+        }
+    </script>
+    <title>Code - OSS 1.131.0</title>
+</head>
+<body aria-label="Visual Studio Code">
+    <script>
+        const baseUrl = new URL("./", window.location.href).toString();
+        globalThis._VSCODE_FILE_ROOT = `${baseUrl}out/`;
+        performance.mark("code/willLoadWorkbenchMain");
+    </script>
+    <!-- These files contain no module syntax. Loading them as classic scripts
+         keeps the captured UI and localization available under file://. -->
+    <script src="./host.js?v=20260809-workspace3"></script>
+    <script src="./out/nls.messages.zh-tw.js?v=20260809-workspace3"></script>
+    <script src="./workspace-data.js?v=20260809-workspace3"></script>
+    <script src="./workspace-search.js?v=20260809-workspace3"></script>
+    <script>
+        const runtime = document.createElement("script");
+        const fileCompatibilityRuntime = window.location.protocol === "file:"
+            || new URLSearchParams(window.location.search).get("runtime") === "file";
+        globalThis.__ANSON_FILE_RUNTIME = fileCompatibilityRuntime;
+        if (fileCompatibilityRuntime) {
+            runtime.src = "./workbench.file.js?v=20260809-workspace3";
+        } else {
+            runtime.type = "module";
+            runtime.src = "./bootstrap.js?v=20260809-workspace3";
+        }
+        runtime.addEventListener("error", () => {
+            window.parent.postMessage({
+                type: "anson-vscode-error",
+                reason: "runtime-script",
+            }, "*");
+        });
+        document.body.append(runtime);
+    </script>
+</body>
+</html>

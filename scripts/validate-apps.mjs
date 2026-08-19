@@ -66,6 +66,7 @@ for (const [index, app] of (apps || []).entries()) {
     } else if (!fs.existsSync(path.join(root, app.icon.src))) {
         errors.push(`${location}: icon does not exist at "${app.icon.src}".`);
     }
+
 }
 
 const windowIds = new Set(
@@ -133,8 +134,10 @@ for (const filter of exploreFilterValues) {
     }
 }
 
-const configIndex = html.indexOf('src="apps.config.js"');
-const mainIndex = html.indexOf('src="main.js"');
+const scriptSources = [...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)]
+    .map((match) => match[1].split(/[?#]/, 1)[0]);
+const configIndex = scriptSources.indexOf("apps.config.js");
+const mainIndex = scriptSources.indexOf("main.js");
 if (configIndex < 0 || mainIndex < 0 || configIndex > mainIndex) {
     errors.push("apps.config.js must load before main.js.");
 }

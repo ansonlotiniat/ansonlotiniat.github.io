@@ -10,7 +10,9 @@ Dock、Launchpad、Spotlight／Explore 搜尋結果、App 名稱、圖示與 `�
    Dock 的互動盒固定為 58×58 px，放大曲線會統一縮放整個 `.dock-icon`。若原始圖示是
    滿版方形底板、看起來比 macOS 原生圖示重，不要改 Dock 盒或為單一 App 改放大倍率；
    應在該 App 的 `.dock-icon.<className>` 內用 inset 偽元素繪製較小底板，再縮小內部
-   `img`。Overleaf 是現成範例。這能保持所有 App 的命中區、連續曲線和玻璃寬度一致。
+   `img`。Overleaf 是現成範例：底板直接採用 Xcode 圖檔量得的 `204/256` 尺寸比例與
+   `44/204` 圓角比例，而不是猜一個固定 px 值。這能保持所有 App 的命中區、連續曲線和
+   玻璃寬度一致。
 2. 在 `apps.config.js` 的 `apps` 陣列加入一筆：
 
 ```js
@@ -18,7 +20,7 @@ Dock、Launchpad、Spotlight／Explore 搜尋結果、App 名稱、圖示與 `�
     id: "new-app",
     appLabel: "App Name",
     group: "work",
-    shortcut: "4",
+    shortcut: "5",
     icon: {
         src: "assets/app-icons/new-app.png",
         className: "new-app-icon",
@@ -32,8 +34,8 @@ Dock、Launchpad、Spotlight／Explore 搜尋結果、App 名稱、圖示與 `�
         en: "One concrete line",
     },
     dockLabel: {
-        zh: "App Name — 中文用途",
-        en: "App Name — English purpose",
+        zh: "App Name",
+        en: "App Name",
     },
     keywords: "中英文 搜尋 關鍵字 keywords",
 }
@@ -90,6 +92,8 @@ Spotlight 掛載點遺失、Apps 入口遺失，以及 script 載入順序錯誤
   不同：Launchpad 用於瀏覽，Spotlight 用於快速搜尋。
 - 所有目前項目都屬於釘選 App，所以 Dock 不在 Finder、作品 App 與 Mail 之間插入
   假分隔線；將來只有加入「最近使用」或「文件／垃圾桶」區域時才應新增原生分隔線。
+- `dockLabel` 只填 App 的固定名稱，不加入用途說明。Dock 以一個共享名稱泡泡追蹤實際
+  放大、位移後的 icon；游標經過 icon 間空隙時會保留上一個名稱，直到碰到下一個 icon。
 - Mail 是固定在 Dock 最右側的聯絡動作，不屬於作品 App 清單。
 - Spotlight／Explore 的分類按鈕直接搜尋 manifest 的 `keywords`。若新 App 要出現在
   Engineering、iGEM 或 Writing 分類，加入對應英文關鍵字即可；新增分類只需在

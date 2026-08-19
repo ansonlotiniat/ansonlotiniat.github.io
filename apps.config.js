@@ -25,8 +25,8 @@
                 en: "建設中建設中建設中建設中",
             },
             dockLabel: {
-                zh: "Finder — 建設中建設中建設中建設中",
-                en: "Finder — 建設中建設中建設中建設中",
+                zh: "Finder",
+                en: "Finder",
             },
             keywords: "建設中建設中建設中建設中 about profile",
         },
@@ -48,8 +48,8 @@
                 en: "建設中建設中建設中建設中",
             },
             dockLabel: {
-                zh: "Xcode — 建設中建設中建設中建設中",
-                en: "Xcode — 建設中建設中建設中建設中",
+                zh: "Xcode",
+                en: "Xcode",
             },
             keywords: "建設中建設中建設中建設中 engineering",
         },
@@ -71,8 +71,8 @@
                 en: "建設中建設中建設中建設中",
             },
             dockLabel: {
-                zh: "Visual Studio Code — 建設中建設中建設中建設中",
-                en: "Visual Studio Code — 建設中建設中建設中建設中",
+                zh: "Visual Studio Code",
+                en: "Visual Studio Code",
             },
             keywords: "建設中建設中建設中建設中 igem",
         },
@@ -94,10 +94,56 @@
                 en: "建設中建設中建設中建設中",
             },
             dockLabel: {
-                zh: "Overleaf — 建設中建設中建設中建設中",
-                en: "Overleaf — 建設中建設中建設中建設中",
+                zh: "Overleaf",
+                en: "Overleaf",
             },
             keywords: "建設中建設中建設中建設中 writing",
+        },
+        {
+            id: "goodnotes",
+            appLabel: "Goodnotes",
+            group: "study",
+            shortcut: "4",
+            icon: {
+                src: "assets/app-icons/goodnotes.png",
+                className: "goodnotes-icon",
+            },
+            title: {
+                zh: "數學、物理與化學筆記",
+                en: "Maths, Physics & Chemistry Notes",
+            },
+            subtitle: {
+                zh: "整理課堂重點、公式與練習",
+                en: "Class notes, formulae, and practice",
+            },
+            dockLabel: {
+                zh: "Goodnotes",
+                en: "Goodnotes",
+            },
+            keywords: "goodnotes notes study mathematics maths physics chemistry 筆記 數學 物理 化學",
+        },
+        {
+            id: "books",
+            appLabel: "Books",
+            group: "reading",
+            shortcut: "5",
+            icon: {
+                src: "assets/app-icons/books.png",
+                className: "books-icon",
+            },
+            title: {
+                zh: "目前閱讀",
+                en: "Currently Reading",
+            },
+            subtitle: {
+                zh: "Apple Books 書庫與閱讀進度",
+                en: "Apple Books library and reading progress",
+            },
+            dockLabel: {
+                zh: "Books",
+                en: "Books",
+            },
+            keywords: "books apple books reading library ebook 閱讀 書籍 書庫 currently reading",
         },
     ];
 
