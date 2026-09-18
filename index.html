@@ -3,20 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="anson-ui-contract-version" content="20260823-ui1">
     <meta name="theme-color" content="#234d46">
     <meta name="color-scheme" content="dark">
-    <title>建設中建設中建設中建設中</title>
-    <meta name="description" content="建設中建設中建設中建設中">
+    <title>Anson Lo | 個人網站</title>
+    <meta name="description" content="你好，我是來自澳門的學生開發者 Anson。這裡放我做過的程式、寫作、筆記，以及最近在看的書。">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ansonlotiniat.github.io/">
-    <meta property="og:title" content="建設中建設中建設中建設中">
-    <meta property="og:description" content="建設中建設中建設中建設中">
+    <meta property="og:title" content="Anson Lo | 個人網站">
+    <meta property="og:description" content="程式、寫作、課堂筆記和最近在看的書，都放在這個像 Mac 桌面的網站裡。">
     <meta property="og:image" content="https://ansonlotiniat.github.io/assets/wallpapers/mit-killian-court.jpg">
-    <meta property="og:image:alt" content="建設中建設中建設中建設中">
+    <meta property="og:image:alt" content="Anson Lo 的個人網站桌面">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="建設中建設中建設中建設中">
-    <meta name="twitter:description" content="建設中建設中建設中建設中">
+    <meta name="twitter:title" content="Anson Lo | Personal Site">
+    <meta name="twitter:description" content="Code, writing, class notes, and current reading on a Mac-like desktop.">
     <meta name="twitter:image" content="https://ansonlotiniat.github.io/assets/wallpapers/mit-killian-court.jpg">
 
     <link rel="canonical" href="https://ansonlotiniat.github.io/">
@@ -24,8 +25,10 @@
     <link rel="preload" href="JetBrainsMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/wallpapers/mit-killian-court.jpg" as="image" type="image/jpeg">
     <link rel="preload" href="assets/app-icons/visual-studio-code.png" as="image" type="image/png">
-    <link rel="stylesheet" href="style.css?v=20260809-handwritten-vscode3">
-    <link rel="stylesheet" href="macos.css?v=20260804-goodnotes-vscode2">
+    <link rel="stylesheet" href="style.css?v=20260823-ui1">
+    <link rel="stylesheet" href="macos.css?v=20260823-ui1">
+    <link rel="stylesheet" href="dock.css?v=20260823-ui1">
+    <link rel="stylesheet" href="music.css?v=20260823-ui1">
     <script>
         document.documentElement.classList.add("js");
         window.addEventListener("message", (event) => {
@@ -45,8 +48,9 @@
         });
     </script>
     <script src="vendor/gsap.min.js" defer></script>
-    <script src="apps.config.js?v=20260804-goodnotes-vscode2" defer></script>
-    <script src="main.js?v=20260809-handwritten-vscode3" defer></script>
+    <script src="apps.config.js?v=20260823-ui1" defer></script>
+    <script src="media.config.js?v=20260823-media9" defer></script>
+    <script src="main.js?v=20260823-ui1" defer></script>
 </head>
 <body>
     <a class="skip-link" href="#desktop">
@@ -59,7 +63,7 @@
             <div class="wallpaper-shade"></div>
         </div>
 
-        <header class="menu-bar" aria-label="建設中建設中建設中建設中">
+        <header class="menu-bar" aria-label="AnsonOS menu bar">
             <div class="menu-left">
                 <div class="menu-item">
                     <button class="menu-brand" type="button" data-menu-trigger="apple" aria-expanded="false" aria-controls="apple-menu" aria-label="Apple menu">
@@ -67,8 +71,8 @@
                     </button>
                     <div class="menu-popover apple-menu" id="apple-menu" data-menu-panel="apple" role="menu" hidden>
                         <button type="button" role="menuitem" data-open-app="about">
-                            <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                            <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                            <span data-copy-lang="zh">關於 AnsonOS</span>
+                            <span data-copy-lang="en">About AnsonOS</span>
                         </button>
                         <button type="button" role="menuitem" data-menu-command="show-view-options">
                             <span data-copy-lang="zh">系統設定…</span>
@@ -82,8 +86,8 @@
                         </button>
                         <span class="menu-separator" aria-hidden="true"></span>
                         <a role="menuitem" href="mailto:ansonlotiniat@gmail.com">
-                            <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                            <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                            <span data-copy-lang="zh">聯絡 Anson…</span>
+                            <span data-copy-lang="en">Contact Anson…</span>
                         </a>
                     </div>
                 </div>
@@ -119,8 +123,8 @@
                     </button>
                     <div class="menu-popover" id="edit-menu" data-menu-panel="edit" role="menu" hidden>
                         <button type="button" role="menuitem" data-menu-command="open-spotlight">
-                            <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                            <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                            <span data-copy-lang="zh">搜尋這個網站…</span>
+                            <span data-copy-lang="en">Search This Site…</span>
                             <kbd>⌘F</kbd>
                         </button>
                         <button type="button" role="menuitem" data-menu-command="language">
@@ -158,6 +162,8 @@
                         <button type="button" role="menuitem" data-open-app="overleaf">Overleaf</button>
                         <button type="button" role="menuitem" data-open-app="goodnotes">Goodnotes</button>
                         <button type="button" role="menuitem" data-open-app="books">Books</button>
+                        <button type="button" role="menuitem" data-open-app="netflix">Netflix</button>
+                        <button type="button" role="menuitem" data-open-app="music">Music</button>
                     </div>
                 </div>
                 <div class="menu-item menu-item-collapsible">
@@ -188,12 +194,12 @@
                     </button>
                     <div class="menu-popover" id="help-menu" data-menu-panel="help" role="menu" hidden>
                         <button type="button" role="menuitem" data-menu-command="open-spotlight">
-                            <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                            <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                            <span data-copy-lang="zh">搜尋 AnsonOS 輔助說明</span>
+                            <span data-copy-lang="en">Search AnsonOS Help</span>
                         </button>
                         <button type="button" role="menuitem" data-open-app="about">
-                            <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                            <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                            <span data-copy-lang="zh">關於 Anson</span>
+                            <span data-copy-lang="en">About Anson</span>
                         </button>
                     </div>
                 </div>
@@ -217,7 +223,7 @@
                     <div class="status-panel control-center-panel" id="control-center-panel" data-status-panel="control-center" hidden>
                         <div class="control-grid">
                             <button type="button" class="control-card is-on" data-menu-command="open-spotlight">
-                                <b>Wi-Fi</b><span>建設中建設中建設中建設中</span>
+                                <b>Wi-Fi</b><span>AnsonOS</span>
                             </button>
                             <button type="button" class="control-card" data-language-toggle>
                                 <b data-copy-lang="zh">語言</b><b data-copy-lang="en">Language</b>
@@ -236,7 +242,7 @@
                     </button>
                     <div class="status-panel battery-panel" id="battery-panel" data-status-panel="battery" hidden>
                         <div class="battery-panel-heading"><b>Battery</b><span>92%</span></div>
-                        <p>Power Source: 建設中建設中建設中建設中</p>
+                        <p>Power Source: AnsonOS</p>
                         <hr>
                         <button type="button" data-open-app="about">Battery Preferences…</button>
                     </div>
@@ -255,7 +261,7 @@
         </header>
 
         <main class="desktop" id="desktop" data-desktop tabindex="-1">
-            <h1 id="desktop-title" class="sr-only">建設中建設中建設中建設中</h1>
+            <h1 id="desktop-title" class="sr-only">Anson Lo 的個人網站</h1>
 
             <div class="desktop-icons" role="group" aria-label="Desktop shortcuts">
                 <button class="desktop-icon" type="button" data-open-app="about">
@@ -263,8 +269,8 @@
                         <img src="assets/app-icons/home-folder.png" alt="" width="64" height="64">
                     </span>
                     <span>
-                        <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                        <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                        <span data-copy-lang="zh">Anson Lo</span>
+                        <span data-copy-lang="en">Anson Lo</span>
                     </span>
                 </button>
             </div>
@@ -322,15 +328,15 @@
                             <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
                         </div>
                         <h2 id="about-window-title">
-                            <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                            <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                            <span data-copy-lang="zh">關於我</span>
+                            <span data-copy-lang="en">About Me</span>
                         </h2>
                         <span class="titlebar-spacer" aria-hidden="true"></span>
                     </header>
 
                     <div class="finder-toolbar" aria-hidden="true">
                         <span>‹</span><span>›</span>
-                        <b>建設中建設中建設中建設中</b>
+                        <b>ANSON / HOME</b>
                         <i></i>
                     </div>
 
@@ -340,77 +346,76 @@
                             <a href="mailto:ansonlotiniat@gmail.com"><span>✉</span><span>Email</span></a>
                             <a href="https://github.com/ansonlotiniat" target="_blank" rel="noreferrer"><span>⌘</span><span>GitHub</span></a>
                             <p>LOCATIONS</p>
-                            <button type="button" data-open-app="xcode"><span>◇</span><span>建設中建設中建設中建設中</span></button>
-                            <button type="button" data-open-app="vscode"><span>⌁</span><span>建設中建設中建設中建設中</span></button>
-                            <button type="button" data-open-app="overleaf"><span>¶</span><span>建設中建設中建設中建設中</span></button>
+                            <button type="button" data-open-app="xcode"><span>◇</span><span>School Projects</span></button>
+                            <button type="button" data-open-app="vscode"><span>⌁</span><span>Code</span></button>
+                            <button type="button" data-open-app="overleaf"><span>¶</span><span>Writing</span></button>
                             <button type="button" data-open-app="goodnotes"><span>⌇</span><span>Goodnotes</span></button>
                             <button type="button" data-open-app="books"><span>⌇</span><span>Books</span></button>
+                            <button type="button" data-open-app="netflix"><span>▶</span><span>Netflix</span></button>
+                            <button type="button" data-open-app="music"><span>♫</span><span>Music</span></button>
                         </aside>
 
                         <div class="finder-content">
                             <section class="finder-profile">
                                 <div class="profile-monogram" aria-hidden="true">
-                                    <span>建設中建設中建設中建設中</span><span>建設中建設中建設中建設中</span>
+                                    <span>A</span><span>L</span>
                                 </div>
                                 <div>
-                                    <p class="finder-eyebrow">建設中建設中建設中建設中</p>
+                                    <p class="finder-eyebrow">ANSON LO / 羅天逸</p>
                                     <h3>
-                                        <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                                        <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                                        <span data-copy-lang="zh">你好，我是 Anson，來自澳門。</span>
+                                        <span data-copy-lang="en">Hi, I'm Anson. I'm from Macao.</span>
                                     </h3>
                                     <p>
-                                        <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                                        <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                                        <span data-copy-lang="zh">我是一名學生，平日寫程式，也做編輯和學校演講學會的工作。這個網站放了我做過的項目、公開程式碼、筆記和最近在看的書。</span>
+                                        <span data-copy-lang="en">I'm a student who writes code and also works on editing and my school's Speech Society. This site is where I keep projects, public code, notes, and books I'm reading.</span>
                                     </p>
                                 </div>
                             </section>
 
                             <section class="finder-section" aria-labelledby="working-method-title">
                                 <header>
-                                    <p>QUICK LOOK / 01</p>
+                                    <p>HOW I WORK</p>
                                     <h3 id="working-method-title">
-                                        <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                                        <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                                        <span data-copy-lang="zh">我怎樣做事</span>
+                                        <span data-copy-lang="en">How I work</span>
                                     </h3>
                                 </header>
                                 <div class="method-strip">
                                     <article>
-                                        <span>01</span>
-                                        <h4>建設中建設中建設中建設中</h4>
-                                        <p><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></p>
+                                        <h4><span data-copy-lang="zh">先問清楚</span><span data-copy-lang="en">Ask first</span></h4>
+                                        <p><span data-copy-lang="zh">先弄清楚誰要用、在甚麼情況下用。</span><span data-copy-lang="en">Work out who needs it and when they will use it.</span></p>
                                     </article>
                                     <article>
-                                        <span>02</span>
-                                        <h4>建設中建設中建設中建設中</h4>
-                                        <p><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></p>
+                                        <h4><span data-copy-lang="zh">先做能用的版本</span><span data-copy-lang="en">Make it work</span></h4>
+                                        <p><span data-copy-lang="zh">先讓流程跑通，再慢慢修每個細節。</span><span data-copy-lang="en">Get the whole flow working, then refine the details.</span></p>
                                     </article>
                                     <article>
-                                        <span>03</span>
-                                        <h4>建設中建設中建設中建設中</h4>
-                                        <p><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></p>
+                                        <h4><span data-copy-lang="zh">寫到別人看得懂</span><span data-copy-lang="en">Leave it readable</span></h4>
+                                        <p><span data-copy-lang="zh">程式、文件和介面都應該能交給下一個人。</span><span data-copy-lang="en">Code, docs, and interfaces should make sense to the next person.</span></p>
                                     </article>
                                 </div>
                             </section>
 
                             <section class="finder-section finder-current" aria-labelledby="current-roles-title">
                                 <header>
-                                    <p>QUICK LOOK / 02</p>
+                                    <p>RIGHT NOW</p>
                                     <h3 id="current-roles-title">
-                                        <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                                        <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                                        <span data-copy-lang="zh">最近在做</span>
+                                        <span data-copy-lang="en">What I'm working on</span>
                                     </h3>
                                 </header>
                                 <dl>
-                                    <div><dt>建設中建設中建設中建設中</dt><dd><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></dd></div>
-                                    <div><dt>建設中建設中建設中建設中</dt><dd><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></dd></div>
-                                    <div><dt>建設中建設中建設中建設中</dt><dd><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></dd></div>
+                                    <div><dt>iGEM 2026</dt><dd><span data-copy-lang="zh">負責 software、modelling 和 wiki 的工程工作。</span><span data-copy-lang="en">Working across software, modelling, and the team wiki.</span></dd></div>
+                                    <div><dt><span data-copy-lang="zh">演講學會</span><span data-copy-lang="en">SPEECH SOCIETY</span></dt><dd><span data-copy-lang="zh">現任培正中學演講學會會長。</span><span data-copy-lang="en">Serving as president of Pui Ching Middle School's Speech Society.</span></dd></div>
+                                    <div><dt>ANSONOS</dt><dd><span data-copy-lang="zh">繼續把這個網站修得更像我自己的電腦。</span><span data-copy-lang="en">Making this site feel more like my own computer.</span></dd></div>
                                 </dl>
                             </section>
 
                             <div class="finder-contact">
                                 <p>
-                                    <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                                    <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                                    <span data-copy-lang="zh">想聊一個項目，或只是想打個招呼，可以直接寫信給我。</span>
+                                    <span data-copy-lang="en">If you'd like to talk about a project, or just say hello, send me a note.</span>
                                 </p>
                                 <a href="mailto:ansonlotiniat@gmail.com">Email <span aria-hidden="true">↗</span></a>
                                 <a href="https://github.com/ansonlotiniat" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
@@ -433,14 +438,14 @@
                             <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
                             <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
                         </div>
-                        <h2 id="xcode-window-title">建設中建設中建設中建設中 — Xcode</h2>
+                        <h2 id="xcode-window-title">School Projects | Xcode</h2>
                         <span class="build-state"><i aria-hidden="true"></i> Build Succeeded</span>
                     </header>
 
                     <div class="xcode-toolbar">
                         <span class="toolbar-run" aria-hidden="true">▶</span>
                         <span class="toolbar-stop" aria-hidden="true">■</span>
-                        <b>建設中建設中建設中建設中</b>
+                        <b>SchoolProjects</b>
                         <span>My Mac</span>
                         <i></i>
                         <small>main</small>
@@ -449,15 +454,15 @@
                     <div class="xcode-layout">
                         <aside class="xcode-navigator">
                             <header><span aria-hidden="true">▣</span><b>PROJECT</b><span aria-hidden="true">＋</span></header>
-                            <div class="navigator-tree" role="tablist" aria-label="建設中建設中建設中建設中">
-                                <p><span aria-hidden="true">⌄</span> 建設中建設中建設中建設中</p>
+                            <div class="navigator-tree" role="tablist" aria-label="School projects">
+                                <p><span aria-hidden="true">⌄</span> SchoolProjects</p>
                                 <button id="xcode-tab-sports" type="button" role="tab" aria-selected="true" aria-controls="xcode-panel-sports" data-xcode-file="sports">
                                     <span class="swift-file" aria-hidden="true">S</span>
-                                    <span>建設中建設中建設中建設中</span>
+                                    <span>SportsDaySystem.swift</span>
                                 </button>
                                 <button id="xcode-tab-debate" type="button" role="tab" aria-selected="false" aria-controls="xcode-panel-debate" data-xcode-file="debate">
                                     <span class="swift-file" aria-hidden="true">S</span>
-                                    <span>建設中建設中建設中建設中</span>
+                                    <span>DebateOperations.swift</span>
                                 </button>
                                 <p><span aria-hidden="true">›</span> Resources</p>
                                 <p><span aria-hidden="true">›</span> Interfaces</p>
@@ -467,24 +472,45 @@
 
                         <div class="xcode-editor">
                             <div class="code-document is-active" id="xcode-panel-sports" role="tabpanel" aria-labelledby="xcode-tab-sports" data-xcode-panel="sports">
-                                <header><h3>建設中建設中建設中建設中</h3><small><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></small></header>
+                                <header><h3>SportsDaySystem.swift</h3><small><span data-copy-lang="zh">產品邏輯草稿</span><span data-copy-lang="en">Product logic draft</span></small></header>
                                 <ol class="code-lines" aria-label="Conceptual Swift code for the sports day system">
-                                    <li><code>建設中建設中建設中建設中</code></li>
+                                    <li><code><i>struct</i> <b>SportsDaySystem</b> {</code></li>
+                                    <li><code>  <i>let</i> yearsInUse = <em>2</em></code></li>
+                                    <li><code>  <i>let</i> entryPoint = <s>"one"</s></code></li>
+                                    <li><code></code></li>
+                                    <li><code>  <i>func</i> <b>show</b>(for moment: Moment) {</code></li>
+                                    <li><code>    <i>switch</i> moment {</code></li>
+                                    <li><code>    <i>case</i> .before: registration()</code></li>
+                                    <li><code>    <i>case</i> .live: updates()</code></li>
+                                    <li><code>    <i>case</i> .onSite: reference()</code></li>
+                                    <li><code>    }</code></li>
+                                    <li><code>  }</code></li>
+                                    <li><code>}</code></li>
                                 </ol>
                                 <aside class="code-note">
-                                    <span>建設中建設中建設中建設中</span>
-                                    <p><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></p>
+                                    <span>NOTE</span>
+                                    <p><span data-copy-lang="zh">同一個入口，在報名前、比賽中和到場後要顯示不同資訊。</span><span data-copy-lang="en">The same entry point needs different information before, during, and at the event.</span></p>
                                 </aside>
                             </div>
 
                             <div class="code-document" id="xcode-panel-debate" role="tabpanel" aria-labelledby="xcode-tab-debate" data-xcode-panel="debate" hidden>
-                                <header><h3>建設中建設中建設中建設中</h3><small><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></small></header>
+                                <header><h3>DebateOperations.swift</h3><small><span data-copy-lang="zh">產品邏輯草稿</span><span data-copy-lang="en">Product logic draft</span></small></header>
                                 <ol class="code-lines" aria-label="Conceptual Swift code for debate operations">
-                                    <li><code>建設中建設中建設中建設中</code></li>
+                                    <li><code><i>struct</i> <b>DebateOperations</b> {</code></li>
+                                    <li><code>  <i>let</i> data = SharedState()</code></li>
+                                    <li><code></code></li>
+                                    <li><code>  <i>func</i> <b>view</b>(for role: Role) {</code></li>
+                                    <li><code>    <i>switch</i> role {</code></li>
+                                    <li><code>    <i>case</i> .team: trainingAndPrep()</code></li>
+                                    <li><code>    <i>case</i> .tournament: eventOps()</code></li>
+                                    <li><code>    }</code></li>
+                                    <li><code>    sync(data)</code></li>
+                                    <li><code>  }</code></li>
+                                    <li><code>}</code></li>
                                 </ol>
                                 <aside class="code-note">
-                                    <span>建設中建設中建設中建設中</span>
-                                    <p><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></p>
+                                    <span>NOTE</span>
+                                    <p><span data-copy-lang="zh">隊伍和主辦方的用法不同，但資料必須保持同步。</span><span data-copy-lang="en">Teams and organizers need different views of the same data.</span></p>
                                 </aside>
                             </div>
                         </div>
@@ -493,71 +519,71 @@
                             <article class="inspector-project is-active" data-xcode-inspector="sports">
                                 <header>
                                     <span>LIVE PREVIEW</span>
-                                    <h3>建設中建設中建設中建設中</h3>
+                                    <h3>Sports Day</h3>
                                 </header>
                                 <div class="phone-preview" data-sports-preview="before">
                                     <div class="phone-status"><span>09:41</span><span>●●●</span></div>
                                     <div class="phone-screen">
-                                        <p>建設中建設中建設中建設中</p>
+                                        <p>PUICHING / SPORTS DAY</p>
                                         <div class="sports-preview-copy" data-sports-copy="before">
-                                            <small>建設中建設中建設中建設中</small>
-                                            <strong><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></strong>
-                                            <span><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></span>
+                                            <small>BEFORE</small>
+                                            <strong><span data-copy-lang="zh">先完成報名</span><span data-copy-lang="en">Register first</span></strong>
+                                            <span><span data-copy-lang="zh">項目、資格和截止時間</span><span data-copy-lang="en">Events, eligibility, and deadline</span></span>
                                         </div>
                                         <div class="sports-preview-copy" data-sports-copy="live" hidden>
-                                            <small>建設中建設中建設中建設中</small>
-                                            <strong><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></strong>
-                                            <span><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></span>
+                                            <small>LIVE</small>
+                                            <strong><span data-copy-lang="zh">看即時安排</span><span data-copy-lang="en">Check live updates</span></strong>
+                                            <span><span data-copy-lang="zh">集合時間和最新通知</span><span data-copy-lang="en">Assembly times and current notices</span></span>
                                         </div>
                                         <div class="sports-preview-copy" data-sports-copy="onsite" hidden>
-                                            <small>建設中建設中建設中建設中</small>
-                                            <strong><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></strong>
-                                            <span><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></span>
+                                            <small>ON SITE</small>
+                                            <strong><span data-copy-lang="zh">快速找場地</span><span data-copy-lang="en">Find the venue</span></strong>
+                                            <span><span data-copy-lang="zh">時間、地點和現場查閱</span><span data-copy-lang="en">Times, locations, and on-site reference</span></span>
                                         </div>
                                         <div class="preview-signal" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
                                     </div>
                                 </div>
-                                <div class="segmented-control" role="group" aria-label="建設中建設中建設中建設中">
-                                    <button type="button" aria-pressed="true" data-sports-phase="before">建設中建設中建設中建設中</button>
-                                    <button type="button" aria-pressed="false" data-sports-phase="live">建設中建設中建設中建設中</button>
-                                    <button type="button" aria-pressed="false" data-sports-phase="onsite">建設中建設中建設中建設中</button>
+                                <div class="segmented-control" role="group" aria-label="Sports day phase">
+                                    <button type="button" aria-pressed="true" data-sports-phase="before">BEFORE</button>
+                                    <button type="button" aria-pressed="false" data-sports-phase="live">LIVE</button>
+                                    <button type="button" aria-pressed="false" data-sports-phase="onsite">ON SITE</button>
                                 </div>
                                 <dl>
-                                    <div><dt>ROLE</dt><dd><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></dd></div>
-                                    <div><dt>SCOPE</dt><dd><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></dd></div>
+                                    <div><dt>ROLE</dt><dd><span data-copy-lang="zh">主要介面設計與開發</span><span data-copy-lang="en">Lead interface design and development</span></dd></div>
+                                    <div><dt>SCOPE</dt><dd><span data-copy-lang="zh">連續兩年</span><span data-copy-lang="en">Two consecutive years</span></dd></div>
                                 </dl>
                             </article>
 
                             <article class="inspector-project" data-xcode-inspector="debate" hidden>
                                 <header>
                                     <span>LIVE PREVIEW</span>
-                                    <h3>建設中建設中建設中建設中</h3>
+                                    <h3>Debate Operations</h3>
                                 </header>
                                 <div class="debate-preview" data-debate-preview="team">
                                     <div class="role-orbit">
-                                        <span data-debate-node="team">建設中建設中建設中建設中</span>
+                                        <span data-debate-node="team">TEAM</span>
                                         <i aria-hidden="true"></i>
-                                        <b>建設中建設中建設中建設中</b>
+                                        <b>SHARED<br>DATA</b>
                                         <i aria-hidden="true"></i>
-                                        <span data-debate-node="tournament">建設中建設中建設中建設中</span>
+                                        <span data-debate-node="tournament">TOURNAMENT</span>
                                     </div>
-                                    <p data-debate-copy="team"><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></p>
-                                    <p data-debate-copy="tournament" hidden><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></p>
+                                    <p data-debate-copy="team"><span data-copy-lang="zh">隊伍用來看訓練、準備和資料。</span><span data-copy-lang="en">The team view covers training, preparation, and reference.</span></p>
+                                    <p data-debate-copy="tournament" hidden><span data-copy-lang="zh">主辦方用來處理抽籤、賽程和現場流程。</span><span data-copy-lang="en">The organizer view covers draws, schedules, and event operations.</span></p>
                                 </div>
-                                <div class="segmented-control" role="group" aria-label="建設中建設中建設中建設中">
-                                    <button type="button" aria-pressed="true" data-debate-role="team">建設中建設中建設中建設中</button>
-                                    <button type="button" aria-pressed="false" data-debate-role="tournament">建設中建設中建設中建設中</button>
+                                <div class="segmented-control" role="group" aria-label="Debate system view">
+                                    <button type="button" aria-pressed="true" data-debate-role="team">TEAM</button>
+                                    <button type="button" aria-pressed="false" data-debate-role="tournament">TOURNAMENT</button>
                                 </div>
                                 <dl>
-                                    <div><dt>建設中建設中建設中建設中</dt><dd><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></dd></div>
-                                    <div><dt>建設中建設中建設中建設中</dt><dd><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></dd></div>
+                                    <div><dt>TEAM</dt><dd><span data-copy-lang="zh">隊伍管理小程序</span><span data-copy-lang="en">Team management mini program</span></dd></div>
+                                    <div><dt>EVENT</dt><dd><span data-copy-lang="zh">校內比賽管理系統</span><span data-copy-lang="en">Internal tournament system</span></dd></div>
                                 </dl>
                             </article>
                         </aside>
                     </div>
 
                     <footer class="ide-statusbar">
-                        <span>建設中建設中建設中建設中</span><span>main</span><span>Swift 6</span><span>Ln 1, Col 1</span>
+                        <span>SchoolProjects</span><span>main</span><span>Swift 6</span><span>Ln 1, Col 1</span>
                     </footer>
                 </div>
             </section>
@@ -611,7 +637,7 @@
                             data-vscode-frame
                             data-vscode-src="assets/vscode-oss/index.html?v=20260809-workspace3"
                             src="assets/vscode-oss/index.html?v=20260809-workspace3"
-                            title="Visual Studio Code — Code - OSS 1.131.0"
+                            title="Visual Studio Code | Code - OSS 1.131.0"
                             loading="eager"
                         ></iframe>
                     </div>
@@ -626,7 +652,7 @@
                             <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
                             <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
                         </div>
-                        <h2 id="overleaf-window-title">建設中建設中建設中建設中 — Overleaf</h2>
+                        <h2 id="overleaf-window-title">Writing | Overleaf</h2>
                         <span class="titlebar-spacer" aria-hidden="true"></span>
                     </header>
 
@@ -648,40 +674,62 @@
                     <div class="overleaf-layout">
                         <aside class="overleaf-files">
                             <header><span>FILES</span><span>＋</span></header>
-                            <div role="tablist" aria-label="建設中建設中建設中建設中">
-                                <button id="overleaf-tab-diary" type="button" role="tab" aria-selected="true" aria-controls="overleaf-panel-diary" data-overleaf-doc="diary"><span aria-hidden="true">T</span>建設中建設中建設中建設中</button>
-                                <button id="overleaf-tab-poem" type="button" role="tab" aria-selected="false" aria-controls="overleaf-panel-poem" data-overleaf-doc="poem"><span aria-hidden="true">T</span>建設中建設中建設中建設中</button>
+                            <div role="tablist" aria-label="Writing projects">
+                                <button id="overleaf-tab-diary" type="button" role="tab" aria-selected="true" aria-controls="overleaf-panel-diary" data-overleaf-doc="diary"><span aria-hidden="true">T</span>macao-diary.tex</button>
+                                <button id="overleaf-tab-poem" type="button" role="tab" aria-selected="false" aria-controls="overleaf-panel-poem" data-overleaf-doc="poem"><span aria-hidden="true">T</span>between-bells.tex</button>
                                 <p><span aria-hidden="true">›</span> images</p>
                                 <p><span aria-hidden="true">›</span> references.bib</p>
                             </div>
-                            <footer>建設中建設中建設中建設中</footer>
+                            <footer>writing</footer>
                         </aside>
 
                         <div class="latex-source">
                             <header>
-                                <span data-source-tab="diary">建設中建設中建設中建設中</span>
-                                <span data-source-tab="poem">建設中建設中建設中建設中</span>
+                                <span data-source-tab="diary">macao-diary.tex</span>
+                                <span data-source-tab="poem">between-bells.tex</span>
                                 <b>×</b>
                             </header>
                             <div class="latex-document is-active" id="overleaf-panel-diary" role="tabpanel" aria-labelledby="overleaf-tab-diary" data-overleaf-source="diary">
-                                <h3 class="sr-only">建設中建設中建設中建設中</h3>
+                                <h3 class="sr-only">Macao Diary editorial source</h3>
                                 <ol class="latex-lines">
-                                    <li><code>建設中建設中建設中建設中</code></li>
+                                    <li><code><b>\documentclass</b>{book}</code></li>
+                                    <li><code><b>\usepackage</b>{ctex}</code></li>
+                                    <li><code></code></li>
+                                    <li><code><b>\title</b>{澳門日記：回歸故事集}</code></li>
+                                    <li><code><b>\author</b>{多位作者}</code></li>
+                                    <li><code><b>\date</b>{2025}</code></li>
+                                    <li><code></code></li>
+                                    <li><code><b>\begin</b>{document}</code></li>
+                                    <li><code>  <b>\maketitle</b></code></li>
+                                    <li><code>  <i>% editorial credit</i></code></li>
+                                    <li><code>  <b>\editor</b>{羅天逸}</code></li>
+                                    <li><code><b>\end</b>{document}</code></li>
                                 </ol>
                                 <aside>
-                                    <b><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></b>
-                                    <p><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></p>
+                                    <b><span data-copy-lang="zh">我做的編輯工作</span><span data-copy-lang="en">My editing work</span></b>
+                                    <p><span data-copy-lang="zh">我參與整理內容和校對，名字列在書末的編輯名單。</span><span data-copy-lang="en">I helped organize and proofread the book. My name appears in the editor credits.</span></p>
                                 </aside>
                             </div>
 
                             <div class="latex-document" id="overleaf-panel-poem" role="tabpanel" aria-labelledby="overleaf-tab-poem" data-overleaf-source="poem" hidden>
-                                <h3 class="sr-only">建設中建設中建設中建設中</h3>
+                                <h3 class="sr-only">Between Bells and Heartbeats source</h3>
                                 <ol class="latex-lines">
-                                    <li><code>建設中建設中建設中建設中</code></li>
+                                    <li><code><b>\documentclass</b>{article}</code></li>
+                                    <li><code><b>\title</b>{Between Bells and Heartbeats}</code></li>
+                                    <li><code><b>\author</b>{Anson Lo}</code></li>
+                                    <li><code><b>\date</b>{2026}</code></li>
+                                    <li><code></code></li>
+                                    <li><code><b>\begin</b>{verse}</code></li>
+                                    <li><code>We talk about exams, \\</code></li>
+                                    <li><code>about the future like it’s a city \\</code></li>
+                                    <li><code>neither of us has visited, \\</code></li>
+                                    <li><code>but somehow we keep pointing \\</code></li>
+                                    <li><code>in the same direction.</code></li>
+                                    <li><code><b>\end</b>{verse}</code></li>
                                 </ol>
                                 <aside>
-                                    <b><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></b>
-                                    <p><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></p>
+                                    <b><span data-copy-lang="zh">一首英文詩</span><span data-copy-lang="en">An English poem</span></b>
+                                    <p><span data-copy-lang="zh">我寫的是學生談考試和未來時，那種有點不確定、但仍然一起向前看的感覺。</span><span data-copy-lang="en">It's about two students talking about exams and a future neither of them can see clearly yet.</span></p>
                                 </aside>
                             </div>
                         </div>
@@ -690,36 +738,40 @@
                             <header><span>PDF PREVIEW</span><b>100%</b></header>
                             <article class="proof-page book-proof is-active" data-overleaf-preview="diary" data-book-proof>
                                 <div class="proof-page-inner">
-                                    <p class="proof-label">建設中建設中建設中建設中</p>
-                                    <h3>建設中建設中建設中建設中</h3>
-                                    <p class="proof-subtitle">建設中建設中建設中建設中</p>
+                                    <p class="proof-label">EDITOR CREDIT / 2025</p>
+                                    <h3>《澳門日記》</h3>
+                                    <p class="proof-subtitle">回歸故事集</p>
                                     <figure>
-                                        <img src="assets/wallpapers/mit-killian-court.jpg" alt="建設中建設中建設中建設中" width="705" height="483">
+                                        <img src="macao-diary-colophon.png" alt="《澳門日記》編輯名單，當中列出羅天逸" width="705" height="483">
                                         <span class="proof-lens" data-proof-lens aria-hidden="true"></span>
                                         <figcaption>
-                                            <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                                            <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                                            <span data-copy-lang="zh">把游標移到名單上，可以放大查看署名</span>
+                                            <span data-copy-lang="en">Move over the list to enlarge the original credit</span>
                                         </figcaption>
                                     </figure>
                                     <dl>
-                                        <div><dt>ROLE</dt><dd><span data-copy-lang="zh">建設中建設中建設中建設中</span><span data-copy-lang="en">建設中建設中建設中建設中</span></dd></div>
-                                        <div><dt>CREDIT</dt><dd>建設中建設中建設中建設中</dd></div>
-                                        <div><dt>YEAR</dt><dd>建設中建設中建設中建設中</dd></div>
+                                        <div><dt>ROLE</dt><dd><span data-copy-lang="zh">編輯</span><span data-copy-lang="en">Editor</span></dd></div>
+                                        <div><dt>CREDIT</dt><dd>羅天逸</dd></div>
+                                        <div><dt>YEAR</dt><dd>2025</dd></div>
                                     </dl>
                                 </div>
                             </article>
 
                             <article class="proof-page poem-proof" data-overleaf-preview="poem" hidden>
                                 <div class="proof-page-inner">
-                                    <p class="proof-label">建設中建設中建設中建設中</p>
-                                    <h3>建設中建設中建設中建設中</h3>
-                                    <p class="poem-byline">建設中建設中建設中建設中</p>
+                                    <p class="proof-label">SCHOOL ENGLISH POETRY / 2026</p>
+                                    <h3>Between Bells<br>and Heartbeats</h3>
+                                    <p class="poem-byline">ANSON LO</p>
                                     <blockquote>
-                                        <span>建設中建設中建設中建設中</span>
+                                        <span>We talk about exams,</span>
+                                        <span>about the future like it’s a city</span>
+                                        <span>neither of us has visited,</span>
+                                        <span>but somehow we keep pointing</span>
+                                        <span>in the same direction.</span>
                                     </blockquote>
                                     <p class="proof-note">
-                                        <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                                        <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                                        <span data-copy-lang="zh">節錄自校內英文詩集作品</span>
+                                        <span data-copy-lang="en">Excerpt from a school English poetry collection</span>
                                     </p>
                                 </div>
                             </article>
@@ -727,7 +779,7 @@
                     </div>
 
                     <footer class="overleaf-statusbar">
-                        <span data-current-tex>建設中建設中建設中建設中</span><i></i><span>TeX Live</span><span>UTF-8</span><span data-compile-time>Compiled 0.8s ago</span>
+                        <span data-current-tex>macao-diary.tex</span><i></i><span>TeX Live</span><span>UTF-8</span><span data-compile-time>Compiled 0.8s ago</span>
                     </footer>
                 </div>
             </section>
@@ -1159,11 +1211,11 @@
                                     <button type="button" data-books-reader-back aria-label="Back to library"><svg><use href="#books-back-icon"></use></svg></button>
                                     <div><strong data-books-reader-title>啸风山庄</strong><small data-books-reader-author>艾蜜莉·布朗忒（Emily Brontë）</small></div>
                                     <span></span>
-                                    <button type="button" aria-label="Table of contents"><svg><use href="#books-toc-icon"></use></svg></button>
-                                    <button type="button" aria-label="Search in book"><svg><use href="#books-search-icon"></use></svg></button>
-                                    <button type="button" aria-label="Appearance"><svg><use href="#books-text-icon"></use></svg></button>
-                                    <button type="button" aria-label="Bookmark"><svg><use href="#books-bookmark-icon"></use></svg></button>
-                                    <button type="button" aria-label="More">•••</button>
+                                    <button type="button" data-books-reader-control="toc" aria-label="Table of contents"><svg><use href="#books-toc-icon"></use></svg></button>
+                                    <button type="button" data-books-reader-control="search" aria-label="Search in book"><svg><use href="#books-search-icon"></use></svg></button>
+                                    <button type="button" data-books-reader-control="appearance" aria-label="Appearance"><svg><use href="#books-text-icon"></use></svg></button>
+                                    <button type="button" data-books-reader-control="bookmark" aria-label="Bookmark"><svg><use href="#books-bookmark-icon"></use></svg></button>
+                                    <button type="button" data-books-reader-control="more" aria-label="More">•••</button>
                                 </header>
                                 <div class="books-reader-stage">
                                     <article>
@@ -1176,6 +1228,192 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="app-window netflix-window" data-window="netflix" data-app-label="Netflix" aria-labelledby="netflix-window-title" hidden>
+                <div class="window-surface">
+                    <header class="window-titlebar netflix-titlebar" data-drag-handle>
+                        <div class="traffic-lights" role="group" aria-label="Window controls">
+                            <button class="traffic-close" type="button" data-window-action="close" aria-label="Close window"></button>
+                            <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
+                            <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
+                        </div>
+                        <h2 id="netflix-window-title">Netflix</h2>
+                        <span class="titlebar-spacer" aria-hidden="true"></span>
+                    </header>
+                    <div class="netflix-app" data-netflix-app>
+                        <header class="netflix-navigation">
+                            <img class="netflix-wordmark" src="assets/netflix/wordmark.png" alt="Netflix" width="86" height="25">
+                            <nav aria-label="Netflix sections">
+                                <button class="is-active" type="button" data-netflix-view="home"><span data-copy-lang="zh">首頁</span><span data-copy-lang="en">Home</span></button>
+                                <button type="button" data-netflix-view="series"><span data-copy-lang="zh">影集</span><span data-copy-lang="en">Series</span></button>
+                                <button type="button" data-netflix-view="films"><span data-copy-lang="zh">電影</span><span data-copy-lang="en">Films</span></button>
+                                <button type="button" data-netflix-view="games"><span data-copy-lang="zh">遊戲</span><span data-copy-lang="en">Games</span></button>
+                                <button type="button" data-netflix-view="new"><span data-copy-lang="zh">熱門新片</span><span data-copy-lang="en">New &amp; Popular</span></button>
+                                <button type="button" data-netflix-view="list"><span data-copy-lang="zh">我的片單</span><span data-copy-lang="en">My List</span></button>
+                                <button type="button" data-netflix-view="languages"><span data-copy-lang="zh">依語言瀏覽</span><span data-copy-lang="en">Browse by Language</span></button>
+                            </nav>
+                            <div class="netflix-actions">
+                                <label class="netflix-search">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"></circle><path d="m15.7 15.7 5 5"></path></svg>
+                                    <input type="text" role="searchbox" enterkeyhint="search" data-netflix-search autocomplete="off" spellcheck="false" placeholder="片名、演員或類型" aria-label="搜尋 Netflix 片單">
+                                </label>
+                                <div class="netflix-notifications-wrap">
+                                    <button class="netflix-notifications" type="button" data-netflix-notifications aria-label="通知" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 17.5h13l-1.7-2.2V10a4.8 4.8 0 0 0-9.6 0v5.3Z"></path><path d="M9.7 19.2a2.5 2.5 0 0 0 4.6 0"></path></svg></button>
+                                    <div class="netflix-notifications-menu" data-netflix-notifications-menu hidden><p><span data-copy-lang="zh">暫時沒有新通知。</span><span data-copy-lang="en">No new notifications.</span></p></div>
+                                </div>
+                                <div class="netflix-profile-wrap">
+                                    <button class="netflix-profile" type="button" data-netflix-profile aria-label="Anson 個人檔案" aria-expanded="false"><span>A</span><i aria-hidden="true"></i></button>
+                                    <div class="netflix-profile-menu" data-netflix-profile-menu hidden>
+                                        <button type="button" data-netflix-profile-choice><span>A</span><span><strong data-netflix-profile-name>Anson</strong><small><span data-copy-lang="zh">只顯示這個網站的片單</span><span data-copy-lang="en">This site's list only</span></small></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <main class="netflix-main">
+                            <section class="netflix-hero" data-netflix-hero>
+                                <div>
+                                    <p>MY LIST</p>
+                                    <img class="netflix-hero-logo" data-netflix-hero-logo alt="" hidden>
+                                    <h3 data-netflix-hero-title><span data-copy-lang="zh">我的 Netflix 片單</span><span data-copy-lang="en">My Netflix list</span></h3>
+                                    <p><span data-copy-lang="zh" data-netflix-hero-description-zh>這裡會放我想看、正在看和會再看的電影與影集。</span><span data-copy-lang="en" data-netflix-hero-description-en>Films and series I want to watch, am watching, or would watch again.</span></p>
+                                    <div class="netflix-hero-actions">
+                                        <a href="https://www.netflix.com/" target="_blank" rel="noreferrer" data-netflix-hero-open><span aria-hidden="true">▶</span><span data-copy-lang="zh">在 Netflix 查看</span><span data-copy-lang="en">View on Netflix</span></a>
+                                        <button type="button" data-netflix-jump-list><span class="netflix-info-icon" aria-hidden="true">i</span><span data-copy-lang="zh">查看片單</span><span data-copy-lang="en">View list</span></button>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="netflix-row" aria-labelledby="netflix-my-list-title">
+                                <h4 id="netflix-my-list-title"><span data-copy-lang="zh" data-netflix-row-title-zh>我的片單</span><span data-copy-lang="en" data-netflix-row-title-en>My List</span></h4>
+                                <div class="netflix-cards" data-netflix-list></div>
+                                <p class="netflix-empty" data-netflix-empty>
+                                    <span data-copy-lang="zh" data-netflix-empty-zh>我還未把私人片單放上來。</span>
+                                    <span data-copy-lang="en" data-netflix-empty-en>I haven't published my personal list yet.</span>
+                                </p>
+                            </section>
+                        </main>
+                    </div>
+                </div>
+            </section>
+
+            <section class="app-window music-window" data-window="music" data-app-label="Music" aria-labelledby="music-window-title" hidden>
+                <div class="window-surface">
+                    <header class="window-titlebar music-titlebar" data-drag-handle>
+                        <div class="traffic-lights" role="group" aria-label="Window controls">
+                            <button class="traffic-close" type="button" data-window-action="close" aria-label="Close window"></button>
+                            <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
+                            <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
+                        </div>
+                        <h2 class="sr-only" id="music-window-title">Music</h2>
+                        <span class="titlebar-spacer" aria-hidden="true"></span>
+                    </header>
+                    <div class="music-app" data-music-app>
+                        <svg class="music-symbols" aria-hidden="true">
+                            <symbol id="music-search-icon" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.4 15.4 4.6 4.6"></path></symbol>
+                            <symbol id="music-home-icon" viewBox="0 0 24 24"><path d="m3.5 11 8.5-7 8.5 7"></path><path d="M5.5 9.8V20h13V9.8M9.5 20v-6h5v6"></path></symbol>
+                            <symbol id="music-new-icon" viewBox="0 0 24 24"><rect x="4" y="4" width="6.2" height="6.2" rx="1.1" fill="currentColor" stroke="none"></rect><rect x="13.8" y="4" width="6.2" height="6.2" rx="1.1" fill="currentColor" stroke="none"></rect><rect x="4" y="13.8" width="6.2" height="6.2" rx="1.1" fill="currentColor" stroke="none"></rect><rect x="13.8" y="13.8" width="6.2" height="6.2" rx="1.1" fill="currentColor" stroke="none"></rect></symbol>
+                            <symbol id="music-radio-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.1" fill="currentColor" stroke="none"></circle><path d="M8.3 8.2a5.4 5.4 0 0 0 0 7.6M15.7 8.2a5.4 5.4 0 0 1 0 7.6M5.2 5.2a9.6 9.6 0 0 0 0 13.6M18.8 5.2a9.6 9.6 0 0 1 0 13.6"></path></symbol>
+                            <symbol id="music-sidebar-icon" viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14"></path></symbol>
+                            <symbol id="music-pin-icon" viewBox="0 0 24 24"><path d="m8 4 8 0-1.2 5 2.8 3H6.4l2.8-3ZM12 12v8"></path></symbol>
+                            <symbol id="music-clock-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l-3 2"></path></symbol>
+                            <symbol id="music-person-icon" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"></circle><path d="M6 20c.3-4 2.3-6 6-6s5.7 2 6 6"></path></symbol>
+                            <symbol id="music-album-icon" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M7 5V3h10v2"></path></symbol>
+                            <symbol id="music-song-icon" viewBox="0 0 24 24"><path d="M15.5 4v12a3 3 0 1 1-2-2.8V6l6-1.5v9.2a3 3 0 1 1-2-2.8V4.5Z"></path></symbol>
+                            <symbol id="music-video-icon" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="13" rx="2"></rect><path d="m9.5 9 5 2.5-5 2.5Z"></path></symbol>
+                            <symbol id="music-recommend-icon" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="16" rx="2"></rect><circle cx="12" cy="9" r="2.3"></circle><path d="M8.5 17c.3-2.2 1.5-3.3 3.5-3.3s3.2 1.1 3.5 3.3"></path></symbol>
+                            <symbol id="music-playlists-icon" viewBox="0 0 24 24"><circle cx="6" cy="6" r="1.4" fill="currentColor" stroke="none"></circle><circle cx="12" cy="6" r="1.4" fill="currentColor" stroke="none"></circle><circle cx="18" cy="6" r="1.4" fill="currentColor" stroke="none"></circle><circle cx="6" cy="12" r="1.4" fill="currentColor" stroke="none"></circle><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"></circle><circle cx="18" cy="12" r="1.4" fill="currentColor" stroke="none"></circle><circle cx="6" cy="18" r="1.4" fill="currentColor" stroke="none"></circle><circle cx="12" cy="18" r="1.4" fill="currentColor" stroke="none"></circle><circle cx="18" cy="18" r="1.4" fill="currentColor" stroke="none"></circle></symbol>
+                            <symbol id="music-heart-icon" viewBox="0 0 24 24"><path d="M12 20S4.5 15.7 4.5 9.4A4.2 4.2 0 0 1 12 6.8a4.2 4.2 0 0 1 7.5 2.6C19.5 15.7 12 20 12 20Z"></path></symbol>
+                            <symbol id="music-previous-icon" viewBox="0 0 24 24"><path d="M20 6.5v11L11.5 12ZM11.5 6.5v11L2 12Z" fill="currentColor" stroke="none"></path></symbol>
+                            <symbol id="music-next-icon" viewBox="0 0 24 24"><path d="M3 6.5v11l9-5.5ZM11.5 6.5v11l10-5.5Z" fill="currentColor" stroke="none"></path></symbol>
+                            <symbol id="music-play-icon" viewBox="0 0 24 24"><path d="m5 3.5 15.5 8.5L5 20.5Z" fill="currentColor" stroke="none"></path></symbol>
+                            <symbol id="music-pause-icon" viewBox="0 0 24 24"><path d="M5 3.5h5v17H5zM12 3.5h6v17h-6z" fill="currentColor" stroke="none"></path></symbol>
+                            <symbol id="music-shuffle-icon" viewBox="0 0 24 24"><path d="M3.5 6.5h2.2c4.8 0 6.5 11 12.8 11H21M18 14.5l3 3-3 3M3.5 17.5h2.2c2.2 0 3.8-2.4 5.3-5.2M15 6.5h6M18 3.5l3 3-3 3"></path></symbol>
+                            <symbol id="music-repeat-icon" viewBox="0 0 24 24"><path d="M4 8h15l-3.5-3.5M20 8v3M20 16H5l3.5 3.5M4 16v-3"></path></symbol>
+                            <symbol id="music-autoplay-icon" viewBox="0 0 24 24"><path d="M3.5 5h2a7 7 0 0 1 0 14h-2zM20.5 5h-2a7 7 0 0 0 0 14h2z" fill="currentColor" stroke="none"></path></symbol>
+                            <symbol id="music-more-icon" viewBox="0 0 24 24"><circle cx="4" cy="12" r="2.2" fill="currentColor" stroke="none"></circle><circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"></circle><circle cx="20" cy="12" r="2.2" fill="currentColor" stroke="none"></circle></symbol>
+                            <symbol id="music-queue-icon" viewBox="0 0 24 24"><circle cx="4" cy="6" r="1.4" fill="currentColor" stroke="none"></circle><circle cx="4" cy="12" r="1.4" fill="currentColor" stroke="none"></circle><circle cx="4" cy="18" r="1.4" fill="currentColor" stroke="none"></circle><path d="M7.5 6H21M7.5 12H21M7.5 18H21"></path></symbol>
+                            <symbol id="music-lyrics-icon" viewBox="0 0 24 24"><path d="M5.5 3.5h13a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-7l-5 3v-3h-1a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3Z"></path><path d="M7.3 8h4v3.5c0 2-1.1 3.2-3.3 3.7v-1.9c.8-.2 1.2-.7 1.3-1.4h-2Zm6.2 0h4v3.5c0 2-1.1 3.2-3.3 3.7v-1.9c.8-.2 1.2-.7 1.3-1.4h-2Z" fill="currentColor" stroke="none"></path></symbol>
+                            <symbol id="music-airplay-icon" viewBox="0 0 24 24"><path d="M4.1 14.3a9.5 9.5 0 1 1 15.8 0M7.1 12.7a6.1 6.1 0 1 1 9.8 0M9.8 10.9a2.7 2.7 0 1 1 4.4 0"></path><path d="m12 11.5-6.2 8.5h12.4Z" fill="currentColor" stroke="none"></path></symbol>
+                            <symbol id="music-volume-icon" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3Z" fill="currentColor" stroke="none"></path><path d="M15 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12M20.8 3.8a11.5 11.5 0 0 1 0 16.4"></path></symbol>
+                            <symbol id="music-note-icon" viewBox="0 0 24 24"><path d="M15.5 5.5v10.2a3 3 0 1 1-2-2.8V7l6-1.4v8.1a3 3 0 1 1-2-2.8V4.6Z"></path></symbol>
+                        </svg>
+                        <aside class="music-sidebar">
+                            <div class="music-sidebar-scroll">
+                                <nav class="music-primary-nav" aria-label="Music sections">
+                                    <button type="button" data-music-focus-search><svg class="music-icon" aria-hidden="true"><use href="#music-search-icon"></use></svg><span data-copy-lang="zh">搜尋</span><span data-copy-lang="en">Search</span></button>
+                                    <button type="button" data-music-view="home"><svg class="music-icon" aria-hidden="true"><use href="#music-home-icon"></use></svg><span data-copy-lang="zh">首頁</span><span data-copy-lang="en">Home</span></button>
+                                    <button type="button" data-music-view="explore"><svg class="music-icon" aria-hidden="true"><use href="#music-new-icon"></use></svg><span data-copy-lang="zh">探索</span><span data-copy-lang="en">Explore</span></button>
+                                    <button type="button" data-music-view="radio"><svg class="music-icon" aria-hidden="true"><use href="#music-radio-icon"></use></svg><span data-copy-lang="zh">廣播</span><span data-copy-lang="en">Radio</span></button>
+                                </nav>
+                                <section class="music-sidebar-section music-pinned-section">
+                                    <h3><span data-copy-lang="zh">資料庫</span><span data-copy-lang="en">Library</span></h3>
+                                    <button class="music-pinned-heading" type="button" data-music-pins-toggle aria-expanded="true"><span class="music-disclosure" aria-hidden="true">⌄</span><svg class="music-icon" aria-hidden="true"><use href="#music-pin-icon"></use></svg><span data-copy-lang="zh">釘選項目</span><span data-copy-lang="en">Pinned Items</span></button>
+                                    <div class="music-pinned-list" data-music-pins></div>
+                                </section>
+                                <nav class="music-library-nav" aria-label="Music library">
+                                    <button class="is-active" type="button" data-music-view="recent"><svg class="music-icon" aria-hidden="true"><use href="#music-clock-icon"></use></svg><span data-copy-lang="zh">最近加入</span><span data-copy-lang="en">Recently Added</span></button>
+                                    <button type="button" data-music-view="artists"><svg class="music-icon" aria-hidden="true"><use href="#music-person-icon"></use></svg><span data-copy-lang="zh">藝人</span><span data-copy-lang="en">Artists</span></button>
+                                    <button type="button" data-music-view="albums"><svg class="music-icon" aria-hidden="true"><use href="#music-album-icon"></use></svg><span data-copy-lang="zh">專輯</span><span data-copy-lang="en">Albums</span></button>
+                                    <button type="button" data-music-view="songs"><svg class="music-icon" aria-hidden="true"><use href="#music-song-icon"></use></svg><span data-copy-lang="zh">歌曲</span><span data-copy-lang="en">Songs</span></button>
+                                    <button type="button" data-music-view="videos"><svg class="music-icon" aria-hidden="true"><use href="#music-video-icon"></use></svg><span>MV</span></button>
+                                    <button type="button" data-music-view="recommendations"><svg class="music-icon" aria-hidden="true"><use href="#music-recommend-icon"></use></svg><span data-copy-lang="zh">專屬推薦</span><span data-copy-lang="en">Made for You</span></button>
+                                </nav>
+                                <section class="music-sidebar-section music-playlist-section">
+                                    <h3><span data-copy-lang="zh">播放清單</span><span data-copy-lang="en">Playlists</span></h3>
+                                    <button class="music-sidebar-row" type="button" data-music-view="playlists"><svg class="music-icon" aria-hidden="true"><use href="#music-playlists-icon"></use></svg><span data-copy-lang="zh">所有播放清單</span><span data-copy-lang="en">All Playlists</span></button>
+                                    <button class="music-sidebar-row" type="button" data-music-view="favorites"><svg class="music-icon" aria-hidden="true"><use href="#music-heart-icon"></use></svg><span data-copy-lang="zh">心水歌曲</span><span data-copy-lang="en">Favourite Songs</span></button>
+                                    <div class="music-playlist-list" data-music-playlists></div>
+                                </section>
+                            </div>
+                            <div class="music-account" aria-label="Anson Lo"><img src="assets/music/playlists/profile.png" alt="" width="29" height="29"><strong data-music-profile-name>Anson Lo</strong></div>
+                        </aside>
+                        <main class="music-main">
+                            <header class="music-main-toolbar" data-drag-handle>
+                                <h3 data-music-toolbar-title><span data-copy-lang="zh">今個星期</span><span data-copy-lang="en">This Week</span></h3>
+                                <div class="music-toolbar-actions">
+                                    <button class="music-toolbar-circle" type="button" data-music-sidebar-toggle aria-label="隱藏側邊欄" aria-pressed="false"><svg class="music-icon" aria-hidden="true"><use href="#music-sidebar-icon"></use></svg></button>
+                                    <label class="music-toolbar-search"><svg class="music-icon" aria-hidden="true"><use href="#music-search-icon"></use></svg><input type="search" data-music-search autocomplete="off" spellcheck="false" placeholder="在最近加入中尋找" aria-label="在最近加入中尋找"></label>
+                                </div>
+                            </header>
+                            <div class="music-recent-scroll" data-music-scroll>
+                                <div class="music-recent-sections" data-music-recent-sections></div>
+                                <p class="music-empty" data-music-search-empty hidden><span data-copy-lang="zh">找不到相符的專輯。</span><span data-copy-lang="en">No matching albums.</span></p>
+                            </div>
+                        </main>
+                        <aside class="music-lyrics" data-music-lyrics aria-label="歌詞">
+                            <div class="music-lyrics-scroll">
+                                <p class="music-lyric-clipped" aria-hidden="true">and the scars</p>
+                                <p class="is-current">I'd wear like<br>tattoos</p>
+                                <p>And if it meant<br>dying</p>
+                                <p>Then I'd die for<br>you</p>
+                                <p>I'd die for you</p>
+                                <p>I'd die for you</p>
+                                <footer><strong>創作者：</strong>Calum Scott, Corey Sanders, Jon Maguire</footer>
+                            </div>
+                        </aside>
+                        <footer class="music-player" aria-label="Music controls">
+                            <div class="music-transport">
+                                <button class="is-muted" type="button" data-music-control="shuffle" data-music-shuffle aria-label="隨機播放" aria-pressed="false"><svg class="music-icon" aria-hidden="true"><use href="#music-shuffle-icon"></use></svg></button>
+                                <button type="button" data-music-control="previous" data-music-previous aria-label="上一首"><svg class="music-icon" aria-hidden="true"><use href="#music-previous-icon"></use></svg></button>
+                                <button class="music-play-button" type="button" data-music-control="play" data-music-play aria-label="播放"><svg class="music-icon music-play-icon" aria-hidden="true"><use href="#music-play-icon"></use></svg><svg class="music-icon music-pause-icon" aria-hidden="true"><use href="#music-pause-icon"></use></svg></button>
+                                <button type="button" data-music-control="next" data-music-next aria-label="下一首"><svg class="music-icon" aria-hidden="true"><use href="#music-next-icon"></use></svg></button>
+                                <button class="is-muted" type="button" data-music-control="repeat" data-music-repeat aria-label="重複播放" aria-pressed="false"><svg class="music-icon" aria-hidden="true"><use href="#music-repeat-icon"></use></svg></button>
+                            </div>
+                            <div class="music-now-playing">
+                                <span class="music-player-art" data-music-player-art aria-hidden="true"><svg class="music-icon"><use href="#music-note-icon"></use></svg></span>
+                                <span class="music-now-playing-copy"><strong data-music-player-title>Die For You</strong><small data-music-player-artist>Calum Scott — Avenoir</small><span class="music-progress" aria-hidden="true"><i data-music-progress></i></span></span>
+                            </div>
+                            <div class="music-player-actions">
+                                <button class="is-muted" type="button" data-music-control="autoplay" aria-label="自動播放" disabled><svg class="music-icon" aria-hidden="true"><use href="#music-autoplay-icon"></use></svg></button>
+                                <button type="button" data-music-control="more" aria-label="更多"><svg class="music-icon" aria-hidden="true"><use href="#music-more-icon"></use></svg></button>
+                                <button class="is-active" type="button" data-music-control="lyrics" data-music-lyrics-toggle aria-label="顯示歌詞" aria-pressed="true"><svg class="music-icon" aria-hidden="true"><use href="#music-lyrics-icon"></use></svg></button>
+                                <button type="button" data-music-control="queue" aria-label="待播清單"><svg class="music-icon" aria-hidden="true"><use href="#music-queue-icon"></use></svg></button>
+                                <button type="button" data-music-control="airplay" aria-label="AirPlay"><svg class="music-icon" aria-hidden="true"><use href="#music-airplay-icon"></use></svg></button>
+                                <label class="music-volume-control" data-music-control="volume"><svg class="music-icon" aria-hidden="true"><use href="#music-volume-icon"></use></svg><input type="range" min="0" max="100" value="72" data-music-volume aria-label="音量"></label>
+                            </div>
+                        </footer>
                     </div>
                 </div>
             </section>
@@ -1196,10 +1434,10 @@
 
         <div class="explore-backdrop" data-explore-backdrop hidden></div>
         <section class="explore-panel" id="explore" data-explore role="dialog" aria-modal="true" aria-labelledby="explore-title" hidden>
-            <h2 id="explore-title" class="sr-only">建設中建設中建設中建設中</h2>
+            <h2 id="explore-title" class="sr-only">搜尋 AnsonOS</h2>
             <div class="explore-search">
                 <span class="search-glyph" aria-hidden="true"></span>
-                <input type="search" data-explore-input autocomplete="off" spellcheck="false" aria-controls="explore-results" placeholder="建設中建設中建設中建設中" aria-label="建設中建設中建設中建設中">
+                <input type="search" data-explore-input autocomplete="off" spellcheck="false" aria-controls="explore-results" placeholder="搜尋 App 或內容" aria-label="搜尋這個網站">
                 <span class="explore-run-hint" aria-hidden="true">
                     <span data-copy-lang="zh">打開</span>
                     <span data-copy-lang="en">Open</span>
@@ -1212,19 +1450,23 @@
                     <span data-copy-lang="en">All Apps</span>
                 </button>
                 <button type="button" data-explore-filter="engineering" aria-pressed="false">
-                    <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                    <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                    <span data-copy-lang="zh">程式</span>
+                    <span data-copy-lang="en">Code</span>
                 </button>
                 <button type="button" data-explore-filter="iGEM" aria-pressed="false">
-                    <span>建設中建設中建設中建設中</span>
+                    <span>iGEM</span>
                 </button>
                 <button type="button" data-explore-filter="writing" aria-pressed="false">
-                    <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                    <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                    <span data-copy-lang="zh">寫作</span>
+                    <span data-copy-lang="en">Writing</span>
                 </button>
                 <button type="button" data-explore-filter="notes" aria-pressed="false">
                     <span data-copy-lang="zh">學科筆記</span>
                     <span data-copy-lang="en">Study Notes</span>
+                </button>
+                <button type="button" data-explore-filter="media" aria-pressed="false">
+                    <span data-copy-lang="zh">影音</span>
+                    <span data-copy-lang="en">Media</span>
                 </button>
             </div>
             <div class="explore-body">
@@ -1234,8 +1476,8 @@
                 </p>
                 <div class="explore-results" id="explore-results" role="listbox" data-explore-results></div>
                 <p class="explore-empty" data-explore-empty hidden>
-                    <span data-copy-lang="zh">建設中建設中建設中建設中</span>
-                    <span data-copy-lang="en">建設中建設中建設中建設中</span>
+                    <span data-copy-lang="zh">找不到相符的 App</span>
+                    <span data-copy-lang="en">No matching apps</span>
                 </p>
             </div>
         </section>
@@ -1253,8 +1495,8 @@
 
         <noscript>
             <div class="noscript-card">
-                <h2>建設中建設中建設中建設中</h2>
-                <p>建設中建設中建設中建設中</p>
+                <h2>Anson Lo</h2>
+                <p>這個網站需要 JavaScript 才能打開桌面上的 App。你仍然可以用下面的連結聯絡我。</p>
                 <a href="mailto:ansonlotiniat@gmail.com">Email</a>
                 <a href="https://github.com/ansonlotiniat">GitHub</a>
             </div>

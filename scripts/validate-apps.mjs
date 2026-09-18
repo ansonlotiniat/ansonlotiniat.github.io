@@ -63,7 +63,7 @@ for (const [index, app] of (apps || []).entries()) {
 
     if (!app.icon?.src || !app.icon?.className) {
         errors.push(`${location}: icon.src and icon.className are required.`);
-    } else if (!fs.existsSync(path.join(root, app.icon.src))) {
+    } else if (!fs.existsSync(path.join(root, app.icon.src.split(/[?#]/, 1)[0]))) {
         errors.push(`${location}: icon does not exist at "${app.icon.src}".`);
     }
 

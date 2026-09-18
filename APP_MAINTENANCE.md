@@ -20,7 +20,7 @@ Dock、Launchpad、Spotlight／Explore 搜尋結果、App 名稱、圖示與 `�
     id: "new-app",
     appLabel: "App Name",
     group: "work",
-    shortcut: "5",
+    shortcut: "8",
     icon: {
         src: "assets/app-icons/new-app.png",
         className: "new-app-icon",
@@ -66,7 +66,10 @@ Dock、Launchpad、Spotlight／Explore 搜尋結果、App 名稱、圖示與 `�
 </section>
 ```
 
-4. 在 `style.css` 寫 App 內部內容；只在需要改桌面殼層時才修改 `macos.css`。
+4. 在 `style.css` 寫一般 App 內部內容；只在需要改桌面殼層時才修改 `macos.css`。
+   Dock 幾何只能寫入 `dock.css`，Music 介面只能寫入 `music.css`。不要從其他檔案覆蓋
+   `.dock-*`／`.music-*`，也不要用 `nth-child` 或左右 margin 鏈定位控制項；控制項應有
+   穩定的 class 或 `data-*` 身分。
 5. 如果 App 有分頁或可操作內容，在 `main.js` 加一個以 App 名稱開頭的 controller，
    並確保鍵盤與 `prefers-reduced-motion` 仍可用。
 6. 記錄第三方圖示來源與授權到 `assets/app-icons/SOURCES.md`。
@@ -74,16 +77,24 @@ Dock、Launchpad、Spotlight／Explore 搜尋結果、App 名稱、圖示與 `�
 
 ```sh
 node scripts/validate-apps.mjs
+node scripts/validate-ui-contract.mjs
+node tests/ui-runtime.mjs
 ```
 
 檢查器會阻止以下常見錯誤：重複 ID、重複快捷鍵、清單與視窗 ID 不一致、缺少中英
 文字段、圖示路徑失效、固定 Apps／Folder／Mail 殼層圖示遺失、Dock／Launchpad／
 Spotlight 掛載點遺失、Apps 入口遺失，以及 script 載入順序錯誤。
+UI contract 會另外阻止 Dock／Music selector 越權、播放器 DOM 順序耦合、缺少
+`.dock-visual`、CSS/JavaScript 尺寸重新硬編碼，以及 cache version 不同步。真實瀏覽器
+測試則覆蓋 `file://`／HTTP、responsive overflow、Dock 幾何、Music 視覺／播放和所有
+App 的開啟、拖動、最小化及還原。
 
 ## 分組與排序
 
 - `group: "system"` 放 Finder 類系統入口。
 - `group: "work"` 放作品 App。
+- `group: "watching"` 放電影與影集片單。
+- `group: "listening"` 放專輯與歌曲。
 - 作品 App 依照陣列順序同步出現在 Dock、Launchpad 和 Spotlight。macOS 26 的固定
   `Apps` 入口會自動放在 Finder 後面，因此不需要加入 manifest，也不會占用
   `⌥數字` 快捷鍵。
@@ -96,8 +107,17 @@ Spotlight 掛載點遺失、Apps 入口遺失，以及 script 載入順序錯誤
   放大、位移後的 icon；游標經過 icon 間空隙時會保留上一個名稱，直到碰到下一個 icon。
 - Mail 是固定在 Dock 最右側的聯絡動作，不屬於作品 App 清單。
 - Spotlight／Explore 的分類按鈕直接搜尋 manifest 的 `keywords`。若新 App 要出現在
-  Engineering、iGEM 或 Writing 分類，加入對應英文關鍵字即可；新增分類只需在
+  Code、iGEM、Writing、Study Notes 或 Media 分類，加入對應英文關鍵字即可；新增分類只需在
   `index.html` 加一個 `data-explore-filter="關鍵字"` 按鈕，不必修改 JavaScript。
+
+## 個人媒體資料
+
+Netflix 片單和 Music 專輯／歌曲放在 `media.config.js`。只能加入 Anson 明確提供的項目；
+不從瀏覽器歷史、私人帳戶或本機 Music 資料庫推測。Netflix 可用 `heroId` 指定主視覺，
+每個項目可用 `id`/`title`/`type`/`year`/`rating`/`genreZh`/`genreEn`/
+`descriptionZh`/`descriptionEn`/`cast`/`language`/`artwork`/`logo`/`url`/`isNew`。
+Music 專輯可用 `title`/`artist`/`artwork`；歌曲可再加 `album`/`duration`/`url` 及選用的
+`previewUrl`。素材的公開來源記在 `assets/netflix/SOURCES.md` 和 `assets/music/SOURCES.md`。
 
 ## 改名或刪除
 

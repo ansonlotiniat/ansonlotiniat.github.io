@@ -2,6 +2,10 @@ const appManifest = Array.isArray(window.ANSON_APP_MANIFEST)
     ? window.ANSON_APP_MANIFEST
     : [];
 const appManifestById = new Map(appManifest.map((app) => [app.id, app]));
+const mediaConfig = window.ANSON_MEDIA || {
+    netflix: { profileName: "Anson", items: [] },
+    music: { profileName: "Anson", songs: [], recentSections: [], playlists: [] },
+};
 
 function localizedSpan(copy) {
     const fragment = document.createDocumentFragment();
@@ -26,6 +30,15 @@ function appIcon(app, className) {
     image.height = 64;
     icon.append(image);
     return icon;
+}
+
+function dockVisual(icon, indicator = null) {
+    const visual = document.createElement("span");
+    visual.className = "dock-visual";
+    visual.setAttribute("aria-hidden", "true");
+    visual.append(icon);
+    if (indicator) visual.append(indicator);
+    return visual;
 }
 
 function setDockItemLabel(item, copy) {
@@ -56,7 +69,7 @@ function appsLauncher() {
     image.height = 64;
     icon.append(image);
 
-    launcher.append(icon);
+    launcher.append(dockVisual(icon));
     return launcher;
 }
 
@@ -120,7 +133,7 @@ function renderLaunchers() {
             const indicator = document.createElement("span");
             indicator.className = "dock-indicator";
             indicator.setAttribute("aria-hidden", "true");
-            launcher.append(appIcon(app, "dock-icon"), indicator);
+            launcher.append(dockVisual(appIcon(app, "dock-icon"), indicator));
             dockContainer.append(launcher);
 
             if (app.id === "about") {
@@ -143,7 +156,7 @@ function renderLaunchers() {
         image.width = 64;
         image.height = 64;
         icon.append(image);
-        mail.append(icon);
+        mail.append(dockVisual(icon));
         dockContainer.append(mail);
     }
 }
@@ -290,12 +303,61 @@ const booksReaderRange = document.querySelector(".books-reader-stage input[type=
 const booksHomeScroll = document.querySelector(".books-home-scroll");
 const booksLibraryScroll = document.querySelector(".books-library-scroll");
 
+const netflixWindow = document.querySelector('[data-window="netflix"]');
+const netflixMain = document.querySelector(".netflix-main");
+const netflixHero = document.querySelector("[data-netflix-hero]");
+const netflixHeroLogo = document.querySelector("[data-netflix-hero-logo]");
+const netflixHeroTitle = document.querySelector("[data-netflix-hero-title]");
+const netflixHeroDescriptionZh = document.querySelector("[data-netflix-hero-description-zh]");
+const netflixHeroDescriptionEn = document.querySelector("[data-netflix-hero-description-en]");
+const netflixHeroOpen = document.querySelector("[data-netflix-hero-open]");
+const netflixList = document.querySelector("[data-netflix-list]");
+const netflixEmpty = document.querySelector("[data-netflix-empty]");
+const netflixSearch = document.querySelector("[data-netflix-search]");
+const netflixViewButtons = [...document.querySelectorAll("[data-netflix-view]")];
+const netflixJumpList = document.querySelector("[data-netflix-jump-list]");
+const netflixRowTitleZh = document.querySelector("[data-netflix-row-title-zh]");
+const netflixRowTitleEn = document.querySelector("[data-netflix-row-title-en]");
+const netflixEmptyZh = document.querySelector("[data-netflix-empty-zh]");
+const netflixEmptyEn = document.querySelector("[data-netflix-empty-en]");
+const netflixProfileButton = document.querySelector("[data-netflix-profile]");
+const netflixProfileMenu = document.querySelector("[data-netflix-profile-menu]");
+const netflixProfileChoice = document.querySelector("[data-netflix-profile-choice]");
+const netflixProfileName = document.querySelector("[data-netflix-profile-name]");
+const netflixNotificationsButton = document.querySelector("[data-netflix-notifications]");
+const netflixNotificationsMenu = document.querySelector("[data-netflix-notifications-menu]");
+
+const musicWindow = document.querySelector('[data-window="music"]');
+const musicApp = document.querySelector("[data-music-app]");
+const musicViewButtons = [...document.querySelectorAll("[data-music-view]")];
+const musicRecentSections = document.querySelector("[data-music-recent-sections]");
+const musicPinnedList = document.querySelector("[data-music-pins]");
+const musicPlaylistList = document.querySelector("[data-music-playlists]");
+const musicPinsToggle = document.querySelector("[data-music-pins-toggle]");
+const musicFocusSearch = document.querySelector("[data-music-focus-search]");
+const musicSidebarToggle = document.querySelector("[data-music-sidebar-toggle]");
+const musicLyricsToggle = document.querySelector("[data-music-lyrics-toggle]");
+const musicToolbarTitle = document.querySelector("[data-music-toolbar-title]");
+const musicProfileName = document.querySelector("[data-music-profile-name]");
+const musicSearch = document.querySelector("[data-music-search]");
+const musicSearchEmpty = document.querySelector("[data-music-search-empty]");
+const musicPlayerArt = document.querySelector("[data-music-player-art]");
+const musicPlayerTitle = document.querySelector("[data-music-player-title]");
+const musicPlayerArtist = document.querySelector("[data-music-player-artist]");
+const musicProgress = document.querySelector("[data-music-progress]");
+const musicPlayButton = document.querySelector("[data-music-play]");
+const musicPreviousButton = document.querySelector("[data-music-previous]");
+const musicNextButton = document.querySelector("[data-music-next]");
+const musicShuffleButton = document.querySelector("[data-music-shuffle]");
+const musicRepeatButton = document.querySelector("[data-music-repeat]");
+const musicVolume = document.querySelector("[data-music-volume]");
+
 const pageCopy = {
     zh: {
-        title: "建設中建設中建設中建設中",
-        description: "建設中建設中建設中建設中",
-        searchPlaceholder: "建設中建設中建設中建設中",
-        searchLabel: "建設中建設中建設中建設中",
+        title: "Anson Lo | 個人網站",
+        description: "你好，我是來自澳門的學生開發者 Anson。這裡放我做過的程式、寫作、筆記，以及最近在看的書。",
+        searchPlaceholder: "搜尋 App 或內容",
+        searchLabel: "搜尋這個網站",
         launchpadPlaceholder: "搜尋",
         launchpadLabel: "搜尋 App",
         switchLanguage: "切換至英文",
@@ -311,10 +373,10 @@ const pageCopy = {
         },
     },
     en: {
-        title: "建設中建設中建設中建設中",
-        description: "建設中建設中建設中建設中",
-        searchPlaceholder: "建設中建設中建設中建設中",
-        searchLabel: "建設中建設中建設中建設中",
+        title: "Anson Lo | Personal Site",
+        description: "Hi, I'm Anson, a student developer from Macao. This site holds my code, writing, notes, and current reading.",
+        searchPlaceholder: "Search apps or content",
+        searchLabel: "Search this site",
         launchpadPlaceholder: "Search",
         launchpadLabel: "Search Apps",
         switchLanguage: "Switch to Chinese",
@@ -343,6 +405,7 @@ let dragState = null;
 let refreshDockHoverLabel = () => {};
 let refreshGoodnotesCopy = () => {};
 let refreshBooksCopy = () => {};
+let refreshMediaCopy = () => {};
 
 function language() {
     return root.dataset.language === "en" ? "en" : "zh";
@@ -403,6 +466,7 @@ function setLanguage(nextLanguage, persist = true) {
     refreshDockHoverLabel();
     refreshGoodnotesCopy();
     refreshBooksCopy();
+    refreshMediaCopy();
 
     updateCompileCopy();
     updateClock();
@@ -524,7 +588,7 @@ function focusTopWindow() {
 function dockVector(appId, appWindow) {
     const dockButton = dockButtons.get(appId);
     if (!dockButton) return { x: 0, y: 45 };
-    const dockRect = dockButton.getBoundingClientRect();
+    const dockRect = getDockVisualRect(dockButton);
     const windowRect = appWindow.getBoundingClientRect();
     return {
         x: dockRect.left + dockRect.width / 2 - (windowRect.left + windowRect.width / 2),
@@ -1508,7 +1572,7 @@ function setOverleafDocument(documentId) {
     overleafSources.forEach((panel) => setPanelVisibility(panel, panel.dataset.overleafSource === documentId));
     overleafPreviews.forEach((panel) => setPanelVisibility(panel, panel.dataset.overleafPreview === documentId));
     overleafSourceTabs.forEach((tab) => tab.classList.toggle("is-active", tab.dataset.sourceTab === documentId));
-    if (currentTex) currentTex.textContent = "建設中建設中建設中建設中";
+    if (currentTex) currentTex.textContent = documentId === "diary" ? "macao-diary.tex" : "between-bells.tex";
     animatePanel(overleafSources.find((panel) => panel.dataset.overleafSource === documentId), { y: 3 });
     animatePanel(overleafPreviews.find((panel) => panel.dataset.overleafPreview === documentId), { y: 5 });
 }
@@ -1603,7 +1667,7 @@ let goodnotesDocuments = [
                 gnSection(["不定積分", "Indefinite integrals"], ["積完一定補 + C", "先把根式、分式寫成冪次"], ["always include + C", "rewrite roots and fractions as powers first"], "∫xⁿdx = xⁿ⁺¹/(n+1) + C", "mint"),
                 gnSection(["定積分與面積", "Definite integrals and area"], ["上限代入減下限代入", "跨過 x 軸時要分段；幾何面積取絕對值"], ["upper value minus lower value", "split at x-axis crossings; geometric area is positive"], "∫ₐᵇf(x)dx = F(b) − F(a)", "pink"),
             ], { type: "area", labels: ["a", "signed area", "b"] }, ["積分答案微分一次，應該回到 integrand。", "Differentiate the result: it should return the integrand."]),
-            gnPage(["切線與法線｜完整例題", "Tangent & normal — worked example"], "worked", [
+            gnPage(["切線與法線｜完整例題", "Tangent & normal - worked example"], "worked", [
                 gnSection(["題目", "Question"], ["曲線 y = x² + 3x，在 x = 1 求切線及法線。"], ["For y = x² + 3x, find tangent and normal at x = 1."], "y(1)=4,  dy/dx = 2x+3", "yellow"),
                 gnSection(["逐步做", "Working"], ["x=1 時斜率 mₜ=5", "法線斜率 mₙ=−1/5", "都通過點 (1,4)"], ["at x=1, tangent slope mₜ=5", "normal slope mₙ=−1/5", "both pass through (1,4)"], "y−4=5(x−1)  /  y−4=−⅕(x−1)", "violet"),
             ], { type: "curve", labels: ["(1,4)", "m=5", "m=−1/5"] }, ["兩條非垂直直線互相垂直 ⇒ 斜率乘積 = −1。", "Perpendicular non-vertical lines have slope product −1."]),
@@ -1627,7 +1691,7 @@ let goodnotesDocuments = [
         updated: gnBi("7月24日 下午5:40", "24 Jul, 5:40 PM"),
         date: gnBi("2026年7月24日", "24 JUL 2026"),
         pages: [
-            gnPage(["單位圓｜exact values", "Unit circle — exact values"], "map", [
+            gnPage(["單位圓｜exact values", "Unit circle - exact values"], "map", [
                 gnSection(["坐標就是答案", "Coordinates are the answer"], ["圓上點 = (cosθ, sinθ)", "tanθ = sinθ / cosθ"], ["point on circle = (cosθ, sinθ)", "tanθ = sinθ / cosθ"], "30°=π/6, 45°=π/4, 60°=π/3", "yellow"),
                 gnSection(["象限符號", "Signs by quadrant"], ["I：全部正；II：sin 正", "III：tan 正；IV：cos 正"], ["I: all positive; II: sin positive", "III: tan positive; IV: cos positive"], "ASTC → All / Sin / Tan / Cos", "blue"),
             ], { type: "circle", labels: ["cosθ", "sinθ", "tanθ"] }, ["角度制 ↔ 弧度制：乘 π/180 或 180/π。", "Degrees ↔ radians: multiply by π/180 or 180/π."]),
@@ -1643,7 +1707,7 @@ let goodnotesDocuments = [
                 gnSection(["y = a sin(bx+c)+d", "y = a sin(bx+c)+d"], ["振幅 = |a|；中線 y=d", "週期 = 2π/|b|"], ["amplitude = |a|; midline y=d", "period = 2π/|b|"], "phase shift = −c/b", "blue"),
                 gnSection(["畫圖次序", "Sketching order"], ["先畫中線與一個週期", "標出最大、最小及零點，再連成光滑曲線"], ["draw the midline and one period", "mark maxima, minima, zeros, then connect smoothly"], "range: [d−|a|, d+|a|]", "yellow"),
             ], { type: "wave", labels: ["amplitude", "period", "midline"] }, ["sin 從中線向上；cos 從極大值開始。", "sin starts upward at the midline; cos starts at a maximum."]),
-            gnPage(["非直角三角形｜選哪條公式？", "Non-right triangles — which rule?"], "checklist", [
+            gnPage(["非直角三角形｜選哪條公式？", "Non-right triangles - which rule?"], "checklist", [
                 gnSection(["正弦定理", "Sine rule"], ["已知一組對邊與對角時最好用", "SSA 要留意 ambiguous case"], ["best when one opposite side-angle pair is known", "SSA may have an ambiguous case"], "a/sinA = b/sinB = c/sinC", "mint"),
                 gnSection(["餘弦定理＋面積", "Cosine rule and area"], ["SAS 或 SSS 用餘弦定理", "兩邊夾角可直接求面積"], ["use cosine rule for SAS or SSS", "two sides and included angle give area"], "a²=b²+c²−2bc cosA;  Area=½bc sinA", "pink"),
             ], { type: "triangle", labels: ["a↔A", "b↔B", "c↔C"] }, ["圖不一定按比例；邊和對角的配對要自己標。", "The diagram may not be to scale; label opposite pairs yourself."]),
@@ -1667,11 +1731,11 @@ let goodnotesDocuments = [
                 gnSection(["先驗四個條件", "Check four conditions"], ["固定試驗次數 n", "每次只有成功／失敗", "p 固定；各次獨立"], ["fixed number n", "success/failure only", "constant p; independent trials"], "X ~ B(n,p)", "mint"),
                 gnSection(["概率、平均、離散程度", "Probability, mean, spread"], ["組合數決定成功出現在哪幾次", "方差不是標準差"], ["the combination counts placements of successes", "variance is not standard deviation"], "P(X=r)=ⁿCᵣpʳ(1−p)ⁿ⁻ʳ; μ=np; σ²=np(1−p)", "pink"),
             ], { type: "distribution", labels: ["0", "np", "n"] }, ["題目問至少 r：通常用 1−P(X≤r−1)。", "For at least r, usually use 1−P(X≤r−1)."]),
-            gnPage(["Normal distribution｜標準化", "Normal distribution — standardise"], "worked", [
+            gnPage(["Normal distribution｜標準化", "Normal distribution - standardise"], "worked", [
                 gnSection(["把任何 N(μ,σ²) 轉成 Z", "Convert N(μ,σ²) to Z"], ["先畫鐘形圖並塗區域", "標準差是 σ，不是 σ²"], ["sketch and shade the required region", "use σ, not σ²"], "Z=(X−μ)/σ", "blue"),
                 gnSection(["反求臨界值", "Finding a cutoff"], ["先從概率找 z 值", "再用 x=μ+zσ 轉回原單位"], ["find z from the probability", "then return with x=μ+zσ"], "P(X≤x)=0.90 ⇒ z≈1.282", "yellow"),
             ], { type: "distribution", labels: ["μ−σ", "μ", "μ+σ"] }, ["圖上的陰影方向可抓到大部分 calculator 尾端錯誤。", "The shaded sketch catches most tail-direction errors."]),
-            gnPage(["假設檢驗｜證據有多極端？", "Hypothesis testing — how extreme?"], "checklist", [
+            gnPage(["假設檢驗｜證據有多極端？", "Hypothesis testing - how extreme?"], "checklist", [
                 gnSection(["六步", "Six steps"], ["寫 H₀、H₁ 與顯著水平", "選統計量及其 H₀ 分佈", "算 p-value，與 α 比較"], ["state H₀, H₁, and significance", "choose statistic and null distribution", "calculate p-value and compare with α"], "p≤α ⇒ reject H₀", "yellow"),
                 gnSection(["結論語言", "Conclusion wording"], ["說『有足夠證據支持 H₁』", "不要說『證明 H₀ 錯』"], ["say ‘sufficient evidence supports H₁’", "do not say ‘H₀ is proved false’"], "decision ≠ certainty", "pink"),
             ], { type: "checklist", labels: ["H₀", "p-value", "context"] }, ["一尾或兩尾由 H₁ 決定，不由數據長相決定。", "H₁ determines one- or two-tailed, not the data shape."]),
@@ -1695,13 +1759,13 @@ let goodnotesDocuments = [
                 gnSection(["斜面分解", "Resolve on a slope"], ["平行斜面：mg sinθ", "垂直斜面：mg cosθ", "N 不一定等於 mg"], ["parallel: mg sinθ", "perpendicular: mg cosθ", "N is not always mg"], "ΣF∥=ma;  ΣF⟂=0", "violet"),
                 gnSection(["摩擦力", "Friction"], ["方向反抗相對運動或其趨勢", "極限摩擦 F=μN 只在臨界時用"], ["opposes relative motion or its tendency", "F=μN only at limiting friction"], "F≤μN", "yellow"),
             ], { type: "force", labels: ["N", "mg", "friction"] }, ["先選正方向，再寫每個力的正負；不要靠直覺改號。", "Choose positive direction before assigning signs."]),
-            gnPage(["SUVAT｜只適用於等加速度", "SUVAT — constant acceleration only"], "split", [
+            gnPage(["SUVAT｜只適用於等加速度", "SUVAT - constant acceleration only"], "split", [
                 gnSection(["五個量", "Five quantities"], ["s 位移、u 初速、v 末速", "a 加速度、t 時間"], ["s displacement, u initial speed, v final speed", "a acceleration, t time"], "v=u+at;  s=ut+½at²", "blue"),
                 gnSection(["選公式技巧", "Choosing an equation"], ["圈出已知量與所求量", "選一條不含未知干擾量的公式"], ["circle knowns and the target", "choose an equation excluding the unwanted unknown"], "v²=u²+2as", "mint"),
             ], { type: "motion", labels: ["u", "a", "v"] }, ["位移可為負；distance 與 displacement 不可混用。", "Displacement can be negative; it is not distance."]),
             gnPage(["衝量與動量守恆", "Impulse and momentum"], "worked", [
                 gnSection(["系統觀點", "System view"], ["外力衝量可忽略 ⇒ 總動量守恆", "碰撞前後分開寫，再選正方向"], ["negligible external impulse ⇒ momentum conserved", "write before/after and choose a positive direction"], "m₁u₁+m₂u₂=m₁v₁+m₂v₂", "yellow"),
-                gnSection(["力—時間圖", "Force–time graph"], ["曲線下的面積就是衝量", "衝量等於動量改變"], ["area under the graph is impulse", "impulse equals change in momentum"], "J=∫Fdt=Δp", "pink"),
+                gnSection(["力-時間圖", "Force-time graph"], ["曲線下的面積就是衝量", "衝量等於動量改變"], ["area under the graph is impulse", "impulse equals change in momentum"], "J=∫Fdt=Δp", "pink"),
             ], { type: "collision", labels: ["before", "impact", "after"] }, ["動能只在彈性碰撞守恆；動量在封閉系統都守恆。", "Kinetic energy is conserved only in elastic collisions."]),
             gnPage(["功、能量、功率", "Work, energy, power"], "flow", [
                 gnSection(["能量帳本", "Energy bookkeeping"], ["先定 system boundary", "損失的機械能通常轉成熱或聲"], ["define the system boundary", "lost mechanical energy becomes heat or sound"], "W=Fs cosθ;  Ek=½mv²;  Ep=mgh", "mint"),
@@ -1759,11 +1823,11 @@ let goodnotesDocuments = [
                 gnSection(["平衡不是停止", "Equilibrium is not stopped"], ["正逆反應仍進行，但速率相等", "濃度保持不變，不代表相等"], ["forward and reverse reactions continue at equal rates", "concentrations stay constant, not necessarily equal"], "rateforward = ratereverse", "mint"),
                 gnSection(["寫 Kc", "Writing Kc"], ["次方來自化學計量係數", "純固體、純液體不寫入"], ["powers come from stoichiometric coefficients", "omit pure solids and liquids"], "aA+bB⇌cC+dD; Kc=[C]ᶜ[D]ᵈ/[A]ᵃ[B]ᵇ", "yellow"),
             ], { type: "equilibrium", labels: ["forward", "equal rates", "reverse"] }, ["同一反應只有溫度改變才會改變 Kc。", "Only temperature changes Kc for a fixed reaction."]),
-            gnPage(["Le Châtelier：系統反抗改變", "Le Châtelier — opposing change"], "map", [
+            gnPage(["Le Châtelier：系統反抗改變", "Le Châtelier - opposing change"], "map", [
                 gnSection(["濃度與壓力", "Concentration and pressure"], ["加反應物 ⇒ 向消耗它的方向", "加壓 ⇒ 向氣體摩爾數較少一側"], ["add reactant ⇒ shift to consume it", "higher pressure ⇒ fewer gas moles"], "position changes; Kc unchanged", "blue"),
                 gnSection(["溫度", "Temperature"], ["把熱視為反應物或生成物", "升溫偏向吸熱方向，而且 Kc 改變"], ["treat heat as reactant or product", "higher T favours endothermic direction and changes Kc"], "exothermic: ΔH<0", "pink"),
             ], { type: "balance", labels: ["stress", "shift", "new equilibrium"] }, ["催化劑只加快到達平衡；不改變位置或 Kc。", "A catalyst changes time to equilibrium, not position or Kc."]),
-            gnPage(["pH 計算｜先判斷強弱", "pH — decide strong or weak first"], "worked", [
+            gnPage(["pH 計算｜先判斷強弱", "pH - decide strong or weak first"], "worked", [
                 gnSection(["強酸例題", "Strong-acid example"], ["0.0020 mol dm⁻³ HCl 完全解離", "[H⁺]=2.0×10⁻³"], ["0.0020 mol dm⁻³ HCl fully dissociates", "[H⁺]=2.0×10⁻³"], "pH=−log(2.0×10⁻³)=2.70", "yellow"),
                 gnSection(["25°C 水的關係", "Water at 25°C"], ["pH+pOH=14.00", "稀釋後 pH 靠近 7，但不會跨過 7"], ["pH+pOH=14.00", "dilution moves pH toward 7 without crossing it"], "Kw=[H⁺][OH⁻]=1.0×10⁻¹⁴", "mint"),
             ], { type: "ph", labels: ["acid", "7", "alkali"] }, ["濃度單位要先化成 mol dm⁻³。", "Convert concentration to mol dm⁻³ before using logs."]),
@@ -1788,10 +1852,10 @@ let goodnotesDocuments = [
         date: gnBi("2026年7月4日", "4 JUL 2026"),
         pages: [
             gnPage(["官能團先認清，再選反應", "Functional groups first"], "map", [
-                gnSection(["碳碳鍵路線", "Carbon–carbon routes"], ["alkane → haloalkane：free-radical substitution", "alkene → alcohol：hydration"], ["alkane → haloalkane: free-radical substitution", "alkene → alcohol: hydration"], "C=C  →  C−C", "mint"),
+                gnSection(["碳碳鍵路線", "Carbon-carbon routes"], ["alkane → haloalkane：free-radical substitution", "alkene → alcohol：hydration"], ["alkane → haloalkane: free-radical substitution", "alkene → alcohol: hydration"], "C=C  →  C−C", "mint"),
                 gnSection(["含氧官能團", "Oxygen groups"], ["primary alcohol 可氧化成 aldehyde，再成 acid", "secondary alcohol 氧化成 ketone"], ["primary alcohol oxidises to aldehyde, then acid", "secondary alcohol oxidises to ketone"], "1° alcohol → aldehyde → carboxylic acid", "yellow"),
             ], { type: "reaction", labels: ["functional group", "reagent", "product"] }, ["箭嘴上寫 reagent；箭嘴下寫 condition。", "Put reagent above the arrow and conditions below."]),
-            gnPage(["機理：curly arrow 從電子出發", "Mechanisms — arrows start at electrons"], "worked", [
+            gnPage(["機理：curly arrow 從電子出發", "Mechanisms - arrows start at electrons"], "worked", [
                 gnSection(["親電加成", "Electrophilic addition"], ["π 鍵電子攻擊 electrophile", "中間體再被 nucleophile 攻擊"], ["π electrons attack the electrophile", "the intermediate is attacked by a nucleophile"], "alkene + HBr → bromoalkane", "pink"),
                 gnSection(["標記電荷", "Show charges"], ["所有 lone pair、δ⁺/δ⁻、formal charge 都畫", "箭嘴頭指向新鍵或接受電子的原子"], ["draw lone pairs, δ⁺/δ⁻, and formal charges", "arrowhead points to the new bond or electron receiver"], "electron pair: source ↷ destination", "violet"),
             ], { type: "mechanism", labels: ["π electrons", "carbocation", "Br⁻"] }, ["半箭嘴代表單電子；一般 ionic mechanism 用全箭嘴。", "Half-headed arrows are for single electrons; ionic mechanisms use full arrows."]),
@@ -1800,10 +1864,10 @@ let goodnotesDocuments = [
                 gnSection(["還原", "Reduction"], ["NaBH₄ 還原 aldehyde/ketone", "H₂/Ni 可還原 C=C"], ["NaBH₄ reduces aldehydes/ketones", "H₂/Ni reduces C=C"], "C=O + 2[H] → CH−OH", "blue"),
             ], { type: "reaction", labels: ["distil", "reflux", "reduce"] }, ["『heat』不夠：要寫 reflux / distillation 及試劑。", "‘Heat’ is not enough: state reflux/distillation and reagent."]),
             gnPage(["光譜拼圖：每種證據答一件事", "Spectroscopy as a puzzle"], "flow", [
-                gnSection(["IR", "IR"], ["寬闊 O−H 約 2500–3300 cm⁻¹（acid）", "強 C=O 約 1700 cm⁻¹"], ["broad O−H around 2500–3300 cm⁻¹ for acids", "strong C=O near 1700 cm⁻¹"], "bond type ← absorption position", "mint"),
+                gnSection(["IR", "IR"], ["寬闊 O−H 約 2500-3300 cm⁻¹（acid）", "強 C=O 約 1700 cm⁻¹"], ["broad O−H around 2500-3300 cm⁻¹ for acids", "strong C=O near 1700 cm⁻¹"], "bond type ← absorption position", "mint"),
                 gnSection(["¹H NMR + mass spectrum", "¹H NMR + mass spectrum"], ["峰組數＝不同 proton environment", "integration 給相對 H 數；M⁺ 給 Mr"], ["signal count gives proton environments", "integration gives H ratio; M⁺ gives Mr"], "structure = formula + IR + NMR", "pink"),
             ], { type: "spectrum", labels: ["chemical shift", "integration", "splitting"] }, ["先寫 molecular formula，再檢查總 H 數與不飽和度。", "Start with molecular formula; check H total and unsaturation."]),
-            gnPage(["合成題｜由目標倒推", "Synthesis planning — work backwards"], "checklist", [
+            gnPage(["合成題｜由目標倒推", "Synthesis planning - work backwards"], "checklist", [
                 gnSection(["Retrosynthesis", "Retrosynthesis"], ["圈出目標官能團，問它可由什麼前體生成", "再把逆向步驟翻回正向路線"], ["circle the target group and identify a precursor", "then reverse the steps into a forward route"], "target ⇐ precursor ⇐ starting material", "blue"),
                 gnSection(["每一步要齊", "Every step needs"], ["試劑、條件、主要產物", "必要時寫 purification 或 observation"], ["reagent, conditions, major product", "include purification or observation when required"], "reagent + condition + transformation", "yellow"),
             ], { type: "reaction", labels: ["start", "intermediate", "target"] }, ["最後逐個碳原子數一次，避免無意中增碳或減碳。", "Count carbons at every step to catch accidental chain changes."]),
@@ -2797,6 +2861,703 @@ setBooksView("home", { focusSearch: false });
 updateBooksScrollThumb(document.querySelector(".books-home"), booksHomeScroll, 214);
 updateBooksScrollThumb(document.querySelector(".books-library"), booksLibraryScroll, 104);
 
+let netflixCurrentView = "home";
+
+const netflixViewCopy = {
+    home: { zh: "我的片單", en: "My List" },
+    list: { zh: "我的片單", en: "My List" },
+    series: { zh: "片單中的影集", en: "Series in My List" },
+    films: { zh: "片單中的電影", en: "Films in My List" },
+    games: { zh: "片單中的遊戲", en: "Games in My List" },
+    new: { zh: "片單中的新作", en: "New in My List" },
+    languages: { zh: "依語言瀏覽", en: "Browse by Language" },
+};
+
+function netflixLocalizedField(item, field, locale = language()) {
+    const suffix = locale === "zh" ? "Zh" : "En";
+    return item?.[`${field}${suffix}`] || item?.[field] || "";
+}
+
+function netflixHeroItem() {
+    const items = mediaConfig.netflix?.items || [];
+    const heroId = mediaConfig.netflix?.heroId;
+    return items.find((item) => item.id === heroId) || items[0] || null;
+}
+
+function refreshNetflixHero() {
+    if (!netflixHero) return;
+    const item = netflixHeroItem();
+    netflixHero.classList.toggle("has-title", Boolean(item));
+    netflixHero.style.setProperty(
+        "--netflix-hero-artwork",
+        item?.artwork ? `url("${item.artwork}")` : "none",
+    );
+
+    if (netflixHeroLogo) {
+        netflixHeroLogo.hidden = !item?.logo;
+        if (item?.logo) {
+            netflixHeroLogo.src = item.logo;
+            netflixHeroLogo.alt = "";
+        } else {
+            netflixHeroLogo.removeAttribute("src");
+            netflixHeroLogo.alt = "";
+        }
+    }
+    if (netflixHeroTitle) {
+        netflixHeroTitle.textContent = item?.title || (language() === "zh" ? "我的 Netflix 片單" : "My Netflix list");
+        netflixHeroTitle.hidden = false;
+        netflixHeroTitle.classList.toggle("sr-only", Boolean(item?.logo));
+    }
+    if (netflixHeroDescriptionZh) {
+        netflixHeroDescriptionZh.textContent = item?.descriptionZh || "這裡會放我想看、正在看和會再看的電影與影集。";
+    }
+    if (netflixHeroDescriptionEn) {
+        netflixHeroDescriptionEn.textContent = item?.descriptionEn || "Films and series I want to watch, am watching, or would watch again.";
+    }
+    if (netflixHeroOpen) {
+        netflixHeroOpen.hidden = !item?.url;
+        if (item?.url) netflixHeroOpen.href = item.url;
+        netflixHeroOpen.setAttribute("aria-label", item?.title
+            ? `${language() === "zh" ? "在 Netflix 查看" : "View on Netflix"}: ${item.title}`
+            : "Netflix");
+    }
+}
+
+function netflixItemsForView() {
+    const query = netflixSearch?.value.trim().toLocaleLowerCase() || "";
+    return [...(mediaConfig.netflix?.items || [])].filter((item) => {
+        const type = String(item.type || "").toLocaleLowerCase();
+        const status = String(item.status || "").toLocaleLowerCase();
+        const matchesView = Boolean(query)
+            || netflixCurrentView === "home"
+            || netflixCurrentView === "list"
+            || (netflixCurrentView === "series" && ["series", "show", "tv"].includes(type))
+            || (netflixCurrentView === "films" && ["film", "movie"].includes(type))
+            || (netflixCurrentView === "games" && ["game", "games"].includes(type))
+            || (netflixCurrentView === "languages" && Boolean(item.language))
+            || (netflixCurrentView === "new" && (item.isNew === true || ["new", "recent"].includes(status)));
+        const text = [
+            item.title,
+            item.genre,
+            item.genreZh,
+            item.genreEn,
+            item.year,
+            item.cast,
+            item.description,
+            item.descriptionZh,
+            item.descriptionEn,
+            item.tags,
+            item.language,
+        ]
+            .flat()
+            .filter(Boolean)
+            .join(" ")
+            .toLocaleLowerCase();
+        return matchesView && (!query || text.includes(query));
+    });
+}
+
+function refreshNetflixListCopy(itemCount) {
+    const viewCopy = netflixViewCopy[netflixCurrentView] || netflixViewCopy.home;
+    const query = netflixSearch?.value.trim() || "";
+    if (netflixRowTitleZh) netflixRowTitleZh.textContent = query ? `「${query}」的搜尋結果` : viewCopy.zh;
+    if (netflixRowTitleEn) netflixRowTitleEn.textContent = query ? `Search results for “${query}”` : viewCopy.en;
+
+    const hasPublishedItems = (mediaConfig.netflix?.items || []).length > 0;
+    let emptyCopy;
+    if (query) {
+        emptyCopy = { zh: `找不到「${query}」。`, en: `No results for “${query}”.` };
+    } else if (!hasPublishedItems) {
+        emptyCopy = { zh: "我還未把私人片單放上來。", en: "I haven't published my personal list yet." };
+    } else {
+        emptyCopy = { zh: "這個分類還沒有片。", en: "There are no titles in this section yet." };
+    }
+    if (netflixEmptyZh) netflixEmptyZh.textContent = emptyCopy.zh;
+    if (netflixEmptyEn) netflixEmptyEn.textContent = emptyCopy.en;
+    if (netflixEmpty) netflixEmpty.hidden = itemCount > 0;
+}
+
+function renderNetflixList() {
+    if (!netflixList) return;
+    netflixList.replaceChildren();
+    const items = netflixItemsForView();
+
+    items.forEach((item) => {
+        const card = document.createElement(item.url ? "a" : "article");
+        card.className = "netflix-card";
+        if (item.url) {
+            card.href = item.url;
+            card.target = "_blank";
+            card.rel = "noreferrer";
+            card.setAttribute("aria-label", `${language() === "zh" ? "在 Netflix 查看" : "View on Netflix"}: ${item.title}`);
+        } else {
+            card.tabIndex = 0;
+        }
+
+        const image = mediaImage(item.artwork, item.title ? `${item.title} artwork` : "");
+        const artwork = document.createElement("span");
+        artwork.className = "netflix-card-art";
+        artwork.append(image);
+        if (item.logo) {
+            const logo = mediaImage(item.logo, "");
+            logo.className = "netflix-card-title-logo";
+            artwork.append(logo);
+        }
+
+        const copy = document.createElement("div");
+        const title = document.createElement("strong");
+        title.textContent = item.title || "";
+        const details = document.createElement("small");
+        [
+            { value: item.year, className: "netflix-card-year" },
+            { value: item.rating, className: "netflix-card-rating" },
+            { value: netflixLocalizedField(item, "genre"), className: "netflix-card-genre" },
+        ].filter((entry) => entry.value).forEach((entry) => {
+            const value = document.createElement("span");
+            value.className = entry.className;
+            value.textContent = entry.value;
+            details.append(value);
+        });
+        copy.append(title, details);
+        const localizedDescription = netflixLocalizedField(item, "description");
+        if (localizedDescription) {
+            const description = document.createElement("p");
+            description.textContent = localizedDescription;
+            copy.append(description);
+        }
+        card.append(artwork, copy);
+        netflixList.append(card);
+    });
+
+    netflixList.hidden = items.length === 0;
+    refreshNetflixListCopy(items.length);
+}
+
+function setNetflixView(view) {
+    netflixCurrentView = view || "home";
+    netflixViewButtons.forEach((button) => {
+        const active = button.dataset.netflixView === netflixCurrentView;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+    });
+    renderNetflixList();
+    if (netflixCurrentView === "list") {
+        const row = netflixList?.closest(".netflix-row");
+        netflixMain?.scrollTo({
+            top: Math.max(0, (row?.offsetTop || 0) - 54),
+            behavior: reducedMotion.matches ? "auto" : "smooth",
+        });
+    } else if (!netflixSearch?.value) {
+        netflixMain?.scrollTo({ top: 0, behavior: reducedMotion.matches ? "auto" : "smooth" });
+    }
+}
+
+netflixViewButtons.forEach((button) => {
+    button.addEventListener("click", () => setNetflixView(button.dataset.netflixView));
+});
+netflixJumpList?.addEventListener("click", () => setNetflixView("list"));
+netflixSearch?.addEventListener("input", renderNetflixList);
+
+function setNetflixProfileMenu(open, { restoreFocus = false } = {}) {
+    if (!netflixProfileMenu || !netflixProfileButton) return;
+    netflixProfileMenu.hidden = !open;
+    netflixProfileButton.setAttribute("aria-expanded", String(open));
+    if (open) animatePanel(netflixProfileMenu, { y: -3 });
+    if (!open && restoreFocus) netflixProfileButton.focus();
+}
+
+function setNetflixNotificationsMenu(open, { restoreFocus = false } = {}) {
+    if (!netflixNotificationsMenu || !netflixNotificationsButton) return;
+    netflixNotificationsMenu.hidden = !open;
+    netflixNotificationsButton.setAttribute("aria-expanded", String(open));
+    if (open) animatePanel(netflixNotificationsMenu, { y: -3 });
+    if (!open && restoreFocus) netflixNotificationsButton.focus();
+}
+
+if (netflixProfileName) netflixProfileName.textContent = mediaConfig.netflix?.profileName || "Anson";
+netflixProfileButton?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setNetflixNotificationsMenu(false);
+    setNetflixProfileMenu(Boolean(netflixProfileMenu?.hidden));
+});
+netflixProfileChoice?.addEventListener("click", () => setNetflixProfileMenu(false, { restoreFocus: true }));
+netflixNotificationsButton?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setNetflixProfileMenu(false);
+    setNetflixNotificationsMenu(Boolean(netflixNotificationsMenu?.hidden));
+});
+document.addEventListener("click", (event) => {
+    if (!netflixProfileMenu?.hidden && !event.target.closest(".netflix-profile-wrap")) setNetflixProfileMenu(false);
+    if (!netflixNotificationsMenu?.hidden && !event.target.closest(".netflix-notifications-wrap")) setNetflixNotificationsMenu(false);
+});
+netflixWindow?.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || (netflixProfileMenu?.hidden && netflixNotificationsMenu?.hidden)) return;
+    event.preventDefault();
+    if (!netflixProfileMenu?.hidden) setNetflixProfileMenu(false, { restoreFocus: true });
+    if (!netflixNotificationsMenu?.hidden) setNetflixNotificationsMenu(false, { restoreFocus: true });
+});
+
+let musicCurrentView = "recent";
+let musicCurrentSong = null;
+let musicCurrentSongIndex = -1;
+let musicAudio = null;
+
+function mediaImage(url, alt) {
+    const image = document.createElement("img");
+    image.alt = alt || "";
+    image.loading = "lazy";
+    image.decoding = "async";
+    if (url) {
+        image.src = url;
+        image.addEventListener("error", () => {
+            image.removeAttribute("src");
+            image.alt = "";
+            image.classList.add("is-placeholder");
+        });
+    } else {
+        image.classList.add("is-placeholder");
+    }
+    return image;
+}
+
+function musicSongsData() {
+    return [...(mediaConfig.music?.songs || [])];
+}
+
+function musicRecentSectionsData() {
+    return [...(mediaConfig.music?.recentSections || [])];
+}
+
+function musicAlbumsData() {
+    return musicRecentSectionsData().flatMap((section) => section.albums || []);
+}
+
+function createMusicIcon(symbolId, className = "") {
+    const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    icon.setAttribute("aria-hidden", "true");
+    icon.setAttribute("class", `music-icon${className ? ` ${className}` : ""}`);
+    const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    use.setAttribute("href", `#${symbolId}`);
+    icon.append(use);
+    return icon;
+}
+
+function updateMusicTransport() {
+    const hasSongs = musicPlayableData().length > 0;
+    if (musicPreviousButton) musicPreviousButton.disabled = !hasSongs;
+    if (musicNextButton) musicNextButton.disabled = !hasSongs;
+}
+
+function musicTrackForAlbum(album) {
+    if (!album) return null;
+    if (album.songId) {
+        const pinnedSong = musicSongsData().find((song) => song.id === album.songId);
+        if (pinnedSong) return pinnedSong;
+    }
+    return album.track || null;
+}
+
+function musicPlayableData() {
+    const tracks = [
+        mediaConfig.music?.nowPlaying,
+        ...musicSongsData(),
+        ...musicAlbumsData().map(musicTrackForAlbum),
+    ].filter(Boolean);
+    const unique = new Map();
+    tracks.forEach((track) => {
+        const key = track.id || track.previewUrl || `${track.title || ""}\u0000${track.artist || ""}`;
+        if (!unique.has(key)) unique.set(key, track);
+    });
+    return [...unique.values()];
+}
+
+function refreshMusicSelectedState() {
+    document.querySelectorAll("[data-music-song-id]").forEach((button) => {
+        button.classList.toggle("is-playing-selection", button.dataset.musicSongId === musicCurrentSong?.id);
+    });
+}
+
+function updateMusicProgress(percent = 0) {
+    if (musicProgress) musicProgress.style.width = `${Math.max(0, Math.min(100, percent))}%`;
+}
+
+function selectMusicSong(song) {
+    if (!song) return;
+    musicCurrentSong = song;
+    const playable = musicPlayableData();
+    musicCurrentSongIndex = playable.findIndex((entry) => entry === song || (entry.id && entry.id === song.id));
+    if (musicPlayerTitle) musicPlayerTitle.textContent = song.title || "";
+    if (musicPlayerArtist) musicPlayerArtist.textContent = [song.artist, song.album].filter(Boolean).join(" — ");
+    if (musicPlayerArt) {
+        musicPlayerArt.style.backgroundImage = song.artwork ? `url("${song.artwork}")` : "none";
+        musicPlayerArt.classList.toggle("has-art", Boolean(song.artwork));
+    }
+    if (musicPlayButton) {
+        musicPlayButton.disabled = !song.previewUrl;
+        musicPlayButton.classList.remove("is-playing");
+        const playLabel = language() === "zh" ? "播放" : "Play";
+        const unavailableLabel = language() === "zh" ? "沒有可用的試聽" : "Preview unavailable";
+        musicPlayButton.setAttribute("aria-label", song.previewUrl ? `${playLabel} ${song.title}` : unavailableLabel);
+    }
+    if (musicAudio) {
+        musicAudio.pause();
+        musicAudio = null;
+    }
+    updateMusicProgress(0);
+    refreshMusicSelectedState();
+}
+
+function createMusicAlbum(album) {
+    const track = musicTrackForAlbum(album);
+    const card = document.createElement(track ? "button" : "article");
+    if (track) card.type = "button";
+    card.className = "music-album";
+    if (album.showPlay) card.classList.add("is-play-visible");
+    card.dataset.musicAlbumId = album.id || "";
+    const artwork = document.createElement("span");
+    artwork.className = "music-album-art";
+    const image = mediaImage(album.artwork, "");
+    image.loading = "eager";
+    artwork.append(image);
+    if (track) {
+        const play = document.createElement("span");
+        play.className = "music-album-play";
+        play.append(createMusicIcon("music-play-icon"));
+        artwork.append(play);
+        card.setAttribute("aria-label", `${language() === "zh" ? "播放" : "Play"} ${album.title || ""}`);
+    }
+
+    const titleRow = document.createElement("span");
+    titleRow.className = "music-album-title-row";
+    const title = document.createElement("strong");
+    title.textContent = album.title || "";
+    titleRow.append(title);
+    if (album.favorite) {
+        const favorite = document.createElement("span");
+        favorite.className = "music-album-favorite";
+        favorite.textContent = "☆";
+        favorite.setAttribute("aria-label", language() === "zh" ? "心水專輯" : "Favourite album");
+        titleRow.append(favorite);
+    }
+    if (album.explicit) {
+        const explicit = document.createElement("span");
+        explicit.className = "music-explicit-badge";
+        explicit.textContent = "E";
+        explicit.setAttribute("aria-label", language() === "zh" ? "不雅內容" : "Explicit");
+        titleRow.append(explicit);
+    }
+    const artist = document.createElement("small");
+    artist.textContent = album.artist || "";
+    card.append(artwork, titleRow, artist);
+    if (track) {
+        card.addEventListener("click", () => {
+            selectMusicSong(track);
+            void playMusicTrack();
+        });
+    }
+    return card;
+}
+
+function createMusicPinnedSong(song) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "music-pinned-item";
+    button.dataset.musicSongId = song.id || "";
+    button.append(mediaImage(song.artwork, ""));
+    const label = document.createElement("span");
+    label.textContent = song.title || "";
+    button.append(label);
+    button.setAttribute("aria-label", `${language() === "zh" ? "選取" : "Select"} ${song.title || ""}`);
+    button.addEventListener("click", () => selectMusicSong(song));
+    return button;
+}
+
+function createMusicPlaylist(playlist, index) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "music-playlist-item";
+    if (playlist.kind === "excel") {
+        const artwork = document.createElement("span");
+        artwork.className = "music-playlist-art is-excel";
+        artwork.textContent = "X";
+        artwork.setAttribute("aria-hidden", "true");
+        button.append(artwork);
+    } else {
+        button.append(mediaImage(playlist.artwork, ""));
+    }
+    const label = document.createElement("span");
+    label.textContent = playlist.title || "";
+    button.append(label);
+    button.addEventListener("click", () => {
+        musicPlaylistList?.querySelectorAll(".music-playlist-item").forEach((entry) => entry.classList.remove("is-active"));
+        button.classList.add("is-active");
+        setMusicView("playlists");
+        if (musicSongsData()[index % Math.max(1, musicSongsData().length)]) {
+            selectMusicSong(musicSongsData()[index % musicSongsData().length]);
+        }
+    });
+    return button;
+}
+
+function renderMusicSidebar() {
+    if (musicPinnedList) musicPinnedList.replaceChildren(...musicSongsData().map(createMusicPinnedSong));
+    if (musicPlaylistList) {
+        musicPlaylistList.replaceChildren(...(mediaConfig.music?.playlists || []).map(createMusicPlaylist));
+    }
+    if (musicProfileName) musicProfileName.textContent = mediaConfig.music?.profileName || "Anson Lo";
+    refreshMusicSelectedState();
+}
+
+const musicViewLabels = {
+    recent: { zh: "今個星期", en: "This Week" },
+    home: { zh: "首頁", en: "Home" },
+    explore: { zh: "探索", en: "Explore" },
+    radio: { zh: "廣播", en: "Radio" },
+    artists: { zh: "藝人", en: "Artists" },
+    albums: { zh: "專輯", en: "Albums" },
+    songs: { zh: "歌曲", en: "Songs" },
+    videos: { zh: "MV", en: "Music Videos" },
+    recommendations: { zh: "專屬推薦", en: "Made for You" },
+    playlists: { zh: "播放清單", en: "Playlists" },
+    favorites: { zh: "心水歌曲", en: "Favourite Songs" },
+};
+
+function musicSectionsForView() {
+    if (musicCurrentView === "recent") return musicRecentSectionsData();
+    if (musicCurrentView === "videos") return [];
+
+    if (["songs", "favorites", "playlists"].includes(musicCurrentView)) {
+        return [{
+            id: musicCurrentView,
+            titleZh: musicViewLabels[musicCurrentView].zh,
+            titleEn: musicViewLabels[musicCurrentView].en,
+            albums: musicSongsData().map((song) => ({
+                id: `song-${song.id}`,
+                title: song.title,
+                artist: song.artist,
+                artwork: song.artwork,
+                songId: song.id,
+            })),
+        }];
+    }
+
+    return [{
+        id: musicCurrentView,
+        titleZh: musicViewLabels[musicCurrentView]?.zh || "最近加入",
+        titleEn: musicViewLabels[musicCurrentView]?.en || "Recently Added",
+        albums: musicAlbumsData(),
+    }];
+}
+
+function renderMusicRecent() {
+    if (!musicRecentSections) return;
+    const query = musicSearch?.value.trim().toLocaleLowerCase() || "";
+    let total = 0;
+    const sections = musicSectionsForView().map((section) => ({
+        ...section,
+        albums: (section.albums || []).filter((album) => {
+            const searchText = `${album.title || ""} ${album.artist || ""}`.toLocaleLowerCase();
+            return !query || searchText.includes(query);
+        }),
+    })).filter((section) => section.albums.length > 0);
+
+    const sectionNodes = sections.map((section) => {
+        total += section.albums.length;
+        const wrapper = document.createElement("section");
+        wrapper.className = "music-recent-section";
+        wrapper.dataset.musicRecentSection = section.id || "";
+        const heading = document.createElement("h3");
+        heading.append(localizedSpan({ zh: section.titleZh, en: section.titleEn }));
+        const grid = document.createElement("div");
+        grid.className = "music-album-grid";
+        grid.replaceChildren(...section.albums.map(createMusicAlbum));
+        wrapper.append(heading, grid);
+        return wrapper;
+    });
+
+    musicRecentSections.classList.toggle("is-searching", Boolean(query));
+    musicRecentSections.replaceChildren(...sectionNodes);
+    if (musicSearchEmpty) {
+        musicSearchEmpty.hidden = total > 0;
+        if (!total) {
+            musicSearchEmpty.textContent = query
+                ? (language() === "zh" ? `找不到「${musicSearch.value.trim()}」。` : `No results for “${musicSearch.value.trim()}”.`)
+                : (language() === "zh" ? "這個分類目前沒有內容。" : "There is nothing in this section yet.");
+        }
+    }
+    updateMusicTransport();
+}
+
+function setMusicView(view) {
+    musicCurrentView = view || "recent";
+    musicViewButtons.forEach((button) => {
+        const active = button.dataset.musicView === musicCurrentView;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+    });
+    const heading = musicViewLabels[musicCurrentView] || musicViewLabels.recent;
+    if (musicToolbarTitle) musicToolbarTitle.replaceChildren(localizedSpan(heading));
+    if (musicSearch) musicSearch.value = "";
+    renderMusicRecent();
+}
+
+musicViewButtons.forEach((button) => {
+    button.addEventListener("click", () => setMusicView(button.dataset.musicView));
+});
+musicSearch?.addEventListener("input", renderMusicRecent);
+musicFocusSearch?.addEventListener("click", () => {
+    musicSearch?.focus();
+    musicSearch?.select();
+});
+
+musicPinsToggle?.addEventListener("click", () => {
+    const expanded = musicPinsToggle.getAttribute("aria-expanded") !== "false";
+    musicPinsToggle.setAttribute("aria-expanded", String(!expanded));
+    if (musicPinnedList) musicPinnedList.hidden = expanded;
+});
+
+musicSidebarToggle?.addEventListener("click", () => {
+    const hidden = musicApp?.classList.toggle("is-sidebar-hidden") || false;
+    musicWindow?.classList.toggle("is-music-sidebar-hidden", hidden);
+    musicSidebarToggle.setAttribute("aria-pressed", String(hidden));
+    musicSidebarToggle.setAttribute("aria-label", language() === "zh"
+        ? (hidden ? "顯示側邊欄" : "隱藏側邊欄")
+        : (hidden ? "Show sidebar" : "Hide sidebar"));
+});
+
+musicLyricsToggle?.addEventListener("click", () => {
+    const hidden = musicApp?.classList.toggle("is-lyrics-hidden") || false;
+    musicLyricsToggle.classList.toggle("is-active", !hidden);
+    musicLyricsToggle.setAttribute("aria-pressed", String(!hidden));
+    musicLyricsToggle.setAttribute("aria-label", language() === "zh"
+        ? (hidden ? "顯示歌詞" : "隱藏歌詞")
+        : (hidden ? "Show lyrics" : "Hide lyrics"));
+});
+
+[musicShuffleButton, musicRepeatButton].forEach((button) => {
+    button?.addEventListener("click", () => {
+        const active = button.getAttribute("aria-pressed") !== "true";
+        button.setAttribute("aria-pressed", String(active));
+        button.classList.toggle("is-active", active);
+        button.classList.toggle("is-muted", !active);
+    });
+});
+
+function stepMusicSong(direction) {
+    const songs = musicPlayableData();
+    if (!songs.length) return;
+    const continuePlaying = musicPlayButton?.classList.contains("is-playing");
+    const start = musicCurrentSongIndex >= 0 ? musicCurrentSongIndex : (direction > 0 ? -1 : 0);
+    selectMusicSong(songs[(start + direction + songs.length) % songs.length]);
+    if (continuePlaying) void playMusicTrack();
+}
+
+musicPreviousButton?.addEventListener("click", () => stepMusicSong(-1));
+musicNextButton?.addEventListener("click", () => stepMusicSong(1));
+musicVolume?.addEventListener("input", () => {
+    if (musicAudio) musicAudio.volume = Number(musicVolume.value) / 100;
+});
+
+function setMusicPlaying(playing) {
+    musicPlayButton?.classList.toggle("is-playing", playing);
+    if (musicPlayButton && musicCurrentSong?.previewUrl) {
+        const action = playing
+            ? (language() === "zh" ? "暫停" : "Pause")
+            : (language() === "zh" ? "播放" : "Play");
+        musicPlayButton.setAttribute("aria-label", `${action} ${musicCurrentSong.title || ""}`);
+    }
+}
+
+function prepareMusicAudio() {
+    if (!musicCurrentSong?.previewUrl) return null;
+    if (!musicAudio) {
+        musicAudio = new Audio(musicCurrentSong.previewUrl);
+        musicAudio.volume = Number(musicVolume?.value || 72) / 100;
+        musicAudio.addEventListener("timeupdate", () => {
+            const percent = musicAudio?.duration ? (musicAudio.currentTime / musicAudio.duration) * 100 : 0;
+            updateMusicProgress(percent);
+        });
+        musicAudio.addEventListener("ended", () => {
+            if (musicRepeatButton?.getAttribute("aria-pressed") === "true" && musicAudio) {
+                musicAudio.currentTime = 0;
+                musicAudio.play().catch(() => setMusicPlaying(false));
+                return;
+            }
+            setMusicPlaying(false);
+            musicAudio = null;
+            updateMusicProgress(0);
+        });
+    }
+    return musicAudio;
+}
+
+function playMusicTrack() {
+    const audio = prepareMusicAudio();
+    if (!audio) return Promise.resolve(false);
+    if (!audio.paused) {
+        setMusicPlaying(true);
+        return Promise.resolve(true);
+    }
+    return audio.play().then(() => {
+            setMusicPlaying(true);
+            return true;
+        }).catch(() => {
+            setMusicPlaying(false);
+            return false;
+        });
+}
+
+function toggleMusicPlayback() {
+    if (musicAudio && !musicAudio.paused) {
+        musicAudio.pause();
+        setMusicPlaying(false);
+        return;
+    }
+    void playMusicTrack();
+}
+
+musicPlayButton?.addEventListener("click", toggleMusicPlayback);
+
+refreshMediaCopy = () => {
+    if (netflixSearch) netflixSearch.placeholder = language() === "zh" ? "片名、演員或類型" : "Titles, people, or genres";
+    if (netflixSearch) netflixSearch.setAttribute("aria-label", language() === "zh" ? "搜尋 Netflix 片單" : "Search Netflix list");
+    if (netflixNotificationsButton) netflixNotificationsButton.setAttribute("aria-label", language() === "zh" ? "通知" : "Notifications");
+    if (netflixProfileButton) netflixProfileButton.setAttribute("aria-label", language() === "zh" ? "Anson 個人檔案" : "Anson profile");
+    if (musicSearch) musicSearch.placeholder = language() === "zh" ? "在最近加入中尋找" : "Find in Recently Added";
+    if (musicSearch) musicSearch.setAttribute("aria-label", language() === "zh" ? "在最近加入中尋找" : "Find in Recently Added");
+    if (musicPreviousButton) musicPreviousButton.setAttribute("aria-label", language() === "zh" ? "上一首" : "Previous song");
+    if (musicNextButton) musicNextButton.setAttribute("aria-label", language() === "zh" ? "下一首" : "Next song");
+    if (musicSidebarToggle) {
+        const hidden = musicApp?.classList.contains("is-sidebar-hidden");
+        musicSidebarToggle.setAttribute("aria-label", language() === "zh"
+            ? (hidden ? "顯示側邊欄" : "隱藏側邊欄")
+            : (hidden ? "Show sidebar" : "Hide sidebar"));
+    }
+    if (musicLyricsToggle) {
+        const hidden = musicApp?.classList.contains("is-lyrics-hidden");
+        musicLyricsToggle.setAttribute("aria-label", language() === "zh"
+            ? (hidden ? "顯示歌詞" : "隱藏歌詞")
+            : (hidden ? "Show lyrics" : "Hide lyrics"));
+    }
+    refreshNetflixHero();
+    renderNetflixList();
+    renderMusicRecent();
+    if (musicCurrentSong && musicPlayButton) {
+        if (musicCurrentSong.previewUrl) {
+            setMusicPlaying(musicPlayButton.classList.contains("is-playing"));
+        } else {
+            musicPlayButton.setAttribute("aria-label", language() === "zh" ? "沒有可用的試聽" : "Preview unavailable");
+        }
+    }
+};
+
+refreshNetflixHero();
+renderNetflixList();
+setNetflixView("home");
+renderMusicSidebar();
+selectMusicSong(mediaConfig.music?.nowPlaying || musicSongsData()[0]);
+setMusicView("recent");
+
 function startDrag(event, appWindow) {
     if (mobileWindowMode.matches || appWindow.classList.contains("is-maximized")) return;
     if (event.button !== 0 || event.target.closest("button")) return;
@@ -2930,6 +3691,17 @@ let activeDockLabelItem = null;
 let lastDockPointer = null;
 let dockLabelReconcileFrame = 0;
 
+function resolveDockItem(itemOrAppId) {
+    if (itemOrAppId instanceof Element) return itemOrAppId.closest(".dock-item");
+    return dockButtons.get(String(itemOrAppId || "")) || null;
+}
+
+function getDockVisualRect(itemOrAppId) {
+    const item = resolveDockItem(itemOrAppId);
+    const icon = item?.querySelector(".dock-icon");
+    return (icon || item || dock).getBoundingClientRect();
+}
+
 function dockLabelText(item) {
     if (!item) return "";
     return language() === "en"
@@ -2939,10 +3711,8 @@ function dockLabelText(item) {
 
 function positionDockHoverLabel(item = activeDockLabelItem) {
     if (!dock || !dockHoverLabel || !item) return;
-    const icon = item.querySelector(".dock-icon");
-    if (!icon) return;
     const dockRect = dock.getBoundingClientRect();
-    const iconRect = icon.getBoundingClientRect();
+    const iconRect = getDockVisualRect(item);
     dockHoverLabel.style.left = `${iconRect.left + (iconRect.width / 2) - dockRect.left}px`;
     dockHoverLabel.style.bottom = `${dockRect.bottom - iconRect.top + 12}px`;
 }
@@ -2962,7 +3732,7 @@ function clearDockHoverLabel() {
 
 function dockItemAtPoint(clientX, clientY) {
     return dockItems.find((item) => {
-        const rect = item.querySelector(".dock-icon")?.getBoundingClientRect();
+        const rect = getDockVisualRect(item);
         return rect
             && clientX >= rect.left
             && clientX <= rect.right
@@ -2975,7 +3745,7 @@ function pointIsInDockTransferZone(clientX, clientY) {
     if (!dock || !dockItems.length) return false;
     const dockRect = dock.getBoundingClientRect();
     const iconRects = dockItems
-        .map((item) => item.querySelector(".dock-icon")?.getBoundingClientRect())
+        .map((item) => getDockVisualRect(item))
         .filter(Boolean);
     const left = Math.min(dockRect.left, ...iconRects.map((rect) => rect.left));
     const right = Math.max(dockRect.right, ...iconRects.map((rect) => rect.right));
@@ -3049,11 +3819,13 @@ function setupDockMagnification() {
     const items = [...dock.querySelectorAll(".dock-item")];
     const records = items
         .map((item) => {
+            const visual = item.querySelector(".dock-visual");
             const icon = item.querySelector(".dock-icon");
-            if (!icon) return null;
+            if (!visual || !icon) return null;
             const state = { zoomValue: 1, offsetValue: 0 };
             const record = {
                 item,
+                visual,
                 icon,
                 state,
                 center: 0,
@@ -3063,10 +3835,8 @@ function setupDockMagnification() {
                 xTo: null,
             };
             record.render = () => {
-                window.gsap.set(icon, {
-                    scale: state.zoomValue,
-                    x: state.offsetValue,
-                });
+                window.gsap.set(visual, { x: state.offsetValue });
+                window.gsap.set(icon, { scale: state.zoomValue });
                 if (activeDockLabelItem === item) positionDockHoverLabel(item);
                 queueDockHoverReconcile();
             };
@@ -3099,6 +3869,11 @@ function setupDockMagnification() {
     let dockWidth = 0;
     let baseItemsWidth = 0;
 
+    function dockMetric(name, fallback) {
+        const value = Number.parseFloat(getComputedStyle(dock).getPropertyValue(name));
+        return Number.isFinite(value) ? value : fallback;
+    }
+
     function measureDockItems() {
         const dockRect = dock.getBoundingClientRect();
         dockWidth = dockRect.width;
@@ -3127,13 +3902,14 @@ function setupDockMagnification() {
         }
 
         if (!records[0]?.center) measureDockItems();
-        const maxScaleGain = (128 / 58) - 1;
+        const maximumSize = dockMetric("--dock-maximum-size", 128);
+        const influenceRadius = dockMetric("--dock-influence-radius", 52);
 
         const scales = records.map((record) => {
             const distance = record.center - event.clientX;
             const absoluteDistance = Math.abs(distance);
-            const influence = Math.exp(-((absoluteDistance / 52) ** 2));
-            return 1 + maxScaleGain * influence;
+            const influence = Math.exp(-((absoluteDistance / influenceRadius) ** 2));
+            return 1 + ((maximumSize / record.width) - 1) * influence;
         });
         const targetWidths = records.map((record, index) => record.width * scales[index]);
         const totalTargetWidth = targetWidths.reduce((total, width) => total + width, 0);
