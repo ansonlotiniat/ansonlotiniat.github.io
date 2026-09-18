@@ -23,3 +23,5 @@ Last updated: 2026-09-18
 最終本機、CI、公開站驗證通過；結果見[操作手冊](operations.md)。Code OSS file:// 有預期 worker/font 診斷，與 shell 未捕捉例外分開；真實工作區／搜尋必須可用，`.nojekyll` 必須保留。
 
 VS Code 專項測試原先依賴過期的 iframe 顯示標題，已改用固定 `data-vscode-frame`。真實 Code OSS 於約 1 秒就緒，四個工作區、Quick Open 與 risk.js/Monaco 內容檢查通過；不是以 mock 取代 runtime。
+
+CI run 35340972992 暴露視窗測試的固定等待問題：最小化只等 460 ms，在繁忙 runner 上可早於 GSAP callback 完成。測試現以 `hidden`／`data-minimized` 實際狀態等待，保留 5 秒超時；手機也等待開關完成。可用 `ANSON_TEST_GROUP=windows node tests/ui-runtime.mjs` 單獨驗證。其他功能斷言保持相同，沒有以延長固定 sleep 掩蓋失敗。

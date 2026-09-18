@@ -1,6 +1,6 @@
 # AnsonOS knowledge
 
-Last updated: 2026-09-18 19:41 CST
+Last updated: 2026-09-18 19:46 CST
 
 先讀[維護地圖](knowledge/map.md)。網站有八個 App，採 macOS 桌面／視窗導覽，使用繁體中文及英文。
 
@@ -9,5 +9,6 @@ Last updated: 2026-09-18 19:41 CST
 - **內容：** 只用 Anson 明確提供或核實的公開資料，不讀私人帳戶／repos／前景桌面 App。工具名稱與圖示不代表官方背書。文案具體，不發明獎項、書名或研究成果。
 - **不變項：** 八個原有 hash、直接 `file://`、HTTP／Pages 須有效；保留 `.nojekyll`、共用圖示幾何和無障礙控制。
 - **限制：** Goodnotes 全 App 1:1 尚未全面驗證；歷史 CSS 仍有重複；尚未全面型別檢查。見[技術債](knowledge/debt.md)。
+- **測試穩定性：** CI follow-up 暴露原有視窗測試的固定 sleep；已改為等實際動畫完成狀態及 bounded timeout，詳見[驗證](knowledge/validation.md)。runtime 未更改。
 
 舊來源、reference、量測、部署史保留在[遷移前紀錄](knowledge/history/2026-09-18-pre-modular.md)，此入口保持簡短。

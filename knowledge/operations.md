@@ -1,6 +1,6 @@
 # 開發、發布與回滾
 
-Last updated: 2026-09-18 19:41 CST
+Last updated: 2026-09-18 19:46 CST
 
 ## 本機
 
@@ -25,3 +25,5 @@ Repository `ansonlotiniat/ansonlotiniat.github.io`，Pages source `main`／root�
 先前內容 release `9d2dda46d5cdd5907a21f7390ef1e5b11b2564fa` 的[Pages 35323313757](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/35323313757)成功；文件 follow-up `22cc70ca7b791411194483cbbe086624a2fa2b14` 的[Pages 35323565838](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/35323565838)也成功。舊紀錄見[歷史](history/2026-09-18-pre-modular.md)。
 
 CI 的 runner 固定為 Ubuntu 24.04、Node 24，避免 ubuntu-latest 自動換代影響視覺基準。升級時另做瀏覽器驗證；GitHub 本次 run 已公告 latest 將於 2026-10-19 遷移 Ubuntu 26。
+
+CI follow-up 發現原有視窗測試以 460／260 ms 固定等待判斷動畫完成；已改成實際 `hidden`／`data-minimized` 狀態及 bounded timeout。見[驗證紀錄](validation.md)。此修正只影響測試，發布 runtime 仍為上方已驗收的內容版本。

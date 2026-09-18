@@ -486,7 +486,7 @@ async function verifyWindowSmoke(browser, url) {
     const context = await browser.newContext({ viewport: { width: 1459, height: 1050 } });
     const page = await context.newPage();
     await page.goto(url, { waitUntil: "load" });
-    await page.waitForTimeout(220);
+    await page.locator("body.is-ready").waitFor();
     const appIds = await page.evaluate(() =>
         [...document.querySelectorAll("[data-dock-app]")].map((item) => item.dataset.dockApp),
     );
@@ -536,7 +536,9 @@ async function verifyWindowSmoke(browser, url) {
         );
 
         await window.locator('[data-window-action="minimize"]').click();
-        await page.waitForTimeout(460);
+        await page
+            .locator(`[data-window="${appId}"][data-minimized="true"][hidden]`)
+            .waitFor({ state: "attached", timeout: 5000 });
         invariant((await window.getAttribute("data-minimized")) === "true", `${appId} did not minimize`);
         const dockItem = page.locator(`[data-dock-app="${appId}"]`);
         invariant(
@@ -550,7 +552,9 @@ async function verifyWindowSmoke(browser, url) {
             `${appId} did not restore`,
         );
         await window.locator('[data-window-action="close"]').click();
-        await page.waitForTimeout(260);
+        await page
+            .locator(`[data-window="${appId}"][data-minimized="false"][hidden]`)
+            .waitFor({ state: "attached", timeout: 5000 });
         invariant(await window.isHidden(), `${appId} did not close`);
     }
     invariant(
@@ -566,7 +570,7 @@ async function verifyWindowSmoke(browser, url) {
     await mobilePage.goto(url, { waitUntil: "load" });
     for (const appId of appIds) {
         await mobilePage.locator(`[data-dock-app="${appId}"]`).evaluate((element) => element.click());
-        await mobilePage.waitForTimeout(80);
+        await waitForWindowOpen(mobilePage, appId);
         const bounds = await mobilePage.locator(`[data-window="${appId}"]`).boundingBox();
         invariant(
             bounds.x >= -0.5 && bounds.x + bounds.width <= 480.5,
@@ -579,6 +583,9 @@ async function verifyWindowSmoke(browser, url) {
             `${appId} mobile view overflows root`,
         );
         await mobilePage.locator(`[data-window="${appId}"] [data-window-action="close"]`).click();
+        await mobilePage
+            .locator(`[data-window="${appId}"][hidden]`)
+            .waitFor({ state: "attached", timeout: 5000 });
     }
     await mobile.close();
     console.log("✓ All App open/focus/drag/minimize/restore/close smoke pass");
@@ -591,9 +598,15 @@ const browser = await chromium.launch({
 });
 
 try {
-    await verifyLauncherContract(browser, filePortfolioUrl().split("#")[0], "file", PNG);
-    await verifyLauncherContract(browser, server.baseUrl, "http", PNG);
-    if (process.env.ANSON_TEST_GROUP !== "icons") {
+    const group = process.env.ANSON_TEST_GROUP;
+    if (group && !["icons", "windows"].includes(group)) throw new Error(`Unknown UI test group: ${group}`);
+    if (group === "windows") {
+        await verifyWindowSmoke(browser, server.baseUrl);
+    } else {
+        await verifyLauncherContract(browser, filePortfolioUrl().split("#")[0], "file", PNG);
+        await verifyLauncherContract(browser, server.baseUrl, "http", PNG);
+    }
+    if (!group) {
         await verifyResponsiveMatrix(browser, filePortfolioUrl().split("#")[0], "file");
         await verifyResponsiveMatrix(browser, server.baseUrl, "http");
         await verifyDockGeometry(browser);
