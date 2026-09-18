@@ -13,6 +13,8 @@ Dock、Launchpad、Spotlight／Explore 搜尋結果、App 名稱、圖示與 `�
    `img`。Overleaf 是現成範例：底板直接採用 Xcode 圖檔量得的 `204/256` 尺寸比例與
    `44/204` 圓角比例，而不是猜一個固定 px 值。這能保持所有 App 的命中區、連續曲線和
    玻璃寬度一致。
+   若底板已含在滿版點陣圖內（例如 Netflix），直接把 `img` 以 `204/256`（79.6875%）
+   的比例縮小並置中，並在 Dock、Launchpad 和 Spotlight 使用相同比例。
 2. 在 `apps.config.js` 的 `apps` 陣列加入一筆：
 
 ```js

@@ -1,6 +1,6 @@
 # AnsonOS UI audit
 
-Last updated: 2026-09-18 11:09 CST
+Last updated: 2026-09-18 11:27 CST
 
 ## Canonical reference
 
@@ -30,6 +30,7 @@ Last updated: 2026-09-18 11:09 CST
 | App manifest validation | Versioned Netflix icon paths were reported missing | The validator sent the query string to `existsSync` | Local path checks strip `?` and `#` before filesystem lookup | Eight Apps, eight windows, all icon paths, and all shortcuts pass | Fixed |
 | Runtime audit readiness | Fast loads could measure a 658 px player during opening or move the Dock pointer before boot finished | Fixed sleeps were shorter than the 420 ms boot delay plus 460 ms window transition, or overlapped Dock animation | Layout/open/restore checks wait for a visible, untransformed window; Dock checks also wait for its boot tweens | The complete 2026-09-18 file/HTTP responsive, Dock, playback, visual, and eight-App lifecycle audit passes | Fixed in tests |
 | Music library with hidden sidebar | Mobile showed only the player; hiding the desktop sidebar could also collapse the library | Grid auto-placement moved `.music-main` into the zero-width first column after the sidebar became `display:none` | The library explicitly occupies grid column 2; the shared cache version is `20260918-ui1` | New content/hit-target assertions fail before repair at 700 px and pass at all nine widths afterward; file/HTTP tests select and play an album with the desktop sidebar hidden; the 480 px library is 474 px wide | Fixed |
+| Netflix icon size | Netflix's black plate looked about 25% larger than adjacent native icons | Its opaque App Store bitmap filled the canvas, while native icons contain transparent padding | Centre the existing image at the measured native `204/256` plate ratio in Dock, Apps, and Spotlight; cache version `20260918-ui2` | Dock plate is 46.21875 px in its 58 px slot, matching Books; seven checks cover four viewport widths, 128 px shared hover magnification, Apps, and Spotlight | Fixed |
 
 ## Permanent contracts
 

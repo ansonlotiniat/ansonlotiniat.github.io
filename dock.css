@@ -435,6 +435,10 @@
         width: 54px;
         height: 54px;
     }}.dock-icon.netflix-icon img{
+    /* Match the 204 px native icon plate inside a 256 px canvas. */
+    width: 79.6875%;
+    height: 79.6875%;
+    margin: auto;
     overflow: hidden;
     border-radius: 22.37%;
     corner-shape: squircle;

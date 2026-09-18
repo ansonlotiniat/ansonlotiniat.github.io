@@ -29,3 +29,10 @@ transparent red `N`, while Anson requested the current mobile App icon consisten
 Apps launcher, and search results. The downloaded Apple CDN response is stored without recolouring.
 It is a square JPEG because App Store clients apply the final icon mask themselves; the interface
 therefore clips it with the same 22.37% squircle treatment in all three launcher contexts.
+
+On 2026-09-18 its rendered size was normalized to `204/256` (`79.6875%`) of the
+launcher canvas. The fully opaque Netflix asset otherwise made its plate roughly
+25% larger than neighbouring icons: Finder, Books, and Xcode each have a 204 px
+strong-alpha plate inside their 256 px PNG. Dock, Apps, and Spotlight now centre
+Netflix at this same ratio before applying its existing mask. The source artwork
+and the shared Dock hit area/magnification curve are unchanged.

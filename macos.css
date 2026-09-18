@@ -2095,10 +2095,13 @@ body.is-launchpad-open .menu-bar{
     }
 }
 
-/* App Store artwork is delivered as a square JPEG. Apple applies the app-icon
-   mask at render time, so mirror that treatment in every AnsonOS launcher. */
+/* App Store artwork fills its canvas. Match the native 204/256 plate ratio
+   before applying the icon mask in each launcher. */
 .app-icon.netflix-icon img,
 .launchpad-icon.netflix-icon img{
+    width: 79.6875%;
+    height: 79.6875%;
+    margin: auto;
     overflow: hidden;
     border-radius: 22.37%;
     corner-shape: squircle;
