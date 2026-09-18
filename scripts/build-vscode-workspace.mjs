@@ -21,42 +21,113 @@ const folders = [
 
 const githubSources = [
     // Complete text source/test trees from Anson's public MIT algorithm projects.
-    ...algorithmProject("01-ALGORITHMS/graph/food-rescue-network", "food-rescue-network", "716c805e0e7bfe2d4614dd9df6b24bf49835ecef", "test/food-rescue-network.test.ts"),
-    ...algorithmProject("01-ALGORITHMS/routing/shelter-route", "shelter-route", "d1eb3f37be3db6277d85ece20d9f60f245b0d91b", "test/shelter-route.test.ts"),
-    ...algorithmProject("01-ALGORITHMS/pareto/grant-equity-allocator", "grant-equity-allocator", "6437759b5360b324e5adfe66fd160c14b7c7f164", "test/grant-equity-allocator.test.ts"),
-    ...algorithmProject("01-ALGORITHMS/lint/accessibility-lint", "accessibility-lint", "0ef5309e9d9eb8ed27b35410f9b82821312f7261", "test/accessibility-lint.test.ts"),
+    ...algorithmProject(
+        "01-ALGORITHMS/graph/food-rescue-network",
+        "food-rescue-network",
+        "716c805e0e7bfe2d4614dd9df6b24bf49835ecef",
+        "test/food-rescue-network.test.ts",
+    ),
+    ...algorithmProject(
+        "01-ALGORITHMS/routing/shelter-route",
+        "shelter-route",
+        "d1eb3f37be3db6277d85ece20d9f60f245b0d91b",
+        "test/shelter-route.test.ts",
+    ),
+    ...algorithmProject(
+        "01-ALGORITHMS/pareto/grant-equity-allocator",
+        "grant-equity-allocator",
+        "6437759b5360b324e5adfe66fd160c14b7c7f164",
+        "test/grant-equity-allocator.test.ts",
+    ),
+    ...algorithmProject(
+        "01-ALGORITHMS/lint/accessibility-lint",
+        "accessibility-lint",
+        "0ef5309e9d9eb8ed27b35410f9b82821312f7261",
+        "test/accessibility-lint.test.ts",
+    ),
 
     // Complete text source/runtime trees from three larger public projects.
     ...githubTree("02-OPEN-SOURCE/agent-trust", "agent-trust", "185f1a25bfb84126786bfce1c85ac3f4e9e9258e", [
-        "README.md", "CHANGELOG.md", "LICENSE", "package.json", "package-lock.json",
+        "README.md",
+        "CHANGELOG.md",
+        "LICENSE",
+        "package.json",
+        "package-lock.json",
         "examples/policy.strict.json",
-        "lib/analyze.js", "lib/audit.js", "lib/check.js", "lib/cli.js", "lib/colors.js",
-        "lib/config.js", "lib/decision.js", "lib/doctor.js", "lib/env.js", "lib/filewalk.js",
-        "lib/format.js", "lib/mcp.js", "lib/networkProxy.js", "lib/paths.js", "lib/policy.js",
-        "lib/prompt.js", "lib/risk.js", "lib/run.js", "lib/sandbox.js", "lib/scan.js",
-        "lib/secrets.js", "lib/shim.js", "lib/types.js",
-        "scripts/test.mjs", "scripts/verify-lib.mjs",
+        "lib/analyze.js",
+        "lib/audit.js",
+        "lib/check.js",
+        "lib/cli.js",
+        "lib/colors.js",
+        "lib/config.js",
+        "lib/decision.js",
+        "lib/doctor.js",
+        "lib/env.js",
+        "lib/filewalk.js",
+        "lib/format.js",
+        "lib/mcp.js",
+        "lib/networkProxy.js",
+        "lib/paths.js",
+        "lib/policy.js",
+        "lib/prompt.js",
+        "lib/risk.js",
+        "lib/run.js",
+        "lib/sandbox.js",
+        "lib/scan.js",
+        "lib/secrets.js",
+        "lib/shim.js",
+        "lib/types.js",
+        "scripts/test.mjs",
+        "scripts/verify-lib.mjs",
     ]),
 
     ...githubTree("02-OPEN-SOURCE/latexmark", "latexmark", "eb4c6e0a10d48891e324fbf5dcd5428326d59455", [
-        "README.md", "CHANGELOG.md", "LICENSE", "MANIFEST.in", "RELEASE.md",
-        "bin/latexmark.js", "latexmark.py", "latexmark_dashboard.jsx", "package.json", "pyproject.toml",
-        "packaging/aur/PKGBUILD", "packaging/homebrew/latexmark.rb",
-        "src/latexmark/__init__.py", "src/latexmark/__main__.py", "src/latexmark/cli.py",
-        "src/latexmark/tui.py", "tests/test_cli.py",
+        "README.md",
+        "CHANGELOG.md",
+        "LICENSE",
+        "MANIFEST.in",
+        "RELEASE.md",
+        "bin/latexmark.js",
+        "latexmark.py",
+        "latexmark_dashboard.jsx",
+        "package.json",
+        "pyproject.toml",
+        "packaging/aur/PKGBUILD",
+        "packaging/homebrew/latexmark.rb",
+        "src/latexmark/__init__.py",
+        "src/latexmark/__main__.py",
+        "src/latexmark/cli.py",
+        "src/latexmark/tui.py",
+        "tests/test_cli.py",
     ]),
 
-    ...githubTree("02-OPEN-SOURCE/gm2-conflict-aware-hvp", "gm2-conflict-aware-hvp", "fbd66ace7e3252fef5c89c50ab580636c3a5f3c5", [
-        "README.md", "LICENSE", "requirements.txt",
-        "analysis/figures.py", "analysis/headline.py", "analysis/meta.py", "analysis/revision.py",
-        "analysis/structures.py", "data/inputs.json", "results/headline.json", "results/results.json",
-        "results/revision.json",
-    ]),
+    ...githubTree(
+        "02-OPEN-SOURCE/gm2-conflict-aware-hvp",
+        "gm2-conflict-aware-hvp",
+        "fbd66ace7e3252fef5c89c50ab580636c3a5f3c5",
+        [
+            "README.md",
+            "LICENSE",
+            "requirements.txt",
+            "analysis/figures.py",
+            "analysis/headline.py",
+            "analysis/meta.py",
+            "analysis/revision.py",
+            "analysis/structures.py",
+            "data/inputs.json",
+            "results/headline.json",
+            "results/results.json",
+            "results/revision.json",
+        ],
+    ),
 ];
 
 const localSources = [
     { target: "03-ANSON-OS/apps.config.js", source: "apps.config.js" },
-    { target: "03-ANSON-OS/scripts/build-vscode-workspace.mjs", source: "scripts/build-vscode-workspace.mjs" },
+    {
+        target: "03-ANSON-OS/scripts/build-vscode-workspace.mjs",
+        source: "scripts/build-vscode-workspace.mjs",
+    },
     { target: "03-ANSON-OS/scripts/validate-apps.mjs", source: "scripts/validate-apps.mjs" },
     { target: "03-ANSON-OS/vscode/bootstrap.js", source: "assets/vscode-oss/bootstrap.js" },
     { target: "03-ANSON-OS/vscode/workspace-search.js", source: "assets/vscode-oss/workspace-search.js" },
@@ -79,9 +150,19 @@ function githubTree(prefix, repo, commit, sources) {
 
 function algorithmProject(prefix, repo, commit, testFile) {
     return githubTree(prefix, repo, commit, [
-        "README.md", "LICENSE", "package.json", "package-lock.json", "tsconfig.json", "vitest.config.ts",
-        "src/core/geo.ts", "src/core/graph.ts", "src/core/index.ts", "src/core/optimization.ts",
-        "src/core/stats.ts", "src/index.ts", testFile,
+        "README.md",
+        "LICENSE",
+        "package.json",
+        "package-lock.json",
+        "tsconfig.json",
+        "vitest.config.ts",
+        "src/core/geo.ts",
+        "src/core/graph.ts",
+        "src/core/index.ts",
+        "src/core/optimization.ts",
+        "src/core/stats.ts",
+        "src/index.ts",
+        testFile,
     ]);
 }
 
@@ -91,7 +172,8 @@ function sha256(value) {
 
 async function fetchPinnedSource(source) {
     const response = await fetch(source.url, { headers: { "User-Agent": "ansonos-workspace-builder" } });
-    if (!response.ok) throw new Error(`Unable to fetch ${source.repo}/${source.source}: HTTP ${response.status}`);
+    if (!response.ok)
+        throw new Error(`Unable to fetch ${source.repo}/${source.source}: HTTP ${response.status}`);
     return (await response.text()).replaceAll("\r\n", "\n");
 }
 
@@ -182,15 +264,17 @@ The complete text source/runtime tree needed to inspect each bundled project is 
 
 async function buildWorkspaceData() {
     const files = generatedFiles();
-    const remote = await Promise.all(githubSources.map(async (source) => ({
-        path: source.target,
-        content: await fetchPinnedSource(source),
-        provenance: {
-            repo: source.repo,
-            commit: source.commit,
-            source: source.source,
-        },
-    })));
+    const remote = await Promise.all(
+        githubSources.map(async (source) => ({
+            path: source.target,
+            content: await fetchPinnedSource(source),
+            provenance: {
+                repo: source.repo,
+                commit: source.commit,
+                source: source.source,
+            },
+        })),
+    );
     files.push(...remote);
 
     for (const source of localSources) {
@@ -209,7 +293,8 @@ async function buildWorkspaceData() {
         folders,
         files,
     };
-    const output = `/* Generated by scripts/build-vscode-workspace.mjs. */\n` +
+    const output =
+        `/* Generated by scripts/build-vscode-workspace.mjs. */\n` +
         `globalThis.__ANSON_VSCODE_WORKSPACE = ${JSON.stringify(data)};\n`;
     await writeFile(workspaceDataPath, output);
     return { bytes: Buffer.byteLength(output), sha: sha256(output), files: files.length };
@@ -222,12 +307,14 @@ async function installCoreHook() {
         {
             label: "tmp-provider seed",
             original: "t.registerProvider(X.tmp,new oL)",
-            replacement: "globalThis.__ANSON_TMP_PROVIDER=new oL,t.registerProvider(X.tmp,globalThis.__ANSON_TMP_PROVIDER),await globalThis.__ANSON_SEED_VSCODE?.(globalThis.__ANSON_TMP_PROVIDER)",
+            replacement:
+                "globalThis.__ANSON_TMP_PROVIDER=new oL,t.registerProvider(X.tmp,globalThis.__ANSON_TMP_PROVIDER),await globalThis.__ANSON_SEED_VSCODE?.(globalThis.__ANSON_TMP_PROVIDER)",
         },
         {
             label: "tmp-workspace search",
             original: "this.loggedSchemesMissingProviders=new Set}",
-            replacement: "this.loggedSchemesMissingProviders=new Set,globalThis.__ANSON_SEARCH_PROVIDER&&(this.registerSearchResultProvider(X.tmp,0,globalThis.__ANSON_SEARCH_PROVIDER),this.registerSearchResultProvider(X.tmp,1,globalThis.__ANSON_SEARCH_PROVIDER))}",
+            replacement:
+                "this.loggedSchemesMissingProviders=new Set,globalThis.__ANSON_SEARCH_PROVIDER&&(this.registerSearchResultProvider(X.tmp,0,globalThis.__ANSON_SEARCH_PROVIDER),this.registerSearchResultProvider(X.tmp,1,globalThis.__ANSON_SEARCH_PROVIDER))}",
         },
     ];
 
@@ -235,7 +322,8 @@ async function installCoreHook() {
         const originalCount = core.split(hook.original).length - 1;
         const replacementCount = core.split(hook.replacement).length - 1;
         if (replacementCount === 1) continue;
-        if (originalCount !== 1) throw new Error(`Expected one Code - OSS ${hook.label} hook point, found ${originalCount}`);
+        if (originalCount !== 1)
+            throw new Error(`Expected one Code - OSS ${hook.label} hook point, found ${originalCount}`);
         core = core.replace(hook.original, hook.replacement);
         changed = true;
     }
@@ -248,20 +336,24 @@ async function buildFileRuntime() {
     const temporaryDirectory = await mkdtemp(path.join(tmpdir(), "anson-vscode-workspace-"));
     const temporaryBundle = path.join(temporaryDirectory, "workbench.file.js");
     try {
-        execFileSync("npx", [
-            "--yes",
-            "esbuild@0.28.2",
-            bootstrapPath,
-            "--bundle",
-            "--format=iife",
-            "--platform=browser",
-            "--target=es2022",
-            "--minify",
-            "--define:import.meta.url=location.href",
-            "--external:@microsoft/1ds-core-js",
-            "--external:@microsoft/1ds-post-js",
-            `--outfile=${temporaryBundle}`,
-        ], { cwd: projectRoot, stdio: "inherit" });
+        execFileSync(
+            "npx",
+            [
+                "--yes",
+                "esbuild@0.28.2",
+                bootstrapPath,
+                "--bundle",
+                "--format=iife",
+                "--platform=browser",
+                "--target=es2022",
+                "--minify",
+                "--define:import.meta.url=location.href",
+                "--external:@microsoft/1ds-core-js",
+                "--external:@microsoft/1ds-post-js",
+                `--outfile=${temporaryBundle}`,
+            ],
+            { cwd: projectRoot, stdio: "inherit" },
+        );
 
         let bundle = await readFile(temporaryBundle, "utf8");
         const keyboardMarker = "layout.contribution.${n}.js";
@@ -269,7 +361,8 @@ async function buildFileRuntime() {
         if (markerIndex < 0) throw new Error("Unable to find the file:// keyboard-layout import");
         const importStart = bundle.lastIndexOf("import(", markerIndex);
         const importEnd = bundle.indexOf("}},", markerIndex);
-        if (importStart < 0 || importEnd < 0) throw new Error("Unable to bound the file:// keyboard-layout import");
+        if (importStart < 0 || importEnd < 0)
+            throw new Error("Unable to bound the file:// keyboard-layout import");
         bundle = `${bundle.slice(0, importStart)}this._initialized=!0,this.setLayoutFromBrowserAPI()${bundle.slice(importEnd)}`;
         await writeFile(fileRuntimePath, bundle);
         return { bytes: Buffer.byteLength(bundle), sha: sha256(bundle) };

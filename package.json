@@ -1,0 +1,35 @@
+{
+    "name": "anson-os",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "engines": {
+        "node": ">=22.13.0"
+    },
+    "scripts": {
+        "build": "node scripts/build.mjs",
+        "build:check": "node scripts/build.mjs --check",
+        "dev": "node scripts/dev.mjs",
+        "app:new": "node scripts/create-app.mjs",
+        "lint": "eslint src scripts tests eslint.config.js",
+        "validate": "node scripts/validate-apps.mjs && node scripts/validate-ui-contract.mjs && node scripts/validate-architecture.mjs",
+        "test": "node --test tests/*.test.mjs && node tests/ui-runtime.mjs",
+        "check": "npm run build:check && npm run format:check && npm run lint && npm run validate && npm test",
+        "format": "prettier --write \"src/**/*.{js,json,css}\" \"scripts/**/*.mjs\" \"tests/**/*.mjs\" eslint.config.js package.json .prettierrc.json .github/workflows/ci.yml",
+        "format:check": "prettier --check \"src/**/*.{js,json,css}\" \"scripts/**/*.mjs\" \"tests/**/*.mjs\" eslint.config.js package.json .prettierrc.json .github/workflows/ci.yml",
+        "test:vscode": "playwright test tests/vscode-file-runtime.spec.mjs --workers=1"
+    },
+    "devDependencies": {
+        "@eslint/js": "10.0.1",
+        "@playwright/test": "1.63.0",
+        "esbuild": "0.28.2",
+        "eslint": "10.10.0",
+        "globals": "17.12.0",
+        "parse5": "8.0.1",
+        "playwright": "1.63.0",
+        "pngjs": "7.0.0",
+        "postcss": "8.5.28",
+        "postcss-selector-parser": "7.1.6",
+        "prettier": "3.9.8"
+    }
+}

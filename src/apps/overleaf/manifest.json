@@ -1,0 +1,26 @@
+{
+    "id": "overleaf",
+    "appLabel": "Overleaf",
+    "group": "work",
+    "shortcut": "3",
+    "icon": {
+        "src": "assets/app-icons/overleaf.svg",
+        "className": "overleaf-icon",
+        "symbol": true,
+        "background": "radial-gradient(circle at 28% 12%, #fff, transparent 43%), linear-gradient(150deg, #f5faf3, #b3d6ac)"
+    },
+    "title": {
+        "zh": "寫過的東西",
+        "en": "Things I've Written"
+    },
+    "subtitle": {
+        "zh": "《澳門日記》和一首英文詩",
+        "en": "Macao Diary and an English poem"
+    },
+    "dockLabel": {
+        "zh": "Overleaf",
+        "en": "Overleaf"
+    },
+    "keywords": "overleaf writing editing poetry macao diary 寫作 編輯 英文詩 澳門日記",
+    "order": 3
+}

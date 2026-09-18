@@ -1,0 +1,288 @@
+/* vscode: App content. See knowledge/architecture.md for cascade ownership. */
+.vscode-window {
+    --window-width: min(1300px, 91vw);
+    --window-height: min(780px, 84vh);
+    top: 4%;
+    left: 5%;
+}
+.vscode-window .window-surface {
+    display: flex;
+    flex-direction: column;
+    color: #d5d5d5;
+    background: #1e1e1e;
+}
+
+.vscode-titlebar {
+    color: #c9c9c9;
+    background: #181818;
+}
+
+.vscode-menubar {
+    display: flex;
+    align-items: center;
+    flex: 0 0 24px;
+    gap: 17px;
+    height: 24px;
+    padding: 0 12px;
+    border-bottom: 1px solid #101010;
+    color: #b6b6b6;
+    background: #181818;
+    font-size: 9px;
+}
+
+.vscode-layout {
+    display: grid;
+    grid-template-columns: 45px 215px minmax(0, 1fr);
+    flex: 1;
+    min-height: 0;
+}
+
+.vscode-activitybar {
+    display: flex;
+    align-items: center;
+    padding: 7px 0 5px;
+    flex-direction: column;
+    color: #777;
+    background: #181818;
+    font-family: var(--mono);
+    font-size: 20px;
+}
+
+.vscode-activitybar span {
+    display: grid;
+    width: 45px;
+    height: 39px;
+    place-items: center;
+}
+
+.vscode-activitybar span.is-active {
+    border-left: 2px solid #fff;
+    color: #fff;
+}
+
+.vscode-activitybar i {
+    flex: 1;
+}
+
+.vscode-sidebar {
+    min-width: 0;
+    border-right: 1px solid #111;
+    background: #181818;
+    overflow: auto;
+}
+
+.vscode-sidebar > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 33px;
+    padding: 0 13px;
+    color: #b6b6b6;
+    font-size: 8px;
+}
+
+.vscode-sidebar > p {
+    margin: 0;
+    padding: 6px 8px;
+    color: #b6b6b6;
+    font-size: 8px;
+}
+
+.vscode-tree button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    width: 100%;
+    height: 29px;
+    padding: 0 10px 0 18px;
+    color: #c7c7c7;
+    background: transparent;
+    font-size: 10px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.vscode-tree button:hover {
+    background: #272727;
+}
+
+.vscode-tree button[aria-selected="true"] {
+    color: #fff;
+    background: #37373d;
+}
+
+.vscode-workbench {
+    display: grid;
+    grid-template-rows: 34px minmax(0, 1fr) 135px;
+    min-width: 0;
+    min-height: 0;
+}
+
+.vscode-tabs {
+    display: flex;
+    min-width: 0;
+    height: 34px;
+    background: #181818;
+    overflow: hidden;
+}
+
+.vscode-tabs > span {
+    display: none;
+    align-items: center;
+    gap: 7px;
+    min-width: 175px;
+    height: 34px;
+    padding: 0 11px;
+    border-right: 1px solid #111;
+    color: #a9a9a9;
+    background: #181818;
+    font-size: 9px;
+}
+
+.vscode-tabs > span.is-active {
+    display: flex;
+    color: #fff;
+    background: #1e1e1e;
+}
+
+.vscode-tabs b {
+    margin-left: auto;
+    font-weight: 400;
+}
+
+.vscode-editor {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.vscode-document {
+    position: absolute;
+    inset: 0 54px 0 0;
+    overflow: auto;
+}
+
+.vscode-document .markdown-lines {
+    padding-top: 17px;
+}
+
+.vscode-terminal {
+    min-height: 0;
+    border-top: 1px solid #333;
+    background: #181818;
+}
+
+.vscode-terminal > header {
+    display: flex;
+    align-items: center;
+    gap: 19px;
+    height: 31px;
+    padding: 0 12px;
+    color: #9a9a9a;
+    font-size: 8px;
+}
+
+.vscode-terminal > header span.is-active {
+    height: 31px;
+    padding-top: 11px;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+}
+
+.vscode-terminal > header i {
+    display: inline-grid;
+    width: 13px;
+    height: 13px;
+    place-items: center;
+    border-radius: 50%;
+    background: #505055;
+    font-style: normal;
+}
+
+.vscode-terminal > header b {
+    margin-left: auto;
+}
+
+.vscode-statusbar {
+    display: flex;
+    align-items: center;
+    flex: 0 0 21px;
+    gap: 13px;
+    height: 21px;
+    padding: 0 9px;
+    color: #fff;
+    background: #007acc;
+    font-size: 7px;
+}
+
+.vscode-statusbar i {
+    flex: 1;
+}
+
+@media (max-width: 900px) {
+    .vscode-layout {
+        grid-template-columns: 42px 165px minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .vscode-menubar {
+        display: none;
+    }
+
+    .vscode-layout {
+        grid-template-columns: 116px minmax(0, 1fr);
+    }
+
+    .vscode-activitybar {
+        display: none;
+    }
+
+    .vscode-sidebar {
+        font-size: 8px;
+    }
+
+    .vscode-sidebar > header {
+        padding-inline: 8px;
+    }
+
+    .vscode-tree button {
+        height: 34px;
+        padding-left: 8px;
+    }
+
+    .vscode-tree button > span:last-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .vscode-workbench {
+        grid-template-rows: 31px minmax(0, 1fr) 105px;
+    }
+
+    .vscode-tabs,
+    .vscode-tabs > span {
+        height: 31px;
+    }
+
+    .vscode-document {
+        right: 15px;
+    }
+
+    .vscode-terminal > header {
+        gap: 8px;
+        padding-inline: 7px;
+    }
+}
+
+@media (max-width: 430px) {
+    .vscode-layout {
+        grid-template-columns: 100px minmax(0, 1fr);
+    }
+
+    .vscode-tree button {
+        padding-inline: 5px;
+        gap: 3px;
+    }
+}

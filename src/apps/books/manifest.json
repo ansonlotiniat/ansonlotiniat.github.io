@@ -1,0 +1,31 @@
+{
+    "id": "books",
+    "appLabel": "Books",
+    "group": "reading",
+    "shortcut": "5",
+    "icon": {
+        "src": "assets/app-icons/books.png",
+        "className": "books-icon",
+        "crop": {
+            "canvas": 256,
+            "x": 26,
+            "y": 26,
+            "size": 204
+        },
+        "background": "#ff9415"
+    },
+    "title": {
+        "zh": "最近在讀",
+        "en": "What I'm Reading"
+    },
+    "subtitle": {
+        "zh": "我的 Apple Books 書架",
+        "en": "My Apple Books shelf"
+    },
+    "dockLabel": {
+        "zh": "Books",
+        "en": "Books"
+    },
+    "keywords": "books apple books reading library ebook 閱讀 書籍 書庫 currently reading",
+    "order": 5
+}

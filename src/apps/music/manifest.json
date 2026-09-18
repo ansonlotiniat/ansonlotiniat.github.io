@@ -1,0 +1,31 @@
+{
+    "id": "music",
+    "appLabel": "Music",
+    "group": "listening",
+    "shortcut": "7",
+    "icon": {
+        "src": "assets/app-icons/apple-music.png",
+        "className": "apple-music-icon",
+        "crop": {
+            "canvas": 256,
+            "x": 25,
+            "y": 25,
+            "size": 206
+        },
+        "background": "#fc3159"
+    },
+    "title": {
+        "zh": "常聽的音樂",
+        "en": "Music I Come Back To"
+    },
+    "subtitle": {
+        "zh": "歌單裡的專輯和歌曲",
+        "en": "Albums and songs in my list"
+    },
+    "dockLabel": {
+        "zh": "Music",
+        "en": "Music"
+    },
+    "keywords": "apple music albums songs listening favourites 音樂 專輯 歌曲 media",
+    "order": 7
+}

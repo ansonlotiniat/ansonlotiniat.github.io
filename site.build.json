@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "version": "build-6e481d012e1c",
+  "apps": [
+    {
+      "id": "about",
+      "label": "Finder",
+      "source": "src/apps/about"
+    },
+    {
+      "id": "xcode",
+      "label": "Xcode",
+      "source": "src/apps/xcode"
+    },
+    {
+      "id": "vscode",
+      "label": "Visual Studio Code",
+      "source": "src/apps/vscode"
+    },
+    {
+      "id": "overleaf",
+      "label": "Overleaf",
+      "source": "src/apps/overleaf"
+    },
+    {
+      "id": "goodnotes",
+      "label": "Goodnotes",
+      "source": "src/apps/goodnotes"
+    },
+    {
+      "id": "books",
+      "label": "Books",
+      "source": "src/apps/books"
+    },
+    {
+      "id": "netflix",
+      "label": "Netflix",
+      "source": "src/apps/netflix"
+    },
+    {
+      "id": "music",
+      "label": "Music",
+      "source": "src/apps/music"
+    }
+  ]
+}

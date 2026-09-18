@@ -1,0 +1,18 @@
+/* netflix: window geometry and native chrome. See knowledge/architecture.md for cascade ownership. */
+.netflix-window {
+    --window-width: min(1152px, 84vw);
+    --window-height: min(720px, 82vh);
+    top: calc(50% - min(360px, 41vh));
+    left: calc(50% - min(576px, 42vw));
+}
+
+@media (max-width: 760px) {
+    .netflix-window {
+        top: 4px;
+        left: 5px;
+        width: calc(100% - 10px);
+        height: calc(100% - 8px);
+        max-width: none;
+        max-height: none;
+    }
+}

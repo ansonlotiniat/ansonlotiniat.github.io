@@ -1,0 +1,65 @@
+<section class="app-window netflix-window" data-window="netflix" data-app-label="Netflix" aria-labelledby="netflix-window-title" hidden>
+    <div class="window-surface">
+        <header class="window-titlebar netflix-titlebar" data-drag-handle>
+            <div class="traffic-lights" role="group" aria-label="Window controls">
+                <button class="traffic-close" type="button" data-window-action="close" aria-label="Close window"></button>
+                <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
+                <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
+            </div>
+            <h2 id="netflix-window-title">Netflix</h2>
+            <span class="titlebar-spacer" aria-hidden="true"></span>
+        </header>
+        <div class="netflix-app" data-netflix-app>
+            <header class="netflix-navigation">
+                <img class="netflix-wordmark" src="assets/netflix/wordmark.png" alt="Netflix" width="86" height="25">
+                <nav aria-label="Netflix sections">
+                    <button class="is-active" type="button" data-netflix-view="home"><span data-copy-lang="zh">首頁</span><span data-copy-lang="en">Home</span></button>
+                    <button type="button" data-netflix-view="series"><span data-copy-lang="zh">影集</span><span data-copy-lang="en">Series</span></button>
+                    <button type="button" data-netflix-view="films"><span data-copy-lang="zh">電影</span><span data-copy-lang="en">Films</span></button>
+                    <button type="button" data-netflix-view="games"><span data-copy-lang="zh">遊戲</span><span data-copy-lang="en">Games</span></button>
+                    <button type="button" data-netflix-view="new"><span data-copy-lang="zh">熱門新片</span><span data-copy-lang="en">New &amp; Popular</span></button>
+                    <button type="button" data-netflix-view="list"><span data-copy-lang="zh">我的片單</span><span data-copy-lang="en">My List</span></button>
+                    <button type="button" data-netflix-view="languages"><span data-copy-lang="zh">依語言瀏覽</span><span data-copy-lang="en">Browse by Language</span></button>
+                </nav>
+                <div class="netflix-actions">
+                    <label class="netflix-search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.7"></circle><path d="m15.7 15.7 5 5"></path></svg>
+                        <input type="text" role="searchbox" enterkeyhint="search" data-netflix-search autocomplete="off" spellcheck="false" placeholder="片名、演員或類型" aria-label="搜尋 Netflix 片單">
+                    </label>
+                    <div class="netflix-notifications-wrap">
+                        <button class="netflix-notifications" type="button" data-netflix-notifications aria-label="通知" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 17.5h13l-1.7-2.2V10a4.8 4.8 0 0 0-9.6 0v5.3Z"></path><path d="M9.7 19.2a2.5 2.5 0 0 0 4.6 0"></path></svg></button>
+                        <div class="netflix-notifications-menu" data-netflix-notifications-menu hidden><p><span data-copy-lang="zh">暫時沒有新通知。</span><span data-copy-lang="en">No new notifications.</span></p></div>
+                    </div>
+                    <div class="netflix-profile-wrap">
+                        <button class="netflix-profile" type="button" data-netflix-profile aria-label="Anson 個人檔案" aria-expanded="false"><span>A</span><i aria-hidden="true"></i></button>
+                        <div class="netflix-profile-menu" data-netflix-profile-menu hidden>
+                            <button type="button" data-netflix-profile-choice><span>A</span><span><strong data-netflix-profile-name>Anson</strong><small><span data-copy-lang="zh">只顯示這個網站的片單</span><span data-copy-lang="en">This site's list only</span></small></span></button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="netflix-main">
+                <section class="netflix-hero" data-netflix-hero>
+                    <div>
+                        <p>MY LIST</p>
+                        <img class="netflix-hero-logo" data-netflix-hero-logo alt="" hidden>
+                        <h3 data-netflix-hero-title><span data-copy-lang="zh">我的 Netflix 片單</span><span data-copy-lang="en">My Netflix list</span></h3>
+                        <p><span data-copy-lang="zh" data-netflix-hero-description-zh>這裡會放我想看、正在看和會再看的電影與影集。</span><span data-copy-lang="en" data-netflix-hero-description-en>Films and series I want to watch, am watching, or would watch again.</span></p>
+                        <div class="netflix-hero-actions">
+                            <a href="https://www.netflix.com/" target="_blank" rel="noreferrer" data-netflix-hero-open><span aria-hidden="true">▶</span><span data-copy-lang="zh">在 Netflix 查看</span><span data-copy-lang="en">View on Netflix</span></a>
+                            <button type="button" data-netflix-jump-list><span class="netflix-info-icon" aria-hidden="true">i</span><span data-copy-lang="zh">查看片單</span><span data-copy-lang="en">View list</span></button>
+                        </div>
+                    </div>
+                </section>
+                <section class="netflix-row" aria-labelledby="netflix-my-list-title">
+                    <h4 id="netflix-my-list-title"><span data-copy-lang="zh" data-netflix-row-title-zh>我的片單</span><span data-copy-lang="en" data-netflix-row-title-en>My List</span></h4>
+                    <div class="netflix-cards" data-netflix-list></div>
+                    <p class="netflix-empty" data-netflix-empty>
+                        <span data-copy-lang="zh" data-netflix-empty-zh>我還未把私人片單放上來。</span>
+                        <span data-copy-lang="en" data-netflix-empty-en>I haven't published my personal list yet.</span>
+                    </p>
+                </section>
+            </main>
+        </div>
+    </div>
+</section>

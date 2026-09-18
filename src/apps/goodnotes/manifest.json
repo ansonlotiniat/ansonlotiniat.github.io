@@ -1,0 +1,31 @@
+{
+    "id": "goodnotes",
+    "appLabel": "Goodnotes",
+    "group": "study",
+    "shortcut": "4",
+    "icon": {
+        "src": "assets/app-icons/goodnotes.png",
+        "className": "goodnotes-icon",
+        "crop": {
+            "canvas": 256,
+            "x": 25,
+            "y": 25,
+            "size": 206
+        },
+        "background": "#ffffff"
+    },
+    "title": {
+        "zh": "課堂筆記",
+        "en": "Class Notes"
+    },
+    "subtitle": {
+        "zh": "數學、物理和化學",
+        "en": "Maths, physics, and chemistry"
+    },
+    "dockLabel": {
+        "zh": "Goodnotes",
+        "en": "Goodnotes"
+    },
+    "keywords": "goodnotes notes study mathematics maths physics chemistry 筆記 數學 物理 化學",
+    "order": 4
+}

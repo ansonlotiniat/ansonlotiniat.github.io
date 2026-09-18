@@ -1,11 +1,13 @@
 # AnsonOS UI audit
 
-Last updated: 2026-09-18 16:11 CST
+Last updated: 2026-09-18 (modular source ownership)
+
+See [the maintenance map](knowledge/map.md) for the editable source paths. Root JS/CSS/HTML are now generated.
 
 ## Canonical reference
 
 - The latest user-supplied native Music player screenshot is authoritative for player chrome, glyph shape, spacing, scale, and colour. It supersedes the older player screenshot where the two conflict.
-- Song title, artist, and artwork remain live data from `media.config.js`; they are not part of the chrome comparison.
+- Song title, artist, and artwork remain live data from `src/apps/music/content.json`; they are not part of the chrome comparison.
 - `tests/fixtures/music-player-latest-reference.png` is the 1402×108 DPR2 player crop used by the repeatable visual contract.
 - No foreground browser, Music App, Netflix App, or signed-in media account was controlled or inspected during this audit.
 
@@ -23,7 +25,7 @@ Last updated: 2026-09-18 16:11 CST
 | Music typography/chrome | Player copy and background did not match the native scale and tone | Multiple generations of player CSS overrode one another | Desktop player is 700×54 px with 34 px art, 14/13 px system copy, 27 px radius, and opaque `#f7f7f7` core | Computed geometry and background pass in both `file://` and HTTP runs | Fixed |
 | Music responsive progress | At 900/700 px the progress line entered the action area; at 480 px internal width was `480 > 456` | Desktop `calc(100% + 66px)` and hidden-control margins survived mobile breakpoints | At 900 px and below the line is `100%` of the now-playing track and ends no later than the first visible action | Matrix passes 1459, 1120, 1001, 1000, 900, 761, 760, 700, and 480 px; every player has `scrollWidth === clientWidth` | Fixed |
 | Music playback | A playable album previously needed an extra player click; next/previous could lose the playing state | Selection and playback were separate flows | Album selection calls playback in the same trusted click; stepping remembers the playing state | Real preview tests report `paused=false`, `readyState=4`, advancing time, and continuous playback after Next for both `file://` and HTTP | Fixed |
-| CSS ownership | Old Dock/Music generations in `style.css` and `macos.css` could override later work silently | No component owner or structural contract existed | Dock selectors live only in `dock.css`; Music selectors live only in `music.css`; shared stylesheets contain neither owner namespace | `scripts/validate-ui-contract.mjs` enforces selector ownership and cache versions | Fixed |
+| CSS ownership | Old Dock/Music generations in `style.css` and `macos.css` could override later work silently | No component owner or structural contract existed | Dock source is `src/shell/styles/dock.css`; Music source is `src/apps/music/window.css`; generated root stylesheets are build outputs | `scripts/validate-ui-contract.mjs` enforces selector ownership and cache versions | Fixed |
 | Netflix responsive nav | Mobile visibility depended on button positions 2/3/4/5/7 | `nth-child` encoded a fragile DOM order | Visibility uses explicit `data-netflix-view` values | UI contract rejects positional selectors in the navigation scope | Fixed |
 | Goodnotes controls | Toolbar sizing and Filter alignment depended on the first three/first button positions | Positional selectors encoded semantic control roles | Existing `data-gn-*` attributes now select the controls | UI contract rejects positional selectors in both toolbar scopes | Fixed |
 | Books controls | Search stroke and reader mobile hiding depended on button order | `first-child` and `nth-of-type` encoded control roles | Reader controls now expose `data-books-reader-control`; Search uses `data-books-nav="search"` | UI contract rejects positional selectors in both Books scopes | Fixed |
@@ -40,8 +42,8 @@ Last updated: 2026-09-18 16:11 CST
 3. `.dock-*` and `.music-*` selectors have one owner stylesheet each. Cross-owner overrides are a validation failure.
 4. Dock sizes are CSS variables. JavaScript may read them but may not duplicate their numeric values.
 5. The Music player fixture decides chrome only. Live song data is permitted to differ from the screenshot.
-6. Every UI asset change must bump the shared `anson-ui-contract-version` and the seven linked cache versions together.
-7. `icons.css` owns all launcher artwork. Source crops belong in the registry; individual Apps cannot override plate sizes, masks, or shadows. Pixel-mask comparisons normalize artwork colour and compare spatial coverage; opacity quantization from GPU compositing is recorded separately.
+6. The build derives `anson-ui-contract-version` and all linked runtime cache versions from content; `npm run build:check` prevents stale output.
+7. `src/shell/styles/icons.css` owns all launcher artwork. Source crops belong in the registry; individual Apps cannot override plate sizes, masks, or shadows. Pixel-mask comparisons normalize artwork colour and compare spatial coverage; opacity quantization from GPU compositing is recorded separately.
 
 ## Repeatable verification
 

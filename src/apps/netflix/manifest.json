@@ -1,0 +1,31 @@
+{
+    "id": "netflix",
+    "appLabel": "Netflix",
+    "group": "watching",
+    "shortcut": "6",
+    "icon": {
+        "src": "assets/app-icons/netflix.png?v=20260823-appstore",
+        "className": "netflix-icon",
+        "crop": {
+            "canvas": 512,
+            "x": 0,
+            "y": 0,
+            "size": 512
+        },
+        "background": "#080808"
+    },
+    "title": {
+        "zh": "我的片單",
+        "en": "My List"
+    },
+    "subtitle": {
+        "zh": "想看和正在看的電影、影集",
+        "en": "Films and series I'm watching or saving"
+    },
+    "dockLabel": {
+        "zh": "Netflix",
+        "en": "Netflix"
+    },
+    "keywords": "netflix watching films movies series my list 片單 電影 影集 media",
+    "order": 6
+}

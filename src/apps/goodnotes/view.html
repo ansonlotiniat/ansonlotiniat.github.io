@@ -1,0 +1,283 @@
+<section class="app-window goodnotes-window" data-window="goodnotes" data-app-label="Goodnotes" aria-labelledby="goodnotes-window-title" hidden>
+    <div class="window-surface">
+        <header class="window-titlebar goodnotes-titlebar" data-drag-handle>
+            <div class="traffic-lights" role="group" aria-label="Window controls">
+                <button class="traffic-close" type="button" data-window-action="close" aria-label="Close window"></button>
+                <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
+                <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
+            </div>
+            <h2 id="goodnotes-window-title">Goodnotes</h2>
+            <div class="gn-titlebar-tabs" role="group" aria-label="Open Goodnotes tabs">
+                <button class="gn-titlebar-home" type="button" data-gn-library-button aria-label="Back to documents">
+                    <svg class="gn-native-icon gn-native-home" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3.5 10.25 12 3.35l8.5 6.9v9.35a1.15 1.15 0 0 1-1.15 1.15H4.65A1.15 1.15 0 0 1 3.5 19.6Z"></path>
+                        <path d="M9.1 20.75v-7.1h5.8v7.1"></path>
+                    </svg>
+                </button>
+                <span class="gn-titlebar-tab is-active"><strong data-gn-editor-title>Notebook</strong><button type="button" data-gn-close-tab aria-label="Close note">×</button></span>
+            </div>
+        </header>
+
+        <svg class="gn-symbols" aria-hidden="true">
+            <symbol id="gn-documents-icon" viewBox="0 0 24 24"><path d="M3.5 7.2h6l1.7 2h9.3v9.4a1.9 1.9 0 0 1-1.9 1.9H5.4a1.9 1.9 0 0 1-1.9-1.9Z"></path><path d="M3.5 9.2V5.8a1.8 1.8 0 0 1 1.8-1.8h4.2l1.7 2h7.5a1.8 1.8 0 0 1 1.8 1.8v1.4"></path></symbol>
+            <symbol id="gn-star-icon" viewBox="0 0 24 24"><path d="m12 3.1 2.65 5.38 5.94.86-4.3 4.19 1.02 5.91L12 16.65l-5.31 2.79 1.02-5.91-4.3-4.19 5.94-.86Z"></path></symbol>
+            <symbol id="gn-shared-icon" viewBox="0 0 24 24"><path d="M8.4 11.2a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5ZM2.9 19.2v-1.35a4.4 4.4 0 0 1 4.4-4.4h2.2a4.4 4.4 0 0 1 4.4 4.4v1.35"></path><path d="M15.55 5.15a3.25 3.25 0 0 1 0 6.05M16.15 13.5a4.4 4.4 0 0 1 4.95 4.35v1.35"></path></symbol>
+            <symbol id="gn-market-icon" viewBox="0 0 24 24"><path d="M4.1 9.2h15.8l-1 10.2H5.1Z"></path><path d="M3.3 9.2 5.1 4.6h13.8l1.8 4.6M8.2 9.2V6.9M12 9.2V6.9M15.8 9.2V6.9M9.4 19.4v-5.1h5.2v5.1"></path></symbol>
+            <symbol id="gn-search-icon" viewBox="0 0 24 24"><circle cx="10.4" cy="10.4" r="6.8"></circle><path d="m15.35 15.35 5.05 5.05"></path></symbol>
+            <symbol id="gn-bell-icon" viewBox="0 0 24 24"><path d="M5.2 17.2h13.6l-1.8-2.35V9.9a5 5 0 0 0-10 0v4.95Z"></path><path d="M9.6 19.1a2.6 2.6 0 0 0 4.8 0"></path></symbol>
+            <symbol id="gn-filter-icon" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"></path></symbol>
+            <symbol id="gn-grid-icon" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"></rect><rect x="14" y="4" width="6" height="6" rx="1"></rect><rect x="4" y="14" width="6" height="6" rx="1"></rect><rect x="14" y="14" width="6" height="6" rx="1"></rect></symbol>
+            <symbol id="gn-list-icon" viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12"></path><circle cx="4.2" cy="6" r=".75" fill="currentColor" stroke="none"></circle><circle cx="4.2" cy="12" r=".75" fill="currentColor" stroke="none"></circle><circle cx="4.2" cy="18" r=".75" fill="currentColor" stroke="none"></circle></symbol>
+            <symbol id="gn-more-icon" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.2" fill="currentColor" stroke="none"></circle><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"></circle><circle cx="19" cy="12" r="1.2" fill="currentColor" stroke="none"></circle></symbol>
+            <symbol id="gn-cloud-icon" viewBox="0 0 24 24"><path d="M7.15 18.5h10.2a4.1 4.1 0 0 0 .55-8.16A6.15 6.15 0 0 0 6.2 8.55a5 5 0 0 0 .95 9.95Z"></path><path d="m9.4 13 2.1 2.1 3.6-4"></path></symbol>
+            <symbol id="gn-flash-icon" viewBox="0 0 24 24"><path d="m13.4 2.9-7 10.2h5.1l-.9 8 7-10.2h-5.1Z"></path></symbol>
+            <symbol id="gn-download-icon" viewBox="0 0 24 24"><path d="M12 3.5v11.2M7.8 10.7l4.2 4.2 4.2-4.2M4.5 19.8h15"></path></symbol>
+            <symbol id="gn-record-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="currentColor" stroke="none"></circle></symbol>
+            <symbol id="gn-image-icon" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="16" rx="2.2"></rect><circle cx="9" cy="9" r="1.6"></circle><path d="m5.7 17 4.2-4.2 3.1 3 2.2-2.1 3.1 3.3"></path></symbol>
+            <symbol id="gn-camera-icon" viewBox="0 0 24 24"><path d="M4 8h3.1l1.35-2.2h7.1L16.9 8H20v11H4Z"></path><circle cx="12" cy="13.3" r="3.6"></circle></symbol>
+            <symbol id="gn-lock-icon" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8.2 10V7.4a3.8 3.8 0 0 1 7.6 0V10"></path></symbol>
+            <symbol id="gn-duplicate-icon" viewBox="0 0 24 24"><rect x="7" y="7" width="13" height="13" rx="2"></rect><path d="M16.5 7V5.5A1.5 1.5 0 0 0 15 4H5.5A1.5 1.5 0 0 0 4 5.5V15A1.5 1.5 0 0 0 5.5 16.5H7"></path></symbol>
+            <symbol id="gn-move-icon" viewBox="0 0 24 24"><path d="M4 8h6l1.8 2H20v9H4Z"></path><path d="m12 14 2.2-2.2M12 14l2.2 2.2M12 14h5"></path></symbol>
+            <symbol id="gn-new-window-icon" viewBox="0 0 24 24"><rect x="4" y="6" width="14" height="14" rx="2"></rect><path d="M10 4h10v10M20 4l-8 8"></path></symbol>
+            <symbol id="gn-share-icon" viewBox="0 0 24 24"><path d="M6 10v9.1A1.9 1.9 0 0 0 7.9 21h8.2a1.9 1.9 0 0 0 1.9-1.9V10M12 16V3M7.8 7.2 12 3l4.2 4.2"></path></symbol>
+            <symbol id="gn-trash-icon" viewBox="0 0 24 24"><path d="M5.5 7.5h13M9 4h6l1 3.5H8ZM7.2 7.5l.8 12h8l.8-12M10.2 10.5v6M13.8 10.5v6"></path></symbol>
+            <symbol id="gn-lasso-icon" viewBox="0 0 24 24"><path d="M18.8 15.7c2-1.2 2.9-3 2.2-4.8-1.1-2.9-6-4.3-10.8-3.1S2.5 12.3 3.6 15.2c.8 2 3.3 3.3 6.3 3.4 3.5.2 6-1.2 5.4-2.7-.5-1.2-2.7-1.3-4.9-.4"></path><path d="M18.8 15.7c-1.6.9-2.1 2.2-1.2 3.1.7.7 2.2.8 3.4.2"></path></symbol>
+            <symbol id="gn-pen-icon" viewBox="0 0 24 24"><path d="m5 19 2.2-6.5L16.7 3l4.3 4.3-9.5 9.5Z"></path><path d="m7.2 12.5 4.3 4.3M16.7 3l-1.4 4.3 4.4 1.4M4 20h7"></path></symbol>
+            <symbol id="gn-eraser-icon" viewBox="0 0 24 24"><path d="m4.2 14.5 8.7-10a2 2 0 0 1 2.8-.2l4 3.5a2 2 0 0 1 .2 2.8l-7.8 9H7.8l-3.4-3a1.5 1.5 0 0 1-.2-2.1Z"></path><path d="m10 8 6.8 5.9M12.1 19.6H21"></path></symbol>
+            <symbol id="gn-text-icon" viewBox="0 0 24 24"><path d="M5 6V3.5h14V6M12 3.5v17M8.5 20.5h7"></path></symbol>
+            <symbol id="gn-shape-icon" viewBox="0 0 24 24"><circle cx="8" cy="15.5" r="5"></circle><path d="m13 4 7 12H9Z"></path></symbol>
+            <symbol id="gn-sticky-icon" viewBox="0 0 24 24"><path d="M4 4h16v11l-5 5H4Z"></path><path d="M15 20v-5h5"></path></symbol>
+            <symbol id="gn-laser-icon" viewBox="0 0 24 24"><path d="m4 20 7.3-7.3M8.6 20H4v-4.6M13.6 10.4l3.8-3.8M14.6 4.4l1.2-2M19.6 9.4l2.2.3M18.3 5.7l1.9-1.3"></path><circle cx="12" cy="12" r="2.2"></circle></symbol>
+            <symbol id="gn-accessories-icon" viewBox="0 0 24 24"><path d="M4 7h16M7 4v6M17 4v6M5 13h6v7H5zM14 13h5v3h-5zM14 19h5"></path></symbol>
+            <symbol id="gn-plus-icon" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"></path></symbol>
+            <symbol id="gn-transcript-icon" viewBox="0 0 24 24"><path d="M4 12h2l1.5-5 3 10 2.5-8 2.3 6 1.4-3H20"></path></symbol>
+            <symbol id="gn-chevron-left-icon" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"></path></symbol>
+            <symbol id="gn-close-icon" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></symbol>
+        </svg>
+
+        <div class="goodnotes-shell">
+            <section class="gn-library" data-gn-view="library">
+                <aside class="gn-sidebar" aria-label="Goodnotes library navigation">
+                    <nav>
+                        <button class="is-active" type="button" data-gn-filter="all" aria-pressed="true">
+                            <svg class="gn-icon" aria-hidden="true"><use href="#gn-documents-icon"></use></svg>
+                            <span data-copy-lang="zh">文件</span><span data-copy-lang="en">Documents</span>
+                        </button>
+                        <button type="button" data-gn-filter="favorites" aria-pressed="false">
+                            <svg class="gn-icon" aria-hidden="true"><use href="#gn-star-icon"></use></svg>
+                            <span data-copy-lang="zh">最愛</span><span data-copy-lang="en">Favorites</span>
+                        </button>
+                        <button type="button" data-gn-filter="shared" aria-pressed="false">
+                            <svg class="gn-icon" aria-hidden="true"><use href="#gn-shared-icon"></use></svg>
+                            <span data-copy-lang="zh">分享</span><span data-copy-lang="en">Shared</span>
+                        </button>
+                        <button type="button" data-gn-filter="marketplace" aria-pressed="false">
+                            <svg class="gn-icon" aria-hidden="true"><use href="#gn-market-icon"></use></svg>
+                            <span><span data-copy-lang="zh">市集</span><span data-copy-lang="en">Marketplace</span><small data-copy-lang="zh">基本版享 500+ 產品</small><small data-copy-lang="en">500+ items with Basic</small></span>
+                        </button>
+                    </nav>
+                </aside>
+
+                <div class="gn-library-main" data-gn-library-main>
+                    <div class="gn-compact-header" data-gn-compact-header aria-hidden="true" inert>
+                        <strong data-gn-library-title><span data-copy-lang="zh">文件</span><span data-copy-lang="en">Documents</span></strong>
+                        <div class="gn-compact-actions">
+                            <button type="button" data-gn-search-toggle aria-label="Search"><svg class="gn-icon" aria-hidden="true"><use href="#gn-search-icon"></use></svg></button>
+                            <button type="button" data-gn-feedback="notifications" aria-label="Notifications"><svg class="gn-icon" aria-hidden="true"><use href="#gn-bell-icon"></use></svg></button>
+                            <span class="gn-avatar" aria-hidden="true">AL</span>
+                        </div>
+                    </div>
+                    <header class="gn-library-header">
+                        <h3 data-gn-library-title><span data-copy-lang="zh">文件</span><span data-copy-lang="en">Documents</span></h3>
+                        <div class="gn-library-actions">
+                            <button type="button" data-gn-search-toggle aria-label="Search"><svg class="gn-icon" aria-hidden="true"><use href="#gn-search-icon"></use></svg></button>
+                            <button type="button" data-gn-feedback="notifications" aria-label="Notifications"><svg class="gn-icon" aria-hidden="true"><use href="#gn-bell-icon"></use></svg></button>
+                            <span class="gn-avatar" aria-hidden="true">AL</span>
+                        </div>
+                    </header>
+
+                    <div class="gn-library-toolbar">
+                        <button type="button" data-gn-filter-menu-button aria-expanded="false"><svg class="gn-icon" aria-hidden="true"><use href="#gn-filter-icon"></use></svg><span data-gn-kind-label><span data-copy-lang="zh">全部</span><span data-copy-lang="en">All</span></span></button>
+                        <span></span>
+                        <button class="gn-new-button" type="button" data-gn-new-menu-button aria-expanded="false"><b aria-hidden="true">＋</b><span data-copy-lang="zh">新</span><span data-copy-lang="en">New</span></button>
+                        <button class="gn-layout-button" type="button" data-gn-view-menu-button aria-expanded="false" aria-label="View options"><svg class="gn-icon" aria-hidden="true"><use data-gn-layout-icon href="#gn-grid-icon"></use></svg></button>
+                        <button class="gn-more-button" type="button" data-gn-feedback="library-more" aria-label="More options"><svg class="gn-icon" aria-hidden="true"><use href="#gn-more-icon"></use></svg></button>
+                        <span class="gn-toolbar-rule" aria-hidden="true"></span>
+                        <button class="gn-sync-button" type="button" data-gn-feedback="sync" aria-label="iCloud synced"><svg class="gn-icon" aria-hidden="true"><use href="#gn-cloud-icon"></use></svg></button>
+                    </div>
+
+                    <div class="gn-menu gn-filter-menu" data-gn-filter-menu hidden role="menu">
+                        <button class="is-selected" type="button" role="menuitemradio" aria-checked="true" data-gn-kind="all"><span class="gn-menu-check" aria-hidden="true"></span><span data-copy-lang="zh">全部</span><span data-copy-lang="en">All</span></button>
+                        <button type="button" role="menuitemradio" aria-checked="false" data-gn-kind="documents"><span class="gn-menu-check" aria-hidden="true"></span><span data-copy-lang="zh">文件</span><span data-copy-lang="en">Documents</span></button>
+                        <button type="button" role="menuitemradio" aria-checked="false" data-gn-kind="folders"><span class="gn-menu-check" aria-hidden="true"></span><span data-copy-lang="zh">資料夾</span><span data-copy-lang="en">Folders</span></button>
+                    </div>
+                    <div class="gn-menu gn-view-menu" data-gn-view-menu hidden role="menu">
+                        <button class="is-selected" type="button" role="menuitemradio" aria-checked="true" data-gn-layout="grid"><span class="gn-menu-check" aria-hidden="true"></span><svg class="gn-icon" aria-hidden="true"><use href="#gn-grid-icon"></use></svg><span data-copy-lang="zh">網格</span><span data-copy-lang="en">Grid</span></button>
+                        <button type="button" role="menuitemradio" aria-checked="false" data-gn-layout="list"><span class="gn-menu-check" aria-hidden="true"></span><svg class="gn-icon" aria-hidden="true"><use href="#gn-list-icon"></use></svg><span data-copy-lang="zh">列表</span><span data-copy-lang="en">List</span></button>
+                        <hr>
+                        <button type="button" data-gn-sort aria-pressed="false"><span class="gn-menu-check" aria-hidden="true"></span><span data-copy-lang="zh">按名稱排序</span><span data-copy-lang="en">Sort by name</span><b aria-hidden="true">›</b></button>
+                    </div>
+                    <div class="gn-new-menu" data-gn-new-menu hidden>
+                        <div class="gn-new-primary">
+                            <button type="button" data-gn-new data-gn-new-action="notebook"><span class="gn-new-tile is-notebook"><i aria-hidden="true"></i></span><span data-copy-lang="zh">筆記本</span><span data-copy-lang="en">Notebook</span></button>
+                            <button type="button" data-gn-new-action="whiteboard"><span class="gn-new-badge">NEW</span><span class="gn-new-tile is-board"><i aria-hidden="true">＋</i></span><span data-copy-lang="zh">白板</span><span data-copy-lang="en">Whiteboard</span></button>
+                            <button type="button" data-gn-new-action="text"><span class="gn-new-badge">NEW</span><span class="gn-new-tile is-text"><i aria-hidden="true">T</i></span><span data-copy-lang="zh">文本文檔</span><span data-copy-lang="en">Text document</span></button>
+                        </div>
+                        <div class="gn-new-secondary">
+                            <button type="button" data-gn-new-action="import"><span class="gn-menu-line-icon is-import" aria-hidden="true"><svg class="gn-icon"><use href="#gn-download-icon"></use></svg></span><span data-copy-lang="zh">匯入</span><span data-copy-lang="en">Import</span></button>
+                            <button type="button" data-gn-new-action="recording"><span class="gn-menu-line-icon is-recording" aria-hidden="true"><svg class="gn-icon"><use href="#gn-record-icon"></use></svg></span><span data-copy-lang="zh">快速錄音</span><span data-copy-lang="en">Quick recording</span></button>
+                        </div>
+                        <div class="gn-new-group">
+                            <button type="button" data-gn-new-action="quicknote"><svg class="gn-icon" aria-hidden="true"><use href="#gn-flash-icon"></use></svg><span>QuickNote</span></button>
+                            <button type="button" data-gn-new-action="studyset"><svg class="gn-icon" aria-hidden="true"><use href="#gn-duplicate-icon"></use></svg><span data-copy-lang="zh">學習卡組</span><span data-copy-lang="en">Study set</span></button>
+                            <button type="button" data-gn-new-action="image"><svg class="gn-icon" aria-hidden="true"><use href="#gn-image-icon"></use></svg><span data-copy-lang="zh">圖像</span><span data-copy-lang="en">Image</span></button>
+                            <button type="button" data-gn-new-action="camera"><svg class="gn-icon" aria-hidden="true"><use href="#gn-camera-icon"></use></svg><span data-copy-lang="zh">相機</span><span data-copy-lang="en">Camera</span></button>
+                        </div>
+                        <div class="gn-new-group is-single">
+                            <button type="button" data-gn-new-action="folder"><svg class="gn-icon" aria-hidden="true"><use href="#gn-documents-icon"></use></svg><span data-copy-lang="zh">資料夾</span><span data-copy-lang="en">Folder</span></button>
+                        </div>
+                        <div class="gn-new-group is-single is-locked">
+                            <button type="button" data-gn-new-action="cloud" aria-disabled="true"><svg class="gn-icon" aria-hidden="true"><use href="#gn-cloud-icon"></use></svg><span data-copy-lang="zh">從雲端儲存空間匯入</span><span data-copy-lang="en">Import from cloud storage</span><svg class="gn-icon" aria-hidden="true"><use href="#gn-lock-icon"></use></svg></button>
+                        </div>
+                    </div>
+
+                    <div class="gn-document-menu" data-gn-document-menu hidden role="menu">
+                        <button type="button" role="menuitem" data-gn-menu-action="duplicate"><svg class="gn-icon" aria-hidden="true"><use href="#gn-duplicate-icon"></use></svg><span data-copy-lang="zh">複製</span><span data-copy-lang="en">Duplicate</span></button>
+                        <button type="button" role="menuitem" data-gn-menu-action="move"><svg class="gn-icon" aria-hidden="true"><use href="#gn-move-icon"></use></svg><span data-copy-lang="zh">移動</span><span data-copy-lang="en">Move</span></button>
+                        <button type="button" role="menuitem" data-gn-menu-action="window"><svg class="gn-icon" aria-hidden="true"><use href="#gn-new-window-icon"></use></svg><span data-copy-lang="zh">在新視窗開啟</span><span data-copy-lang="en">Open in New Window</span></button>
+                        <button type="button" role="menuitem" data-gn-menu-action="export"><svg class="gn-icon" aria-hidden="true"><use href="#gn-share-icon"></use></svg><span data-copy-lang="zh">輸出</span><span data-copy-lang="en">Export</span></button>
+                        <hr>
+                        <button class="is-destructive" type="button" role="menuitem" data-gn-menu-action="trash"><svg class="gn-icon" aria-hidden="true"><use href="#gn-trash-icon"></use></svg><span data-copy-lang="zh">移到垃圾桶</span><span data-copy-lang="en">Move to Trash</span></button>
+                    </div>
+
+                    <div class="gn-items-grid" data-gn-items-grid role="group" aria-label="Goodnotes documents">
+                        <button class="gn-folder-card is-math" type="button" data-gn-folder="math" data-gn-search-target="數學 mathematics maths">
+                            <span class="gn-folder-shape"><i aria-hidden="true"><svg class="gn-icon"><use href="#gn-star-icon"></use></svg></i></span>
+                            <strong><span data-copy-lang="zh">數學</span><span data-copy-lang="en">Mathematics</span></strong>
+                            <small><span data-copy-lang="zh">7月22日 下午8:10</span><span data-copy-lang="en">22 Jul, 8:10 PM</span></small>
+                        </button>
+                        <button class="gn-folder-card is-physics" type="button" data-gn-folder="physics" data-gn-search-target="物理 physics">
+                            <span class="gn-folder-shape"><i aria-hidden="true"><svg class="gn-icon"><use href="#gn-star-icon"></use></svg></i></span>
+                            <strong><span data-copy-lang="zh">物理</span><span data-copy-lang="en">Physics</span></strong>
+                            <small><span data-copy-lang="zh">7月18日 下午9:06</span><span data-copy-lang="en">18 Jul, 9:06 PM</span></small>
+                        </button>
+                        <button class="gn-folder-card is-chemistry" type="button" data-gn-folder="chemistry" data-gn-search-target="化學 chemistry">
+                            <span class="gn-folder-shape"><i aria-hidden="true"><svg class="gn-icon"><use href="#gn-star-icon"></use></svg></i></span>
+                            <strong><span data-copy-lang="zh">化學</span><span data-copy-lang="en">Chemistry</span></strong>
+                            <small><span data-copy-lang="zh">7月13日 下午12:13</span><span data-copy-lang="en">13 Jul, 12:13 PM</span></small>
+                        </button>
+                        <div class="gn-document-grid" data-gn-document-grid aria-live="polite"></div>
+                    </div>
+
+                    <p class="gn-empty" data-gn-empty hidden>
+                        <span data-copy-lang="zh">沒有符合的筆記</span><span data-copy-lang="en">No matching notes</span>
+                    </p>
+                    <section class="gn-search-screen" data-gn-search-screen hidden aria-label="Search Goodnotes">
+                        <header>
+                            <button type="button" data-gn-search-back aria-label="Back to documents"><svg class="gn-icon" aria-hidden="true"><use href="#gn-chevron-left-icon"></use></svg></button>
+                            <div class="gn-search-field"><svg class="gn-icon" aria-hidden="true"><use href="#gn-search-icon"></use></svg><input type="search" data-gn-search autocomplete="off" spellcheck="false" placeholder="搜尋" aria-label="Search notes"><button type="button" data-gn-search-clear aria-label="Clear search"><svg class="gn-icon" aria-hidden="true"><use href="#gn-close-icon"></use></svg></button></div>
+                        </header>
+                        <div class="gn-search-recents" data-gn-search-recents>
+                            <div><h4><span data-copy-lang="zh">近期搜尋的關鍵字</span><span data-copy-lang="en">Recent searches</span></h4><button type="button" data-gn-clear-recents><span data-copy-lang="zh">清除</span><span data-copy-lang="en">Clear</span></button></div>
+                            <p><button type="button" data-gn-search-chip="calculus">calculus</button><button type="button" data-gn-search-chip="waves">waves</button><button type="button" data-gn-search-chip="equilibrium">equilibrium</button></p>
+                            <div><h4><span data-copy-lang="zh">最近開啟的文件</span><span data-copy-lang="en">Recently opened</span></h4></div>
+                        </div>
+                        <div class="gn-search-results" data-gn-search-results aria-live="polite"></div>
+                        <p class="gn-search-empty" data-gn-search-empty hidden><span data-copy-lang="zh">找不到符合的筆記</span><span data-copy-lang="en">No matching notes</span></p>
+                    </section>
+                </div>
+            </section>
+
+            <section class="gn-editor" data-gn-view="editor" hidden>
+                <div class="gn-note-toolbar" role="toolbar" aria-label="Note tools">
+                    <button type="button" data-gn-page-toggle aria-pressed="false" aria-label="Toggle page thumbnails">
+                        <svg class="gn-native-icon gn-native-sidebar" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="2.25" y="2.75" width="19.5" height="18.5" rx="3.25"></rect>
+                            <path d="M8.2 3.2v17.6M4.55 8.15h1.65M4.55 12h1.65"></path>
+                        </svg>
+                    </button>
+                    <button type="button" data-gn-feedback="note-search" aria-label="Search in note">
+                        <svg class="gn-native-icon gn-native-search" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="10.25" cy="10.25" r="7.35"></circle>
+                            <path d="m15.65 15.65 5.45 5.45"></path>
+                        </svg>
+                    </button>
+                    <button type="button" data-gn-feedback="ai" aria-label="Goodnotes AI">
+                        <svg class="gn-native-icon gn-native-ai" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M2.8 15.15c2.35 3.15 6.75 4.55 10.35 2.25 1.05-.68 1.75-1.55 2.25-2.45"></path>
+                            <path d="M17.15 2.45c.42 2.35 1.73 3.67 4.08 4.08-2.35.42-3.66 1.73-4.08 4.08-.42-2.35-1.73-3.66-4.08-4.08 2.35-.41 3.66-1.73 4.08-4.08Z"></path>
+                            <path d="m3.15 15.35 1.55-1.7"></path>
+                        </svg>
+                    </button>
+                    <button class="gn-mode-button" type="button" data-gn-mode aria-pressed="false">
+                        <svg class="gn-native-icon gn-native-read" viewBox="0 0 30 28" aria-hidden="true">
+                            <rect x="2.25" y="1.75" width="18.1" height="23.25" rx="3.1"></rect>
+                            <path d="M6.2 7.3h9.8M6.2 11.5h7.2"></path>
+                            <path d="M14.4 21.8s2.65-3.35 6.45-3.35 6.45 3.35 6.45 3.35-2.65 3.35-6.45 3.35-6.45-3.35-6.45-3.35Z"></path>
+                            <circle cx="20.85" cy="21.8" r="1.45"></circle>
+                        </svg>
+                        <span data-copy-lang="zh">唯讀</span><span data-copy-lang="en">Read only</span>
+                    </button>
+                    <div class="gn-edit-tools" data-gn-edit-tools hidden>
+                        <button class="is-active" type="button" data-gn-tool="lasso" aria-pressed="true" aria-label="Lasso"><svg class="gn-icon" aria-hidden="true"><use href="#gn-lasso-icon"></use></svg></button>
+                        <button type="button" data-gn-tool="pen" aria-pressed="false" aria-label="Writing"><svg class="gn-icon" aria-hidden="true"><use href="#gn-pen-icon"></use></svg></button>
+                        <button type="button" data-gn-tool="eraser" aria-pressed="false" aria-label="Eraser"><svg class="gn-icon" aria-hidden="true"><use href="#gn-eraser-icon"></use></svg></button>
+                        <button type="button" data-gn-tool="text" aria-pressed="false" aria-label="Text"><svg class="gn-icon" aria-hidden="true"><use href="#gn-text-icon"></use></svg></button>
+                        <button type="button" data-gn-tool="elements" aria-pressed="false" aria-label="Elements"><svg class="gn-icon" aria-hidden="true"><use href="#gn-star-icon"></use></svg></button>
+                        <button type="button" data-gn-tool="image" aria-pressed="false" aria-label="Image"><svg class="gn-icon" aria-hidden="true"><use href="#gn-image-icon"></use></svg></button>
+                        <button type="button" data-gn-tool="shape" aria-pressed="false" aria-label="Shape"><svg class="gn-icon" aria-hidden="true"><use href="#gn-shape-icon"></use></svg></button>
+                        <button type="button" data-gn-tool="sticky" aria-pressed="false" aria-label="Sticky note"><svg class="gn-icon" aria-hidden="true"><use href="#gn-sticky-icon"></use></svg></button>
+                        <button type="button" data-gn-tool="laser" aria-pressed="false" aria-label="Laser pointer"><svg class="gn-icon" aria-hidden="true"><use href="#gn-laser-icon"></use></svg></button>
+                        <button type="button" data-gn-tool="accessories" aria-pressed="false" aria-label="Accessories"><svg class="gn-icon" aria-hidden="true"><use href="#gn-accessories-icon"></use></svg></button>
+                        <button type="button" data-gn-tool="add" aria-pressed="false" aria-label="Add"><svg class="gn-icon" aria-hidden="true"><use href="#gn-plus-icon"></use></svg></button>
+                    </div>
+                    <i></i>
+                    <button type="button" data-gn-feedback="share" aria-label="Share">
+                        <svg class="gn-native-icon gn-native-share" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M6 10.2v9.1a1.7 1.7 0 0 0 1.7 1.7h8.6a1.7 1.7 0 0 0 1.7-1.7v-9.1M12 16V2.6M7.7 6.9 12 2.6l4.3 4.3"></path>
+                        </svg>
+                    </button>
+                    <button type="button" data-gn-feedback="note-more" aria-label="More">
+                        <svg class="gn-native-icon gn-native-more" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="4.5" cy="12" r="1.15"></circle><circle cx="12" cy="12" r="1.15"></circle><circle cx="19.5" cy="12" r="1.15"></circle>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="gn-editor-stage">
+                    <aside class="gn-page-strip" data-gn-page-strip aria-label="Pages" hidden>
+                        <header><button type="button" data-gn-feedback="page-options" aria-label="Page options"><svg class="gn-icon" aria-hidden="true"><use href="#gn-more-icon"></use></svg></button><strong><span data-copy-lang="zh">頁面</span><span data-copy-lang="en">Pages</span></strong><button type="button" data-gn-page-close aria-label="Close page thumbnails"><svg class="gn-icon" aria-hidden="true"><use href="#gn-close-icon"></use></svg></button></header>
+                        <div class="gn-page-tabs" role="tablist" aria-label="Page sidebar views">
+                            <button class="is-active" type="button" role="tab" aria-selected="true" aria-label="Pages" data-gn-page-view="pages"><svg class="gn-icon" aria-hidden="true"><use href="#gn-grid-icon"></use></svg></button>
+                            <button type="button" role="tab" aria-selected="false" aria-label="Outline" data-gn-page-view="outline"><svg class="gn-icon" aria-hidden="true"><use href="#gn-list-icon"></use></svg></button>
+                            <button type="button" role="tab" aria-selected="false" aria-label="Transcripts" data-gn-page-view="transcripts"><svg class="gn-icon" aria-hidden="true"><use href="#gn-transcript-icon"></use></svg></button>
+                        </div>
+                        <button class="gn-page-filter" type="button" data-gn-feedback="page-filter"><svg class="gn-icon" aria-hidden="true"><use href="#gn-filter-icon"></use></svg><span data-copy-lang="zh">所有頁面</span><span data-copy-lang="en">All pages</span></button>
+                        <div class="gn-page-grid">
+                            <button class="is-active" type="button" data-gn-page-number="1" aria-label="Page 1"><span class="gn-mini-paper is-one"><i></i><i></i><i></i></span><small>1</small></button>
+                            <button type="button" data-gn-page-number="2" aria-label="Page 2"><span class="gn-mini-paper is-two"><i></i><i></i><i></i></span><small>2</small></button>
+                            <button type="button" data-gn-page-number="3" aria-label="Page 3"><span class="gn-mini-paper is-three"><i></i><i></i><i></i></span><small>3</small></button>
+                            <button type="button" data-gn-page-number="4" aria-label="Page 4"><span class="gn-mini-paper is-four"><i></i><i></i><i></i></span><small>4</small></button>
+                            <button type="button" data-gn-page-number="5" aria-label="Page 5"><span class="gn-mini-paper is-five"><i></i><i></i><i></i></span><small>5</small></button>
+                            <button type="button" data-gn-add-page aria-label="Add page"><span class="gn-page-add">＋</span><small><span data-copy-lang="zh">新增頁面</span><span data-copy-lang="en">Add page</span></small></button>
+                        </div>
+                        <div class="gn-page-empty" data-gn-page-empty hidden role="status"></div>
+                    </aside>
+                    <div class="gn-paper-scroll">
+                        <article class="gn-paper" data-gn-paper>
+                            <header>
+                                <p data-gn-page-subject>MATHEMATICS</p>
+                                <h3 data-gn-page-title>Calculus Review</h3>
+                                <span data-gn-page-date>28 JUL 2026</span>
+                            </header>
+                            <div class="gn-note-content" data-gn-note-content></div>
+                            <footer>1</footer>
+                        </article>
+                    </div>
+                    <span class="gn-page-status"><span data-copy-lang="zh" data-gn-page-status-zh>第1頁，共5頁</span><span data-copy-lang="en" data-gn-page-status-en>Page 1 of 5</span></span>
+                </div>
+            </section>
+            <div class="gn-toast" data-gn-toast role="status" aria-live="polite" hidden></div>
+        </div>
+    </div>
+</section>

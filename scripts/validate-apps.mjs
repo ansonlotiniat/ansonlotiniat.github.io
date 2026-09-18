@@ -36,9 +36,15 @@ function validateIcon(icon, location) {
     if (!icon?.background) errors.push(`${location}: icon background is required.`);
     if (icon?.symbol) return;
     const { canvas, x, y, size } = icon?.crop || {};
-    if (![canvas, x, y, size].every(Number.isInteger)
-        || canvas <= 0 || size <= 0 || x < 0 || y < 0
-        || x + size > canvas || y + size > canvas) {
+    if (
+        ![canvas, x, y, size].every(Number.isInteger) ||
+        canvas <= 0 ||
+        size <= 0 ||
+        x < 0 ||
+        y < 0 ||
+        x + size > canvas ||
+        y + size > canvas
+    ) {
         errors.push(`${location}: icon needs a valid square source crop.`);
     }
 }
@@ -66,8 +72,10 @@ for (const [index, app] of (apps || []).entries()) {
         errors.push(`${location}: appLabel, group, and keywords are required.`);
     }
 
-    if (!app.shortcut || !/^[0-9]$/.test(app.shortcut)) {
-        errors.push(`${location}: shortcut must be one digit.`);
+    if (app.shortcut === null) {
+        // Apps remain launchable after the ten optional number shortcuts are used.
+    } else if (!app.shortcut || !/^[0-9]$/.test(app.shortcut)) {
+        errors.push(`${location}: shortcut must be one digit or null.`);
     } else if (shortcuts.has(app.shortcut)) {
         errors.push(`${location}: duplicate shortcut "⌥${app.shortcut}".`);
     } else {
@@ -87,15 +95,12 @@ for (const [index, app] of (apps || []).entries()) {
     }
 
     validateIcon(app.icon, location);
-
 }
 
-const windowIds = new Set(
-    [...html.matchAll(/\bdata-window="([^"]+)"/g)].map((match) => match[1]),
+const windowIds = new Set([...html.matchAll(/\bdata-window="([^"]+)"/g)].map((match) => match[1]));
+const exploreFilterValues = [...html.matchAll(/\bdata-explore-filter="([^"]*)"/g)].map((match) =>
+    match[1].trim().toLocaleLowerCase(),
 );
-const exploreFilterValues = [
-    ...html.matchAll(/\bdata-explore-filter="([^"]*)"/g),
-].map((match) => match[1].trim().toLocaleLowerCase());
 
 for (const id of ids) {
     if (!windowIds.has(id)) {
@@ -155,8 +160,9 @@ for (const filter of exploreFilterValues) {
     }
 }
 
-const scriptSources = [...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)]
-    .map((match) => match[1].split(/[?#]/, 1)[0]);
+const scriptSources = [...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map(
+    (match) => match[1].split(/[?#]/, 1)[0],
+);
 const configIndex = scriptSources.indexOf("apps.config.js");
 const mainIndex = scriptSources.indexOf("main.js");
 if (configIndex < 0 || mainIndex < 0 || configIndex > mainIndex) {
@@ -169,9 +175,9 @@ if (errors.length) {
     process.exitCode = 1;
 } else {
     console.log(
-        `App manifest OK: ${apps.length} apps, ${windowIds.size} windows, `
-        + `${shortcuts.size} unique shortcuts, ${uniqueExploreFilters.size} Explore filters, `
-        + `Dock + Launchpad + Spotlight mounts, ${fixedShellAssets.length} fixed shell icons, `
-        + "and all paths resolved.",
+        `App manifest OK: ${apps.length} apps, ${windowIds.size} windows, ` +
+            `${shortcuts.size} unique shortcuts, ${uniqueExploreFilters.size} Explore filters, ` +
+            `Dock + Launchpad + Spotlight mounts, ${fixedShellAssets.length} fixed shell icons, ` +
+            "and all paths resolved.",
     );
 }

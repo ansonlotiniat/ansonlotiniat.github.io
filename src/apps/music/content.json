@@ -1,0 +1,295 @@
+{
+    "profileName": "Anson Lo",
+    "songs": [
+        {
+            "id": "kiss-goodbye",
+            "title": "Kiss Goodbye",
+            "artist": "王力宏",
+            "album": "蓋世英雄",
+            "duration": "4:22",
+            "artwork": "assets/music/artwork/kiss-goodbye.jpg",
+            "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/d5/ca/38/d5ca38f4-190b-6a35-9097-73fcc86140b1/mzaf_9235055949686369276.plus.aac.p.m4a",
+            "url": "https://music.apple.com/hk/album/kiss-goodbye/1134353291?i=1134353952"
+        },
+        {
+            "id": "dream-of-red-mansions",
+            "title": "討厭紅樓夢",
+            "artist": "陶喆",
+            "album": "黑色柳丁",
+            "duration": "4:02",
+            "artwork": "assets/music/artwork/tao-hey-se-liu-ding.jpg",
+            "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c5/19/22/c51922b4-4ad7-533c-d684-30d0a5e28d29/mzaf_17135362215485730677.plus.aac.p.m4a",
+            "url": "https://music.apple.com/hk/album/%E8%A8%8E%E5%8E%AD%E7%B4%85%E6%A8%93%E5%A4%A2/914664926?i=914664936"
+        },
+        {
+            "id": "love",
+            "title": "Love",
+            "artist": "Keyshia Cole",
+            "album": "The Way It Is",
+            "duration": "4:15",
+            "artwork": "assets/music/artwork/love-the-way-it-is.jpg",
+            "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/4a/ea/73/4aea7383-6b05-4a03-526f-f6555a270075/mzaf_4042681555460665550.plus.aac.p.m4a",
+            "url": "https://music.apple.com/hk/album/love/1440667549?i=1440667557"
+        },
+        {
+            "id": "latch",
+            "title": "Latch",
+            "artist": "Disclosure & Sam Smith",
+            "album": "Settle (Deluxe)",
+            "duration": "4:17",
+            "artwork": "assets/music/artwork/latch-settle-deluxe.jpg",
+            "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2f/dc/c6/2fdcc6e3-6a46-371f-ba2d-fd12eb65baaf/mzaf_5252130973563685128.plus.aac.p.m4a",
+            "url": "https://music.apple.com/hk/album/latch/1440856493?i=1440856647"
+        },
+        {
+            "id": "self-love",
+            "title": "Self Love (Spider-Man: Across the Spider-Verse)",
+            "artist": "Metro Boomin & Coi Leray",
+            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
+            "duration": "3:09",
+            "artwork": "assets/music/artwork/self-love-spider-verse.jpg",
+            "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/74/3b/ee/743bee9b-011e-846d-2cc4-4155addecd52/mzaf_7478026999078986619.plus.aac.p.m4a",
+            "url": "https://music.apple.com/hk/album/self-love-spider-man-across-the-spider-verse/1690685331?i=1690685844"
+        },
+        {
+            "id": "on-my-shoulder",
+            "title": "On My Shoulder",
+            "artist": "Malcolm Todd",
+            "album": "Sweet Boy",
+            "duration": "2:50",
+            "artwork": "assets/music/artwork/on-my-shoulder-sweet-boy.jpg",
+            "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f5/29/eb/f529eb56-fc10-db7e-e728-b3e871187970/mzaf_14414369083682483562.plus.aac.p.m4a",
+            "url": "https://music.apple.com/hk/album/on-my-shoulder/1738257523?i=1738258106"
+        }
+    ],
+    "nowPlaying": {
+        "id": "die-for-you",
+        "title": "Die For You",
+        "artist": "Calum Scott",
+        "album": "Avenoir",
+        "artwork": "assets/music/recent/avenoir.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/19/d7/a1/19d7a167-3292-acda-095b-ce2e2a1164e3/mzaf_9852028903152700716.plus.aac.p.m4a",
+        "url": "https://music.apple.com/hk/album/die-for-you/1805711983?i=1805712298"
+    },
+    "recentSections": [
+        {
+            "id": "this-week",
+            "titleZh": "今個星期",
+            "titleEn": "This Week",
+            "albums": [
+                {
+                    "id": "sweet-boy",
+                    "title": "Sweet Boy",
+                    "artist": "Malcolm Todd",
+                    "artwork": "assets/music/artwork/on-my-shoulder-sweet-boy.jpg",
+                    "songId": "on-my-shoulder"
+                },
+                {
+                    "id": "in-his-name",
+                    "title": "In His Name",
+                    "artist": "衛蘭",
+                    "artwork": "assets/music/recent/in-his-name.jpg",
+                    "favorite": true,
+                    "showPlay": true,
+                    "track": {
+                        "id": "in-his-name-first-track",
+                        "title": "所以我愛 (feat. AF, Jill Vidal, SHIMICA & Daniel Chu)",
+                        "artist": "衛蘭",
+                        "album": "In His Name",
+                        "artwork": "assets/music/recent/in-his-name.jpg",
+                        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/19/10/32/191032d1-898a-d87a-a86a-411fd6033d45/mzaf_7836188773696588187.plus.aac.p.m4a",
+                        "url": "https://music.apple.com/hk/album/%E6%89%80%E4%BB%A5%E6%88%91%E6%84%9B-feat-af-jill-vidal-shimica-daniel-chu/1479714710?i=1479714711"
+                    }
+                },
+                {
+                    "id": "the-bird-song",
+                    "title": "The Bird Song - Single",
+                    "artist": "Noah Floersch & Em Beihold",
+                    "artwork": "assets/music/recent/the-bird-song.jpg",
+                    "track": {
+                        "id": "the-bird-song-track",
+                        "title": "The Bird Song",
+                        "artist": "Noah Floersch & Em Beihold",
+                        "album": "The Bird Song - Single",
+                        "artwork": "assets/music/recent/the-bird-song.jpg",
+                        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6b/4b/2d/6b4b2d27-1056-4cc9-268f-654d5010caa9/mzaf_14733667858122321150.plus.aac.p.m4a",
+                        "url": "https://music.apple.com/hk/album/the-bird-song/1780577299?i=1780577300"
+                    }
+                },
+                {
+                    "id": "thats-what-she-said",
+                    "title": "That's What She Said - Single",
+                    "artist": "Jace June",
+                    "artwork": "assets/music/recent/thats-what-she-said.jpg",
+                    "track": {
+                        "id": "thats-what-she-said-track",
+                        "title": "That's What She Said",
+                        "artist": "Jace June",
+                        "album": "That's What She Said - Single",
+                        "artwork": "assets/music/recent/thats-what-she-said.jpg",
+                        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/99/08/aa/9908aa22-168a-c41e-8706-83f77fabdfa7/mzaf_5438209080141816760.plus.aac.p.m4a",
+                        "url": "https://music.apple.com/hk/album/thats-what-she-said/1835924031?i=1835924032"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "this-month",
+            "titleZh": "本月",
+            "titleEn": "This Month",
+            "albums": [
+                {
+                    "id": "spider-man-across-the-spider-verse",
+                    "title": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
+                    "artist": "Metro Boomin",
+                    "artwork": "assets/music/artwork/self-love-spider-verse.jpg",
+                    "songId": "self-love"
+                },
+                {
+                    "id": "last-christmas",
+                    "title": "Last Christmas - Single",
+                    "artist": "Wham!",
+                    "artwork": "assets/music/recent/last-christmas.jpg",
+                    "track": {
+                        "id": "last-christmas-track",
+                        "title": "Last Christmas (Single Version)",
+                        "artist": "Wham!",
+                        "album": "Last Christmas - Single",
+                        "artwork": "assets/music/recent/last-christmas.jpg",
+                        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/cc/10/d3/cc10d319-d2b2-1e51-84f2-d81bb2d7b7fc/mzaf_11693662218518924489.plus.aac.p.m4a",
+                        "url": "https://music.apple.com/hk/album/last-christmas-single-version/202117886?i=202117984"
+                    }
+                },
+                {
+                    "id": "syre",
+                    "title": "SYRE",
+                    "artist": "Jaden",
+                    "artwork": "assets/music/recent/syre.jpg",
+                    "explicit": true,
+                    "track": {
+                        "id": "syre-first-track",
+                        "title": "B",
+                        "artist": "Jaden",
+                        "album": "SYRE",
+                        "artwork": "assets/music/recent/syre.jpg",
+                        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/b3/c6/63/b3c663f0-50b8-1b34-c501-ff352aa528ef/mzaf_12950395991771013701.plus.aac.p.m4a",
+                        "url": "https://music.apple.com/hk/album/b/1440934200?i=1440934201"
+                    }
+                },
+                {
+                    "id": "spider-man-into-the-spider-verse",
+                    "title": "Spider-Man: Into the Spider-Verse (Soundtrack From & Inspired by the Motion Picture)",
+                    "artist": "群星",
+                    "artwork": "assets/music/recent/spider-man-into-the-spider-verse.jpg",
+                    "track": {
+                        "id": "whats-up-danger",
+                        "title": "What's Up Danger",
+                        "artist": "Blackway & Black Caviar",
+                        "album": "Spider-Man: Into the Spider-Verse (Soundtrack From & Inspired by the Motion Picture)",
+                        "artwork": "assets/music/recent/spider-man-into-the-spider-verse.jpg",
+                        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/4a/6b/3b/4a6b3bb7-eebe-bd03-2897-810411089d55/mzaf_4386187771356652173.plus.aac.p.m4a",
+                        "url": "https://music.apple.com/hk/album/whats-up-danger/1445949265?i=1445949266"
+                    }
+                },
+                {
+                    "id": "you-signed-up-for-this",
+                    "title": "You Signed Up For This (Apple Music Edition)",
+                    "artist": "Maisie Peters",
+                    "artwork": "assets/music/recent/you-signed-up-for-this.jpg",
+                    "track": {
+                        "id": "you-signed-up-for-this-track",
+                        "title": "You Signed Up For This",
+                        "artist": "Maisie Peters",
+                        "album": "You Signed Up For This (Apple Music Edition)",
+                        "artwork": "assets/music/recent/you-signed-up-for-this.jpg",
+                        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d7/6a/0e/d76a0e27-066e-6807-b52e-f58cafff9e61/mzaf_12584041302747033183.plus.aac.p.m4a",
+                        "url": "https://music.apple.com/hk/album/you-signed-up-for-this/1571697083?i=1571697095"
+                    }
+                },
+                {
+                    "id": "reverse-light",
+                    "title": "逆光",
+                    "artist": "孫燕姿",
+                    "artwork": "assets/music/recent/reverse-light.jpg",
+                    "track": {
+                        "id": "reverse-light-first-track",
+                        "title": "In The Beginning",
+                        "artist": "孫燕姿",
+                        "album": "逆光",
+                        "artwork": "assets/music/recent/reverse-light.jpg",
+                        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/4e/3f/4e/4e3f4ebc-86b1-ac19-7699-4843e0d40ab5/mzaf_4548907111744906439.plus.aac.p.m4a",
+                        "url": "https://music.apple.com/hk/album/in-the-beginning/905226289?i=905226301"
+                    }
+                },
+                {
+                    "id": "i-am-not-an-angel",
+                    "title": "我不是天使",
+                    "artist": "那英",
+                    "artwork": "assets/music/recent/i-am-not-an-angel.jpg",
+                    "track": {
+                        "id": "i-am-not-an-angel-first-track",
+                        "title": "一笑而過",
+                        "artist": "那英",
+                        "album": "我不是天使",
+                        "artwork": "assets/music/recent/i-am-not-an-angel.jpg",
+                        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cd/14/e5/cd14e5ad-9b5f-3fe6-658f-3dd98e7b9c03/mzaf_12683375859121897592.plus.aac.p.m4a",
+                        "url": "https://music.apple.com/hk/album/%E4%B8%80%E7%AC%91%E8%80%8C%E9%81%8E/298690994?i=298691003"
+                    }
+                },
+                {
+                    "id": "sonorous-rose",
+                    "title": "鏗鏘玫瑰",
+                    "artist": "林憶蓮",
+                    "artwork": "assets/music/recent/sonorous-rose.jpg",
+                    "track": {
+                        "id": "sonorous-rose-track",
+                        "title": "鏗鏘玫瑰",
+                        "artist": "林憶蓮",
+                        "album": "鏗鏘玫瑰",
+                        "artwork": "assets/music/recent/sonorous-rose.jpg",
+                        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/3f/8f/f2/3f8ff272-baeb-0c80-7fc8-a2cddec3c1e1/mzaf_2681193194276826245.plus.aac.p.m4a",
+                        "url": "https://music.apple.com/hk/album/%E9%8F%97%E9%8F%98%E7%8E%AB%E7%91%B0/156411044?i=156411063"
+                    }
+                }
+            ]
+        }
+    ],
+    "playlists": [
+        {
+            "title": "💔",
+            "artwork": "assets/music/playlists/broken-heart.png"
+        },
+        {
+            "title": "1",
+            "artwork": "assets/music/playlists/one.png"
+        },
+        {
+            "title": "5.16",
+            "artwork": "assets/music/playlists/five-sixteen.png"
+        },
+        {
+            "title": "2025.06.05",
+            "artwork": "assets/music/playlists/2025-06-05.png"
+        },
+        {
+            "title": "未命名的播放列表",
+            "artwork": "assets/music/playlists/untitled-1.png"
+        },
+        {
+            "title": "未命名的播放列表",
+            "artwork": "assets/music/playlists/untitled-2.png"
+        },
+        {
+            "title": "未命名的播放列表",
+            "artwork": "assets/music/playlists/untitled-3.png"
+        },
+        {
+            "title": "未命名的播放列表",
+            "artwork": "assets/music/playlists/untitled-4.png"
+        },
+        {
+            "title": "未命名的播放列表",
+            "artwork": "assets/music/playlists/untitled-5.png"
+        }
+    ]
+}

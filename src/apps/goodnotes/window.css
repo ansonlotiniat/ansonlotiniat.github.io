@@ -1,0 +1,25 @@
+/* goodnotes: window geometry and native chrome. See knowledge/architecture.md for cascade ownership. */
+.goodnotes-window {
+    --window-width: min(900px, calc(100vw - 24px));
+    --window-height: min(1068px, calc(100vh - var(--menu-height) - var(--dock-height) - 12px));
+    top: max(4px, calc(50% - min(534px, calc((100vh - var(--menu-height) - var(--dock-height) - 12px) / 2))));
+    left: calc(50% - min(450px, calc((100vw - 24px) / 2)));
+}
+
+.goodnotes-window.is-note-open {
+    --window-width: min(1024px, 74vw);
+    --window-height: min(768px, calc(100vh - 94px));
+    top: max(6px, calc(50% - min(384px, calc(50vh - 47px))));
+    left: calc(50% - min(512px, 37vw));
+}
+
+@media (max-width: 760px) {
+    .goodnotes-window {
+        top: 4px;
+        left: 5px;
+        width: calc(100% - 10px);
+        height: calc(100% - 8px);
+        max-width: none;
+        max-height: none;
+    }
+}

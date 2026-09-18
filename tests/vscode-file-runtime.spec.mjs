@@ -19,7 +19,7 @@ test("direct file URL boots Code - OSS and searches the public workspace", async
     portfolioUrl.hash = "vscode";
     await page.goto(portfolioUrl.href);
 
-    const frame = page.frameLocator('iframe[title="Visual Studio Code — Code - OSS 1.131.0"]');
+    const frame = page.frameLocator("iframe[data-vscode-frame]");
     await expect(frame.locator(".monaco-workbench")).toHaveCount(1, { timeout: 30000 });
     console.log(`file:// Code - OSS ready in ${Date.now() - startedAt} ms`);
     await expect(frame.getByRole("button", { name: "開啟作品工作區" })).toBeVisible();

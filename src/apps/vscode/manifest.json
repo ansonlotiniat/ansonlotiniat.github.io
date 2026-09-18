@@ -1,0 +1,31 @@
+{
+    "id": "vscode",
+    "appLabel": "Visual Studio Code",
+    "group": "work",
+    "shortcut": "2",
+    "icon": {
+        "src": "assets/app-icons/visual-studio-code.png",
+        "className": "vscode-icon",
+        "crop": {
+            "canvas": 512,
+            "x": 51,
+            "y": 51,
+            "size": 410
+        },
+        "background": "#ffffff"
+    },
+    "title": {
+        "zh": "程式碼",
+        "en": "Code"
+    },
+    "subtitle": {
+        "zh": "算法、開源項目和這個網站",
+        "en": "Algorithms, open source, and this site"
+    },
+    "dockLabel": {
+        "zh": "Visual Studio Code",
+        "en": "Visual Studio Code"
+    },
+    "keywords": "visual studio code vscode code source algorithm open source igem 程式碼 算法 開源",
+    "order": 2
+}

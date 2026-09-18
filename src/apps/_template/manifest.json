@@ -1,0 +1,17 @@
+{
+    "id": "__APP_ID__",
+    "appLabel": "__APP_LABEL__",
+    "order": 0,
+    "group": "work",
+    "shortcut": null,
+    "icon": {
+        "src": "src/apps/__APP_ID__/assets/icon.svg",
+        "className": "__APP_ID__-icon",
+        "symbol": true,
+        "background": "#f5f5f5"
+    },
+    "title": { "zh": "__APP_LABEL__", "en": "__APP_LABEL__" },
+    "subtitle": { "zh": "我的新 App", "en": "My new app" },
+    "dockLabel": { "zh": "__APP_LABEL__", "en": "__APP_LABEL__" },
+    "keywords": "__APP_LABEL__ __APP_ID__"
+}

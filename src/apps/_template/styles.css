@@ -1,0 +1,15 @@
+/* App content only. Prefix every selector with this App's root. */
+[data-window="__APP_ID__"] .__APP_ID__-content {
+    padding: 24px;
+    overflow: auto;
+    color: #242424;
+    background: #fafafa;
+}
+[data-window="__APP_ID__"] .__APP_ID__-content button {
+    padding: 8px 14px;
+    border: 1px solid #c8c8c8;
+    border-radius: 8px;
+    color: inherit;
+    background: white;
+    cursor: pointer;
+}

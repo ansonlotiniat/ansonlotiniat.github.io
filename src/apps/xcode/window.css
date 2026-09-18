@@ -1,0 +1,36 @@
+/* xcode: window geometry and native chrome. See knowledge/architecture.md for cascade ownership. */
+.xcode-window {
+    --window-width: min(1320px, 92vw);
+    --window-height: min(780px, 84vh);
+    top: 2.6%;
+    left: 4%;
+}
+
+.dark-titlebar {
+    color: rgba(255, 255, 255, 0.82);
+    background:
+        linear-gradient(180deg, rgba(91, 91, 95, 0.68), rgba(41, 42, 45, 0.7)), rgba(43, 44, 47, 0.76);
+}
+
+.xcode-window {
+    --window-width: min(980px, 70vw);
+    --window-height: min(650px, 74vh);
+    top: calc(50% - min(325px, 37vh));
+    left: calc(50% - min(490px, 35vw));
+}
+
+.dark-titlebar {
+    color: rgba(255, 255, 255, 0.84);
+    background: rgba(47, 48, 51, 0.94);
+}
+
+@media (max-width: 760px) {
+    .xcode-window {
+        top: 4px;
+        left: 5px;
+        width: calc(100% - 10px);
+        height: calc(100% - 8px);
+        max-width: none;
+        max-height: none;
+    }
+}

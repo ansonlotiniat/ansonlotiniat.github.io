@@ -1,0 +1,31 @@
+{
+    "id": "xcode",
+    "appLabel": "Xcode",
+    "group": "work",
+    "shortcut": "1",
+    "icon": {
+        "src": "assets/app-icons/xcode.png",
+        "className": "xcode-icon",
+        "crop": {
+            "canvas": 256,
+            "x": 26,
+            "y": 26,
+            "size": 204
+        },
+        "background": "#1a9cf4"
+    },
+    "title": {
+        "zh": "學校項目",
+        "en": "School Projects"
+    },
+    "subtitle": {
+        "zh": "校運會網站和辯論管理工具",
+        "en": "Sports day and debate tools"
+    },
+    "dockLabel": {
+        "zh": "Xcode",
+        "en": "Xcode"
+    },
+    "keywords": "xcode engineering sports day debate school 校運會 辯論 工程 項目",
+    "order": 1
+}

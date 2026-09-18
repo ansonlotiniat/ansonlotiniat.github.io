@@ -1,0 +1,30 @@
+name: Site quality
+on:
+    pull_request:
+    push:
+        branches: [main]
+permissions:
+    contents: read
+concurrency:
+    group: site-quality-${{ github.ref }}
+    cancel-in-progress: true
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+        steps:
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
+              with:
+                  node-version: 24
+                  cache: npm
+            - run: npm ci
+            - run: npx playwright install --with-deps chromium
+            - run: npm run check
+            - uses: actions/upload-artifact@v7
+              if: failure()
+              with:
+                  name: ui-diagnostics
+                  path: |
+                      output/playwright/
+                      test-results/

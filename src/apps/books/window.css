@@ -1,0 +1,31 @@
+/* books: window geometry and native chrome. See knowledge/architecture.md for cascade ownership. */
+.books-window {
+    --window-width: min(1024px, 74vw);
+    --window-height: min(768px, 86vh);
+    top: calc(50% - min(384px, 43vh));
+    left: calc(50% - min(512px, 37vw));
+}
+
+.books-window .books-titlebar {
+    position: absolute;
+    inset: 0 auto auto 0;
+    display: block;
+    width: 82px;
+    height: 52px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+@media (max-width: 760px) {
+    .books-window {
+        top: 4px;
+        left: 5px;
+        width: calc(100% - 10px);
+        height: calc(100% - 8px);
+        max-width: none;
+        max-height: none;
+    }
+}

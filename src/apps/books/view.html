@@ -1,0 +1,163 @@
+<section class="app-window books-window" data-window="books" data-app-label="Books" aria-labelledby="books-window-title" hidden>
+    <div class="window-surface books-surface">
+        <header class="window-titlebar books-titlebar" data-drag-handle>
+            <div class="traffic-lights" role="group" aria-label="Window controls">
+                <button class="traffic-close" type="button" data-window-action="close" aria-label="Close window"></button>
+                <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
+                <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
+            </div>
+            <h2 class="sr-only" id="books-window-title">Books</h2>
+        </header>
+
+        <svg class="books-symbols" aria-hidden="true">
+            <symbol id="books-search-icon" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 4.5 4.5"></path></symbol>
+            <symbol id="books-home-icon" viewBox="0 0 24 24"><path d="m3.5 11 8.5-7 8.5 7"></path><path d="M5.5 9.8V20h13V9.8M9.5 20v-6h5v6"></path></symbol>
+            <symbol id="books-store-icon" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z"></path><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></symbol>
+            <symbol id="books-library-icon" viewBox="0 0 24 24"><path d="M4 4h4v16H4zM10 3h4v17h-4zM16 5h4v15h-4z"></path></symbol>
+            <symbol id="books-arrow-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m9 8 4 4-4 4M13 12h4"></path></symbol>
+            <symbol id="books-check-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 2.7 2.7L16.5 9"></path></symbol>
+            <symbol id="books-open-icon" viewBox="0 0 24 24"><path d="M3 5.5c3.3-.8 6.3-.2 9 2v12c-2.7-2.2-5.7-2.8-9-2V5.5Z"></path><path d="M21 5.5c-3.3-.8-6.3-.2-9 2v12c2.7-2.2 5.7-2.8 9-2V5.5Z"></path></symbol>
+            <symbol id="books-headphones-icon" viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"></path><path d="M4 13h3v7H5.5A1.5 1.5 0 0 1 4 18.5V13ZM20 13h-3v7h1.5a1.5 1.5 0 0 0 1.5-1.5V13Z"></path></symbol>
+            <symbol id="books-document-icon" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v5h4M9 12h6M9 16h6"></path></symbol>
+            <symbol id="books-list-icon" viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12"></path><circle cx="4" cy="6" r=".8"></circle><circle cx="4" cy="12" r=".8"></circle><circle cx="4" cy="18" r=".8"></circle></symbol>
+            <symbol id="books-plus-icon" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"></path></symbol>
+            <symbol id="books-back-icon" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"></path></symbol>
+            <symbol id="books-toc-icon" viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12"></path><path d="M3 6h1M3 12h1M3 18h1"></path></symbol>
+            <symbol id="books-text-icon" viewBox="0 0 24 24"><path d="M5 7V4h14v3M12 4v16M8 20h8"></path></symbol>
+            <symbol id="books-bookmark-icon" viewBox="0 0 24 24"><path d="M7 3h10v18l-5-3-5 3z"></path></symbol>
+        </svg>
+
+        <div class="books-shell">
+            <aside class="books-sidebar" aria-label="Books navigation">
+                <nav class="books-primary-nav" aria-label="Books sections">
+                    <button type="button" data-books-nav="search" aria-pressed="false"><svg><use href="#books-search-icon"></use></svg><span data-copy-lang="zh">搜尋</span><span data-copy-lang="en">Search</span></button>
+                    <button class="is-active" type="button" data-books-nav="home" aria-pressed="true"><svg><use href="#books-home-icon"></use></svg><span data-copy-lang="zh">首頁</span><span data-copy-lang="en">Home</span></button>
+                    <button type="button" data-books-nav="store" aria-pressed="false"><svg><use href="#books-store-icon"></use></svg><span data-copy-lang="zh">書店</span><span data-copy-lang="en">Book Store</span></button>
+                </nav>
+                <div class="books-sidebar-group">
+                    <h3><span data-copy-lang="zh">書庫</span><span data-copy-lang="en">Library</span></h3>
+                    <button type="button" data-books-nav="library" aria-pressed="false"><svg><use href="#books-library-icon"></use></svg><span data-copy-lang="zh">全部</span><span data-copy-lang="en">All</span></button>
+                    <button type="button"><svg><use href="#books-arrow-icon"></use></svg><span data-copy-lang="zh">想閱讀</span><span data-copy-lang="en">Want to Read</span></button>
+                    <button type="button"><svg><use href="#books-check-icon"></use></svg><span data-copy-lang="zh">已讀完</span><span data-copy-lang="en">Finished</span></button>
+                    <button type="button"><svg><use href="#books-open-icon"></use></svg><span data-copy-lang="zh">書籍</span><span data-copy-lang="en">Books</span></button>
+                    <button type="button"><svg><use href="#books-headphones-icon"></use></svg><span data-copy-lang="zh">有聲書</span><span data-copy-lang="en">Audiobooks</span></button>
+                    <button type="button"><svg><use href="#books-document-icon"></use></svg><span>PDF</span></button>
+                    <button type="button"><svg><use href="#books-open-icon"></use></svg><span data-copy-lang="zh">我的試讀本</span><span data-copy-lang="en">My Samples</span></button>
+                </div>
+                <div class="books-sidebar-group books-collections">
+                    <h3><span data-copy-lang="zh">我的藏書</span><span data-copy-lang="en">My Collections</span></h3>
+                    <button type="button"><svg><use href="#books-list-icon"></use></svg><span data-copy-lang="zh">未命名藏書</span><span data-copy-lang="en">Untitled Collection</span></button>
+                    <button type="button"><svg><use href="#books-plus-icon"></use></svg><span data-copy-lang="zh">新增藏書</span><span data-copy-lang="en">New Collection</span></button>
+                </div>
+                <button class="books-account" type="button" aria-label="Account, Anson Lo"><span class="books-profile" aria-hidden="true"><i></i><b></b></span><strong>Anson Lo</strong></button>
+            </aside>
+
+            <div class="books-main">
+                <div class="books-view books-home" data-books-view="home">
+                    <button class="books-reading-goal" type="button" aria-label="Today's reading goal, 0 of 1 minute"><span>0</span><small>1</small></button>
+                    <div class="books-home-scroll">
+                        <h3><span data-copy-lang="zh">首頁</span><span data-copy-lang="en">Home</span></h3>
+                        <section class="books-continue" aria-labelledby="books-continue-title">
+                            <h4 id="books-continue-title"><span data-copy-lang="zh">繼續</span><span data-copy-lang="en">Continue</span></h4>
+                            <div class="books-continue-row">
+                                <button class="books-continue-card is-wuthering" type="button" data-books-open="wuthering">
+                                    <img src="assets/books/wuthering-heights.jpg" alt="" loading="lazy" decoding="async">
+                                    <span><strong>啸风山庄</strong><small>艾蜜莉·布朗忒（Emily Brontë）</small><em><span data-copy-lang="zh">書籍</span><span data-copy-lang="en">Book</span> · 39%</em></span><i aria-hidden="true">•••</i>
+                                </button>
+                                <button class="books-continue-card is-deer" type="button" data-books-open="deer">
+                                    <img src="assets/books/duke-of-mount-deer-complete.jpg" alt="" loading="lazy" decoding="async">
+                                    <span><strong>鹿鼎記（全集）</strong><small>金庸</small><em><span data-copy-lang="zh">書籍</span><span data-copy-lang="en">Book</span> · 1%</em></span><i aria-hidden="true">•••</i>
+                                </button>
+                                <button class="books-continue-card is-proust" type="button" data-books-open="proust">
+                                    <img src="assets/books/in-search-of-lost-time.jpg" alt="" loading="lazy" decoding="async">
+                                    <span><strong>追忆似水年华（全七册）</strong><small>马塞尔·普鲁斯特</small><em><span data-copy-lang="zh">書籍</span><span data-copy-lang="en">Book</span> · 1%</em></span><i aria-hidden="true">•••</i>
+                                </button>
+                            </div>
+                        </section>
+
+                        <section class="books-want" aria-labelledby="books-want-title">
+                            <h4 id="books-want-title"><span data-copy-lang="zh">想閱讀</span><span data-copy-lang="en">Want to Read</span><b aria-hidden="true">›</b></h4>
+                            <p><span data-copy-lang="zh">你接下來想閱讀的書籍。</span><span data-copy-lang="en">Books you want to read next.</span></p>
+                            <button class="books-cover-button" type="button" data-books-open="wuthering">
+                                <img src="assets/books/wuthering-heights.jpg" alt="啸风山庄 cover" loading="lazy" decoding="async"><span>39%</span><i aria-hidden="true">•••</i>
+                            </button>
+                        </section>
+
+                        <section class="books-explore" aria-labelledby="books-explore-title">
+                            <h4 id="books-explore-title"><span data-copy-lang="zh">探索更多</span><span data-copy-lang="en">Explore More</span></h4>
+                            <div class="books-category-row">
+                                <button type="button"><strong><span data-copy-lang="zh">小說與文學</span><span data-copy-lang="en">Fiction &amp; Literature</span></strong><span class="books-stack"><i>THE GREAT<br>GATSBY</i><i>A TALE OF<br>TWO CITIES</i><i>PRIDE AND<br>PREJUDICE</i></span></button>
+                                <button type="button"><strong><span data-copy-lang="zh">非小說</span><span data-copy-lang="en">Nonfiction</span></strong><span class="books-stack is-nonfiction"><i>THE ART<br>OF WAR</i><i>A TREATISE<br>OF HUMAN</i><i>THE REPUBLIC</i></span></button>
+                            </div>
+                        </section>
+
+                        <section class="books-goals">
+                            <h4><span data-copy-lang="zh">閱讀目標</span><span data-copy-lang="en">Reading Goals</span></h4>
+                            <p><span data-copy-lang="zh">每日閱讀，迅速向目標邁進，並閱讀更多好書。</span><span data-copy-lang="en">Read every day, reach your goals, and finish more books.</span></p>
+                            <div><strong><span data-copy-lang="zh">今日閱讀時長</span><span data-copy-lang="en">Today's Reading</span></strong><b>0 / 1 min</b><span>122 <small><span data-copy-lang="zh">日紀錄</span><span data-copy-lang="en">day record</span></small></span></div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="books-view books-library" data-books-view="library" hidden>
+                    <header><h3><span data-copy-lang="zh">全部</span><span data-copy-lang="en">All</span></h3><button type="button" data-books-more aria-expanded="false" aria-label="More options">•••⌄</button></header>
+                    <div class="books-more-menu" data-books-more-menu hidden><button type="button"><span data-copy-lang="zh">選取</span><span data-copy-lang="en">Select</span></button><button type="button"><span data-copy-lang="zh">排序方式</span><span data-copy-lang="en">Sort By</span><b>›</b></button><button type="button"><span data-copy-lang="zh">檢視方式</span><span data-copy-lang="en">View As</span><b>›</b></button></div>
+                    <div class="books-library-scroll">
+                        <div class="books-grid">
+                            <button type="button" data-books-open="deer"><img src="assets/books/duke-of-mount-deer-complete.jpg" alt="鹿鼎記（全集） cover" loading="lazy" decoding="async"><span>1%</span><i>•••</i></button>
+                            <button type="button"><img src="assets/books/duke-of-mount-deer.jpg" alt="鹿鼎记 cover" loading="lazy" decoding="async"><span class="books-new"><span data-copy-lang="zh">新增</span><span data-copy-lang="en">New</span></span><i>•••</i></button>
+                            <button type="button"><img src="assets/books/principles-of-economics.jpg" alt="Principles of Economics cover" loading="lazy" decoding="async"><span class="books-new"><span data-copy-lang="zh">新增</span><span data-copy-lang="en">New</span></span><i>☁　•••</i></button>
+                            <button type="button" data-books-open="proust"><img src="assets/books/in-search-of-lost-time.jpg" alt="追忆似水年华 cover" loading="lazy" decoding="async"><span class="books-new"><span data-copy-lang="zh">新增</span><span data-copy-lang="en">New</span></span><i>•••</i></button>
+                            <button type="button"><img src="assets/books/memories-of-1970s.jpg" alt="追憶似水年華的七十年代 cover" loading="lazy" decoding="async"><span class="books-new"><span data-copy-lang="zh">新增</span><span data-copy-lang="en">New</span></span><i>•••</i></button>
+                            <button type="button" data-books-open="wuthering"><img src="assets/books/wuthering-heights.jpg" alt="啸风山庄 cover" loading="lazy" decoding="async"><span>39%</span><i>•••</i></button>
+                            <button type="button"><img src="assets/books/quantum-mechanics.jpg" alt="Quantum Mechanics cover" loading="lazy" decoding="async"><span class="books-new"><span data-copy-lang="zh">新增</span><span data-copy-lang="en">New</span></span><i>☁　•••</i></button>
+                            <button type="button"><img src="assets/books/electrodynamics.jpg" alt="電動力學導論 cover" loading="lazy" decoding="async"><span class="books-new"><span data-copy-lang="zh">新增</span><span data-copy-lang="en">New</span></span><i>☁　•••</i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="books-view books-search-view" data-books-view="search" hidden>
+                    <div class="books-search-field"><svg><use href="#books-search-icon"></use></svg><input type="search" data-books-search autocomplete="off" spellcheck="false" placeholder="Apple Books" aria-label="Search Apple Books"><button type="button" data-books-search-clear aria-label="Clear search">×</button></div>
+                    <div class="books-search-content">
+                        <h3><span data-copy-lang="zh">熱門</span><span data-copy-lang="en">Trending</span></h3>
+                        <div class="books-trending"><button type="button">as a man thinketh</button><button type="button">hamlet</button><button type="button">pride and prejudice</button><button type="button">the great gatsby</button></div>
+                        <div class="books-search-results" data-books-search-results hidden>
+                            <button type="button" data-books-search-target="啸风山庄 wuthering heights emily bronte" data-books-open="wuthering"><img src="assets/books/wuthering-heights.jpg" alt="" loading="lazy" decoding="async"><span><strong>啸风山庄</strong><small>艾蜜莉·布朗忒（Emily Brontë）</small></span></button>
+                            <button type="button" data-books-search-target="鹿鼎記 鹿鼎记 金庸 duke of mount deer" data-books-open="deer"><img src="assets/books/duke-of-mount-deer-complete.jpg" alt="" loading="lazy" decoding="async"><span><strong>鹿鼎記（全集）</strong><small>金庸</small></span></button>
+                            <button type="button" data-books-search-target="追忆似水年华 proust in search of lost time" data-books-open="proust"><img src="assets/books/in-search-of-lost-time.jpg" alt="" loading="lazy" decoding="async"><span><strong>追忆似水年华（全七册）</strong><small>马塞尔·普鲁斯特</small></span></button>
+                        </div>
+                        <p data-books-search-empty hidden><span data-copy-lang="zh">找不到符合的書籍</span><span data-copy-lang="en">No matching books</span></p>
+                    </div>
+                </div>
+
+                <div class="books-view books-store-view" data-books-view="store" hidden>
+                    <header><h3><span data-copy-lang="zh">書店</span><span data-copy-lang="en">Book Store</span></h3></header>
+                    <div class="books-store-hero"><span><small>APPLE BOOKS</small><strong><span data-copy-lang="zh">下一本好書，從這裡開始。</span><span data-copy-lang="en">Your next great read starts here.</span></strong></span><span class="books-store-spines"><i></i><i></i><i></i><i></i></span></div>
+                    <p><span data-copy-lang="zh">精選推薦</span><span data-copy-lang="en">Featured</span></p>
+                </div>
+
+                <div class="books-view books-reader" data-books-view="reader" hidden>
+                    <header class="books-reader-toolbar">
+                        <button type="button" data-books-reader-back aria-label="Back to library"><svg><use href="#books-back-icon"></use></svg></button>
+                        <div><strong data-books-reader-title>啸风山庄</strong><small data-books-reader-author>艾蜜莉·布朗忒（Emily Brontë）</small></div>
+                        <span></span>
+                        <button type="button" data-books-reader-control="toc" aria-label="Table of contents"><svg><use href="#books-toc-icon"></use></svg></button>
+                        <button type="button" data-books-reader-control="search" aria-label="Search in book"><svg><use href="#books-search-icon"></use></svg></button>
+                        <button type="button" data-books-reader-control="appearance" aria-label="Appearance"><svg><use href="#books-text-icon"></use></svg></button>
+                        <button type="button" data-books-reader-control="bookmark" aria-label="Bookmark"><svg><use href="#books-bookmark-icon"></use></svg></button>
+                        <button type="button" data-books-reader-control="more" aria-label="More">•••</button>
+                    </header>
+                    <div class="books-reader-stage">
+                        <article>
+                            <p class="books-reader-kicker">CHAPTER XIII</p>
+                            <h3 data-books-reader-heading>Wuthering Heights</h3>
+                            <p data-books-reader-copy>While enjoying a month of fine weather at the sea-coast, I was thrown into the company of a curious household whose history had become inseparable from the moors.</p>
+                            <p>The evening drew in quietly. Beyond the window, the hills disappeared beneath a pale mist, and every sound in the old house seemed unusually clear.</p>
+                        </article>
+                        <footer><span data-books-reader-progress>39%</span><input type="range" min="0" max="100" value="39" aria-label="Reading progress"><span>›</span></footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

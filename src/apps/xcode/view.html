@@ -1,0 +1,157 @@
+<section class="app-window xcode-window" data-window="xcode" data-app-label="Xcode" aria-labelledby="xcode-window-title" hidden>
+    <div class="window-surface">
+        <header class="window-titlebar dark-titlebar" data-drag-handle>
+            <div class="traffic-lights" role="group" aria-label="Window controls">
+                <button class="traffic-close" type="button" data-window-action="close" aria-label="Close window"></button>
+                <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
+                <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
+            </div>
+            <h2 id="xcode-window-title">School Projects | Xcode</h2>
+            <span class="build-state"><i aria-hidden="true"></i> Build Succeeded</span>
+        </header>
+
+        <div class="xcode-toolbar">
+            <span class="toolbar-run" aria-hidden="true">▶</span>
+            <span class="toolbar-stop" aria-hidden="true">■</span>
+            <b>SchoolProjects</b>
+            <span>My Mac</span>
+            <i></i>
+            <small>main</small>
+        </div>
+
+        <div class="xcode-layout">
+            <aside class="xcode-navigator">
+                <header><span aria-hidden="true">▣</span><b>PROJECT</b><span aria-hidden="true">＋</span></header>
+                <div class="navigator-tree" role="tablist" aria-label="School projects">
+                    <p><span aria-hidden="true">⌄</span> SchoolProjects</p>
+                    <button id="xcode-tab-sports" type="button" role="tab" aria-selected="true" aria-controls="xcode-panel-sports" data-xcode-file="sports">
+                        <span class="swift-file" aria-hidden="true">S</span>
+                        <span>SportsDaySystem.swift</span>
+                    </button>
+                    <button id="xcode-tab-debate" type="button" role="tab" aria-selected="false" aria-controls="xcode-panel-debate" data-xcode-file="debate">
+                        <span class="swift-file" aria-hidden="true">S</span>
+                        <span>DebateOperations.swift</span>
+                    </button>
+                    <p><span aria-hidden="true">›</span> Resources</p>
+                    <p><span aria-hidden="true">›</span> Interfaces</p>
+                </div>
+                <footer>2 source files</footer>
+            </aside>
+
+            <div class="xcode-editor">
+                <div class="code-document is-active" id="xcode-panel-sports" role="tabpanel" aria-labelledby="xcode-tab-sports" data-xcode-panel="sports">
+                    <header><h3>SportsDaySystem.swift</h3><small><span data-copy-lang="zh">產品邏輯草稿</span><span data-copy-lang="en">Product logic draft</span></small></header>
+                    <ol class="code-lines" aria-label="Conceptual Swift code for the sports day system">
+                        <li><code><i>struct</i> <b>SportsDaySystem</b> {</code></li>
+                        <li><code>  <i>let</i> yearsInUse = <em>2</em></code></li>
+                        <li><code>  <i>let</i> entryPoint = <s>"one"</s></code></li>
+                        <li><code></code></li>
+                        <li><code>  <i>func</i> <b>show</b>(for moment: Moment) {</code></li>
+                        <li><code>    <i>switch</i> moment {</code></li>
+                        <li><code>    <i>case</i> .before: registration()</code></li>
+                        <li><code>    <i>case</i> .live: updates()</code></li>
+                        <li><code>    <i>case</i> .onSite: reference()</code></li>
+                        <li><code>    }</code></li>
+                        <li><code>  }</code></li>
+                        <li><code>}</code></li>
+                    </ol>
+                    <aside class="code-note">
+                        <span>NOTE</span>
+                        <p><span data-copy-lang="zh">同一個入口，在報名前、比賽中和到場後要顯示不同資訊。</span><span data-copy-lang="en">The same entry point needs different information before, during, and at the event.</span></p>
+                    </aside>
+                </div>
+
+                <div class="code-document" id="xcode-panel-debate" role="tabpanel" aria-labelledby="xcode-tab-debate" data-xcode-panel="debate" hidden>
+                    <header><h3>DebateOperations.swift</h3><small><span data-copy-lang="zh">產品邏輯草稿</span><span data-copy-lang="en">Product logic draft</span></small></header>
+                    <ol class="code-lines" aria-label="Conceptual Swift code for debate operations">
+                        <li><code><i>struct</i> <b>DebateOperations</b> {</code></li>
+                        <li><code>  <i>let</i> data = SharedState()</code></li>
+                        <li><code></code></li>
+                        <li><code>  <i>func</i> <b>view</b>(for role: Role) {</code></li>
+                        <li><code>    <i>switch</i> role {</code></li>
+                        <li><code>    <i>case</i> .team: trainingAndPrep()</code></li>
+                        <li><code>    <i>case</i> .tournament: eventOps()</code></li>
+                        <li><code>    }</code></li>
+                        <li><code>    sync(data)</code></li>
+                        <li><code>  }</code></li>
+                        <li><code>}</code></li>
+                    </ol>
+                    <aside class="code-note">
+                        <span>NOTE</span>
+                        <p><span data-copy-lang="zh">隊伍和主辦方的用法不同，但資料必須保持同步。</span><span data-copy-lang="en">Teams and organizers need different views of the same data.</span></p>
+                    </aside>
+                </div>
+            </div>
+
+            <aside class="xcode-inspector">
+                <article class="inspector-project is-active" data-xcode-inspector="sports">
+                    <header>
+                        <span>LIVE PREVIEW</span>
+                        <h3>Sports Day</h3>
+                    </header>
+                    <div class="phone-preview" data-sports-preview="before">
+                        <div class="phone-status"><span>09:41</span><span>●●●</span></div>
+                        <div class="phone-screen">
+                            <p>PUICHING / SPORTS DAY</p>
+                            <div class="sports-preview-copy" data-sports-copy="before">
+                                <small>BEFORE</small>
+                                <strong><span data-copy-lang="zh">先完成報名</span><span data-copy-lang="en">Register first</span></strong>
+                                <span><span data-copy-lang="zh">項目、資格和截止時間</span><span data-copy-lang="en">Events, eligibility, and deadline</span></span>
+                            </div>
+                            <div class="sports-preview-copy" data-sports-copy="live" hidden>
+                                <small>LIVE</small>
+                                <strong><span data-copy-lang="zh">看即時安排</span><span data-copy-lang="en">Check live updates</span></strong>
+                                <span><span data-copy-lang="zh">集合時間和最新通知</span><span data-copy-lang="en">Assembly times and current notices</span></span>
+                            </div>
+                            <div class="sports-preview-copy" data-sports-copy="onsite" hidden>
+                                <small>ON SITE</small>
+                                <strong><span data-copy-lang="zh">快速找場地</span><span data-copy-lang="en">Find the venue</span></strong>
+                                <span><span data-copy-lang="zh">時間、地點和現場查閱</span><span data-copy-lang="en">Times, locations, and on-site reference</span></span>
+                            </div>
+                            <div class="preview-signal" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                        </div>
+                    </div>
+                    <div class="segmented-control" role="group" aria-label="Sports day phase">
+                        <button type="button" aria-pressed="true" data-sports-phase="before">BEFORE</button>
+                        <button type="button" aria-pressed="false" data-sports-phase="live">LIVE</button>
+                        <button type="button" aria-pressed="false" data-sports-phase="onsite">ON SITE</button>
+                    </div>
+                    <dl>
+                        <div><dt>ROLE</dt><dd><span data-copy-lang="zh">主要介面設計與開發</span><span data-copy-lang="en">Lead interface design and development</span></dd></div>
+                        <div><dt>SCOPE</dt><dd><span data-copy-lang="zh">連續兩年</span><span data-copy-lang="en">Two consecutive years</span></dd></div>
+                    </dl>
+                </article>
+
+                <article class="inspector-project" data-xcode-inspector="debate" hidden>
+                    <header>
+                        <span>LIVE PREVIEW</span>
+                        <h3>Debate Operations</h3>
+                    </header>
+                    <div class="debate-preview" data-debate-preview="team">
+                        <div class="role-orbit">
+                            <span data-debate-node="team">TEAM</span>
+                            <i aria-hidden="true"></i>
+                            <b>SHARED<br>DATA</b>
+                            <i aria-hidden="true"></i>
+                            <span data-debate-node="tournament">TOURNAMENT</span>
+                        </div>
+                        <p data-debate-copy="team"><span data-copy-lang="zh">隊伍用來看訓練、準備和資料。</span><span data-copy-lang="en">The team view covers training, preparation, and reference.</span></p>
+                        <p data-debate-copy="tournament" hidden><span data-copy-lang="zh">主辦方用來處理抽籤、賽程和現場流程。</span><span data-copy-lang="en">The organizer view covers draws, schedules, and event operations.</span></p>
+                    </div>
+                    <div class="segmented-control" role="group" aria-label="Debate system view">
+                        <button type="button" aria-pressed="true" data-debate-role="team">TEAM</button>
+                        <button type="button" aria-pressed="false" data-debate-role="tournament">TOURNAMENT</button>
+                    </div>
+                    <dl>
+                        <div><dt>TEAM</dt><dd><span data-copy-lang="zh">隊伍管理小程序</span><span data-copy-lang="en">Team management mini program</span></dd></div>
+                        <div><dt>EVENT</dt><dd><span data-copy-lang="zh">校內比賽管理系統</span><span data-copy-lang="en">Internal tournament system</span></dd></div>
+                    </dl>
+                </article>
+            </aside>
+        </div>
+
+        <footer class="ide-statusbar">
+            <span>SchoolProjects</span><span>main</span><span>Swift 6</span><span>Ln 1, Col 1</span>
+        </footer>
+    </div>
+</section>

@@ -1,0 +1,139 @@
+<section class="app-window overleaf-window" data-window="overleaf" data-app-label="Overleaf" aria-labelledby="overleaf-window-title" hidden>
+    <div class="window-surface">
+        <header class="window-titlebar overleaf-titlebar" data-drag-handle>
+            <div class="traffic-lights" role="group" aria-label="Window controls">
+                <button class="traffic-close" type="button" data-window-action="close" aria-label="Close window"></button>
+                <button class="traffic-minimize" type="button" data-window-action="minimize" aria-label="Minimize window"></button>
+                <button class="traffic-maximize" type="button" data-window-action="maximize" aria-label="Maximize window"></button>
+            </div>
+            <h2 id="overleaf-window-title">Writing | Overleaf</h2>
+            <span class="titlebar-spacer" aria-hidden="true"></span>
+        </header>
+
+        <div class="overleaf-toolbar">
+            <span class="overleaf-wordmark"><img src="assets/app-icons/overleaf.svg" alt="" width="24" height="24">overleaf</span>
+            <button type="button" class="compile-button" data-compile-button>
+                <span aria-hidden="true">▶</span>
+                <span data-copy-lang="zh">重新編譯</span>
+                <span data-copy-lang="en">Recompile</span>
+            </button>
+            <span class="compile-status" data-compile-status aria-live="polite">
+                <span data-copy-lang="zh">PDF 已更新</span>
+                <span data-copy-lang="en">PDF up to date</span>
+            </span>
+            <i></i>
+            <span class="overleaf-share">SHARE</span>
+        </div>
+
+        <div class="overleaf-layout">
+            <aside class="overleaf-files">
+                <header><span>FILES</span><span>＋</span></header>
+                <div role="tablist" aria-label="Writing projects">
+                    <button id="overleaf-tab-diary" type="button" role="tab" aria-selected="true" aria-controls="overleaf-panel-diary" data-overleaf-doc="diary"><span aria-hidden="true">T</span>macao-diary.tex</button>
+                    <button id="overleaf-tab-poem" type="button" role="tab" aria-selected="false" aria-controls="overleaf-panel-poem" data-overleaf-doc="poem"><span aria-hidden="true">T</span>between-bells.tex</button>
+                    <p><span aria-hidden="true">›</span> images</p>
+                    <p><span aria-hidden="true">›</span> references.bib</p>
+                </div>
+                <footer>writing</footer>
+            </aside>
+
+            <div class="latex-source">
+                <header>
+                    <span data-source-tab="diary">macao-diary.tex</span>
+                    <span data-source-tab="poem">between-bells.tex</span>
+                    <b>×</b>
+                </header>
+                <div class="latex-document is-active" id="overleaf-panel-diary" role="tabpanel" aria-labelledby="overleaf-tab-diary" data-overleaf-source="diary">
+                    <h3 class="sr-only">Macao Diary editorial source</h3>
+                    <ol class="latex-lines">
+                        <li><code><b>\documentclass</b>{book}</code></li>
+                        <li><code><b>\usepackage</b>{ctex}</code></li>
+                        <li><code></code></li>
+                        <li><code><b>\title</b>{澳門日記：回歸故事集}</code></li>
+                        <li><code><b>\author</b>{多位作者}</code></li>
+                        <li><code><b>\date</b>{2025}</code></li>
+                        <li><code></code></li>
+                        <li><code><b>\begin</b>{document}</code></li>
+                        <li><code>  <b>\maketitle</b></code></li>
+                        <li><code>  <i>% editorial credit</i></code></li>
+                        <li><code>  <b>\editor</b>{羅天逸}</code></li>
+                        <li><code><b>\end</b>{document}</code></li>
+                    </ol>
+                    <aside>
+                        <b><span data-copy-lang="zh">我做的編輯工作</span><span data-copy-lang="en">My editing work</span></b>
+                        <p><span data-copy-lang="zh">我參與整理內容和校對，名字列在書末的編輯名單。</span><span data-copy-lang="en">I helped organize and proofread the book. My name appears in the editor credits.</span></p>
+                    </aside>
+                </div>
+
+                <div class="latex-document" id="overleaf-panel-poem" role="tabpanel" aria-labelledby="overleaf-tab-poem" data-overleaf-source="poem" hidden>
+                    <h3 class="sr-only">Between Bells and Heartbeats source</h3>
+                    <ol class="latex-lines">
+                        <li><code><b>\documentclass</b>{article}</code></li>
+                        <li><code><b>\title</b>{Between Bells and Heartbeats}</code></li>
+                        <li><code><b>\author</b>{Anson Lo}</code></li>
+                        <li><code><b>\date</b>{2026}</code></li>
+                        <li><code></code></li>
+                        <li><code><b>\begin</b>{verse}</code></li>
+                        <li><code>We talk about exams, \\</code></li>
+                        <li><code>about the future like it’s a city \\</code></li>
+                        <li><code>neither of us has visited, \\</code></li>
+                        <li><code>but somehow we keep pointing \\</code></li>
+                        <li><code>in the same direction.</code></li>
+                        <li><code><b>\end</b>{verse}</code></li>
+                    </ol>
+                    <aside>
+                        <b><span data-copy-lang="zh">一首英文詩</span><span data-copy-lang="en">An English poem</span></b>
+                        <p><span data-copy-lang="zh">我寫的是學生談考試和未來時，那種有點不確定、但仍然一起向前看的感覺。</span><span data-copy-lang="en">It's about two students talking about exams and a future neither of them can see clearly yet.</span></p>
+                    </aside>
+                </div>
+            </div>
+
+            <div class="pdf-preview">
+                <header><span>PDF PREVIEW</span><b>100%</b></header>
+                <article class="proof-page book-proof is-active" data-overleaf-preview="diary" data-book-proof>
+                    <div class="proof-page-inner">
+                        <p class="proof-label">EDITOR CREDIT / 2025</p>
+                        <h3>《澳門日記》</h3>
+                        <p class="proof-subtitle">回歸故事集</p>
+                        <figure>
+                            <img src="macao-diary-colophon.png" alt="《澳門日記》編輯名單，當中列出羅天逸" width="705" height="483">
+                            <span class="proof-lens" data-proof-lens aria-hidden="true"></span>
+                            <figcaption>
+                                <span data-copy-lang="zh">把游標移到名單上，可以放大查看署名</span>
+                                <span data-copy-lang="en">Move over the list to enlarge the original credit</span>
+                            </figcaption>
+                        </figure>
+                        <dl>
+                            <div><dt>ROLE</dt><dd><span data-copy-lang="zh">編輯</span><span data-copy-lang="en">Editor</span></dd></div>
+                            <div><dt>CREDIT</dt><dd>羅天逸</dd></div>
+                            <div><dt>YEAR</dt><dd>2025</dd></div>
+                        </dl>
+                    </div>
+                </article>
+
+                <article class="proof-page poem-proof" data-overleaf-preview="poem" hidden>
+                    <div class="proof-page-inner">
+                        <p class="proof-label">SCHOOL ENGLISH POETRY / 2026</p>
+                        <h3>Between Bells<br>and Heartbeats</h3>
+                        <p class="poem-byline">ANSON LO</p>
+                        <blockquote>
+                            <span>We talk about exams,</span>
+                            <span>about the future like it’s a city</span>
+                            <span>neither of us has visited,</span>
+                            <span>but somehow we keep pointing</span>
+                            <span>in the same direction.</span>
+                        </blockquote>
+                        <p class="proof-note">
+                            <span data-copy-lang="zh">節錄自校內英文詩集作品</span>
+                            <span data-copy-lang="en">Excerpt from a school English poetry collection</span>
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <footer class="overleaf-statusbar">
+            <span data-current-tex>macao-diary.tex</span><i></i><span>TeX Live</span><span>UTF-8</span><span data-compile-time>Compiled 0.8s ago</span>
+        </footer>
+    </div>
+</section>

@@ -1,0 +1,661 @@
+/* Dock UI owner. Generated from the historical cascade; canonical rules follow below. */
+
+/* Extracted from style.css. */
+.dock {
+    position: absolute;
+    z-index: 2100;
+    bottom: 8px;
+    left: 50%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: var(--dock-height);
+    padding: 7px 9px 6px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 19px;
+    background: rgba(230, 226, 239, 0.26);
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.34),
+        0 19px 55px rgba(13, 8, 38, 0.25);
+    backdrop-filter: blur(26px) saturate(1.45);
+    -webkit-backdrop-filter: blur(26px) saturate(1.45);
+    transform: translateX(-50%);
+}
+.dock-item {
+    position: relative;
+    display: grid;
+    width: 62px;
+    height: 62px;
+    padding: 0 5px 5px;
+    place-items: center;
+    color: #fff;
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    transform-origin: 50% 100%;
+    transition: transform 180ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+.dock-item:hover,
+.dock-item:focus-visible {
+    transform: translateY(-9px) scale(1.18);
+}
+.dock-item:has(+ .dock-item:hover),
+.dock-item:hover + .dock-item,
+.dock-item:has(+ .dock-item:focus-visible),
+.dock-item:focus-visible + .dock-item {
+    transform: translateY(-4px) scale(1.07);
+}
+.dock-hover-label {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    z-index: 4;
+    width: max-content;
+    max-width: 210px;
+    padding: 6px 9px;
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    border-radius: 6px;
+    color: #fff;
+    background: rgba(26, 24, 42, 0.82);
+    box-shadow: 0 8px 23px rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(12px);
+    font-size: 10px;
+    font-weight: 500;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, 6px) scale(0.9);
+    transition:
+        opacity 120ms ease,
+        transform 120ms ease;
+}
+.dock-hover-label.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(0.88);
+}
+.dock-icon {
+    position: relative;
+    display: grid;
+    width: 50px;
+    height: 50px;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 13px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.52),
+        0 8px 13px rgba(13, 8, 33, 0.28);
+}
+.dock-icon img {
+    position: relative;
+    z-index: 1;
+    width: 72%;
+    height: 72%;
+    object-fit: contain;
+}
+.dock-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    opacity: 0;
+    transform: translateX(-50%);
+}
+.dock-item.is-open .dock-indicator {
+    opacity: 1;
+}
+.dock-item.is-minimized .dock-icon {
+    filter: saturate(0.65) brightness(0.82);
+}
+.dock-separator {
+    width: 1px;
+    height: 49px;
+    margin: 0 6px 3px;
+    background: rgba(255, 255, 255, 0.24);
+}
+@media (max-width: 900px) {
+    .dock {
+        height: var(--dock-height);
+        padding: 6px 7px 5px;
+    }
+    .dock-item {
+        width: 55px;
+        height: 56px;
+    }
+    .dock-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+    }
+    .dock-separator {
+        height: 43px;
+        margin-inline: 3px;
+    }
+}
+@media (max-width: 700px) {
+    .dock {
+        bottom: 5px;
+        max-width: calc(100vw - 12px);
+        height: var(--dock-height);
+        padding: 5px 5px 4px;
+    }
+    .dock-item {
+        width: 47px;
+        height: 53px;
+        padding-inline: 3px;
+    }
+    .dock-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 11px;
+    }
+    .dock-separator {
+        height: 39px;
+        margin-inline: 1px;
+    }
+    .dock-hover-label {
+        display: none;
+    }
+}
+@media (max-width: 430px) {
+    .dock-item {
+        width: 43px;
+    }
+    .dock-icon {
+        width: 39px;
+        height: 39px;
+        border-radius: 10px;
+    }
+    .dock-separator {
+        margin-inline: 0;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .dock-item:hover,
+    .dock-item:focus-visible,
+    .dock-item:has(+ .dock-item:hover),
+    .dock-item:hover + .dock-item {
+        transform: none;
+    }
+}
+
+/* Extracted from macos.css. */
+.dock {
+    --glass-x: 50%;
+    --glass-y: 0%;
+    bottom: 4px;
+    align-items: center;
+    height: 66px;
+    padding: 5px 7px 6px;
+    border: 0.75px solid rgba(226, 247, 240, 0.34);
+    border-radius: 22px;
+    background:
+        linear-gradient(180deg, rgba(76, 103, 94, 0.42), rgba(29, 57, 49, 0.52)), rgba(26, 53, 45, 0.34);
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.42),
+        inset 0 -1px rgba(255, 255, 255, 0.11),
+        0 9px 28px rgba(0, 0, 0, 0.3),
+        0 1px 5px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(30px) saturate(1.34) brightness(0.82);
+    -webkit-backdrop-filter: blur(30px) saturate(1.34) brightness(0.82);
+}
+.dock::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    border-radius: inherit;
+    content: "";
+    background: radial-gradient(
+        circle at var(--glass-x) var(--glass-y),
+        rgba(255, 255, 255, 0.34),
+        rgba(255, 255, 255, 0.09) 21%,
+        transparent 45%
+    );
+    mix-blend-mode: screen;
+    opacity: 0.52;
+    pointer-events: none;
+    transition: opacity 160ms ease;
+}
+.dock::after {
+    position: absolute;
+    z-index: 0;
+    top: 1px;
+    right: 18px;
+    left: 18px;
+    height: 1px;
+    border-radius: 50%;
+    content: "";
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.46), transparent);
+    pointer-events: none;
+}
+.dock > * {
+    z-index: 1;
+}
+.dock-item {
+    width: 58px;
+    height: 57px;
+    padding: 0 1px 3px;
+}
+.dock-item:hover,
+.dock-item:focus-visible {
+    transform: translateY(-9px) scale(1.18);
+}
+.dock-item:has(+ .dock-item:hover),
+.dock-item:hover + .dock-item,
+.dock-item:has(+ .dock-item:focus-visible),
+.dock-item:focus-visible + .dock-item {
+    transform: translateY(-4px) scale(1.07);
+}
+.dock-hover-label {
+    bottom: calc(100% + 12px);
+    padding: 6px 10px;
+    border: 0.75px solid rgba(255, 255, 255, 0.52);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.96);
+    background: rgba(43, 54, 53, 0.65);
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.26),
+        0 7px 22px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+    font-size: 11px;
+    font-weight: 500;
+}
+.dock-icon {
+    overflow: visible;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+.dock-icon {
+    width: 54px;
+    height: 54px;
+}
+.dock-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
+}
+.dock-icon.mail-icon {
+    background: transparent;
+}
+.dock-indicator {
+    bottom: -2px;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.48);
+}
+.dock-separator {
+    height: 45px;
+    margin: 0 5px 1px;
+    background: rgba(255, 255, 255, 0.24);
+    box-shadow: 1px 0 rgba(0, 0, 0, 0.14);
+}
+@media (max-width: 1000px) {
+    .dock-item {
+        width: 55px;
+    }
+    .dock-icon {
+        width: 51px;
+        height: 51px;
+    }
+}
+@media (max-width: 760px) {
+    .dock {
+        bottom: 4px;
+        max-width: calc(100vw - 10px);
+        height: 60px;
+        padding: 4px 5px 5px;
+        border-radius: 19px;
+    }
+    .dock-item {
+        width: 49px;
+        height: 52px;
+    }
+    .dock-icon {
+        width: 47px;
+        height: 47px;
+    }
+    .dock-separator {
+        height: 39px;
+        margin-inline: 2px;
+    }
+}
+@media (max-width: 520px) {
+    .dock-item {
+        width: 46px;
+    }
+    .dock-icon {
+        width: 44px;
+        height: 44px;
+    }
+    .dock-separator {
+        margin-inline: 1px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .dock-item {
+        transition: none;
+    }
+    .dock-item:hover,
+    .dock-item:focus-visible,
+    .dock-item:has(+ .dock-item:hover),
+    .dock-item:hover + .dock-item,
+    .dock-item:has(+ .dock-item:focus-visible),
+    .dock-item:focus-visible + .dock-item {
+        transform: none;
+    }
+}
+.dock {
+    bottom: 4px;
+    align-items: flex-end;
+    height: 66px;
+    padding: 4px 3px 3px;
+    isolation: isolate;
+    overflow: visible;
+    border: 0;
+    border-radius: 14px;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+.dock-glass {
+    position: absolute;
+    z-index: 0;
+    display: block;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: inherit;
+    background: rgba(28, 31, 34, 0.18);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(20px) saturate(1.1) brightness(0.82);
+    -webkit-backdrop-filter: blur(20px) saturate(1.1) brightness(0.82);
+    pointer-events: none;
+    transform: scaleX(1);
+    transform-origin: 50% 50%;
+    will-change: transform;
+}
+.dock::before,
+.dock::after {
+    display: none;
+}
+.dock-item {
+    position: relative;
+    display: block;
+    flex: 0 0 auto;
+    width: 58px;
+    height: 58px;
+    padding: 0;
+    transform: none;
+    transition: filter 140ms ease;
+}
+.dock-item:hover,
+.dock-item:focus-visible,
+.dock-item:has(+ .dock-item:hover),
+.dock-item:has(+ .dock-item:focus-visible),
+.dock-item:hover + .dock-item,
+.dock-item:focus-visible + .dock-item {
+    width: 58px;
+    transform: none;
+}
+.dock-icon {
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    width: 58px;
+    height: 58px;
+    transform: none;
+    transform-origin: 50% 100%;
+    transition: filter 140ms ease;
+    will-change: transform;
+}
+.dock-hover-label {
+    bottom: calc(100% + 12px);
+    padding: 6px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    border-radius: 8px;
+    color: #171719;
+    background: rgba(238, 238, 239, 0.72);
+    box-shadow: 0 7px 21px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    font-size: 12px;
+    font-weight: 600;
+}
+.dock-hover-label.is-visible {
+    transform: translate(-50%, 0) scale(1);
+}
+.dock-indicator {
+    bottom: -2px;
+    width: 4px;
+    height: 4px;
+}
+.dock-item:active .dock-icon {
+    filter: brightness(0.62) drop-shadow(0 0 10px rgba(0, 0, 0, 0.7));
+}
+@media (max-width: 1000px) {
+    .dock-item {
+        width: 55px;
+    }
+    .dock-icon {
+        width: 55px;
+        height: 55px;
+    }
+}
+@media (max-width: 760px) {
+    .dock {
+        bottom: 4px;
+        height: 64px;
+        padding: 4px 4px 3px;
+        border-radius: 16px;
+    }
+    .dock-item,
+    .dock-icon {
+        width: 54px;
+        height: 54px;
+    }
+    .dock-item:hover,
+    .dock-item:focus-visible,
+    .dock-item:has(+ .dock-item:hover),
+    .dock-item:has(+ .dock-item:focus-visible),
+    .dock-item:hover + .dock-item,
+    .dock-item:focus-visible + .dock-item {
+        width: 54px;
+    }
+    .dock-item:hover .dock-icon,
+    .dock-item:focus-visible .dock-icon,
+    .dock-item:has(+ .dock-item:hover) .dock-icon,
+    .dock-item:has(+ .dock-item:focus-visible) .dock-icon,
+    .dock-item:hover + .dock-item .dock-icon,
+    .dock-item:focus-visible + .dock-item .dock-icon {
+        width: 54px;
+        height: 54px;
+    }
+}
+@media (max-width: 520px) {
+    .dock {
+        max-width: calc(100vw - 8px);
+    }
+    .dock-item,
+    .dock-icon,
+    .dock-item:hover,
+    .dock-item:focus-visible,
+    .dock-item:has(+ .dock-item:hover),
+    .dock-item:has(+ .dock-item:focus-visible),
+    .dock-item:hover + .dock-item,
+    .dock-item:focus-visible + .dock-item,
+    .dock-item:hover .dock-icon,
+    .dock-item:focus-visible .dock-icon,
+    .dock-item:has(+ .dock-item:hover) .dock-icon,
+    .dock-item:has(+ .dock-item:focus-visible) .dock-icon,
+    .dock-item:hover + .dock-item .dock-icon,
+    .dock-item:focus-visible + .dock-item .dock-icon {
+        width: min(50px, calc((100vw - 16px) / var(--dock-item-count, 10)));
+        height: min(50px, calc((100vw - 16px) / var(--dock-item-count, 10)));
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .dock-item,
+    .dock-icon {
+        transition: none;
+    }
+    .dock-glass,
+    .dock-icon {
+        will-change: auto;
+    }
+}
+
+/* Canonical Dock contract — all geometry is owned here. */
+.dock {
+    --dock-resting-size: 58px;
+    --dock-slot-size: 58px;
+    --dock-maximum-size: 128px;
+    --dock-influence-radius: 52px;
+    bottom: 4px;
+    height: 66px;
+    padding: 4px 3px 3px;
+    align-items: flex-end;
+    overflow: visible;
+    border: 0;
+    border-radius: 14px;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.dock-glass {
+    position: absolute;
+    z-index: 0;
+    display: block;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: inherit;
+    background: rgba(28, 31, 34, 0.18);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(20px) saturate(1.1) brightness(0.82);
+    -webkit-backdrop-filter: blur(20px) saturate(1.1) brightness(0.82);
+    pointer-events: none;
+    transform: scaleX(1);
+    transform-origin: 50% 50%;
+    will-change: transform;
+}
+
+.dock-item,
+.dock-item:hover,
+.dock-item:focus-visible,
+.dock-item:has(+ .dock-item:hover),
+.dock-item:has(+ .dock-item:focus-visible),
+.dock-item:hover + .dock-item,
+.dock-item:focus-visible + .dock-item {
+    position: relative;
+    display: block;
+    width: var(--dock-slot-size);
+    height: var(--dock-resting-size);
+    flex: 0 0 var(--dock-slot-size);
+    padding: 0;
+    transform: none;
+}
+
+.dock-visual {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: calc((var(--dock-slot-size) - var(--dock-resting-size)) / 2);
+    display: block;
+    width: var(--dock-resting-size);
+    height: var(--dock-resting-size);
+    pointer-events: none;
+    transform: translateX(0);
+    transform-origin: 50% 100%;
+    will-change: transform;
+}
+
+.dock-icon,
+.dock-item:hover .dock-icon,
+.dock-item:focus-visible .dock-icon,
+.dock-item:has(+ .dock-item:hover) .dock-icon,
+.dock-item:has(+ .dock-item:focus-visible) .dock-icon,
+.dock-item:hover + .dock-item .dock-icon,
+.dock-item:focus-visible + .dock-item .dock-icon {
+    --launcher-canvas-size: var(--dock-resting-size);
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    width: var(--dock-resting-size);
+    height: var(--dock-resting-size);
+    transform: scale(1);
+    transform-origin: 50% 100%;
+    transition: filter 140ms ease;
+    will-change: transform;
+}
+
+.dock-indicator {
+    position: absolute;
+    z-index: 2;
+    bottom: -2px;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.48);
+    opacity: 0;
+    transform: translateX(-50%);
+}
+
+.dock-item.is-open .dock-indicator {
+    opacity: 1;
+}
+
+.dock-item:active .dock-icon {
+    filter: brightness(0.62) drop-shadow(0 0 10px rgba(0, 0, 0, 0.7));
+}
+
+.dock-item.is-minimized .dock-icon {
+    filter: saturate(0.65) brightness(0.82);
+}
+
+@media (max-width: 1000px) {
+    .dock {
+        --dock-resting-size: 55px;
+        --dock-slot-size: 55px;
+    }
+}
+
+@media (max-width: 760px) {
+    .dock {
+        --dock-resting-size: 54px;
+        --dock-slot-size: 54px;
+        --dock-maximum-size: 54px;
+        height: 64px;
+        padding: 4px 4px 3px;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 520px) {
+    .dock {
+        --dock-resting-size: round(down, min(50px, calc((100vw - 16px) / var(--dock-item-count, 10))), 1px);
+        --dock-slot-size: var(--dock-resting-size);
+        --dock-maximum-size: var(--dock-resting-size);
+        max-width: calc(100vw - 8px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dock {
+        --dock-maximum-size: var(--dock-resting-size);
+    }
+
+    .dock-glass,
+    .dock-visual,
+    .dock-icon {
+        transition: none;
+        will-change: auto;
+    }
+}

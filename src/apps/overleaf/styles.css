@@ -1,0 +1,556 @@
+/* overleaf: App content. See knowledge/architecture.md for cascade ownership. */
+.overleaf-window {
+    --window-width: min(1280px, 90vw);
+    --window-height: min(770px, 83vh);
+    top: 3.5%;
+    left: 7%;
+}
+
+.latex-lines {
+    margin: 0;
+    padding: 18px 0 18px 52px;
+    color: #d6d6d9;
+    font-family: var(--mono);
+    font-size: clamp(9px, 0.84vw, 12px);
+    line-height: 1.75;
+    tab-size: 2;
+}
+
+.latex-lines li {
+    min-height: 1.75em;
+    padding-left: 13px;
+}
+
+.latex-lines li::marker {
+    color: #626267;
+    font-size: 0.82em;
+}
+
+.latex-lines code {
+    white-space: pre;
+}
+.overleaf-window .window-surface {
+    display: flex;
+    flex-direction: column;
+    color: #262a2a;
+    background: #f4f4f2;
+}
+
+.overleaf-titlebar {
+    color: #333;
+    background: linear-gradient(#f1f1f0, #dfdfdd);
+}
+
+.overleaf-toolbar {
+    display: flex;
+    align-items: center;
+    flex: 0 0 43px;
+    gap: 11px;
+    height: 43px;
+    padding: 0 12px;
+    border-bottom: 1px solid #cdd1cd;
+    color: #3a443e;
+    background: #f0f1ef;
+}
+
+.overleaf-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-right: 7px;
+    color: #267a31;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.overleaf-wordmark img {
+    width: 22px;
+    height: 22px;
+}
+
+.compile-button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 4px;
+    color: #fff;
+    background: #138a35;
+    font-size: 9px;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.compile-button:hover {
+    background: #0b7429;
+}
+
+.compile-button.is-compiling span:first-child {
+    animation: compile-spin 600ms linear infinite;
+}
+
+@keyframes compile-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.compile-status {
+    color: #6d736f;
+    font-size: 8px;
+}
+
+.overleaf-toolbar > i {
+    flex: 1;
+}
+
+.overleaf-share {
+    padding: 6px 9px;
+    border: 1px solid #c5c9c5;
+    border-radius: 4px;
+    color: #5e655f;
+    font-family: var(--mono);
+    font-size: 7px;
+}
+
+.overleaf-layout {
+    display: grid;
+    grid-template-columns: 180px minmax(310px, 0.92fr) minmax(350px, 1.08fr);
+    flex: 1;
+    min-height: 0;
+}
+
+.overleaf-files {
+    display: flex;
+    min-width: 0;
+    min-height: 0;
+    flex-direction: column;
+    border-right: 1px solid #d3d3d1;
+    background: #ebebe9;
+}
+
+.overleaf-files header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 31px;
+    padding: 0 10px;
+    border-bottom: 1px solid #d6d6d4;
+    color: #727771;
+    font-family: var(--mono);
+    font-size: 7px;
+}
+
+.overleaf-files > div {
+    flex: 1;
+    padding: 7px;
+    overflow: auto;
+}
+
+.overleaf-files button,
+.overleaf-files p {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    width: 100%;
+    min-height: 27px;
+    margin: 0;
+    padding: 3px 7px;
+    border-radius: 4px;
+    color: #4f5550;
+    background: transparent;
+    font-size: 9px;
+    text-align: left;
+}
+
+.overleaf-files button {
+    cursor: pointer;
+}
+
+.overleaf-files button:hover {
+    background: #dfdfdc;
+}
+
+.overleaf-files button[aria-selected="true"] {
+    color: #1c3e26;
+    background: #d0e2d2;
+}
+
+.overleaf-files button span {
+    display: grid;
+    width: 14px;
+    height: 16px;
+    place-items: center;
+    color: #fff;
+    background: #4aa05a;
+    font-family: var(--mono);
+    font-size: 7px;
+    font-weight: 700;
+}
+
+.overleaf-files footer {
+    height: 25px;
+    padding: 7px 10px;
+    border-top: 1px solid #d3d3d0;
+    color: #858983;
+    font-family: var(--mono);
+    font-size: 7px;
+}
+
+.latex-source {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    border-right: 1px solid #d2d2d0;
+    background: #fcfcfb;
+}
+
+.latex-source > header {
+    display: flex;
+    align-items: center;
+    height: 31px;
+    padding: 0 10px;
+    border-bottom: 1px solid #d5d5d3;
+    color: #595e59;
+    background: #f2f2f0;
+    font-size: 8px;
+}
+
+.latex-source > header > span {
+    display: none;
+}
+
+.latex-source > header > span.is-active {
+    display: inline;
+}
+
+.latex-source > header b {
+    margin-left: auto;
+    font-weight: 400;
+}
+
+.latex-document {
+    position: absolute;
+    inset: 31px 0 0;
+    overflow: auto;
+}
+
+.latex-lines {
+    color: #333637;
+    font-size: clamp(8px, 0.75vw, 10px);
+}
+
+.latex-lines b {
+    color: #188754;
+    font-weight: 600;
+}
+
+.latex-lines i {
+    color: #919591;
+    font-style: normal;
+}
+
+.latex-document aside {
+    margin: 7px 20px 25px 53px;
+    padding: 13px 15px;
+    border-left: 2px solid #39a35c;
+    color: #515853;
+    background: #f0f5f1;
+}
+
+.latex-document aside b {
+    color: #277b3f;
+    font-size: 10px;
+}
+
+.latex-document aside p {
+    margin: 6px 0 0;
+    font-size: 9px;
+    line-height: 1.55;
+}
+
+.pdf-preview {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    background: #d7d7d4;
+}
+
+.pdf-preview > header {
+    display: flex;
+    align-items: center;
+    height: 31px;
+    padding: 0 12px;
+    border-bottom: 1px solid #bfc0bd;
+    color: #60645f;
+    background: #e7e7e4;
+    font-family: var(--mono);
+    font-size: 7px;
+}
+
+.pdf-preview > header b {
+    margin-left: auto;
+}
+
+.proof-page {
+    position: absolute;
+    inset: 31px 0 0;
+    padding: 28px;
+    overflow: auto;
+    overscroll-behavior: contain;
+}
+
+.proof-page-inner {
+    width: min(440px, 100%);
+    min-height: calc(100% - 2px);
+    margin: 0 auto;
+    padding: clamp(25px, 4vw, 48px);
+    color: #1a1d1b;
+    background: #fffef9;
+    box-shadow: 0 10px 30px rgba(46, 46, 42, 0.18);
+}
+
+.proof-label {
+    margin: 0 0 22px;
+    color: #7e827d;
+    font-family: var(--mono);
+    font-size: 6px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.book-proof h3 {
+    margin: 0;
+    font-size: clamp(28px, 3.1vw, 46px);
+    letter-spacing: -0.07em;
+    line-height: 1;
+}
+
+.proof-subtitle {
+    margin: 5px 0 24px;
+    color: #59605a;
+    font-size: 13px;
+}
+
+.book-proof figure {
+    position: relative;
+    margin: 0;
+}
+
+.book-proof figure > img {
+    width: 100%;
+    border: 1px solid #d9d7cd;
+    filter: sepia(0.05) contrast(1.02);
+}
+
+.proof-lens {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 112px;
+    height: 112px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background-color: #fff;
+    background-image: url("assets/wallpapers/mit-killian-court.jpg");
+    background-repeat: no-repeat;
+    box-shadow: 0 8px 25px rgba(19, 27, 20, 0.28);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.book-proof.is-inspecting .proof-lens {
+    display: block;
+}
+
+.book-proof figcaption {
+    margin-top: 7px;
+    color: #888b86;
+    font-size: 7px;
+    text-align: center;
+}
+
+.book-proof dl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 24px 0 0;
+    border-top: 1px solid #d9d7ce;
+}
+
+.book-proof dl > div {
+    padding: 13px 7px 0 0;
+}
+
+.book-proof dt {
+    color: #969790;
+    font-family: var(--mono);
+    font-size: 6px;
+}
+
+.book-proof dd {
+    margin: 4px 0 0;
+    font-size: 9px;
+    font-weight: 650;
+}
+
+.poem-proof .proof-page-inner {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    background:
+        linear-gradient(90deg, transparent 0 52px, rgba(196, 91, 91, 0.15) 52px 53px, transparent 53px),
+        #fffef9;
+}
+
+.poem-proof h3 {
+    margin: 5px 0 8px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(28px, 3.1vw, 45px);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+}
+
+.poem-byline {
+    margin: 0;
+    color: #817e75;
+    font-family: var(--mono);
+    font-size: 7px;
+    letter-spacing: 0.1em;
+}
+
+.poem-proof blockquote {
+    margin: auto 0;
+    padding: 35px 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(13px, 1.25vw, 17px);
+    line-height: 1.7;
+}
+
+.poem-proof blockquote span {
+    display: block;
+}
+
+.proof-note {
+    margin: 0;
+    color: #8f8c82;
+    font-size: 8px;
+}
+
+.overleaf-statusbar {
+    display: flex;
+    align-items: center;
+    flex: 0 0 21px;
+    gap: 13px;
+    height: 21px;
+    padding: 0 10px;
+    border-top: 1px solid #c8cac7;
+    color: #70766f;
+    background: #ebedea;
+    font-family: var(--mono);
+    font-size: 7px;
+}
+
+.overleaf-statusbar i {
+    flex: 1;
+}
+
+@media (max-width: 1100px) {
+    .overleaf-layout {
+        grid-template-columns: 155px minmax(280px, 0.9fr) minmax(330px, 1.1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .overleaf-layout {
+        grid-template-columns: 130px minmax(245px, 0.85fr) minmax(280px, 1.15fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .latex-lines {
+        padding-left: 39px;
+        font-size: 8px;
+    }
+
+    .latex-document aside {
+        margin-left: 39px;
+    }
+
+    .overleaf-toolbar {
+        flex-basis: 38px;
+        height: 38px;
+        padding-inline: 8px;
+    }
+
+    .overleaf-wordmark {
+        font-size: 0;
+    }
+
+    .compile-status,
+    .overleaf-share {
+        display: none;
+    }
+
+    .overleaf-layout {
+        grid-template-areas:
+            "files"
+            "source"
+            "preview";
+        grid-template-columns: 1fr;
+        grid-template-rows: 43px minmax(180px, 0.8fr) minmax(250px, 1.2fr);
+    }
+
+    .overleaf-files {
+        grid-area: files;
+        border-right: 0;
+        border-bottom: 1px solid #d3d3d1;
+    }
+
+    .overleaf-files header,
+    .overleaf-files footer,
+    .overleaf-files p {
+        display: none;
+    }
+
+    .overleaf-files > div {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 7px;
+        overflow-x: auto;
+    }
+
+    .overleaf-files button {
+        flex: 0 0 auto;
+        width: auto;
+        height: 31px;
+    }
+
+    .latex-source {
+        grid-area: source;
+        border-right: 0;
+        border-bottom: 1px solid #cfcfcd;
+    }
+
+    .pdf-preview {
+        grid-area: preview;
+    }
+
+    .proof-page {
+        padding: 13px;
+    }
+
+    .proof-page-inner {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 430px) {
+    .proof-page-inner {
+        padding: 20px;
+    }
+}

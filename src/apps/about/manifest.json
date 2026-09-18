@@ -1,0 +1,31 @@
+{
+    "id": "about",
+    "appLabel": "Finder",
+    "group": "system",
+    "shortcut": "0",
+    "icon": {
+        "src": "assets/app-icons/finder.png",
+        "className": "finder-icon",
+        "crop": {
+            "canvas": 256,
+            "x": 26,
+            "y": 26,
+            "size": 204
+        },
+        "background": "#1aafff"
+    },
+    "title": {
+        "zh": "關於我",
+        "en": "About Me"
+    },
+    "subtitle": {
+        "zh": "我是誰，最近在做甚麼",
+        "en": "Who I am and what I'm working on"
+    },
+    "dockLabel": {
+        "zh": "Finder",
+        "en": "Finder"
+    },
+    "keywords": "anson 羅天逸 about me profile 澳門 macao student 學生",
+    "order": 0
+}
