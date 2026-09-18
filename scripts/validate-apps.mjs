@@ -32,6 +32,25 @@ const ids = new Set();
 const shortcuts = new Set();
 const requiredLocalizedFields = ["title", "subtitle", "dockLabel"];
 
+function validateIcon(icon, location) {
+    if (!icon?.background) errors.push(`${location}: icon background is required.`);
+    if (icon?.symbol) return;
+    const { canvas, x, y, size } = icon?.crop || {};
+    if (![canvas, x, y, size].every(Number.isInteger)
+        || canvas <= 0 || size <= 0 || x < 0 || y < 0
+        || x + size > canvas || y + size > canvas) {
+        errors.push(`${location}: icon needs a valid square source crop.`);
+    }
+}
+
+for (const name of ["apps", "mail"]) {
+    const icon = sandbox.window.ANSON_SHELL_ICONS?.[name];
+    validateIcon(icon, `shell icon ${name}`);
+    if (!icon?.src || !fs.existsSync(path.join(root, icon.src))) {
+        errors.push(`shell icon ${name}: source does not exist.`);
+    }
+}
+
 for (const [index, app] of (apps || []).entries()) {
     const location = `manifest item ${index + 1}`;
 
@@ -66,6 +85,8 @@ for (const [index, app] of (apps || []).entries()) {
     } else if (!fs.existsSync(path.join(root, app.icon.src.split(/[?#]/, 1)[0]))) {
         errors.push(`${location}: icon does not exist at "${app.icon.src}".`);
     }
+
+    validateIcon(app.icon, location);
 
 }
 

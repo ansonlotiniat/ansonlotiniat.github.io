@@ -1,6 +1,6 @@
 # AnsonOS UI audit
 
-Last updated: 2026-09-18 11:27 CST
+Last updated: 2026-09-18 16:11 CST
 
 ## Canonical reference
 
@@ -31,6 +31,7 @@ Last updated: 2026-09-18 11:27 CST
 | Runtime audit readiness | Fast loads could measure a 658 px player during opening or move the Dock pointer before boot finished | Fixed sleeps were shorter than the 420 ms boot delay plus 460 ms window transition, or overlapped Dock animation | Layout/open/restore checks wait for a visible, untransformed window; Dock checks also wait for its boot tweens | The complete 2026-09-18 file/HTTP responsive, Dock, playback, visual, and eight-App lifecycle audit passes | Fixed in tests |
 | Music library with hidden sidebar | Mobile showed only the player; hiding the desktop sidebar could also collapse the library | Grid auto-placement moved `.music-main` into the zero-width first column after the sidebar became `display:none` | The library explicitly occupies grid column 2; the shared cache version is `20260918-ui1` | New content/hit-target assertions fail before repair at 700 px and pass at all nine widths afterward; file/HTTP tests select and play an album with the desktop sidebar hidden; the 480 px library is 474 px wide | Fixed |
 | Netflix icon size | Netflix's black plate looked about 25% larger than adjacent native icons | Its opaque App Store bitmap filled the canvas, while native icons contain transparent padding | Centre the existing image at the measured native `204/256` plate ratio in Dock, Apps, and Spotlight; cache version `20260918-ui2` | Dock plate is 46.21875 px in its 58 px slot, matching Books; seven checks cover four viewport widths, 128 px shared hover magnification, Apps, and Spotlight | Fixed |
+| Uniform App geometry | Native source padding, per-App corner coverage, and fractional layout produced unequal visible widths and gaps | Equal canvas sizes did not imply equal artwork plates | All 26 launcher entries share `appIcon()`, crop metadata, integer-sized `.launcher-plate`, one SVG mask and shadow; Apps grid tracks also use integer pixels | 56 local file/HTTP checks cover eight viewport widths and DPR1/2; desktop Dock is 47×47 px with nine 11 px gaps; colour-neutralized silhouette comparisons have zero differing covered pixels in Dock, Apps, and Spotlight | Fixed; supersedes Netflix-only sizing |
 
 ## Permanent contracts
 
@@ -39,7 +40,8 @@ Last updated: 2026-09-18 11:27 CST
 3. `.dock-*` and `.music-*` selectors have one owner stylesheet each. Cross-owner overrides are a validation failure.
 4. Dock sizes are CSS variables. JavaScript may read them but may not duplicate their numeric values.
 5. The Music player fixture decides chrome only. Live song data is permitted to differ from the screenshot.
-6. Every UI asset change must bump the shared `anson-ui-contract-version` and the six linked cache versions together.
+6. Every UI asset change must bump the shared `anson-ui-contract-version` and the seven linked cache versions together.
+7. `icons.css` owns all launcher artwork. Source crops belong in the registry; individual Apps cannot override plate sizes, masks, or shadows. Pixel-mask comparisons normalize artwork colour and compare spatial coverage; opacity quantization from GPU compositing is recorded separately.
 
 ## Repeatable verification
 
@@ -57,4 +59,4 @@ Run the isolated real-browser audit with a Node runtime that provides Playwright
 node tests/ui-runtime.mjs
 ```
 
-The runtime audit covers both direct file and local HTTP delivery, the full responsive matrix (including visible, hittable album content), Dock pointer/magnification geometry, real preview playback with the sidebar hidden, DPR2 glyph comparison, and open/focus/drag/minimize/restore/close for all eight Apps. The final 2026-09-18 release run passed every check after fixing library grid placement and animation-sensitive readiness waits. Expected Code - OSS worker/font diagnostics on an opaque `file://` origin are separate from uncaught AnsonOS application errors and do not block the compatibility workbench.
+The runtime audit covers both direct file and local HTTP delivery, uniform launcher plates/spacing/pixel silhouettes at DPR1/2, the full responsive matrix (including visible, hittable album content), Dock pointer/magnification geometry, real preview playback with the sidebar hidden, DPR2 glyph comparison, and open/focus/drag/minimize/restore/close for all eight Apps. Launcher measurements wait for both GSAP and native CSS transitions. The 2026-09-18 release run passes these checks. Expected Code - OSS worker/font diagnostics on an opaque `file://` origin are separate from uncaught AnsonOS application errors and do not block the compatibility workbench.

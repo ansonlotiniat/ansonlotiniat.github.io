@@ -15,6 +15,8 @@
             icon: {
                 src: "assets/app-icons/finder.png",
                 className: "finder-icon",
+                crop: { canvas: 256, x: 26, y: 26, size: 204 },
+                background: "#1aafff",
             },
             title: {
                 zh: "關於我",
@@ -38,6 +40,8 @@
             icon: {
                 src: "assets/app-icons/xcode.png",
                 className: "xcode-icon",
+                crop: { canvas: 256, x: 26, y: 26, size: 204 },
+                background: "#1a9cf4",
             },
             title: {
                 zh: "學校項目",
@@ -61,6 +65,8 @@
             icon: {
                 src: "assets/app-icons/visual-studio-code.png",
                 className: "vscode-icon",
+                crop: { canvas: 512, x: 51, y: 51, size: 410 },
+                background: "#ffffff",
             },
             title: {
                 zh: "程式碼",
@@ -84,6 +90,8 @@
             icon: {
                 src: "assets/app-icons/overleaf.svg",
                 className: "overleaf-icon",
+                symbol: true,
+                background: "radial-gradient(circle at 28% 12%, #fff, transparent 43%), linear-gradient(150deg, #f5faf3, #b3d6ac)",
             },
             title: {
                 zh: "寫過的東西",
@@ -107,6 +115,8 @@
             icon: {
                 src: "assets/app-icons/goodnotes.png",
                 className: "goodnotes-icon",
+                crop: { canvas: 256, x: 25, y: 25, size: 206 },
+                background: "#ffffff",
             },
             title: {
                 zh: "課堂筆記",
@@ -130,6 +140,8 @@
             icon: {
                 src: "assets/app-icons/books.png",
                 className: "books-icon",
+                crop: { canvas: 256, x: 26, y: 26, size: 204 },
+                background: "#ff9415",
             },
             title: {
                 zh: "最近在讀",
@@ -153,6 +165,8 @@
             icon: {
                 src: "assets/app-icons/netflix.png?v=20260823-appstore",
                 className: "netflix-icon",
+                crop: { canvas: 512, x: 0, y: 0, size: 512 },
+                background: "#080808",
             },
             title: {
                 zh: "我的片單",
@@ -176,6 +190,8 @@
             icon: {
                 src: "assets/app-icons/apple-music.png",
                 className: "apple-music-icon",
+                crop: { canvas: 256, x: 25, y: 25, size: 206 },
+                background: "#fc3159",
             },
             title: {
                 zh: "常聽的音樂",
@@ -193,10 +209,28 @@
         },
     ];
 
+    window.ANSON_SHELL_ICONS = Object.freeze({
+        apps: Object.freeze({
+            src: "assets/app-icons/apps.png",
+            className: "apps-icon",
+            crop: Object.freeze({ canvas: 256, x: 26, y: 26, size: 204 }),
+            background: "#f5f5f5",
+        }),
+        mail: Object.freeze({
+            src: "assets/app-icons/mail.png",
+            className: "mail-icon",
+            crop: Object.freeze({ canvas: 256, x: 25, y: 25, size: 206 }),
+            background: "#16adf9",
+        }),
+    });
+
     window.ANSON_APP_MANIFEST = Object.freeze(
         apps.map((app) => Object.freeze({
             ...app,
-            icon: Object.freeze({ ...app.icon }),
+            icon: Object.freeze({
+                ...app.icon,
+                ...(app.icon.crop ? { crop: Object.freeze({ ...app.icon.crop }) } : {}),
+            }),
             title: Object.freeze({ ...app.title }),
             subtitle: Object.freeze({ ...app.subtitle }),
             dockLabel: Object.freeze({ ...app.dockLabel }),

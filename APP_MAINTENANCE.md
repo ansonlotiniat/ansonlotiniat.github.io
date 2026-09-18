@@ -7,14 +7,12 @@ Dock、Launchpad、Spotlight／Explore 搜尋結果、App 名稱、圖示與 `�
 ## 新增一個 App
 
 1. 把圖示放入 `assets/app-icons/`，盡量使用 512×512 或以上、帶透明背景的 PNG。
-   Dock 的互動盒固定為 58×58 px，放大曲線會統一縮放整個 `.dock-icon`。若原始圖示是
-   滿版方形底板、看起來比 macOS 原生圖示重，不要改 Dock 盒或為單一 App 改放大倍率；
-   應在該 App 的 `.dock-icon.<className>` 內用 inset 偽元素繪製較小底板，再縮小內部
-   `img`。Overleaf 是現成範例：底板直接採用 Xcode 圖檔量得的 `204/256` 尺寸比例與
-   `44/204` 圓角比例，而不是猜一個固定 px 值。這能保持所有 App 的命中區、連續曲線和
-   玻璃寬度一致。
-   若底板已含在滿版點陣圖內（例如 Netflix），直接把 `img` 以 `204/256`（79.6875%）
-   的比例縮小並置中，並在 Dock、Launchpad 和 Spotlight 使用相同比例。
+   每張圖都必須在 registry 記錄實際底板的 `crop`，排除透明邊界與陰影。
+   `icons.css` 的共用 `.launcher-plate` 負責取整尺寸、遮罩、陰影與置中；不要再替
+   個別 App 寫尺寸或留白例外。桌面 Dock 的 58 px 互動盒內，所有底板都是 47×47 px，
+   相鄰底板間距都是 11 px。手機會把格位與底板尺寸取整，保持每個圖示相同。
+   `background` 填補來源圓角之外的透明區域；原始圖檔保持不變。Overleaf 這類只有
+   標誌的向量圖用 `symbol: true`，由共用底板提供背景。
 2. 在 `apps.config.js` 的 `apps` 陣列加入一筆：
 
 ```js
@@ -26,6 +24,8 @@ Dock、Launchpad、Spotlight／Explore 搜尋結果、App 名稱、圖示與 `�
     icon: {
         src: "assets/app-icons/new-app.png",
         className: "new-app-icon",
+        crop: { canvas: 512, x: 52, y: 52, size: 408 }, // 用實際測量值取代
+        background: "#ffffff",
     },
     title: {
         zh: "中文工作區名稱",
@@ -72,6 +72,9 @@ Dock、Launchpad、Spotlight／Explore 搜尋結果、App 名稱、圖示與 `�
    Dock 幾何只能寫入 `dock.css`，Music 介面只能寫入 `music.css`。不要從其他檔案覆蓋
    `.dock-*`／`.music-*`，也不要用 `nth-child` 或左右 margin 鏈定位控制項；控制項應有
    穩定的 class 或 `data-*` 身分。
+   圖示圖片與底板只由 `icons.css` 控制；Dock／Apps／Spotlight 容器各自提供
+   `--launcher-canvas-size`，不能覆寫個別圖片的大小。Apps、Mail 的固定圖示也必須
+   經過 `ANSON_SHELL_ICONS` 和同一個 `appIcon()` renderer。
 5. 如果 App 有分頁或可操作內容，在 `main.js` 加一個以 App 名稱開頭的 controller，
    並確保鍵盤與 `prefers-reduced-motion` 仍可用。
 6. 記錄第三方圖示來源與授權到 `assets/app-icons/SOURCES.md`。
@@ -90,6 +93,8 @@ UI contract 會另外阻止 Dock／Music selector 越權、播放器 DOM 順序�
 `.dock-visual`、CSS/JavaScript 尺寸重新硬編碼，以及 cache version 不同步。真實瀏覽器
 測試則覆蓋 `file://`／HTTP、responsive overflow、Dock 幾何、Music 視覺／播放和所有
 App 的開啟、拖動、最小化及還原。
+`tests/launcher-contract.mjs` 另會比對十個 Dock 底板的尺寸、上下對齊、實際邊緣間距，
+檢查八種 viewport、1×／2× 螢幕像素輪廓，以及 Apps／Spotlight 的統一底板。
 
 ## 分組與排序
 

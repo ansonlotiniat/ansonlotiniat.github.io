@@ -18,17 +18,29 @@ function localizedSpan(copy) {
     return fragment;
 }
 
-function appIcon(app, className) {
+function appIcon(definition, className) {
     const icon = document.createElement("span");
-    icon.className = `${className} ${app.icon.className}`;
+    icon.className = `${className} launcher-icon ${definition.className}`;
     icon.setAttribute("aria-hidden", "true");
 
+    const plate = document.createElement("span");
+    plate.className = "launcher-plate";
+    plate.style.setProperty("--icon-background", definition.background);
+    if (definition.symbol) {
+        plate.classList.add("launcher-plate-symbol");
+    } else {
+        const { canvas, x, y, size } = definition.crop;
+        plate.style.setProperty("--icon-image-scale", canvas / size);
+        plate.style.setProperty("--icon-image-x", `${-x / size * 100}%`);
+        plate.style.setProperty("--icon-image-y", `${-y / size * 100}%`);
+    }
     const image = document.createElement("img");
-    image.src = app.icon.src;
+    image.src = definition.src;
     image.alt = "";
     image.width = 64;
     image.height = 64;
-    icon.append(image);
+    plate.append(image);
+    icon.append(plate);
     return icon;
 }
 
@@ -59,15 +71,7 @@ function appsLauncher() {
     launcher.setAttribute("aria-controls", "launchpad");
     setDockItemLabel(launcher, { zh: "Apps", en: "Apps" });
 
-    const icon = document.createElement("span");
-    icon.className = "dock-icon apps-icon";
-    icon.setAttribute("aria-hidden", "true");
-    const image = document.createElement("img");
-    image.src = "assets/app-icons/apps.png";
-    image.alt = "";
-    image.width = 64;
-    image.height = 64;
-    icon.append(image);
+    const icon = appIcon(window.ANSON_SHELL_ICONS.apps, "dock-icon");
 
     launcher.append(dockVisual(icon));
     return launcher;
@@ -88,7 +92,7 @@ function renderLaunchers() {
             result.dataset.exploreResult = "";
             result.dataset.openApp = app.id;
             result.dataset.keywords = app.keywords;
-            result.append(appIcon(app, "app-icon"));
+            result.append(appIcon(app.icon, "app-icon"));
 
             const copy = document.createElement("span");
             copy.className = "result-copy";
@@ -114,7 +118,7 @@ function renderLaunchers() {
             launcher.className = "launchpad-app";
             launcher.dataset.openApp = app.id;
             launcher.dataset.launchpadKeywords = `${app.keywords} ${app.appLabel}`;
-            launcher.append(appIcon(app, "launchpad-icon"));
+            launcher.append(appIcon(app.icon, "launchpad-icon"));
 
             const title = document.createElement("strong");
             title.textContent = app.appLabel;
@@ -133,7 +137,7 @@ function renderLaunchers() {
             const indicator = document.createElement("span");
             indicator.className = "dock-indicator";
             indicator.setAttribute("aria-hidden", "true");
-            launcher.append(dockVisual(appIcon(app, "dock-icon"), indicator));
+            launcher.append(dockVisual(appIcon(app.icon, "dock-icon"), indicator));
             dockContainer.append(launcher);
 
             if (app.id === "about") {
@@ -147,15 +151,7 @@ function renderLaunchers() {
         mail.className = "dock-item dock-link";
         mail.href = "mailto:ansonlotiniat@gmail.com";
         setDockItemLabel(mail, { zh: "Mail", en: "Mail" });
-        const icon = document.createElement("span");
-        icon.className = "dock-icon mail-icon";
-        icon.setAttribute("aria-hidden", "true");
-        const image = document.createElement("img");
-        image.src = "assets/app-icons/mail.png";
-        image.alt = "";
-        image.width = 64;
-        image.height = 64;
-        icon.append(image);
+        const icon = appIcon(window.ANSON_SHELL_ICONS.mail, "dock-icon");
         mail.append(dockVisual(icon));
         dockContainer.append(mail);
     }

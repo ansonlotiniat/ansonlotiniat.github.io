@@ -36,3 +36,12 @@ launcher canvas. The fully opaque Netflix asset otherwise made its plate roughly
 strong-alpha plate inside their 256 px PNG. Dock, Apps, and Spotlight now centre
 Netflix at this same ratio before applying its existing mask. The source artwork
 and the shared Dock hit area/magnification curve are unchanged.
+
+The later 2026-09-18 all-App consistency request supersedes that Netflix-only
+treatment. Original files remain unchanged. `apps.config.js` now records each
+source plate crop (alpha ≥240, excluding the outer shadow): 204/256 for Finder,
+Apps, Xcode, and Books; 410/512 for VS Code; 206/256 for Goodnotes, Music, and Mail;
+and the full 512/512 Netflix image. Overleaf remains a vector symbol. All launchers
+use one integer-sized plate, SVG alpha mask, and shadow from `icons.css`; the
+desktop Dock uses 47×47 CSS px plates in 58 px slots. Background fills are limited
+to the transparent corners beneath the original source artwork.

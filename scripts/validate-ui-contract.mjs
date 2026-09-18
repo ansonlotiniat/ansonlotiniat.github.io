@@ -19,6 +19,7 @@ const style = read("style.css");
 const macos = read("macos.css");
 const dock = read("dock.css");
 const music = read("music.css");
+const icons = read("icons.css");
 const ownerSelector = /\.(?:dock|music)(?:\b|-)/;
 
 for (const [file, css] of [["style.css", style], ["macos.css", macos]]) {
@@ -26,6 +27,7 @@ for (const [file, css] of [["style.css", style], ["macos.css", macos]]) {
 }
 check(!/\.music(?:\b|-)/.test(dock), "dock.css contains a Music-owned selector");
 check(!/\.dock(?:\b|-)/.test(music), "music.css contains a Dock-owned selector");
+check(!ownerSelector.test(icons), "icons.css contains launcher-container geometry owned by Dock/Music");
 
 for (const match of music.matchAll(/:(?:nth-child|first-child|last-child)\b/g)) {
     const start = Math.max(music.lastIndexOf("}", match.index), music.lastIndexOf("{", match.index)) + 1;
@@ -80,10 +82,16 @@ check(dock.includes("--dock-resting-size:"), "dock.css is missing --dock-resting
 check(dock.includes("--dock-slot-size:"), "dock.css is missing --dock-slot-size");
 check(dock.includes("--dock-maximum-size:"), "dock.css is missing --dock-maximum-size");
 check(!apps.includes('className: "music-icon"'), "The Apple Music App icon collides with the Music SVG class");
+check(main.includes('plate.className = "launcher-plate"'), "Launchers are missing their shared artwork plate");
+check(main.includes("appIcon(window.ANSON_SHELL_ICONS.apps") && main.includes("appIcon(window.ANSON_SHELL_ICONS.mail"), "Fixed launchers bypass shared icon rendering");
+check(icons.includes("round(nearest,"), "Launcher plates are not snapped to integer pixels");
+for (const [file, css] of [["style.css", style], ["macos.css", macos], ["dock.css", dock]]) {
+    check(!/\.(?:netflix|overleaf)-icon(?:\s|:|\{)/.test(css), `${file} contains a retired per-icon geometry override`);
+}
 
 const contractVersion = index.match(/<meta name="anson-ui-contract-version" content="([^"]+)">/)?.[1];
 check(Boolean(contractVersion), "index.html is missing the UI contract version meta tag");
-for (const asset of ["style.css", "macos.css", "dock.css", "music.css", "apps.config.js", "main.js"]) {
+for (const asset of ["style.css", "macos.css", "dock.css", "music.css", "icons.css", "apps.config.js", "main.js"]) {
     const escaped = asset.replace(".", "\\.");
     const version = index.match(new RegExp(`(?:href|src)="${escaped}\\?v=([^"]+)"`))?.[1];
     check(version === contractVersion, `${asset} cache version ${version || "missing"} does not match ${contractVersion || "the contract"}`);

@@ -327,6 +327,7 @@ body{
 
 
 .app-icon{
+    --launcher-canvas-size: 50px;
     overflow: visible;
     border-radius: 0;
     background: transparent;
@@ -344,23 +345,9 @@ body{
     filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
 }
 
-.app-icon.overleaf-icon{
-    overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    background:
-        radial-gradient(circle at 28% 12%, rgba(255, 255, 255, 0.96), transparent 43%),
-        linear-gradient(150deg, rgba(245, 250, 243, 0.92), rgba(179, 214, 172, 0.86));
-    box-shadow:
-        inset 0 1px rgba(255, 255, 255, 0.74),
-        0 5px 10px rgba(0, 0, 0, 0.18);
-}
 
-.app-icon.overleaf-icon img{
-    width: 72%;
-    height: 72%;
-    margin: auto;
-}
+
+
 
 
 
@@ -643,6 +630,7 @@ body{
 }
 
 .explore-results .app-icon{
+    --launcher-canvas-size: 41px;
     width: 41px;
     height: 41px;
 }
@@ -1696,11 +1684,16 @@ body.is-launchpad-open .menu-bar{
 }
 
 .launchpad-grid{
+    --launchpad-columns: 4;
+    --launchpad-available-width: min(1120px, 92vw);
+    --launchpad-column-gap: round(nearest, clamp(48px, 8vw, 128px), 1px);
+    --launchpad-row-gap: round(nearest, clamp(54px, 8vh, 88px), 1px);
+    --launchpad-card-width: round(down, calc((var(--launchpad-available-width) - (var(--launchpad-columns) - 1) * var(--launchpad-column-gap)) / var(--launchpad-columns)), 1px);
     display: grid;
-    width: min(1120px, 92vw);
+    width: max-content;
     margin: 56px auto 0;
-    grid-template-columns: repeat(4, minmax(120px, 1fr));
-    gap: clamp(54px, 8vh, 88px) clamp(48px, 8vw, 128px);
+    grid-template-columns: repeat(var(--launchpad-columns), var(--launchpad-card-width));
+    gap: var(--launchpad-row-gap) var(--launchpad-column-gap);
 }
 
 .launchpad-app{
@@ -1728,6 +1721,7 @@ body.is-launchpad-open .menu-bar{
 }
 
 .launchpad-icon{
+    --launcher-canvas-size: 88px;
     position: relative;
     display: grid;
     width: 88px;
@@ -1753,33 +1747,14 @@ body.is-launchpad-open .menu-bar{
     height: 100%;
 }
 
-.launchpad-icon.overleaf-icon{
-    overflow: visible;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-}
 
-.launchpad-icon.overleaf-icon::before{
-    position: absolute;
-    z-index: 0;
-    inset: 7px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 18px;
-    content: "";
-    background:
-        radial-gradient(circle at 28% 12%, rgba(255, 255, 255, 0.98), transparent 42%),
-        linear-gradient(150deg, #f5faf3, #b3d6ac);
-    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.2);
-}
 
-.launchpad-icon.overleaf-icon img{
-    z-index: 1;
-    width: 58%;
-    height: 58%;
-}
+
+
+
 
 .launchpad-app strong{
+    line-height: 20px;
     max-width: 150px;
     overflow: hidden;
     font-size: 15px;
@@ -2024,7 +1999,8 @@ body.is-launchpad-open .menu-bar{
     }
 
     .launchpad-grid{
-        gap: 58px 50px;
+        --launchpad-row-gap: 58px;
+        --launchpad-column-gap: 50px;
     }
 
 
@@ -2065,10 +2041,11 @@ body.is-launchpad-open .menu-bar{
     }
 
     .launchpad-grid{
-        width: min(620px, 92vw);
+        --launchpad-columns: 2;
+        --launchpad-available-width: min(620px, 92vw);
+        --launchpad-row-gap: 42px;
+        --launchpad-column-gap: 52px;
         margin-top: 42px;
-        grid-template-columns: repeat(2, minmax(110px, 1fr));
-        gap: 42px 52px;
     }
 
 
@@ -2095,20 +2072,6 @@ body.is-launchpad-open .menu-bar{
     }
 }
 
-/* App Store artwork fills its canvas. Match the native 204/256 plate ratio
-   before applying the icon mask in each launcher. */
-.app-icon.netflix-icon img,
-.launchpad-icon.netflix-icon img{
-    width: 79.6875%;
-    height: 79.6875%;
-    margin: auto;
-    overflow: hidden;
-    border-radius: 22.37%;
-    corner-shape: squircle;
-    clip-path: inset(0 round 22.37%);
-    object-fit: cover;
-}
-
 @media (max-width: 520px) {
     .menu-item-help{
         display: none;
@@ -2123,6 +2086,7 @@ body.is-launchpad-open .menu-bar{
     }
 
     .launchpad-icon{
+        --launcher-canvas-size: 72px;
         width: 72px;
         height: 72px;
     }

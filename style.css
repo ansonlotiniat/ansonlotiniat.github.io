@@ -856,15 +856,9 @@ kbd{
     height: 92%;
 }
 
-.overleaf-icon{
-    background:
-        radial-gradient(circle at 22% 15%, #fafff7, #e7f8e3 48%, #bce5b6 100%);
-}
 
-.overleaf-icon img{
-    width: 72%;
-    height: 72%;
-}
+
+
 
 .explore-dock-icon{
     overflow: visible;

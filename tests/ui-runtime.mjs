@@ -6,6 +6,7 @@ import os from "node:os";
 import path from "node:path";
 import { createRequire } from "node:module";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { verifyLauncherContract } from "./launcher-contract.mjs";
 
 const require = createRequire(import.meta.url);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -469,12 +470,16 @@ const browser = await chromium.launch({
 });
 
 try {
-    await verifyResponsiveMatrix(browser, filePortfolioUrl().split("#")[0], "file");
-    await verifyResponsiveMatrix(browser, server.baseUrl, "http");
-    await verifyDockGeometry(browser);
-    await verifyMusicVisualAndPlayback(browser, filePortfolioUrl().split("#")[0], "file");
-    await verifyMusicVisualAndPlayback(browser, server.baseUrl, "http");
-    await verifyWindowSmoke(browser, server.baseUrl);
+    await verifyLauncherContract(browser, filePortfolioUrl().split("#")[0], "file", PNG);
+    await verifyLauncherContract(browser, server.baseUrl, "http", PNG);
+    if (process.env.ANSON_TEST_GROUP !== "icons") {
+        await verifyResponsiveMatrix(browser, filePortfolioUrl().split("#")[0], "file");
+        await verifyResponsiveMatrix(browser, server.baseUrl, "http");
+        await verifyDockGeometry(browser);
+        await verifyMusicVisualAndPlayback(browser, filePortfolioUrl().split("#")[0], "file");
+        await verifyMusicVisualAndPlayback(browser, server.baseUrl, "http");
+        await verifyWindowSmoke(browser, server.baseUrl);
+    }
     console.log("UI runtime audit passed.");
 } finally {
     await browser.close();
