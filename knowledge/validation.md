@@ -16,10 +16,10 @@ Last updated: 2026-09-18
 | launcher-contract.mjs | 八種寬度 × DPR1/2，三 launcher 的尺寸、對齊、邊緣間距、mask 輪廓 |
 | ui-runtime.mjs | file/HTTP responsive、Music glyph／試聽、Dock hover、所有 App 視窗 lifecycle |
 | test:vscode | 真實 file:// Code OSS、四 workspace、Quick Open risk.js、Monaco 內容 |
-| Site quality CI | Linux Node 24、npm ci、headless Chromium、預設完整檢查，失敗上傳證據 |
+| Site quality CI | Ubuntu 24.04／Node 24、npm ci、headless Chromium、預設完整檢查，失敗上傳證據 |
 
 本次初始畫面比對：1440／480 px × 八個 App，共 16 組、27 項 computed styles，零差異。證據在 output/architecture/。信心高，但不代表全部互動狀態都逐像素相等。圖示比較同色 mask 的空間輪廓；GPU alpha rounding 另記錄。
 
-最終功能／CI／公開站结果寫入[操作手冊](operations.md)。Code OSS file:// 有預期 worker/font 診斷，與 shell 未捕捉例外分開；真實工作區／搜尋必須可用，`.nojekyll` 必須保留。
+最終本機、CI、公開站驗證通過；結果見[操作手冊](operations.md)。Code OSS file:// 有預期 worker/font 診斷，與 shell 未捕捉例外分開；真實工作區／搜尋必須可用，`.nojekyll` 必須保留。
 
 VS Code 專項測試原先依賴過期的 iframe 顯示標題，已改用固定 `data-vscode-frame`。真實 Code OSS 於約 1 秒就緒，四個工作區、Quick Open 與 risk.js/Monaco 內容檢查通過；不是以 mock 取代 runtime。

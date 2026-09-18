@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-18
 
-狀態：模組遷移及完整本機回歸通過，CI／正式站驗證待發布。信心高：import／DOM／CSS 檢查、Template 實際擴充、App 互動、真實 Code OSS 與 16 組版面比對。
+狀態：模組遷移、完整本機回歸、GitHub CI 及正式站驗收通過，已發布。信心高：import／DOM／CSS 檢查、Template 實際擴充、App 互動、真實 Code OSS 與 16 組版面比對。
 
 ```text
 src/apps/<id>/      App manifest、HTML、controller、content、CSS、README

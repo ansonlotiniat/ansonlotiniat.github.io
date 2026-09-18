@@ -1,6 +1,6 @@
 # 開發、發布與回滾
 
-Last updated: 2026-09-18 19:38 CST
+Last updated: 2026-09-18 19:41 CST
 
 ## 本機
 
@@ -20,6 +20,8 @@ Repository `ansonlotiniat/ansonlotiniat.github.io`，Pages source `main`／root�
 
 ## 最新已驗收版本
 
-待發布內容版本 `build-6e481d012e1c`：完整 `npm run check`、`npm run test:vscode` 通過；16 組畫面 computed-style 比對零差異；200 個文件本地連結有效。下一步是推送、等待 Site quality／Pages，再核對公開站 bytes 與 headless smoke。大型 vendor assets 未改動。
+已發布內容版本 `build-6e481d012e1c`，commit `39b404d3f32988781d32a1e7240868d6e091fc1f`：[Pages 35340650021](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/35340650021) 成功，10 份公開產物及 canonical HTML 版本相符。完整 `npm run check`、`npm run test:vscode` 通過；16 組畫面 computed-style 比對零差異；200 個文件本地連結有效。[Site quality 35340650983](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/35340650983) 通過；公開站 28 組 launcher/DPR 檢查、八個 App 開关、真實 Code OSS/Quick Open risk.js 通過，零未捕捉 App 例外。證據：`output/architecture/production-report.json`、`output/playwright/launcher-modular-production-measurements.json`。大型 vendor assets 未改動。
 
-本次模組遷移尚未發布。上一內容 release `9d2dda46d5cdd5907a21f7390ef1e5b11b2564fa` 的[Pages 35323313757](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/35323313757)成功；文件 follow-up `22cc70ca7b791411194483cbbe086624a2fa2b14` 的[Pages 35323565838](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/35323565838)也成功。舊紀錄見[歷史](history/2026-09-18-pre-modular.md)。
+先前內容 release `9d2dda46d5cdd5907a21f7390ef1e5b11b2564fa` 的[Pages 35323313757](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/35323313757)成功；文件 follow-up `22cc70ca7b791411194483cbbe086624a2fa2b14` 的[Pages 35323565838](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/35323565838)也成功。舊紀錄見[歷史](history/2026-09-18-pre-modular.md)。
+
+CI 的 runner 固定為 Ubuntu 24.04、Node 24，避免 ubuntu-latest 自動換代影響視覺基準。升級時另做瀏覽器驗證；GitHub 本次 run 已公告 latest 將於 2026-10-19 遷移 Ubuntu 26。
