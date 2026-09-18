@@ -1,6 +1,6 @@
 # Knowledge Base — Anson Lo Personal Site
 
-Last updated: 2026-09-18 11:04 CST
+Last updated: 2026-09-18 11:09 CST
 
 ## Reframed goal
 
@@ -99,6 +99,7 @@ The site must not assume that a portfolio is something to scroll from top to bot
 
 ## Build status
 
+- Release follow-up validated locally (2026-09-18): the Music library now explicitly occupies grid column 2, so hiding the sidebar on mobile or desktop cannot auto-place it into the zero-width sidebar column. The added regression check failed before the fix at 700 px, then the complete file/HTTP audit passed with content visibility/hit-testing at all nine widths and playback with the desktop sidebar hidden. A 480 px screenshot confirms a 474 px library, 214 px first album, and all 12 album entries. The shared UI cache version is now `20260918-ui1`; deployment of this correction is pending. Evidence: [fixed local mobile view](output/playwright/local-music-mobile-fixed-20260918.png). The earlier mobile player/overflow metrics alone did not establish visible library content.
 - Production release completed (2026-09-18): release commit `eb961188316877fef36e719050737e885b4dddee` publishes the latest natural-copy, Netflix/Music, and Dock/player audit changes from `main` through successful [GitHub Pages run 35301595714](https://github.com/ansonlotiniat/ansonlotiniat.github.io/actions/runs/35301595714) to [the production site](https://ansonlotiniat.github.io/). All 62 live integrity checks match the release byte-for-byte, including the canonical homepage, changed runtime/media assets, and required Code - OSS `node_modules` assets. App/UI validators, JavaScript syntax, whitespace checks, 34 local media references, and the complete isolated browser audit pass. Confidence: high. Evidence: [production integrity report](output/deployment-20260918/production-integrity.json).
 - Production browser verification (2026-09-18): isolated headless Chrome confirms four Netflix titles and the film filter, Music playback with `readyState=4` and advancing time, a 700 px desktop player, a 480 px mobile page with equal 456 px player client/scroll widths, no missing visible images, and a runtime-ready Code - OSS workbench. Console: zero errors and the expected same-origin extension-worker warning. Evidence: [Netflix desktop](output/playwright/production-netflix-20260918.png), [Music desktop](output/playwright/production-music-20260918.png), and [Music mobile](output/playwright/production-music-mobile-20260918.png).
 - Release QA finding (2026-09-18): the runtime audit's fixed delays could sample the Music open animation (420 ms boot delay + 460 ms transition) and move the pointer before Dock boot completed on fast loads. Settled Music geometry remains 700 px. Tests now wait for actual open-window and Dock-animation states. The full rerun passes both delivery protocols, nine responsive widths, Dock geometry, real audio playback/visual comparison, and all eight App lifecycles. No product styling or interaction code changed for this finding; no foreground application was controlled.

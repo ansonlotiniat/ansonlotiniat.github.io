@@ -781,6 +781,7 @@ button.music-album:focus-visible .music-album-overlay{
     white-space: nowrap;
 }.music-main{
     position: relative;
+    grid-column: 2;
     min-width: 0;
     min-height: 0;
     padding: 0;

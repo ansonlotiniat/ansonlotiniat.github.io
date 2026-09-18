@@ -1,6 +1,6 @@
 # AnsonOS UI audit
 
-Last updated: 2026-09-18 11:00 CST
+Last updated: 2026-09-18 11:09 CST
 
 ## Canonical reference
 
@@ -29,6 +29,7 @@ Last updated: 2026-09-18 11:00 CST
 | Books controls | Search stroke and reader mobile hiding depended on button order | `first-child` and `nth-of-type` encoded control roles | Reader controls now expose `data-books-reader-control`; Search uses `data-books-nav="search"` | UI contract rejects positional selectors in both Books scopes | Fixed |
 | App manifest validation | Versioned Netflix icon paths were reported missing | The validator sent the query string to `existsSync` | Local path checks strip `?` and `#` before filesystem lookup | Eight Apps, eight windows, all icon paths, and all shortcuts pass | Fixed |
 | Runtime audit readiness | Fast loads could measure a 658 px player during opening or move the Dock pointer before boot finished | Fixed sleeps were shorter than the 420 ms boot delay plus 460 ms window transition, or overlapped Dock animation | Layout/open/restore checks wait for a visible, untransformed window; Dock checks also wait for its boot tweens | The complete 2026-09-18 file/HTTP responsive, Dock, playback, visual, and eight-App lifecycle audit passes | Fixed in tests |
+| Music library with hidden sidebar | Mobile showed only the player; hiding the desktop sidebar could also collapse the library | Grid auto-placement moved `.music-main` into the zero-width first column after the sidebar became `display:none` | The library explicitly occupies grid column 2; the shared cache version is `20260918-ui1` | New content/hit-target assertions fail before repair at 700 px and pass at all nine widths afterward; file/HTTP tests select and play an album with the desktop sidebar hidden; the 480 px library is 474 px wide | Fixed |
 
 ## Permanent contracts
 
@@ -55,4 +56,4 @@ Run the isolated real-browser audit with a Node runtime that provides Playwright
 node tests/ui-runtime.mjs
 ```
 
-The runtime audit covers both direct file and local HTTP delivery, the full responsive matrix, Dock pointer/magnification geometry, real preview playback, DPR2 glyph comparison, and open/focus/drag/minimize/restore/close for all eight Apps. The final 2026-09-18 release run passed every check after replacing animation-sensitive readiness sleeps. Expected Code - OSS worker/font diagnostics on an opaque `file://` origin are separate from uncaught AnsonOS application errors and do not block the compatibility workbench.
+The runtime audit covers both direct file and local HTTP delivery, the full responsive matrix (including visible, hittable album content), Dock pointer/magnification geometry, real preview playback with the sidebar hidden, DPR2 glyph comparison, and open/focus/drag/minimize/restore/close for all eight Apps. The final 2026-09-18 release run passed every check after fixing library grid placement and animation-sensitive readiness waits. Expected Code - OSS worker/font diagnostics on an opaque `file://` origin are separate from uncaught AnsonOS application errors and do not block the compatibility workbench.

@@ -124,11 +124,19 @@ async function verifyMusicLayout(page, url, width, height) {
         const player = document.querySelector(".music-player");
         const playerRect = rect(player);
         const progressRect = rect(document.querySelector(".music-progress"));
+        const firstAlbum = document.querySelector(".music-album");
+        const albumRect = rect(firstAlbum);
         const controls = [...document.querySelectorAll(".music-player-actions [data-music-control]")]
             .filter((element) => getComputedStyle(element).display !== "none")
             .map((element) => ({ name: element.dataset.musicControl, rect: rect(element) }));
         return {
             controls,
+            main: rect(document.querySelector(".music-main")),
+            album: albumRect,
+            albumHitTarget: firstAlbum?.contains(document.elementFromPoint(
+                albumRect.left + albumRect.width / 2,
+                albumRect.top + albumRect.height / 2,
+            )),
             player: playerRect,
             playerClientWidth: player.clientWidth,
             playerScrollWidth: player.scrollWidth,
@@ -139,6 +147,8 @@ async function verifyMusicLayout(page, url, width, height) {
     });
     invariant(geometry.rootScrollWidth === geometry.rootClientWidth, `${width}px page has horizontal overflow`);
     invariant(geometry.playerScrollWidth === geometry.playerClientWidth, `${width}px player has internal overflow`);
+    invariant(geometry.main.width > 0 && geometry.main.height > 0, `${width}px Music library collapsed`);
+    invariant(geometry.album.width > 0 && geometry.albumHitTarget, `${width}px first album is not visible and clickable`);
     if (width >= 1001) {
         near(geometry.player.width, 700, 0.05, `${width}px desktop player width`);
         near(geometry.player.height, 54, 0.05, `${width}px desktop player height`);
@@ -319,7 +329,11 @@ async function verifyMusicVisualAndPlayback(browser, url, label) {
     page.on("pageerror", (error) => pageErrors.push(error.message));
     await page.goto(`${url}#music`, { waitUntil: "load" });
     await waitForWindowOpen(page, "music");
+    await page.locator("[data-music-sidebar-toggle]").click();
+    invariant(await page.locator(".music-app").evaluate((element) => element.classList.contains("is-sidebar-hidden")), `${label} Music sidebar did not hide`);
+    invariant((await page.locator(".music-main").boundingBox()).width > 0, `${label} hidden sidebar collapsed the library`);
     await page.locator(".music-album").first().click();
+    await page.locator("[data-music-sidebar-toggle]").click();
     await page.waitForFunction(() => {
         const audio = window.__ansonAudioInstances.at(-1);
         return audio && !audio.paused && audio.readyState === 4 && audio.currentTime > 0.15;
